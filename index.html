@@ -1,5 +1,5 @@
 <!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#111827"><meta name="application-name" content="OrderBuddy"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="OrderBuddy"><link rel="manifest" href="/manifest.webmanifest"><link rel="icon" type="image/png" href="/orderbuddy-logo.PNG"><link rel="apple-touch-icon" href="/orderbuddy-logo.PNG"><title>OrderBuddy</title><style>
-:root{--bg:#f3f5f7;--card:#ffffff;--text:#111827;--muted:#667085;--line:#d8dde5;--green:#111827;--gold:#ff6500;--red:#a33831}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif}button,input,select{font:inherit}.wrap{max-width:1200px;margin:auto;padding:18px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.brand{display:flex;align-items:center;gap:12px}.brand img{width:58px;height:58px;border-radius:12px;object-fit:contain;background:white;border:1px solid var(--line)}.product{font-size:11px;letter-spacing:.12em;color:var(--muted);font-weight:800}.customer{font:27px Georgia,serif;color:#111827}.badge{padding:8px 12px;border-radius:999px;background:#eef1f4;font-weight:700;font-size:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}.hidden{display:none!important}.login{max-width:460px;margin:60px auto}.login h1{font:28px Georgia,serif;margin:0 0 8px}.login p{color:var(--muted);line-height:1.5}.input{width:100%;min-height:48px;border:1px solid #cfd5dd;border-radius:12px;padding:10px 12px;background:white}.primary{min-height:48px;border:0;border-radius:12px;background:var(--green);color:white;font-weight:800;padding:10px 15px}.secondary{min-height:44px;border:1px solid #cfd5dd;border-radius:11px;background:transparent;font-weight:750;padding:8px 12px}.msg{margin-top:10px;font-size:13px;color:var(--muted)}.tabs{display:flex;gap:8px;margin-bottom:14px}.tab{min-height:44px;border:1px solid #cfd5dd;border-radius:12px;background:white;padding:9px 14px;font-weight:800}.tab.on{background:var(--green);color:white;border-color:transparent}.section-title{font:24px Georgia,serif;margin:4px 0 12px}.tables{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.table{min-height:105px;border:1px solid var(--line);border-radius:16px;background:white;padding:12px;text-align:left}.table b{font:25px Georgia,serif;display:block}.table small{color:var(--muted)}.table.status-free{background:#fff}.table.status-occupied{background:#fff7d6;border-color:#e8cf6b}.table.status-preparing{background:#ffedd5;border-color:#f2b66d}.table.status-ready{background:#dbeafe;border-color:#93b7e6}.table.status-checkout{background:#dcfce7;border-color:#86c99a}.table-status-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;background:currentColor}.table-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:12px;font-size:11px;color:var(--muted)}.table-legend span{display:flex;align-items:center;gap:5px}.legend-dot{width:10px;height:10px;border-radius:50%;border:1px solid #cfd5dd}.legend-free{background:#fff}.legend-occupied{background:#f6dc67}.legend-preparing{background:#f2a65a}.legend-ready{background:#85b7ef}.legend-checkout{background:#6fc88a}.order-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr);gap:14px}.cats{display:flex;gap:7px;overflow:auto;padding-bottom:8px}.cat{white-space:nowrap;border:1px solid #cfd5dd;border-radius:10px;background:white;padding:9px 11px;font-weight:750}.cat.on{background:var(--green);color:white}.items{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.item{min-height:82px;border:1px solid var(--line);border-radius:12px;background:#f8fafc;padding:10px;text-align:left}.item.unavailable{opacity:.55;background:#eef1f4;cursor:not-allowed}.unavailable-label{display:inline-block;margin-top:6px;padding:3px 6px;border-radius:999px;background:#e5e7eb;color:#4b5563;font-size:9px;font-weight:900;letter-spacing:.04em}.item small{display:block;font-size:9px;font-weight:900;color:#ff6500}.item strong{display:block}.item span{display:block;margin-top:6px;font:16px Georgia,serif;color:#374151}.order-list{display:flex;flex-direction:column;gap:7px}.line{border:1px solid #e2e6eb;border-radius:12px;padding:9px}.line-top{display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:6px;align-items:center}.line-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.status,.cancel{border:1px solid #cfd5dd;border-radius:999px;background:transparent;padding:5px 8px;font-size:11px;font-weight:800}.status.on{background:#eef1f4}.cancel{border-color:#deb8b4;background:#fff7f6;color:var(--red)}.new{font-size:9px;font-weight:900;color:#ff6500;margin-left:5px}.total{display:flex;justify-content:space-between;border-top:2px solid #cfd5dd;margin-top:12px;padding-top:12px}.total strong{font:24px Georgia,serif}.actions{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-top:12px}.actions button{min-height:50px;border-radius:11px;border:1px solid #cfd5dd;background:transparent;font-weight:850}.actions .gold{background:var(--gold);color:#17140d;border-color:transparent}.back{margin-bottom:10px}.sync{font-size:12px;color:var(--muted)}.modal-bg{position:fixed;inset:0;background:#0008;display:flex;align-items:center;justify-content:center;padding:16px;z-index:10}.modal{width:min(680px,100%);max-height:88vh;overflow:auto;background:var(--card);border-radius:18px;border:1px solid var(--line);padding:18px}.modal h2{font:26px Georgia,serif;margin:0 0 6px}.bill-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.bill-options button{min-height:70px;border-radius:12px;border:1px solid var(--line);background:white;font-weight:850}.select-line{display:grid;grid-template-columns:28px 1fr auto;gap:8px;align-items:center;border-bottom:1px solid #e2e6eb;padding:10px 2px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}.register-box{margin-top:16px;padding-top:14px;border-top:2px solid #e2e6eb}.register-title{display:flex;justify-content:space-between;align-items:center;gap:10px;font:20px Georgia,serif;margin-bottom:8px;cursor:pointer;user-select:none}.register-title-left{display:flex;align-items:center;gap:8px}.register-chevron{font-family:system-ui,-apple-system,Segoe UI,sans-serif;font-size:15px;color:var(--muted);transition:transform .18s ease}.register-box.open .register-chevron{transform:rotate(180deg)}.register-group{border:1px solid #e2e6eb;border-radius:12px;background:#f7f8fa;padding:10px;margin-top:8px}.register-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:6px}.register-item{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px;align-items:center;padding:7px 0;border-top:1px solid #e2e6eb}.register-item:first-of-type{border-top:0}.restore{border:1px solid #cfd5dd;border-radius:999px;background:#f8fafc;color:#111827;padding:5px 9px;font-size:11px;font-weight:850;cursor:pointer}.complete{border:0;border-radius:999px;background:var(--green);color:white;padding:6px 10px;font-size:11px;font-weight:850;cursor:pointer}.register-total{font-weight:850}.register-group-actions{display:flex;justify-content:flex-end;margin-top:9px;padding-top:8px;border-top:1px solid #e2e6eb}.completed-box{margin-top:14px;padding-top:12px;border-top:1px dashed #cfd5dd}.completed-title{display:flex;justify-content:space-between;align-items:center;gap:10px;font:18px Georgia,serif;cursor:pointer;user-select:none}.completed-groups{margin-top:8px}.completed-group{border:1px solid #d8dde5;border-radius:11px;background:#f7f8fa;padding:9px;margin-top:7px;opacity:.8}.completed-head{display:flex;justify-content:space-between;gap:10px;font-weight:800}.completed-meta{font-size:11px;color:var(--muted);margin-top:4px}.completed-item{display:flex;justify-content:space-between;gap:10px;font-size:12px;padding-top:5px}@media(max-width:800px){.tables{grid-template-columns:repeat(3,minmax(0,1fr))}.order-layout{grid-template-columns:1fr}.items{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:430px){.wrap{padding:12px}.tables{grid-template-columns:repeat(2,minmax(0,1fr))}.items{grid-template-columns:repeat(2,minmax(0,1fr))}.actions,.bill-options{grid-template-columns:1fr}.customer{font-size:22px}}
+:root{--bg:#f3f5f7;--card:#ffffff;--text:#111827;--muted:#667085;--line:#d8dde5;--green:#111827;--gold:#ff6500;--red:#a33831}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif}button,input,select{font:inherit}.wrap{max-width:1200px;margin:auto;padding:18px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.brand{display:flex;align-items:center;gap:12px}.brand img{width:58px;height:58px;border-radius:12px;object-fit:contain;background:white;border:1px solid var(--line)}.product{font-size:11px;letter-spacing:.12em;color:var(--muted);font-weight:800}.customer{font:27px Georgia,serif;color:#111827}.badge{padding:8px 12px;border-radius:999px;background:#eef1f4;font-weight:700;font-size:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}.hidden{display:none!important}.login{max-width:460px;margin:60px auto}.login h1{font:28px Georgia,serif;margin:0 0 8px}.login p{color:var(--muted);line-height:1.5}.input{width:100%;min-height:48px;border:1px solid #cfd5dd;border-radius:12px;padding:10px 12px;background:white}.primary{min-height:48px;border:0;border-radius:12px;background:var(--green);color:white;font-weight:800;padding:10px 15px}.secondary{min-height:44px;border:1px solid #cfd5dd;border-radius:11px;background:transparent;font-weight:750;padding:8px 12px}.msg{margin-top:10px;font-size:13px;color:var(--muted)}.tabs{display:flex;gap:8px;margin-bottom:14px}.tab{min-height:44px;border:1px solid #cfd5dd;border-radius:12px;background:white;padding:9px 14px;font-weight:800}.tab.on{background:var(--green);color:white;border-color:transparent}.section-title{font:24px Georgia,serif;margin:4px 0 12px}.tables{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.table{min-height:105px;border:1px solid var(--line);border-radius:16px;background:white;padding:12px;text-align:left}.table b{font:25px Georgia,serif;display:block}.table small{color:var(--muted)}.table.status-free{background:#fff}.table.status-occupied{background:#fff7d6;border-color:#e8cf6b}.table.status-preparing{background:#ffedd5;border-color:#f2b66d}.table.status-ready{background:#dbeafe;border-color:#93b7e6}.table.status-checkout{background:#dcfce7;border-color:#86c99a}.table-status-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;background:currentColor}.table-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:12px;font-size:11px;color:var(--muted)}.table-legend span{display:flex;align-items:center;gap:5px}.legend-dot{width:10px;height:10px;border-radius:50%;border:1px solid #cfd5dd}.legend-free{background:#fff}.legend-occupied{background:#f6dc67}.legend-preparing{background:#f2a65a}.legend-ready{background:#85b7ef}.legend-checkout{background:#6fc88a}.order-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr);gap:14px}.cats{display:flex;gap:7px;overflow:auto;padding-bottom:8px}.cat{white-space:nowrap;border:1px solid #cfd5dd;border-radius:10px;background:white;padding:9px 11px;font-weight:750}.cat.on{background:var(--green);color:white}.items{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.item{min-height:82px;border:1px solid var(--line);border-radius:12px;background:#f8fafc;padding:10px;text-align:left}.item.unavailable{opacity:.55;background:#eef1f4;cursor:not-allowed}.unavailable-label{display:inline-block;margin-top:6px;padding:3px 6px;border-radius:999px;background:#e5e7eb;color:#4b5563;font-size:9px;font-weight:900;letter-spacing:.04em}.item small{display:block;font-size:9px;font-weight:900;color:#ff6500}.item strong{display:block}.item span{display:block;margin-top:6px;font:16px Georgia,serif;color:#374151}.order-list{display:flex;flex-direction:column;gap:7px}.line{border:1px solid #e2e6eb;border-radius:12px;padding:9px}.line-top{display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:6px;align-items:center}.line-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.course-badge{display:inline-block;margin-top:5px;padding:3px 7px;border-radius:999px;background:#eef1f4;color:#374151;font-size:10px;font-weight:850}.course-select-wrap{margin:10px 0 2px}.ready-checkout{width:100%;margin-top:8px;min-height:48px;border:1px solid #63b77a;border-radius:11px;background:#ccefd6;color:#14532d;font-weight:900}.ready-checkout:disabled{opacity:.8}.status,.cancel{border:1px solid #cfd5dd;border-radius:999px;background:transparent;padding:5px 8px;font-size:11px;font-weight:800}.status.on{background:#eef1f4}.cancel{border-color:#deb8b4;background:#fff7f6;color:var(--red)}.new{font-size:9px;font-weight:900;color:#ff6500;margin-left:5px}.total{display:flex;justify-content:space-between;border-top:2px solid #cfd5dd;margin-top:12px;padding-top:12px}.total strong{font:24px Georgia,serif}.actions{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-top:12px}.actions button{min-height:50px;border-radius:11px;border:1px solid #cfd5dd;background:transparent;font-weight:850}.actions .gold{background:var(--gold);color:#17140d;border-color:transparent}.back{margin-bottom:10px}.sync{font-size:12px;color:var(--muted)}.modal-bg{position:fixed;inset:0;background:#0008;display:flex;align-items:center;justify-content:center;padding:16px;z-index:10}.modal{width:min(680px,100%);max-height:88vh;overflow:auto;background:var(--card);border-radius:18px;border:1px solid var(--line);padding:18px}.modal h2{font:26px Georgia,serif;margin:0 0 6px}.bill-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.bill-options button{min-height:70px;border-radius:12px;border:1px solid var(--line);background:white;font-weight:850}.select-line{display:grid;grid-template-columns:28px 1fr auto;gap:8px;align-items:center;border-bottom:1px solid #e2e6eb;padding:10px 2px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}.register-box{margin-top:16px;padding-top:14px;border-top:2px solid #e2e6eb}.register-title{display:flex;justify-content:space-between;align-items:center;gap:10px;font:20px Georgia,serif;margin-bottom:8px;cursor:pointer;user-select:none}.register-title-left{display:flex;align-items:center;gap:8px}.register-chevron{font-family:system-ui,-apple-system,Segoe UI,sans-serif;font-size:15px;color:var(--muted);transition:transform .18s ease}.register-box.open .register-chevron{transform:rotate(180deg)}.register-group{border:1px solid #e2e6eb;border-radius:12px;background:#f7f8fa;padding:10px;margin-top:8px}.register-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:6px}.register-item{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px;align-items:center;padding:7px 0;border-top:1px solid #e2e6eb}.register-item:first-of-type{border-top:0}.restore{border:1px solid #cfd5dd;border-radius:999px;background:#f8fafc;color:#111827;padding:5px 9px;font-size:11px;font-weight:850;cursor:pointer}.complete{border:0;border-radius:999px;background:var(--green);color:white;padding:6px 10px;font-size:11px;font-weight:850;cursor:pointer}.register-total{font-weight:850}.register-group-actions{display:flex;justify-content:flex-end;margin-top:9px;padding-top:8px;border-top:1px solid #e2e6eb}.completed-box{margin-top:14px;padding-top:12px;border-top:1px dashed #cfd5dd}.completed-title{display:flex;justify-content:space-between;align-items:center;gap:10px;font:18px Georgia,serif;cursor:pointer;user-select:none}.completed-groups{margin-top:8px}.completed-group{border:1px solid #d8dde5;border-radius:11px;background:#f7f8fa;padding:9px;margin-top:7px;opacity:.8}.completed-head{display:flex;justify-content:space-between;gap:10px;font-weight:800}.completed-meta{font-size:11px;color:var(--muted);margin-top:4px}.completed-item{display:flex;justify-content:space-between;gap:10px;font-size:12px;padding-top:5px}@media(max-width:800px){.tables{grid-template-columns:repeat(3,minmax(0,1fr))}.order-layout{grid-template-columns:1fr}.items{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:430px){.wrap{padding:12px}.tables{grid-template-columns:repeat(2,minmax(0,1fr))}.items{grid-template-columns:repeat(2,minmax(0,1fr))}.actions,.bill-options{grid-template-columns:1fr}.customer{font-size:22px}}
 
 .top-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 .top-mini{min-height:36px;border:1px solid #cfd5dd;border-radius:10px;background:white;padding:6px 10px;font-size:12px;font-weight:800;cursor:pointer}
@@ -280,7 +280,7 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
     <div class="category-group-title">Getränke</div>
     <div class="cats" id="drinkCats"></div>
   </div>
-</div><div class="items" id="items"></div></div><aside class="card"><div class="section-title">Aktuelle Bestellung</div><div class="order-list" id="order"></div><div class="total"><span>Offene Bestellsumme</span><strong id="total">0,00 €</strong></div><div id="registerBox" class="register-box hidden"><div id="registerToggle" class="register-title" role="button" tabindex="0" aria-expanded="false"><span class="register-title-left"><span class="register-chevron">▼</span><span>An Kasse übergeben</span></span><strong id="registerTotal">0,00 €</strong></div><div id="registerGroups" class="hidden"></div></div><div id="completedBox" class="completed-box hidden"><div id="completedToggle" class="completed-title" role="button" tabindex="0" aria-expanded="false"><span>✓ Abgeschlossen</span><strong id="completedTotal">0,00 €</strong></div><div id="completedGroups" class="completed-groups hidden"></div></div><div class="actions"><button id="kitchenBtn">🍳 Küche<br><small>neue Speisen</small></button><button id="barBtn">🍹 Bar<br><small>neue Getränke</small></button><button id="fullBtn">🧾 Gesamt<br><small>am Bardrucker</small></button><button id="billingBtn" class="gold">💶 Abrechnung<br><small>gesamt / getrennt</small></button><button id="voucherBtn">🎟 Gutschein verkaufen<br><small>Verkauf erfassen</small></button><button id="serviceVoucherBtn">🔎 Gutschein prüfen<br><small>Restwert / Einlösung</small></button><button id="printHistoryBtn">🖨 Druckverlauf<br><small>Bon nachdrucken</small></button></div><button id="closeTableBtn" class="secondary close-table">✓ Tisch abschließen</button><div id="actionMsg" class="msg">Keine Zahlungsabwicklung in OrderBuddy.</div></aside></div></section>
+</div><div class="items" id="items"></div></div><aside class="card"><div class="section-title">Aktuelle Bestellung</div><div class="order-list" id="order"></div><div class="total"><span>Offene Bestellsumme</span><strong id="total">0,00 €</strong></div><div id="registerBox" class="register-box hidden"><div id="registerToggle" class="register-title" role="button" tabindex="0" aria-expanded="false"><span class="register-title-left"><span class="register-chevron">▼</span><span>An Kasse übergeben</span></span><strong id="registerTotal">0,00 €</strong></div><div id="registerGroups" class="hidden"></div></div><div id="completedBox" class="completed-box hidden"><div id="completedToggle" class="completed-title" role="button" tabindex="0" aria-expanded="false"><span>✓ Abgeschlossen</span><strong id="completedTotal">0,00 €</strong></div><div id="completedGroups" class="completed-groups hidden"></div></div><div class="actions"><button id="kitchenBtn">🍳 Küche<br><small>neue Speisen</small></button><button id="barBtn">🍹 Bar<br><small>neue Getränke</small></button><button id="fullBtn">🧾 Gesamt<br><small>am Bardrucker</small></button><button id="billingBtn" class="gold">💶 Abrechnung<br><small>gesamt / getrennt</small></button><button id="voucherBtn">🎟 Gutschein verkaufen<br><small>Verkauf erfassen</small></button><button id="serviceVoucherBtn">🔎 Gutschein prüfen<br><small>Restwert / Einlösung</small></button><button id="printHistoryBtn">🖨 Druckverlauf<br><small>Bon nachdrucken</small></button></div><button id="readyCheckoutBtn" class="ready-checkout hidden">✓ Bereit zum Abschluss</button><button id="closeTableBtn" class="secondary close-table">✓ Tisch abschließen</button><div id="actionMsg" class="msg">Keine Zahlungsabwicklung in OrderBuddy.</div></aside></div></section>
 <section id="adminView" class="card admin-panel hidden">
   <button id="adminBackBtn" class="secondary back">← Zurück zur Tischübersicht</button><div class="admin-nav" id="adminNav">
 <button class="on" data-admin-group="overview">Übersicht</button>
@@ -505,7 +505,7 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
 
 
 <div id="paymentModal" class="modal-bg hidden"><div class="modal"><h2>Zahlungsarten</h2><div class="msg">Zahlungsarten für diesen abgeschlossenen Betrag dokumentieren. Teilzahlungen sind möglich.</div><div class="total"><span>Zu dokumentieren</span><strong id="paymentTarget">0,00 €</strong></div><div id="paymentRows" class="payment-rows"></div><button id="addPaymentRow" class="secondary" style="width:100%;margin-top:10px">+ weitere Zahlungsart</button><div id="paymentMsg" class="msg"></div><div class="modal-actions"><button id="paymentCancel" class="secondary">Abbrechen</button><button id="paymentSave" class="primary">Abschließen</button></div></div></div>
-<div id="itemConfigModal" class="modal-bg hidden"><div class="modal"><h2 id="configTitle">Position</h2><div id="configOptions"></div><div id="configNoteLabel" class="small-title">Bemerkung</div><textarea id="configNote" class="input note-input" placeholder="z. B. ohne Zwiebeln, gut durch, Allergiehinweis …"></textarea><div class="modal-actions"><button id="configCancel" class="secondary">Abbrechen</button><button id="configAdd" class="primary">Zur Bestellung hinzufügen</button></div></div></div>
+<div id="itemConfigModal" class="modal-bg hidden"><div class="modal"><h2 id="configTitle">Position</h2><div id="configOptions"></div><div id="configCourseWrap" class="course-select-wrap hidden"><div class="small-title">Servierfolge</div><select id="configCourse" class="input"><option value="starter">Vorspeise vorab</option><option value="together">Zusammen mit Hauptgang</option></select></div><div id="configNoteLabel" class="small-title">Bemerkung</div><textarea id="configNote" class="input note-input" placeholder="z. B. ohne Zwiebeln, gut durch, Allergiehinweis …"></textarea><div class="modal-actions"><button id="configCancel" class="secondary">Abbrechen</button><button id="configAdd" class="primary">Zur Bestellung hinzufügen</button></div></div></div>
 <div id="voucherModal" class="modal-bg hidden"><div class="modal"><h2>Gutschein verkaufen</h2><div class="msg">OrderBuddy erfasst den Gutscheinverkauf und vergibt automatisch die nächste Gutscheinnummer. Der Gutschein erscheint zusammen mit Speisen und Getränken auf dem Gesamtbon. Die Zahlung selbst wird nicht in OrderBuddy erfasst, sondern weiterhin an der offenen Ladenkasse abgewickelt.</div><label class="msg" style="display:block;margin-top:12px">Gutscheinwert</label><input id="voucherValue" class="input" type="number" min="1" step="1" placeholder="z. B. 50,00"><label class="msg" style="display:block;margin-top:10px">Für (optional)</label><input id="voucherNote" class="input" placeholder="z. B. Anna Müller"><div id="voucherResult" class="msg"></div><div class="modal-actions"><button id="voucherCancel" class="secondary">Abbrechen</button><button id="voucherCreate" class="primary">Verkauf bestätigen</button></div></div></div>
 <div id="printHistoryModal" class="modal-bg hidden"><div class="modal"><h2>Druckverlauf</h2><div class="msg">Nachdruck erzeugt keine neue Bestellung und keinen neuen Umsatz.</div><div id="printHistoryList" class="print-history"></div><div class="modal-actions"><button id="printHistoryClose" class="secondary">Schließen</button></div></div></div>
 
@@ -727,7 +727,7 @@ function businessDateNow(){
 }
 async function refreshTableStatuses(){
   if(!restaurant)return;
-  const{data,error}=await supabase.from('table_sessions').select('id,table_id,order_type,opened_at,requested_time,order_items(id,status,cancelled),bill_groups(status,bill_group_items(order_item_id))').eq('restaurant_id',restaurant.id).eq('status','open');
+  const{data,error}=await supabase.from('table_sessions').select('id,table_id,order_type,opened_at,requested_time,ready_for_checkout,order_items(id,status,cancelled),bill_groups(status,bill_group_items(order_item_id))').eq('restaurant_id',restaurant.id).eq('status','open');
   if(error)return;
   tableStatusMap=new Map();
   (data||[]).forEach(ses=>{
@@ -736,10 +736,9 @@ async function refreshTableStatuses(){
     groups.filter(g=>g.status==='completed').forEach(g=>(g.bill_group_items||[]).forEach(i=>assigned.add(String(i.order_item_id))));
     const unassigned=items.filter(o=>!assigned.has(String(o.id)));
     let key='occupied',label='Besetzt / Bestellung offen';
-    if(items.length&&items.every(o=>o.status==='done')){key='ready';label='Fertig / wartet auf Service'}
-    else if(items.some(o=>o.status==='preparing')){key='preparing';label='In Zubereitung'}
-    if(groups.some(g=>g.status==='completed')&&activeGroups.length===0&&unassigned.length===0){key='checkout';label='Bereit zum Abschluss'}
-    if(['Lieferung','Abholung'].includes(ses.order_type)&&groups.some(g=>g.status==='completed')&&activeGroups.length===0&&unassigned.length===0){key='checkout';label=ses.order_type==='Lieferung'?'Fahrer/Geld bestätigen':'Abholung bestätigen'}
+    if(ses.ready_for_checkout){key='checkout';label='Bereit zum Abschluss'}
+    else if(items.length&&items.every(o=>o.status==='done')){key='ready';label='Fertig / wartet auf Service'}
+    else if(items.some(o=>o.status==='preparing')||items.some(o=>o.status==='done')){key='preparing';label='In Zubereitung'}
     tableStatusMap.set(String(ses.table_id),{key,label,requested_time:ses.requested_time||''})
   })
 }
@@ -762,7 +761,7 @@ document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
 });
 
 async function getOpenSession(t){
-  const{data,error}=await supabase.from('table_sessions').select('id,restaurant_id,table_id,business_date,status,opened_at,order_type,customer_name,customer_phone,customer_address,requested_time,customer_note,delivery_zone_id,delivery_fee').eq('table_id',t.id).eq('status','open').maybeSingle();
+  const{data,error}=await supabase.from('table_sessions').select('id,restaurant_id,table_id,business_date,status,opened_at,order_type,customer_name,customer_phone,customer_address,requested_time,customer_note,delivery_zone_id,delivery_fee,ready_for_checkout').eq('table_id',t.id).eq('status','open').maybeSingle();
   if(error){$('#actionMsg').textContent='Sitzungsfehler: '+error.message;return null}
   return data||null
 }
@@ -773,7 +772,7 @@ async function createSession(t){
   const ins=await supabase.from('table_sessions').insert({
     restaurant_id:restaurant.id,table_id:t.id,business_date:businessDateNow(),
     opened_by_email:user?.email||null,status:'open',order_type:special?t.areas.name:null
-  }).select('id,restaurant_id,table_id,business_date,status,opened_at,order_type,customer_name,customer_phone,customer_address,requested_time,customer_note,delivery_zone_id,delivery_fee').single();
+  }).select('id,restaurant_id,table_id,business_date,status,opened_at,order_type,customer_name,customer_phone,customer_address,requested_time,customer_note,delivery_zone_id,delivery_fee,ready_for_checkout').single();
   if(ins.error){const retry=await getOpenSession(t);if(retry)return retry;$('#actionMsg').textContent='Sitzungsfehler: '+ins.error.message;return null}
   return ins.data
 }
@@ -860,7 +859,7 @@ $('#orderDetailsClear').onclick=async()=>{
   if(!confirm('Alle Kundendaten dieses Auftrags wirklich löschen?'))return;
   const payload={customer_name:null,customer_phone:null,customer_address:null,requested_time:null,customer_note:null,delivery_zone_id:null,delivery_fee:0};
   const{data,error}=await supabase.from('table_sessions').update(payload).eq('id',currentSession.id)
-    .select('id,restaurant_id,table_id,business_date,status,opened_at,order_type,customer_name,customer_phone,customer_address,requested_time,customer_note,delivery_zone_id,delivery_fee').single();
+    .select('id,restaurant_id,table_id,business_date,status,opened_at,order_type,customer_name,customer_phone,customer_address,requested_time,customer_note,delivery_zone_id,delivery_fee,ready_for_checkout').single();
   if(error){$('#orderDetailsMsg').textContent='Löschen fehlgeschlagen: '+error.message;return}
   currentSession=data;
   $('#orderCustomerName').value='';$('#orderCustomerPhone').value='';$('#orderCustomerAddress').value='';$('#orderRequestedTime').value='';$('#orderCustomerNote').value='';$('#orderDeliveryZone').value='';
@@ -880,7 +879,7 @@ $('#orderDetailsSave').onclick=async()=>{
     customer_address:delivery?address:null,requested_time:time,customer_note:$('#orderCustomerNote').value.trim()||null,
     delivery_zone_id:delivery?zoneId:null,delivery_fee:delivery?Number(zone?.fee||0):0};
   const{data,error}=await supabase.from('table_sessions').update(payload).eq('id',currentSession.id)
-    .select('id,restaurant_id,table_id,business_date,status,opened_at,order_type,customer_name,customer_phone,customer_address,requested_time,customer_note,delivery_zone_id,delivery_fee').single();
+    .select('id,restaurant_id,table_id,business_date,status,opened_at,order_type,customer_name,customer_phone,customer_address,requested_time,customer_note,delivery_zone_id,delivery_fee,ready_for_checkout').single();
   if(error){$('#orderDetailsMsg').textContent='Speichern fehlgeschlagen: '+error.message;return}
   currentSession=data;$('#orderDetailsModal').classList.add('hidden');renderOrderMeta();renderOrder();$('#actionMsg').textContent='Kundendaten gespeichert.'
 };
@@ -953,9 +952,11 @@ function renderItems(catIds){
   })
 }
 
+function isStarterItem(m){const cat=categories.find(c=>String(c.id)===String(m?.category_id));return /vorspeis/i.test(String(cat?.name||''))}
+function courseLabel(course){return course==='starter'?'Vorspeise vorab':course==='together'?'Zusammen mit Hauptgang':''}
 function requiresImmediateChoice(m){
   const groups=itemOptionGroups(m);
-  return groups.some(g=>Number(g.min_select||0)>0) || /eis|kugel|kuchen|tiramisu/i.test(m.name);
+  return isStarterItem(m) || groups.some(g=>Number(g.min_select||0)>0) || /eis|kugel|kuchen|tiramisu/i.test(m.name);
 }
 async function quickAddOrConfigure(m){
   if(requiresImmediateChoice(m)){openItemConfig(m,'choice');return}
@@ -963,10 +964,11 @@ async function quickAddOrConfigure(m){
   if(!currentSession){currentSession=await createSession(currentTable);if(!currentSession)return}
   const{error}=await supabase.from('order_items').insert({
     table_id:currentTable.id,restaurant_id:restaurant.id,session_id:currentSession.id,
-    menu_item_id:m.id,quantity:1,unit_price:Number(m.price),status:'new',
+    menu_item_id:m.id,quantity:1,unit_price:Number(m.price),status:'new',course:'main',
     note:null,options:{selections:[]}
   });
   if(error){$('#actionMsg').textContent='Fehler: '+error.message;return}
+  await supabase.from('table_sessions').update({ready_for_checkout:false}).eq('id',currentSession.id);currentSession.ready_for_checkout=false;
   $('#actionMsg').textContent=m.name+' hinzugefügt.';await loadOrders()
 }
 function itemOptionGroups(m){
@@ -1030,8 +1032,10 @@ function openItemConfig(m,mode='choice',orderItem=null){
   $('#configTitle').textContent=(mode==='edit'?'Extras / Bemerkung · ':'')+m.name+(m.variant?' · '+m.variant:'');
   $('#configNote').value=orderItem?.note||'';
   const box=$('#configOptions');box.innerHTML='';
-  const cat=categories.find(c=>c.id===m.category_id),isFood=cat?.destination==='kitchen';
+  const cat=categories.find(c=>c.id===m.category_id),isFood=cat?.destination==='kitchen',isStarter=isStarterItem(m);
   const groups=itemOptionGroups(m);
+  $('#configCourseWrap').classList.toggle('hidden',!isStarter);
+  if(isStarter)$('#configCourse').value=orderItem?.course==='together'?'together':'starter';
 
   if(mode==='choice'){
     if(isIceItem(m)){
@@ -1110,6 +1114,7 @@ async function addConfiguredItem(){
       quantity:1,
       unit_price:unitPrice,
       status:'new',
+      course:isStarterItem(m)?$('#configCourse').value:'main',
       note:null,
       options:{
         selections,
@@ -1123,6 +1128,7 @@ async function addConfiguredItem(){
       return
     }
 
+    await supabase.from('table_sessions').update({ready_for_checkout:false}).eq('id',currentSession.id);currentSession.ready_for_checkout=false;
     $('#itemConfigModal').classList.add('hidden');
     pendingMenuItem=null;
     editingOrderItem=null;
@@ -1176,6 +1182,7 @@ async function addConfiguredItem(){
     quantity:1,
     unit_price:unit,
     status:'new',
+    course:isStarterItem(m)?$('#configCourse').value:'main',
     note:null,
     options:{selections:optObjects}
   });
@@ -1185,6 +1192,7 @@ async function addConfiguredItem(){
     return
   }
 
+  await supabase.from('table_sessions').update({ready_for_checkout:false}).eq('id',currentSession.id);currentSession.ready_for_checkout=false;
   $('#itemConfigModal').classList.add('hidden');
   pendingMenuItem=null;
   editingOrderItem=null;
@@ -1198,7 +1206,8 @@ async function saveOrderItemEdits(){
   const optionTotal=(o.options?.selections||[]).reduce((a,x)=>a+Number(x.price_delta||0),0);
   const unit=Number(m.price||0)+optionTotal+extras.reduce((a,x)=>a+Number(x.price||0),0);
   const note=$('#configNote').value.trim()||null;
-  const{error:uerr}=await supabase.from('order_items').update({unit_price:unit,note}).eq('id',o.id);
+  const course=isStarterItem(m)?$('#configCourse').value:(o.course||'main');
+  const{error:uerr}=await supabase.from('order_items').update({unit_price:unit,note,course}).eq('id',o.id);
   if(uerr){$('#actionMsg').textContent='Änderung fehlgeschlagen: '+uerr.message;return}
   const{error:derr}=await supabase.from('order_item_extras').delete().eq('order_item_id',o.id);
   if(derr){$('#actionMsg').textContent='Extras konnten nicht aktualisiert werden: '+derr.message;return}
@@ -1207,17 +1216,17 @@ async function saveOrderItemEdits(){
     if(ierr){$('#actionMsg').textContent='Extras konnten nicht gespeichert werden: '+ierr.message;return}
   }
   $('#itemConfigModal').classList.add('hidden');pendingMenuItem=null;editingOrderItem=null;
-  $('#actionMsg').textContent='Extras / Bemerkung gespeichert.';await loadOrders()
+  if(currentSession){await supabase.from('table_sessions').update({ready_for_checkout:false}).eq('id',currentSession.id);currentSession.ready_for_checkout=false}$('#actionMsg').textContent='Extras / Bemerkung gespeichert.';await loadOrders()
 }
 async function loadOrders(){
-  if(!currentSession){orders=[];transferredOrders=[];billGroups=[];sessionVouchers=[];renderOrder();renderRegisterGroups();renderCompletedGroups();return}
+  if(!currentSession){orders=[];transferredOrders=[];billGroups=[];sessionVouchers=[];renderOrder();renderRegisterGroups();renderCompletedGroups();updateCheckoutReadyButton();return}
   const[{data:all,error:oe},{data:groups,error:ge},{data:v,error:ve}]=await Promise.all([
-    supabase.from('order_items').select('id,quantity,unit_price,status,ordered_at,cancelled,kitchen_printed_at,bar_printed_at,dispatch_printed_at,note,options,menu_items(id,name,variant,price,category_id,menu_categories(destination)),order_item_extras(id,extra_id,name,unit_price,quantity)').eq('session_id',currentSession.id).eq('cancelled',false).order('ordered_at'),
+    supabase.from('order_items').select('id,quantity,unit_price,status,course,ordered_at,cancelled,kitchen_printed_at,bar_printed_at,dispatch_printed_at,note,options,menu_items(id,name,variant,price,category_id,menu_categories(name,destination)),order_item_extras(id,extra_id,name,unit_price,quantity)').eq('session_id',currentSession.id).eq('cancelled',false).order('ordered_at'),
     supabase.from('bill_groups').select('id,label,status,prepared_at,completed_at,completed_by_email,bill_group_payments(id,payment_method,amount,reference),bill_group_items(id,order_item_id,quantity)').eq('session_id',currentSession.id).in('status',['prepared','handed_to_register','completed']).order('prepared_at'),
     supabase.from('vouchers').select('id,voucher_number,original_value,remaining_value,status,issued_at,note').eq('session_id',currentSession.id).neq('status','void').order('issued_at')
   ]);
   const error=oe||ge||ve;if(error){$('#actionMsg').textContent='Fehler: '+error.message;return}
-  billGroups=groups||[];sessionVouchers=v||[];const assignedIds=new Set();billGroups.forEach(g=>(g.bill_group_items||[]).forEach(i=>assignedIds.add(i.order_item_id)));transferredOrders=(all||[]).filter(o=>assignedIds.has(o.id));orders=(all||[]).filter(o=>!assignedIds.has(o.id));renderOrder();renderRegisterGroups();renderCompletedGroups()
+  billGroups=groups||[];sessionVouchers=v||[];const assignedIds=new Set();billGroups.forEach(g=>(g.bill_group_items||[]).forEach(i=>assignedIds.add(i.order_item_id)));transferredOrders=(all||[]).filter(o=>assignedIds.has(o.id));orders=(all||[]).filter(o=>!assignedIds.has(o.id));renderOrder();renderRegisterGroups();renderCompletedGroups();updateCheckoutReadyButton()
 }
 function renderOrder(){
   const box=$('#order');box.innerHTML='';let total=0;
@@ -1227,7 +1236,7 @@ function renderOrder(){
     const d=document.createElement('div');d.className='line';
     const dest=o.menu_items?.menu_categories?.destination;
     const isNew=dest==='kitchen'?!o.kitchen_printed_at:!o.bar_printed_at;
-    const details=(o.options?.selections||[]).map(x=>(Number(x.quantity||1)>1?Number(x.quantity)+'× ':'')+x.name).join(', ');const extras=(o.order_item_extras||[]).map(x=>x.name+' +'+euro(x.unit_price)).join(', ');d.innerHTML='<div class="line-top"><b>'+o.quantity+'×</b><span><b>'+esc(isIceItem(o.menu_items)&&o.options?.ice_balls ? 'Eis ('+o.options.ice_balls+' '+(Number(o.options.ice_balls)===1?'Kugel':'Kugeln')+')' : o.menu_items?.name)+'</b>'+(o.menu_items?.variant?' · '+esc(o.menu_items.variant):'')+(isNew?'<span class="new">NEU</span>':'')+(details?'<span class="extra-line">'+esc(details)+'</span>':'')+(extras?'<span class="extra-line">'+esc(extras)+'</span>':'')+(o.note?'<span class="remark">Bemerkung: '+esc(o.note)+'</span>':'')+'</span><b>'+euro(Number(o.unit_price)*o.quantity)+'</b></div><div class="line-actions"></div>';
+    const details=(o.options?.selections||[]).map(x=>(Number(x.quantity||1)>1?Number(x.quantity)+'× ':'')+x.name).join(', ');const extras=(o.order_item_extras||[]).map(x=>x.name+' +'+euro(x.unit_price)).join(', ');d.innerHTML='<div class="line-top"><b>'+o.quantity+'×</b><span><b>'+esc(isIceItem(o.menu_items)&&o.options?.ice_balls ? 'Eis ('+o.options.ice_balls+' '+(Number(o.options.ice_balls)===1?'Kugel':'Kugeln')+')' : o.menu_items?.name)+'</b>'+(o.menu_items?.variant?' · '+esc(o.menu_items.variant):'')+(isNew?'<span class="new">NEU</span>':'')+(details?'<span class="extra-line">'+esc(details)+'</span>':'')+(extras?'<span class="extra-line">'+esc(extras)+'</span>':'')+(courseLabel(o.course)?'<span class="course-badge">'+esc(courseLabel(o.course))+'</span>':'')+(o.note?'<span class="remark">Bemerkung: '+esc(o.note)+'</span>':'')+'</span><b>'+euro(Number(o.unit_price)*o.quantity)+'</b></div><div class="line-actions"></div>';
     const a=d.querySelector('.line-actions');
     if(isNew){
       const edit=document.createElement('button');edit.className='secondary';edit.textContent='Extras / Bemerkung';
@@ -1297,7 +1306,7 @@ $('#registerToggle').onclick=toggleRegister;
 const toggleCompleted=()=>{completedOpen=!completedOpen;$('#completedGroups').classList.toggle('hidden',!completedOpen)};
 $('#completedToggle').onclick=toggleCompleted;
 
-async function setStatus(id,status){const{error}=await supabase.from('order_items').update({status}).eq('id',id);if(!error){await loadOrders();await refreshTableStatuses();renderTables()}}
+async function setStatus(id,status){const{error}=await supabase.from('order_items').update({status}).eq('id',id);if(!error){if(currentSession){await supabase.from('table_sessions').update({ready_for_checkout:false}).eq('id',currentSession.id);currentSession.ready_for_checkout=false}await loadOrders();await refreshTableStatuses();renderTables()}}
 async function closeEmptyTableSessionAfterCancellation(){
   if(!currentSession||!['Terrasse','Innenraum'].includes(currentTable?.areas?.name))return false;
   const hasOpenItems=orders.length>0||transferredOrders.length>0;
@@ -1318,6 +1327,28 @@ async function cancelItem(o){
   const autoClosed=await closeEmptyTableSessionAfterCancellation();
   $('#actionMsg').textContent=autoClosed?name+' storniert · Tisch ist wieder frei.':name+' storniert.'
 }
+
+function updateCheckoutReadyButton(){
+  const btn=$('#readyCheckoutBtn');if(!btn)return;
+  if(!currentSession){btn.classList.add('hidden');return}
+  const all=[...orders,...transferredOrders];
+  const can=all.length>0&&all.every(o=>o.status==='done');
+  btn.classList.toggle('hidden',!can);
+  btn.disabled=!!currentSession.ready_for_checkout;
+  btn.textContent=currentSession.ready_for_checkout?'✓ Bereit zum Abschluss gesetzt':'✓ Bereit zum Abschluss';
+}
+$('#readyCheckoutBtn').onclick=async()=>{
+  if(!currentSession)return;
+  await loadOrders();
+  const all=[...orders,...transferredOrders];
+  if(!all.length||!all.every(o=>o.status==='done')){alert('Alle Positionen müssen zuerst auf „Erledigt“ stehen.');return}
+  const{error}=await supabase.from('table_sessions').update({ready_for_checkout:true}).eq('id',currentSession.id);
+  if(error){$('#actionMsg').textContent='Status konnte nicht gesetzt werden: '+error.message;return}
+  currentSession.ready_for_checkout=true;updateCheckoutReadyButton();
+  $('#actionMsg').textContent='Tisch ist jetzt bereit zum Abschluss.';
+  await refreshTableStatuses();renderTables();
+};
+
 async function restoreFromRegister(groupId,linkId,name){
   const{error}=await supabase.from('bill_group_items').delete().eq('id',linkId);if(error){$('#actionMsg').textContent='Zurückholen fehlgeschlagen: '+error.message;return}
   const{data:left}=await supabase.from('bill_group_items').select('id').eq('bill_group_id',groupId).limit(1);
@@ -1372,8 +1403,8 @@ function groupReceiptLines(items){
   items.forEach(({order,qty})=>{
     if(!order)return;
     const name=isIceItem(order.menu_items)&&order.options?.ice_balls ? 'Eis ('+order.options.ice_balls+' '+(Number(order.options.ice_balls)===1?'Kugel':'Kugeln')+')' : (order.menu_items?.name||'Position'),variant=order.menu_items?.variant||'',unit=Number(order.unit_price||0),rate=taxRateForOrder(order);
-    const key=[name,variant,unit,rate].join('|');
-    const detail=[...((order.options?.selections||[]).map(x=>(Number(x.quantity||1)>1?Number(x.quantity)+'× ':'')+x.name)),...((order.order_item_extras||[]).map(x=>x.name+(Number(x.unit_price)?' +'+euro(x.unit_price):'')))].join(', ');const note=order.note||'';const detailKey=detail+'|'+note;const fullKey=key+'|'+detailKey;if(!map.has(fullKey))map.set(fullKey,{name,variant,unit,rate,qty:0,detail,note});
+    const course=order.course||'main',courseText=courseLabel(course);const key=[name,variant,unit,rate,course].join('|');
+    const detail=[...((order.options?.selections||[]).map(x=>(Number(x.quantity||1)>1?Number(x.quantity)+'× ':'')+x.name)),...((order.order_item_extras||[]).map(x=>x.name+(Number(x.unit_price)?' +'+euro(x.unit_price):'')))].join(', ');const note=order.note||'';const detailKey=detail+'|'+note;const fullKey=key+'|'+detailKey;if(!map.has(fullKey))map.set(fullKey,{name,variant,unit,rate,qty:0,detail,note,course,courseText});
     map.get(fullKey).qty+=Number(qty||order.quantity||1)
   });
   return [...map.values()].map(x=>({...x,gross:x.unit*x.qty}))
@@ -1455,7 +1486,7 @@ function stationReceiptHtml(kind,selected){
   const dt=receiptDateTime(),title=kind==='kitchen'?'KÜCHE':'BAR',lines=groupReceiptLines(selected.map(order=>({order,qty:order.quantity})));
   const pageMm=Math.max(90,48+lines.length*16);
   return `<!doctype html><html><head><meta charset="utf-8"><title>${title} · Tisch ${esc(currentTable?.code||'')}</title><style>@page{size:80mm ${pageMm}mm;margin:4mm}html,body{width:72mm;min-width:72mm}body{font-family:Arial,sans-serif;color:#111;margin:0}.r{width:72mm;max-width:72mm;margin:0 auto}.logo{display:block;max-width:46mm;max-height:20mm;object-fit:contain;margin:0 auto 3mm}h1{text-align:center;font-size:26px;margin:1mm 0}.meta{text-align:center;font-size:12px;margin:2mm 0 4mm;border-bottom:2px solid #000;padding-bottom:3mm}.line{display:grid;grid-template-columns:12mm 1fr;gap:3mm;padding:2.5mm 0;border-bottom:1px dashed #777}.q{font-size:22px;font-weight:900}.n{font-size:18px;font-weight:800}.v{font-size:12px;margin-top:1mm}.footer{text-align:center;font-size:9px;margin-top:4mm}
-</style></head><body><div class="r"><img class="logo" src="${orderBuddyLogoUrl()}"><h1>${title} · TISCH ${esc(currentTable?.code||'')}</h1><div class="meta">${dt.date} · ${dt.time} · ${esc(deviceName)}</div>${specialOrderPrintMeta()}${lines.map(l=>`<div class="line"><div class="q">${l.qty}×</div><div><div class="n">${esc(l.name)}</div>${l.variant?`<div class="v">${esc(l.variant)}</div>`:''}${l.detail?`<div class="v">${esc(l.detail)}</div>`:''}${l.note?`<div class="v"><b>Bemerkung:</b> ${esc(l.note)}</div>`:''}</div></div>`).join('')}<div class="footer">Powered by OrderBuddy<span style="color:#e86d2d">.</span></div></div></body></html>`
+</style></head><body><div class="r"><img class="logo" src="${orderBuddyLogoUrl()}"><h1>${title} · TISCH ${esc(currentTable?.code||'')}</h1><div class="meta">${dt.date} · ${dt.time} · ${esc(deviceName)}</div>${specialOrderPrintMeta()}${lines.map(l=>`<div class="line"><div class="q">${l.qty}×</div><div><div class="n">${esc(l.name)}</div>${l.variant?`<div class="v">${esc(l.variant)}</div>`:''}${l.courseText?`<div class="v"><b>${esc(l.courseText)}</b></div>`:''}${l.detail?`<div class="v">${esc(l.detail)}</div>`:''}${l.note?`<div class="v"><b>Bemerkung:</b> ${esc(l.note)}</div>`:''}</div></div>`).join('')}<div class="footer">Powered by OrderBuddy<span style="color:#e86d2d">.</span></div></div></body></html>`
 }
 function openPrintWindow(html){
   const w=window.open('','_blank');
@@ -1473,7 +1504,7 @@ async function createPrintJob(documentType,destination,itemIds,payload){
   }
   return job
 }
-function companionReceiptHtml(type,selected){const dt=receiptDateTime(),title=type==='Lieferung'?'FAHRER':'ABHOLUNG / KASSE',lines=groupReceiptLines(selected.map(order=>({order,qty:order.quantity})));const pageMm=Math.max(100,58+lines.length*13);return `<!doctype html><html><head><meta charset="utf-8"><title>${title}</title><style>@page{size:80mm ${pageMm}mm;margin:4mm}body{font-family:Arial,sans-serif;margin:0;color:#111}.r{width:72mm}.logo{display:block;max-width:46mm;max-height:20mm;object-fit:contain;margin:0 auto 3mm}h1{text-align:center;font-size:23px;margin:1mm 0}.meta{text-align:center;font-size:11px;border-bottom:2px solid #000;padding-bottom:3mm}.line{display:grid;grid-template-columns:12mm 1fr;gap:3mm;padding:2mm 0;border-bottom:1px dashed #777}.q{font-size:20px;font-weight:900}.n{font-size:16px;font-weight:800}.v{font-size:11px;margin-top:1mm}</style></head><body><div class="r"><img class="logo" src="${orderBuddyLogoUrl()}"><h1>${title}</h1><div class="meta">${dt.date} · ${dt.time} · ${esc(deviceName)}</div>${specialOrderPrintMeta()}${lines.map(l=>`<div class="line"><div class="q">${l.qty}×</div><div><div class="n">${esc(l.name)}</div>${l.variant?`<div class="v">${esc(l.variant)}</div>`:''}${l.detail?`<div class="v">${esc(l.detail)}</div>`:''}${l.note?`<div class="v"><b>Bemerkung:</b> ${esc(l.note)}</div>`:''}</div></div>`).join('')}</div></body></html>`}
+function companionReceiptHtml(type,selected){const dt=receiptDateTime(),title=type==='Lieferung'?'FAHRER':'ABHOLUNG / KASSE',lines=groupReceiptLines(selected.map(order=>({order,qty:order.quantity})));const pageMm=Math.max(100,58+lines.length*13);return `<!doctype html><html><head><meta charset="utf-8"><title>${title}</title><style>@page{size:80mm ${pageMm}mm;margin:4mm}body{font-family:Arial,sans-serif;margin:0;color:#111}.r{width:72mm}.logo{display:block;max-width:46mm;max-height:20mm;object-fit:contain;margin:0 auto 3mm}h1{text-align:center;font-size:23px;margin:1mm 0}.meta{text-align:center;font-size:11px;border-bottom:2px solid #000;padding-bottom:3mm}.line{display:grid;grid-template-columns:12mm 1fr;gap:3mm;padding:2mm 0;border-bottom:1px dashed #777}.q{font-size:20px;font-weight:900}.n{font-size:16px;font-weight:800}.v{font-size:11px;margin-top:1mm}</style></head><body><div class="r"><img class="logo" src="${orderBuddyLogoUrl()}"><h1>${title}</h1><div class="meta">${dt.date} · ${dt.time} · ${esc(deviceName)}</div>${specialOrderPrintMeta()}${lines.map(l=>`<div class="line"><div class="q">${l.qty}×</div><div><div class="n">${esc(l.name)}</div>${l.variant?`<div class="v">${esc(l.variant)}</div>`:''}${l.courseText?`<div class="v"><b>${esc(l.courseText)}</b></div>`:''}${l.detail?`<div class="v">${esc(l.detail)}</div>`:''}${l.note?`<div class="v"><b>Bemerkung:</b> ${esc(l.note)}</div>`:''}</div></div>`).join('')}</div></body></html>`}
 async function printStation(kind){if(!currentSession){$('#actionMsg').textContent='Keine Bestellung zum Drucken.';return}await loadOrders();const all=[...orders,...transferredOrders],selected=all.filter(o=>kind==='kitchen'?(o.menu_items?.menu_categories?.destination==='kitchen'&&!o.kitchen_printed_at):(o.menu_items?.menu_categories?.destination==='bar'&&!o.bar_printed_at));const special=kind==='kitchen'&&['Lieferung','Abholung'].includes(currentSession.order_type),companion=special?all.filter(o=>!o.dispatch_printed_at):[];if(!selected.length&&!companion.length){$('#actionMsg').textContent=kind==='kitchen'?'Keine neuen Speisen bzw. Auftragspositionen zum Drucken.':'Keine neuen Getränke für die Bar.';return}const now=new Date().toISOString();if(selected.length){const html=stationReceiptHtml(kind,selected),job=await createPrintJob(kind,kind,selected.map(o=>o.id),{table:tableDisplay(currentTable),count:selected.length,snapshot:{html,title:(kind==='kitchen'?'Küche':'Bar')+' · Tisch '+currentTable.code}});if(!job)return;if(!openPrintWindow(html))return;const field=kind==='kitchen'?'kitchen_printed_at':'bar_printed_at',u=await supabase.from('order_items').update({[field]:now}).in('id',selected.map(o=>o.id));await supabase.from('print_jobs').update({status:u.error?'reserved':'printed',printed_at:u.error?null:now}).eq('id',job.id)}if(companion.length){const dtype=currentSession.order_type==='Lieferung'?'driver':'pickup',dest=currentSession.order_type==='Lieferung'?'driver':'register',html=companionReceiptHtml(currentSession.order_type,companion),job=await createPrintJob(dtype,dest,companion.map(o=>o.id),{order_type:currentSession.order_type,snapshot:{html,title:currentSession.order_type==='Lieferung'?'Fahrer':'Abholung / Kasse'}});if(job&&openPrintWindow(html)){await supabase.from('order_items').update({dispatch_printed_at:now}).in('id',companion.map(o=>o.id));await supabase.from('print_jobs').update({status:'printed',printed_at:now}).eq('id',job.id)}}$('#actionMsg').textContent=special?(currentSession.order_type==='Lieferung'?'Küchen- und Fahrerbon geöffnet.':'Küchen- und Abholbon geöffnet.'):(kind==='kitchen'?'Küchenbon geöffnet.':'Barbon geöffnet.');await loadOrders()}
 async function printFullReceipt(){
   if(!currentSession){$('#actionMsg').textContent='Keine Bestellung oder Gutschein für einen Gesamtbestellzettel.';return}
@@ -2396,7 +2427,11 @@ function subscribe(){
     .on('postgres_changes',{event:'*',schema:'public',table:'bill_group_items'},refresh)
     .subscribe()
 }
-if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js').catch(()=>{}))}
+if('serviceWorker' in navigator){
+  let swRefreshing=false;
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{if(swRefreshing)return;swRefreshing=true;location.reload()});
+  window.addEventListener('load',()=>navigator.serviceWorker.register('/service-worker.js').then(reg=>{reg.update().catch(()=>{});setInterval(()=>reg.update().catch(()=>{}),15*60*1000)}).catch(()=>{}))
+}
 init();
 </script>
 </body></html>

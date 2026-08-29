@@ -32,3 +32,16 @@ Danach die Dateien nach GitHub hochladen und Vercel deployen lassen.
 - Tischstatus wird sofort nach Neu/Zubereitung/Erledigt neu berechnet.
 - Beim Zurückkehren zur Tischübersicht werden Status und Farben vor dem Anzeigen aktualisiert.
 - PWA-Cache auf v5 erhöht, damit installierte Apps den Patch übernehmen.
+
+## V6 – Servierfolge & Bereit zum Abschluss
+- Expliziter Service-Schritt „Bereit zum Abschluss“: erst nach allen erledigten Positionen verfügbar; Tisch wird danach grün.
+- Neue Vorspeisen-Servierfolge: „Vorspeise vorab“ oder „Zusammen mit Hauptgang“.
+- Servierfolge wird pro Position gespeichert und auf Küchenbons ausgegeben.
+- PWA-Cache auf V6 angehoben.
+
+
+## V7 – Tischstatus bei gemischten Positionen
+- Gelb nur solange noch keine Position begonnen wurde.
+- Sobald mindestens eine Position in Zubereitung oder bereits erledigt ist, bleibt der Tisch orange, solange noch nicht alle Positionen erledigt sind.
+- Blau erst wenn alle relevanten Positionen erledigt sind.
+- Grün weiterhin nur nach bewusstem 'Bereit zum Abschluss'.
