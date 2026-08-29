@@ -738,7 +738,7 @@ async function refreshTableStatuses(){
     let key='occupied',label='Besetzt / Bestellung offen';
     if(ses.ready_for_checkout){key='checkout';label='Bereit zum Abschluss'}
     else if(items.length&&items.every(o=>o.status==='done')){key='ready';label='Fertig / wartet auf Service'}
-    else if(items.some(o=>o.status==='preparing')){key='preparing';label='In Zubereitung'}
+    else if(items.some(o=>o.status==='preparing'||o.status==='done')){key='preparing';label='In Zubereitung'}
     tableStatusMap.set(String(ses.table_id),{key,label,requested_time:ses.requested_time||''})
   })
 }
@@ -1332,10 +1332,13 @@ function updateCheckoutReadyButton(){
   const btn=$('#readyCheckoutBtn');if(!btn)return;
   if(!currentSession){btn.classList.add('hidden');return}
   const all=[...orders,...transferredOrders];
-  const can=all.length>0&&all.every(o=>o.status==='done');
-  btn.classList.toggle('hidden',!can);
-  btn.disabled=!!currentSession.ready_for_checkout;
-  btn.textContent=currentSession.ready_for_checkout?'✓ Bereit zum Abschluss':'✓ Tisch bereit zum Abschluss setzen';
+  if(!all.length){btn.classList.add('hidden');return}
+  const can=all.every(o=>o.status==='done');
+  btn.classList.remove('hidden');
+  btn.disabled=!can||!!currentSession.ready_for_checkout;
+  btn.textContent=currentSession.ready_for_checkout
+    ?'✓ Bereit zum Abschluss'
+    :(can?'✓ Tisch bereit zum Abschluss setzen':'Alle Positionen zuerst erledigen');
 }
 $('#readyCheckoutBtn').onclick=async()=>{
   if(!currentSession)return;
