@@ -26,3 +26,9 @@ Danach die Dateien nach GitHub hochladen und Vercel deployen lassen.
 - App-Icon durch quadratische Version ohne transparente Unterkante ersetzt.
 - Tischstatus färbt jetzt die komplette Tischkachel (frei, besetzt, Zubereitung, Service, Abschluss).
 - Service-Worker-Cache auf V4 angehoben, damit Manifest, Icon und Styles nach dem Deployment aktualisiert werden.
+
+
+## V5 Tischstatus-Synchronisierung
+- Tischstatus wird sofort nach Neu/Zubereitung/Erledigt neu berechnet.
+- Beim Zurückkehren zur Tischübersicht werden Status und Farben vor dem Anzeigen aktualisiert.
+- PWA-Cache auf v5 erhöht, damit installierte Apps den Patch übernehmen.

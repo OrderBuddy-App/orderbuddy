@@ -893,7 +893,7 @@ document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{
   renderTables()
 }));
 
-$('#backBtn').onclick=()=>{$('#orderView').classList.add('hidden');$('#tablesView').classList.remove('hidden');currentTable=null;currentSession=null};
+$('#backBtn').onclick=async()=>{await refreshTableStatuses();renderTables();$('#orderView').classList.add('hidden');$('#tablesView').classList.remove('hidden');currentTable=null;currentSession=null};
 
 function renderCategories(){
   const foodBox=$('#foodCats'),drinkBox=$('#drinkCats');
@@ -1297,7 +1297,7 @@ $('#registerToggle').onclick=toggleRegister;
 const toggleCompleted=()=>{completedOpen=!completedOpen;$('#completedGroups').classList.toggle('hidden',!completedOpen)};
 $('#completedToggle').onclick=toggleCompleted;
 
-async function setStatus(id,status){const{error}=await supabase.from('order_items').update({status}).eq('id',id);if(!error)await loadOrders()}
+async function setStatus(id,status){const{error}=await supabase.from('order_items').update({status}).eq('id',id);if(!error){await loadOrders();await refreshTableStatuses();renderTables()}}
 async function closeEmptyTableSessionAfterCancellation(){
   if(!currentSession||!['Terrasse','Innenraum'].includes(currentTable?.areas?.name))return false;
   const hasOpenItems=orders.length>0||transferredOrders.length>0;
