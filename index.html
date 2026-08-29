@@ -865,35 +865,51 @@ function fillOrderDetailsModal(){
 $('#editOrderDetailsBtn').onclick=fillOrderDetailsModal;
 
 let addressSuggestTimer=null;
+function selectedDeliveryZone(){
+  return deliveryZones.find(z=>String(z.id)===String($('#orderDeliveryZone').value))||null
+}
 function normalizedDeliveryPlace(){
-  const zone=deliveryZones.find(z=>String(z.id)===String($('#orderDeliveryZone').value));
+  const zone=selectedDeliveryZone();
   return [zone?.postal_code,zone?.name].filter(Boolean).join(' ').trim()
 }
+function normPlaceText(v){return String(v||'').trim().toLocaleLowerCase('de-DE').replace(/\s+/g,' ')}
+function photonMatchesSelectedZone(p,zone){
+  if(!zone)return false;
+  const wantedCity=normPlaceText(zone.name),wantedPostcode=String(zone.postal_code||'').trim();
+  const resultCity=normPlaceText(p.city||p.town||p.village||p.locality||p.district||'');
+  const resultPostcode=String(p.postcode||p.postalcode||'').trim();
+  if(!wantedCity||!resultCity||resultCity!==wantedCity)return false;
+  if(wantedPostcode&&resultPostcode&&resultPostcode!==wantedPostcode)return false;
+  return true
+}
 async function suggestDeliveryAddress(){
-  const box=$('#addressSuggestions'),q=$('#orderCustomerAddress').value.trim(),place=normalizedDeliveryPlace();
-  if(!place||q.length<2){box.classList.add('hidden');box.innerHTML='';return}
+  const box=$('#addressSuggestions'),q=$('#orderCustomerAddress').value.trim(),zone=selectedDeliveryZone(),place=normalizedDeliveryPlace();
+  if(!zone||!place||q.length<2){box.classList.add('hidden');box.innerHTML='';return}
   clearTimeout(addressSuggestTimer);
   addressSuggestTimer=setTimeout(async()=>{
     try{
       const query=encodeURIComponent(q+', '+place+', Deutschland');
-      const r=await fetch('https://photon.komoot.io/api/?limit=8&lang=de&q='+query);
+      const r=await fetch('https://photon.komoot.io/api/?limit=20&lang=de&q='+query);
       const j=await r.json();
-      const rows=(j.features||[]).filter(f=>f.properties).map(f=>{
+      const rows=(j.features||[]).filter(f=>f.properties&&photonMatchesSelectedZone(f.properties,zone)).map(f=>{
         const p=f.properties;
-        const street=p.street||p.name||'',house=p.housenumber||'',city=p.city||p.town||p.village||place;
-        return [street,house].filter(Boolean).join(' ')+(city?' · '+city:'')
-      }).filter((v,i,a)=>v&&a.indexOf(v)===i).slice(0,8);
-      box.innerHTML=rows.map(v=>'<button type="button">'+esc(v)+'</button>').join('');
+        const street=p.street||p.name||'',house=p.housenumber||'';
+        return {label:[street,house].filter(Boolean).join(' ')+' · '+zone.name,value:[street,house].filter(Boolean).join(' ')}
+      }).filter(x=>x.value).filter((x,i,a)=>a.findIndex(y=>y.value===x.value)===i).slice(0,8);
+      box.innerHTML=rows.map((x,i)=>'<button type="button" data-i="'+i+'">'+esc(x.label)+'</button>').join('');
       box.classList.toggle('hidden',!rows.length);
       box.querySelectorAll('button').forEach(btn=>btn.onclick=()=>{
-        $('#orderCustomerAddress').value=btn.textContent.replace(' · ',' , ');
+        const row=rows[Number(btn.dataset.i)];
+        if(row)$('#orderCustomerAddress').value=row.value;
         box.classList.add('hidden')
       })
-    }catch{box.classList.add('hidden')}
+    }catch{box.classList.add('hidden');box.innerHTML=''}
   },250)
 }
 $('#orderCustomerAddress').addEventListener('input',suggestDeliveryAddress);
-$('#orderDeliveryZone').addEventListener('change',()=>{$('#addressSuggestions').classList.add('hidden')});
+$('#orderDeliveryZone').addEventListener('change',()=>{
+  $('#addressSuggestions').classList.add('hidden');$('#addressSuggestions').innerHTML='';$('#orderCustomerAddress').value=''
+});
 $('#orderDetailsClear').onclick=async()=>{
   if(!currentSession)return;
   if(!confirm('Alle Kundendaten dieses Auftrags wirklich löschen?'))return;
