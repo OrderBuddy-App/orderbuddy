@@ -269,9 +269,9 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
 .month-actions{grid-template-columns:repeat(2,minmax(0,1fr))!important}.month-actions label{grid-column:1/-1}.manual-bookings-box{margin-top:16px;border-top:1px solid #e2e6eb;padding-top:14px}.manual-bookings-box h3{margin:0 0 4px}.zone-admin-row{display:grid;grid-template-columns:minmax(130px,1fr) 120px 90px auto;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid #e2e6eb}.zone-admin-row input,.zone-admin-row select{min-height:40px;border:1px solid #cfd5dd;border-radius:9px;padding:7px;background:#fff}.zone-admin-row button{min-height:40px;border:1px solid #cfd5dd;border-radius:9px;background:#111827;color:#fff;font-weight:800;padding:7px 10px}
 .report-actions-note{font-size:11px;color:#667085;margin-top:8px}
 @media(max-width:700px){.service-voucher-search{grid-template-columns:1fr}.month-actions{grid-template-columns:1fr!important}.zone-admin-row{grid-template-columns:1fr 1fr}.zone-admin-row button{grid-column:1/-1}#serviceSales .bar-row{grid-template-columns:minmax(0,1fr) auto}#serviceSales .bar-track{grid-column:1/-1}}
-.zone-admin-row{display:grid;grid-template-columns:110px minmax(150px,1fr) 130px 120px auto;gap:8px;align-items:center;margin-top:8px}.zone-admin-row input,.zone-admin-row select,.zone-admin-row button{min-height:44px;border:1px solid #cfd5dd;border-radius:10px;background:white;padding:8px}.zone-admin-row button{font-weight:800}@media(max-width:800px){.zone-admin-row{grid-template-columns:1fr 1fr}.zone-admin-row button{grid-column:1/-1}}</style></head><body><div class="wrap"><div class="top"><div class="brand"><img src="/orderbuddy-logo.PNG" alt="OrderBuddy"><div><div class="product">OrderBuddy</div><div class="customer">Restaurant Ordering</div></div></div><div class="top-actions"><button id="adminBtn" class="top-mini hidden">Chefbereich</button><button id="logoutBtn" class="top-mini hidden">Abmelden</button><div class="badge" id="deviceBadge">Servicegerät</div></div></div>
+.zone-admin-row{display:grid;grid-template-columns:110px minmax(150px,1fr) 130px 120px auto;gap:8px;align-items:center;margin-top:8px}.zone-admin-row input,.zone-admin-row select,.zone-admin-row button{min-height:44px;border:1px solid #cfd5dd;border-radius:10px;padding:8px}.zone-admin-row input,.zone-admin-row select{background:white;color:#111827}.zone-admin-row button{font-weight:800;background:#111827;color:#fff;cursor:pointer;min-width:96px}@media(max-width:800px){.zone-admin-row{grid-template-columns:1fr 1fr}.zone-admin-row button{grid-column:1/-1}}</style></head><body><div class="wrap"><div class="top"><div class="brand"><img src="/orderbuddy-logo.PNG" alt="OrderBuddy"><div><div class="product">OrderBuddy</div><div class="customer">Restaurant Ordering</div></div></div><div class="top-actions"><button id="adminBtn" class="top-mini hidden">Chefbereich</button><button id="logoutBtn" class="top-mini hidden">Abmelden</button><div class="badge" id="deviceBadge">Servicegerät</div></div></div>
 <section id="loginView" class="card login"><h1>Service-Anmeldung</h1><p>Mit dem jeweiligen Passwort anmelden. Danach bleibt dieses Gerät angemeldet, bis du dich abmeldest.</p><select id="deviceSelect" class="input" style="margin-bottom:10px"><option>Service 1</option><option>Service 2</option><option>Service 3</option><option>Service 4</option><option>Chef / Admin</option></select><input id="email" class="input hidden" type="email" readonly><input id="password" class="input" type="password" placeholder="Service-Passwort" style="margin-top:10px"><button id="loginBtn" class="primary" style="width:100%;margin-top:10px">Anmelden</button><div id="loginMsg" class="msg">Das Passwort wird nicht gespeichert, nur die Sitzung.</div></section>
-<main id="appView" class="hidden"><div class="tabs"><button class="tab on" data-area="Terrasse">☀️ Terrasse</button><button class="tab" data-area="Innenraum">🏠 Innenraum</button><button class="tab" data-area="Lieferung">🚗 Lieferung</button><button class="tab" data-area="Abholung">🥡 Abholung</button></div><section id="tablesView" class="card"><div class="section-title" id="areaTitle">Terrasse</div><div class="tables" id="tables"></div><div class="table-legend"><span><i class="legend-dot legend-free"></i>Frei</span><span><i class="legend-dot legend-occupied"></i>Besetzt / aufgenommen</span><span><i class="legend-dot legend-preparing"></i>In Zubereitung</span><span><i class="legend-dot legend-ready"></i>Fertig / Service</span><span><i class="legend-dot legend-checkout"></i>Bereit zum Abschluss</span></div><div class="sync" id="syncMsg" style="margin-top:12px">Synchronisiert</div></section><section id="orderView" class="hidden"><button id="backBtn" class="secondary back">← Tischübersicht</button><div class="order-layout"><div class="card"><div class="section-title" id="tableTitle">Tisch</div><div id="orderMeta" class="order-meta hidden"></div><div id="specialOrderActions" class="special-order-actions hidden"><button id="editOrderDetailsBtn">Kundendaten</button></div><div class="category-groups">
+<main id="appView" class="hidden"><div class="tabs"><button class="tab on" data-area="Terrasse">☀️ Terrasse</button><button class="tab" data-area="Innenraum">🏠 Innenraum</button><button class="tab" data-area="Lieferung">🚗 Lieferung</button><button class="tab" data-area="Abholung">🥡 Abholung</button></div><section id="tablesView" class="card"><div class="section-title" id="areaTitle">Terrasse</div><div class="tables" id="tables"></div><div class="table-legend"><span id="legendFree"><i class="legend-dot legend-free"></i>Frei</span><span id="legendOccupied"><i class="legend-dot legend-occupied"></i>Besetzt / aufgenommen</span><span id="legendPreparing"><i class="legend-dot legend-preparing"></i>In Zubereitung</span><span id="legendReady"><i class="legend-dot legend-ready"></i>Fertig / Service</span><span id="legendCheckout"><i class="legend-dot legend-checkout"></i>Bereit zum Abschluss</span></div><div class="sync" id="syncMsg" style="margin-top:12px">Synchronisiert</div></section><section id="orderView" class="hidden"><button id="backBtn" class="secondary back">← Tischübersicht</button><div class="order-layout"><div class="card"><div class="section-title" id="tableTitle">Tisch</div><div id="orderMeta" class="order-meta hidden"></div><div id="specialOrderActions" class="special-order-actions hidden"><button id="editOrderDetailsBtn">Kundendaten</button></div><div class="category-groups">
   <div>
     <div class="category-group-title">Speisen</div>
     <div class="cats" id="foodCats"></div>
@@ -736,22 +736,33 @@ async function refreshTableStatuses(){
     const activeGroups=groups.filter(g=>!['completed','cancelled'].includes(g.status)),assigned=new Set();
     groups.filter(g=>g.status==='completed').forEach(g=>(g.bill_group_items||[]).forEach(i=>assigned.add(String(i.order_item_id))));
     const unassigned=items.filter(o=>!assigned.has(String(o.id)));
-    let key='occupied',label='Besetzt / Bestellung offen';
+    const isDelivery=ses.order_type==='Lieferung',isPickup=ses.order_type==='Abholung';
+    const occupiedLabel=(isDelivery||isPickup)?'Auftrag angenommen':'Besetzt / Bestellung offen';
+    const readyLabel=isDelivery?'Essen fertig / wartet auf Fahrer':isPickup?'Essen fertig / wartet auf Abholung':'Fertig / wartet auf Service';
+    const checkoutLabel=isDelivery?'Fahrer unterwegs':isPickup?'Kunde da / Übergabe läuft':'Bereit zum Abschluss';
+    let key='occupied',label=occupiedLabel;
     const reopenedAt=ses.restore_ready_on_revert&&ses.reopened_from_checkout_at?new Date(ses.reopened_from_checkout_at).getTime():null;
     const reopenedItems=reopenedAt?items.filter(o=>o.created_at&&new Date(o.created_at).getTime()>=reopenedAt):null;
-    if(ses.ready_for_checkout){key='checkout';label='Bereit zum Abschluss'}
+    if(ses.ready_for_checkout){key='checkout';label=checkoutLabel}
     else if(reopenedItems){
-      if(reopenedItems.length&&reopenedItems.every(o=>o.status==='done')){key='ready';label='Fertig / wartet auf Service'}
+      if(reopenedItems.length&&reopenedItems.every(o=>o.status==='done')){key='ready';label=readyLabel}
       else if(reopenedItems.some(o=>o.status==='preparing'||o.status==='done')){key='preparing';label='In Zubereitung'}
-      else {key='occupied';label='Besetzt / Bestellung offen'}
+      else {key='occupied';label=occupiedLabel}
     }
-    else if(items.length&&items.every(o=>o.status==='done')){key='ready';label='Fertig / wartet auf Service'}
+    else if(items.length&&items.every(o=>o.status==='done')){key='ready';label=readyLabel}
     else if(items.some(o=>o.status==='preparing'||o.status==='done')){key='preparing';label='In Zubereitung'}
     tableStatusMap.set(String(ses.table_id),{key,label,requested_time:ses.requested_time||''})
   })
 }
+function updateTableLegend(){
+  const special=currentArea==='Lieferung'||currentArea==='Abholung';
+  const occ=$('#legendOccupied'),ready=$('#legendReady'),green=$('#legendCheckout');
+  if(occ)occ.lastChild.textContent=special?'Auftrag angenommen':'Besetzt / aufgenommen';
+  if(ready)ready.lastChild.textContent=currentArea==='Lieferung'?'Essen fertig / wartet auf Fahrer':currentArea==='Abholung'?'Essen fertig / wartet auf Abholung':'Fertig / Service';
+  if(green)green.lastChild.textContent=currentArea==='Lieferung'?'Fahrer unterwegs':currentArea==='Abholung'?'Kunde da / Übergabe läuft':'Bereit zum Abschluss';
+}
 function renderTables(){
-  const box=$('#tables');box.innerHTML='';$('#areaTitle').textContent=currentArea;
+  const box=$('#tables');box.innerHTML='';$('#areaTitle').textContent=currentArea;updateTableLegend();
   (window.tablesData||[]).filter(t=>t.areas?.name===currentArea).sort((a,b)=>a.sort_order-b.sort_order).forEach(t=>{
     const st=tableStatusMap.get(String(t.id))||{key:'free',label:'Frei'};
     const b=document.createElement('button');b.className='table status-'+st.key;
@@ -1399,21 +1410,27 @@ function updateCheckoutReadyButton(){
   const all=[...orders,...transferredOrders];
   if(!all.length){btn.classList.add('hidden');return}
   const can=all.every(o=>o.status==='done');
+  const delivery=currentSession.order_type==='Lieferung',pickup=currentSession.order_type==='Abholung';
   btn.classList.remove('hidden');
   btn.disabled=!can||!!currentSession.ready_for_checkout;
-  btn.textContent=currentSession.ready_for_checkout
-    ?'✓ Bereit zum Abschluss'
-    :(can?'✓ Tisch bereit zum Abschluss setzen':'Alle Positionen zuerst erledigen');
+  if(currentSession.ready_for_checkout){
+    btn.textContent=delivery?'✓ Fahrer unterwegs':pickup?'✓ Kunde da / Übergabe läuft':'✓ Bereit zum Abschluss';
+  }else if(!can){
+    btn.textContent='Alle Positionen zuerst erledigen';
+  }else{
+    btn.textContent=delivery?'🚗 Fahrer ist losgefahren':pickup?'🥡 Kunde ist da':'✓ Tisch bereit zum Abschluss setzen';
+  }
 }
 $('#readyCheckoutBtn').onclick=async()=>{
   if(!currentSession)return;
   await loadOrders();
   const all=[...orders,...transferredOrders];
   if(!all.length||!all.every(o=>o.status==='done')){alert('Alle Positionen müssen zuerst auf „Erledigt“ stehen.');return}
+  const delivery=currentSession.order_type==='Lieferung',pickup=currentSession.order_type==='Abholung';
   const{error}=await supabase.from('table_sessions').update({ready_for_checkout:true,restore_ready_on_revert:false,reopened_from_checkout_at:null}).eq('id',currentSession.id);
   if(error){$('#actionMsg').textContent='Status konnte nicht gesetzt werden: '+error.message;return}
   currentSession.ready_for_checkout=true;currentSession.restore_ready_on_revert=false;currentSession.reopened_from_checkout_at=null;updateCheckoutReadyButton();
-  $('#actionMsg').textContent='Tisch ist jetzt bereit zum Abschluss.';
+  $('#actionMsg').textContent=delivery?'Fahrer ist unterwegs.':pickup?'Kunde ist da · Übergabe läuft.':'Tisch ist jetzt bereit zum Abschluss.';
   await refreshTableStatuses();renderTables();
 };
 
