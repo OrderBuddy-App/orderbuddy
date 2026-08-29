@@ -1,26 +1,21 @@
-# OrderBuddy – nächster Umbau
+# OrderBuddy – Umbau V3
 
-Neu in dieser Version:
+Neu bzw. korrigiert:
 
-- Zahlungsart beim Abschluss einer Teilung auswählbar.
-- Unterstützt Bar, Girocard/EC, Kreditkarte, Apple Pay, Google Pay, Gutschein, Überweisung, Online-Zahlung und Sonstiges.
-- Mehrere Zahlungsarten pro Abschluss möglich (Teilzahlung / Mischzahlung).
-- Vier DATEV-EXTF-Exporte:
-  - Einzelpositionen automatisch
-  - Tagessummen automatisch
-  - Einzelpositionen komplett inkl. manueller Buchungen
-  - Tagessummen komplett inkl. manueller Buchungen
-- Zusätzliche Monats-CSV nur für Nicht-Bar-Zahlungen.
-- Für bargeldlose Zahlungsarten können DATEV-Gegenkonten in den Einstellungen hinterlegt werden.
-- Manuelle Buchungstexte bleiben standardmäßig leer.
-- Neue manuelle Kategorie „Wechselgeld / Kassenstart“.
-- Manuelle Bargeldbewegungen werden grün (+) bzw. rot (−) dargestellt.
-- Laufender Bargeldsaldo enthält automatische Bar-Umsätze plus manuelle Bargeldbewegungen.
-- Eine manuelle Ausgabe wird blockiert, wenn der rechnerische Bargeldsaldo dadurch negativ würde.
-- Lieferung: beim Küchenlauf wird zusätzlich ein Fahrerbon erzeugt.
-- Abholung: beim Küchenlauf wird zusätzlich ein Abhol-/Kassenbon erzeugt.
-- Nachbestellungen verwenden einen eigenen Druckstatus, damit der Zusatzbon nur neue Positionen enthält.
+- Standard-Wechselgeld pro Restaurant frei einstellbar unter **Einstellungen → Kasse / Wechselgeld**.
+- Der Bargeldsaldo startet je aktivem Betriebstag mit dem hinterlegten Standard-Wechselgeld und führt danach Bar-Umsätze sowie manuelle Bargeldbewegungen fort.
+- Ausgaben werden weiterhin blockiert, wenn der Tages-Bargeldsaldo rechnerisch unter 0,00 € fallen würde.
+- Tischübersicht mit Statusfarben: frei, besetzt/offen, in Zubereitung, fertig/Service, bereit zum Abschluss.
+- Lieferung und Abholung bleiben belegt, bis der Auftrag tatsächlich abgeschlossen wurde. Die Abschluss-Schaltfläche nennt Fahrer/Geldrücklauf bzw. Abholung ausdrücklich.
+- Nach Abschluss wird der Liefer-/Abholplatz wieder frei.
+- Tagesabschluss zählt und zeigt nur abgeschlossene Vorgänge mit echtem Umsatz bzw. gültigem Gutscheinvorgang; vollständig stornierte/leere Sitzungen erscheinen nicht mehr als abgeschlossene Tische.
+- Die vier DATEV-Varianten bleiben erhalten: automatische Einzelpositionen, automatische Tagessummen, komplette Einzelpositionen inkl. manueller Buchungen und komplette Tagessummen inkl. manueller Buchungen.
+- Die fünfte Monats-CSV bleibt ausschließlich für Nicht-Bar-Zahlungen.
+- Zahlungsarten: Bar, Girocard/EC, Kreditkarte, Apple Pay, Google Pay, Gutschein, Überweisung, Online-Zahlung, Sonstiges; Mischzahlungen sind möglich.
+- Lieferung erzeugt Küchen- und Fahrerbon; Abholung Küchen- und Abhol-/Kassenbon. Nachbestellungen drucken nur neue Positionen auf den Zusatzbons.
+- PWA-Ausbau für iPhone/iPad/Mac: erweitertes Manifest, Apple-Web-App-Metadaten und Service Worker für installierbaren App-Betrieb.
 
-## Vor dem Test
+## Vor dem Hochladen
 
-Einmal `SUPABASE_ORDERBUDDY_UPGRADE_V2.sql` im Supabase SQL Editor ausführen.
+Einmal **SUPABASE_ORDERBUDDY_UPGRADE_V3.sql** im Supabase SQL Editor ausführen.
+Danach die Dateien nach GitHub hochladen und Vercel deployen lassen.
