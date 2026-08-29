@@ -865,6 +865,49 @@ function fillOrderDetailsModal(){
 $('#editOrderDetailsBtn').onclick=fillOrderDetailsModal;
 
 let addressSuggestTimer=null;
+const BUILTIN_STREET_DIRECTORY={
+  '37647|polle':[
+    'Am Bracken','Amtsstraße','Angerweg','Bergstraße','Berliner Straße','Birkenweg','Brinkstraße','Burgblick','Burgstraße','Doktorgasse','Eversteiner Weg','Fährstraße','Försterweg','Gartenstraße','Heidbrink','Heimbergstraße','Heinser Straße','Hintere Straße','Höhenweg','Hohe Brücke','Hohe Feldstraße','Im Tappen','Im Teiche','Johann-Prigge-Weg','Klostergasse','Lindenbreite','Marktstraße','Mittelstraße','Mohrgasse','Mühlenweg','Postgasse','Pyrmonter Straße','Robrexer Bergweg','Robrexer Straße','Schäferhof','Schulstraße','Sonnenberg','Sonnenbergblick','Talweg','Weißenfeld','Wilmeröder Berg','Zimmergasse','Zum Tenterling'
+  ],
+  '32676|hummersen':[
+    'Am Dorn','Am Lakenbach','Auf dem Kampe','Buchholzstraße','Detmolder Straße','Klingelborner Weg','Mühlenberg','Mühlenbergweg','Parkstraße','Tönsweg','Unterm Osterhagen','Vogelsang','Weißenfelder Weg','Weserberglandstraße','Winkelweg'
+  ],
+  '37647|brevörde':[
+    'Bergstraße','Dornberg','Im Döhren','Kirchstraße','Meiborsser Straße','Obere Straße','Papenbreite','Riepenbrink','Untere Straße'
+  ],
+  '37619|pegestorf':[
+    'Am Dreschplatz','Am Kirschenberg','Gartenstraße','Hauptstraße','Im Winkel','Kirchweg','Lichtensruh','Lutterburg','Maschhof','Mittlere Straße','Neues Tor','Steinmühle','Suestraße','Weserstraße','Worthstraße','Zwischen Zäunen'
+  ],
+  '37649|heinsen':[
+    'Auf der Breite','Bergstraße','Birkenweg','Dammstraße','Dangenstraße','Gartenstraße','Hauptstraße','Hopfenberg','In den Äckern','Klingenburg','Mittelstraße','Neue Straße','Oststraße','Rosenweg','Stollenweg','Südstraße','Weserstraße','Wilmeröderberg'
+  ]
+};
+function streetDirectoryKey(zone){
+  return zone?[String(zone.postal_code||'').trim(),normPlaceText(zone.name)].join('|'):''
+}
+function builtinStreetsForZone(zone){
+  return BUILTIN_STREET_DIRECTORY[streetDirectoryKey(zone)]||null
+}
+function splitStreetSearchInput(v){
+  const raw=String(v||'').trim();
+  const m=raw.match(/^(.*?)(?:\s+(\d+[a-zA-Z]?))?$/);
+  return {street:(m?.[1]||raw).trim(),house:(m?.[2]||'').trim()}
+}
+function renderBuiltinStreetSuggestions(){
+  const box=$('#addressSuggestions'),zone=selectedDeliveryZone(),all=builtinStreetsForZone(zone);
+  if(!zone||!all){return false}
+  const input=$('#orderCustomerAddress'),parts=splitStreetSearchInput(input.value),needle=normPlaceText(parts.street);
+  const rows=all.filter(s=>!needle||normPlaceText(s).includes(needle)).slice(0,80);
+  box.innerHTML=rows.map((street,i)=>'<button type="button" data-i="'+i+'">'+esc(street)+' <span style="color:#6b7280">· '+esc(zone.postal_code||'')+' '+esc(zone.name||'')+'</span></button>').join('');
+  box.classList.toggle('hidden',!rows.length);
+  box.querySelectorAll('button').forEach(btn=>btn.onclick=()=>{
+    const street=rows[Number(btn.dataset.i)];
+    if(street)input.value=street+(parts.house?' '+parts.house:'');
+    box.classList.add('hidden');
+    input.focus();
+  });
+  return true
+}
 function selectedDeliveryZone(){
   return deliveryZones.find(z=>String(z.id)===String($('#orderDeliveryZone').value))||null
 }
@@ -884,7 +927,12 @@ function photonMatchesSelectedZone(p,zone){
 }
 async function suggestDeliveryAddress(){
   const box=$('#addressSuggestions'),q=$('#orderCustomerAddress').value.trim(),zone=selectedDeliveryZone(),place=normalizedDeliveryPlace();
-  if(!zone||!place||q.length<2){box.classList.add('hidden');box.innerHTML='';return}
+  if(!zone||!place){box.classList.add('hidden');box.innerHTML='';return}
+  // Für die fünf hinterlegten Lieferorte kommt die Auswahl vollständig lokal aus OrderBuddy.
+  // Dadurch reicht bereits ein Buchstabe – und beim leeren Feld wird die ganze Straßenliste gezeigt.
+  if(renderBuiltinStreetSuggestions())return;
+  // Für frei angelegte andere Lieferzonen bleibt die Online-Suche als Fallback erhalten.
+  if(q.length<2){box.classList.add('hidden');box.innerHTML='';return}
   clearTimeout(addressSuggestTimer);
   addressSuggestTimer=setTimeout(async()=>{
     try{
@@ -907,8 +955,11 @@ async function suggestDeliveryAddress(){
   },250)
 }
 $('#orderCustomerAddress').addEventListener('input',suggestDeliveryAddress);
+$('#orderCustomerAddress').addEventListener('focus',()=>{renderBuiltinStreetSuggestions()});
+$('#orderCustomerAddress').addEventListener('click',()=>{renderBuiltinStreetSuggestions()});
 $('#orderDeliveryZone').addEventListener('change',()=>{
-  $('#addressSuggestions').classList.add('hidden');$('#addressSuggestions').innerHTML='';$('#orderCustomerAddress').value=''
+  $('#addressSuggestions').classList.add('hidden');$('#addressSuggestions').innerHTML='';$('#orderCustomerAddress').value='';
+  setTimeout(()=>{if(builtinStreetsForZone(selectedDeliveryZone()))renderBuiltinStreetSuggestions()},0)
 });
 $('#orderDetailsClear').onclick=async()=>{
   if(!currentSession)return;
