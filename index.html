@@ -756,7 +756,9 @@ function renderTables(){
     const st=tableStatusMap.get(String(t.id))||{key:'free',label:'Frei'};
     const b=document.createElement('button');b.className='table status-'+st.key;
     const custom=String(t.display_name||'').trim(),time=st.requested_time?' · '+esc(st.requested_time)+' Uhr':'';
-    b.innerHTML='<b>'+esc(tableDisplay(t))+'</b><small>'+(custom?esc(tableLabel(t.code))+' · ':'')+esc(st.label)+time+'</small>';
+    const specialArea=['Lieferung','Abholung'].includes(t.areas?.name||'');
+    const freeLabel=specialArea&&st.key==='free'?(t.areas?.name==='Lieferung'?'Frei · Lieferauftrag öffnen':'Frei · Abholauftrag öffnen'):st.label;
+    b.innerHTML='<b>'+esc(tableDisplay(t))+'</b><small>'+(custom?esc(tableLabel(t.code))+' · ':'')+esc(freeLabel)+time+'</small>';
     b.onclick=()=>openTable(t);box.appendChild(b)
   })
 }
@@ -769,7 +771,7 @@ document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
 });
 
 async function getOpenSession(t){
-  const{data,error}=await supabase.from('table_sessions').select('id,restaurant_id,table_id,business_date,status,opened_at,order_type,customer_name,customer_phone,customer_address,requested_time,customer_note,delivery_zone_id,delivery_fee,ready_for_checkout,restore_ready_on_revert,reopened_from_checkout_at').eq('table_id',t.id).eq('status','open').maybeSingle();
+  const{data,error}=await supabase.from('table_sessions').select('*').eq('table_id',t.id).eq('status','open').maybeSingle();
   if(error){$('#actionMsg').textContent='Sitzungsfehler: '+error.message;return null}
   return data||null
 }
@@ -780,17 +782,35 @@ async function createSession(t){
   const ins=await supabase.from('table_sessions').insert({
     restaurant_id:restaurant.id,table_id:t.id,business_date:businessDateNow(),
     opened_by_email:user?.email||null,status:'open',order_type:special?t.areas.name:null
-  }).select('id,restaurant_id,table_id,business_date,status,opened_at,order_type,customer_name,customer_phone,customer_address,requested_time,customer_note,delivery_zone_id,delivery_fee,ready_for_checkout,restore_ready_on_revert,reopened_from_checkout_at').single();
+  }).select('*').single();
   if(ins.error){const retry=await getOpenSession(t);if(retry)return retry;$('#actionMsg').textContent='Sitzungsfehler: '+ins.error.message;return null}
   return ins.data
 }
 async function openTable(t){
   currentTable=t;
-  currentSession=await getOpenSession(t);
-  if(!currentSession&&(t.areas?.name==='Lieferung'||t.areas?.name==='Abholung')){
-    currentSession=await createSession(t);if(!currentSession)return
+  const special=t.areas?.name==='Lieferung'||t.areas?.name==='Abholung';
+  $('#syncMsg').textContent=special?(t.areas?.name+' wird geöffnet …'):'Synchronisiert';
+  // Ansicht sofort öffnen, damit der Klick auf L-/A-Plätze niemals scheinbar wirkungslos bleibt.
+  if(special)showOpenedTable(t);
+  try{
+    currentSession=await getOpenSession(t);
+    if(!currentSession&&special){
+      currentSession=await createSession(t);
+      if(!currentSession){
+        $('#syncMsg').textContent=t.areas?.name+' konnte nicht angelegt werden.';
+        return
+      }
+    }
+    if(!special)showOpenedTable(t);
+    else{
+      renderOrderMeta();renderOrder();
+      $('#syncMsg').textContent='Synchronisiert';
+      setTimeout(()=>fillOrderDetailsModal(),60)
+    }
+  }catch(e){
+    $('#syncMsg').textContent='Öffnen fehlgeschlagen: '+(e?.message||e);
+    if(special)alert((t.areas?.name||'Auftrag')+' konnte nicht geöffnet werden: '+(e?.message||e))
   }
-  showOpenedTable(t)
 }
 function showOpenedTable(t){
   $('#tablesView').classList.add('hidden');$('#adminView').classList.add('hidden');$('#orderView').classList.remove('hidden');
@@ -867,7 +887,7 @@ $('#orderDetailsClear').onclick=async()=>{
   if(!confirm('Alle Kundendaten dieses Auftrags wirklich löschen?'))return;
   const payload={customer_name:null,customer_phone:null,customer_address:null,requested_time:null,customer_note:null,delivery_zone_id:null,delivery_fee:0};
   const{data,error}=await supabase.from('table_sessions').update(payload).eq('id',currentSession.id)
-    .select('id,restaurant_id,table_id,business_date,status,opened_at,order_type,customer_name,customer_phone,customer_address,requested_time,customer_note,delivery_zone_id,delivery_fee,ready_for_checkout,restore_ready_on_revert,reopened_from_checkout_at').single();
+    .select('*').single();
   if(error){$('#orderDetailsMsg').textContent='Löschen fehlgeschlagen: '+error.message;return}
   currentSession=data;
   $('#orderCustomerName').value='';$('#orderCustomerPhone').value='';$('#orderCustomerAddress').value='';$('#orderRequestedTime').value='';$('#orderCustomerNote').value='';$('#orderDeliveryZone').value='';
@@ -887,7 +907,7 @@ $('#orderDetailsSave').onclick=async()=>{
     customer_address:delivery?address:null,requested_time:time,customer_note:$('#orderCustomerNote').value.trim()||null,
     delivery_zone_id:delivery?zoneId:null,delivery_fee:delivery?Number(zone?.fee||0):0};
   const{data,error}=await supabase.from('table_sessions').update(payload).eq('id',currentSession.id)
-    .select('id,restaurant_id,table_id,business_date,status,opened_at,order_type,customer_name,customer_phone,customer_address,requested_time,customer_note,delivery_zone_id,delivery_fee,ready_for_checkout,restore_ready_on_revert,reopened_from_checkout_at').single();
+    .select('*').single();
   if(error){$('#orderDetailsMsg').textContent='Speichern fehlgeschlagen: '+error.message;return}
   currentSession=data;$('#orderDetailsModal').classList.add('hidden');renderOrderMeta();renderOrder();$('#actionMsg').textContent='Kundendaten gespeichert.'
 };
@@ -2259,7 +2279,7 @@ $('#adminBtn').onclick=async()=>{
 function closedReceiptGross(ses){return (ses.bill_groups||[]).filter(g=>g.status==='completed').reduce((sum,g)=>sum+(g.bill_group_items||[]).reduce((s,l)=>s+Number(l.order_items?.unit_price||0)*Number(l.quantity||l.order_items?.quantity||1),0),0)}
 function closedReceiptHtml(ses){
   const groups=(ses.bill_groups||[]).filter(g=>g.status==='completed');
-  const table=ses.restaurant_tables?.code||'?';
+  const table=ses.restaurant_tables?.display_name||tableLabel(ses.restaurant_tables?.code||'?');
   const rows=[];
   groups.forEach(g=>(g.bill_group_items||[]).forEach(l=>{const oi=l.order_items;if(!oi)return;rows.push({qty:Number(l.quantity||oi.quantity||1),name:oi.menu_items?.name||'Position',variant:oi.menu_items?.variant||'',unit:Number(oi.unit_price||0)})}));
   const gross=rows.reduce((s,r)=>s+r.qty*r.unit,0),when=ses.closed_at?new Date(ses.closed_at).toLocaleString('de-DE'):'';
@@ -2270,7 +2290,7 @@ async function loadClosedReceipts(){
   const{data,error}=await supabase.from('table_sessions').select(`id,business_date,opened_at,closed_at,status,restaurant_tables(code),bill_groups(id,label,status,completed_at,bill_group_items(quantity,order_items(id,quantity,unit_price,menu_items(name,variant))))`).eq('restaurant_id',restaurant.id).eq('business_date',date).eq('status','closed').order('closed_at',{ascending:false});
   if(error){msg.textContent='Fehler: '+error.message;return}
   const rows=(data||[]).filter(s=>closedReceiptGross(s)>0.004);msg.textContent=rows.length?rows.length+' abgeschlossene Bon(s) gefunden.':'Keine abgeschlossenen Bons für diesen Tag.';
-  rows.forEach(ses=>{const d=document.createElement('div');d.className='history-row';const gross=closedReceiptGross(ses),time=ses.closed_at?new Date(ses.closed_at).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}):'–';d.innerHTML='<div class="history-head"><span>Tisch '+esc(ses.restaurant_tables?.code||'?')+' · '+esc(time)+'</span><span>'+euro(gross)+'</span></div><div class="voucher-actions"><button class="view">Bon anzeigen</button><button class="print">Nachdrucken</button><button class="delete danger-admin">🗑 Löschen</button></div>';d.querySelector('.view').onclick=()=>openPrintWindow(closedReceiptHtml(ses));d.querySelector('.print').onclick=()=>openPrintWindow(closedReceiptHtml(ses));d.querySelector('.delete').onclick=async()=>{if(!confirm('Abgeschlossenen Bon von Tisch '+(ses.restaurant_tables?.code||'?')+' über '+euro(gross)+' wirklich endgültig löschen?\n\nDer Vorgang wird aus Tages-/Monatsauswertungen und zukünftigen Exporten entfernt.'))return;const{error}=await supabase.rpc('delete_orderbuddy_closed_session',{p_session_id:ses.id});if(error){msg.textContent='Löschen nicht möglich: '+error.message;return}msg.textContent='Bon gelöscht. Auswertungen werden neu berechnet.';await loadClosedReceipts();if($('#adminDate').value===date){await loadAdminDay();await renderDayCashSummary()}};box.appendChild(d)})
+  rows.forEach(ses=>{const d=document.createElement('div');d.className='history-row';const gross=closedReceiptGross(ses),time=ses.closed_at?new Date(ses.closed_at).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}):'–';d.innerHTML='<div class="history-head"><span>Tisch '+esc(tableLabel(ses.restaurant_tables?.code||'?'))+' · '+esc(time)+'</span><span>'+euro(gross)+'</span></div><div class="voucher-actions"><button class="view">Bon anzeigen</button><button class="print">Nachdrucken</button><button class="delete danger-admin">🗑 Löschen</button></div>';d.querySelector('.view').onclick=()=>openPrintWindow(closedReceiptHtml(ses));d.querySelector('.print').onclick=()=>openPrintWindow(closedReceiptHtml(ses));d.querySelector('.delete').onclick=async()=>{if(!confirm('Abgeschlossenen Bon von Tisch '+tableLabel(ses.restaurant_tables?.code||'?')+' über '+euro(gross)+' wirklich endgültig löschen?\n\nDer Vorgang wird aus Tages-/Monatsauswertungen und zukünftigen Exporten entfernt.'))return;const{error}=await supabase.rpc('delete_orderbuddy_closed_session',{p_session_id:ses.id});if(error){msg.textContent='Löschen nicht möglich: '+error.message;return}msg.textContent='Bon gelöscht. Auswertungen werden neu berechnet.';await loadClosedReceipts();if($('#adminDate').value===date){await loadAdminDay();await renderDayCashSummary()}};box.appendChild(d)})
 }
 $('#closedReceiptsReload').onclick=loadClosedReceipts;$('#closedReceiptsDate').onchange=loadClosedReceipts;
 $('#adminBackBtn').onclick=()=>{$('#adminView').classList.add('hidden');$('#tablesView').classList.remove('hidden')};
