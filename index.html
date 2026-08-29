@@ -1,10 +1,10 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#111827"><link rel="manifest" href="/manifest.webmanifest"><title>OrderBuddy · V1.41</title><style>
-:root{--bg:#f5f0e6;--card:#fffdf8;--text:#192416;--muted:#70736a;--line:#ddd2bd;--green:#294b22;--gold:#b98c32;--red:#a33831}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif}button,input,select{font:inherit}.wrap{max-width:1200px;margin:auto;padding:18px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.brand{display:flex;align-items:center;gap:12px}.brand img{width:58px;height:58px;border-radius:12px;object-fit:contain;background:white;border:1px solid var(--line)}.product{font-size:11px;letter-spacing:.12em;color:var(--muted);font-weight:800}.customer{font:27px Georgia,serif;color:#24471e}.badge{padding:8px 12px;border-radius:999px;background:#e8eadf;font-weight:700;font-size:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}.hidden{display:none!important}.login{max-width:460px;margin:60px auto}.login h1{font:28px Georgia,serif;margin:0 0 8px}.login p{color:var(--muted);line-height:1.5}.input{width:100%;min-height:48px;border:1px solid #cfc4ae;border-radius:12px;padding:10px 12px;background:white}.primary{min-height:48px;border:0;border-radius:12px;background:var(--green);color:white;font-weight:800;padding:10px 15px}.secondary{min-height:44px;border:1px solid #cfc4ae;border-radius:11px;background:transparent;font-weight:750;padding:8px 12px}.msg{margin-top:10px;font-size:13px;color:var(--muted)}.tabs{display:flex;gap:8px;margin-bottom:14px}.tab{min-height:44px;border:1px solid #cfc4ae;border-radius:12px;background:white;padding:9px 14px;font-weight:800}.tab.on{background:var(--green);color:white;border-color:transparent}.section-title{font:24px Georgia,serif;margin:4px 0 12px}.tables{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.table{min-height:105px;border:1px solid var(--line);border-radius:16px;background:white;padding:12px;text-align:left}.table b{font:25px Georgia,serif;display:block}.table small{color:var(--muted)}.order-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr);gap:14px}.cats{display:flex;gap:7px;overflow:auto;padding-bottom:8px}.cat{white-space:nowrap;border:1px solid #d7cbb6;border-radius:10px;background:white;padding:9px 11px;font-weight:750}.cat.on{background:var(--green);color:white}.items{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.item{min-height:82px;border:1px solid var(--line);border-radius:12px;background:#faf6ed;padding:10px;text-align:left}.item.unavailable{opacity:.55;background:#eeeae2;cursor:not-allowed}.unavailable-label{display:inline-block;margin-top:6px;padding:3px 6px;border-radius:999px;background:#d8d2c8;color:#6f6258;font-size:9px;font-weight:900;letter-spacing:.04em}.item small{display:block;font-size:9px;font-weight:900;color:#a37621}.item strong{display:block}.item span{display:block;margin-top:6px;font:16px Georgia,serif;color:#76591c}.order-list{display:flex;flex-direction:column;gap:7px}.line{border:1px solid #e1d8c7;border-radius:12px;padding:9px}.line-top{display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:6px;align-items:center}.line-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.status,.cancel{border:1px solid #d7ccb9;border-radius:999px;background:transparent;padding:5px 8px;font-size:11px;font-weight:800}.status.on{background:#e6eadf}.cancel{border-color:#deb8b4;background:#fff7f6;color:var(--red)}.new{font-size:9px;font-weight:900;color:#a56f09;margin-left:5px}.total{display:flex;justify-content:space-between;border-top:2px solid #c9b98f;margin-top:12px;padding-top:12px}.total strong{font:24px Georgia,serif}.actions{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-top:12px}.actions button{min-height:50px;border-radius:11px;border:1px solid #cdbd96;background:transparent;font-weight:850}.actions .gold{background:var(--gold);color:#17140d;border-color:transparent}.back{margin-bottom:10px}.sync{font-size:12px;color:var(--muted)}.modal-bg{position:fixed;inset:0;background:#0008;display:flex;align-items:center;justify-content:center;padding:16px;z-index:10}.modal{width:min(680px,100%);max-height:88vh;overflow:auto;background:var(--card);border-radius:18px;border:1px solid var(--line);padding:18px}.modal h2{font:26px Georgia,serif;margin:0 0 6px}.bill-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.bill-options button{min-height:70px;border-radius:12px;border:1px solid var(--line);background:white;font-weight:850}.select-line{display:grid;grid-template-columns:28px 1fr auto;gap:8px;align-items:center;border-bottom:1px solid #e8dfcf;padding:10px 2px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}.register-box{margin-top:16px;padding-top:14px;border-top:2px solid #d8ccb4}.register-title{display:flex;justify-content:space-between;align-items:center;gap:10px;font:20px Georgia,serif;margin-bottom:8px;cursor:pointer;user-select:none}.register-title-left{display:flex;align-items:center;gap:8px}.register-chevron{font-family:system-ui,-apple-system,Segoe UI,sans-serif;font-size:15px;color:var(--muted);transition:transform .18s ease}.register-box.open .register-chevron{transform:rotate(180deg)}.register-group{border:1px solid #d8ccb4;border-radius:12px;background:#f8f2e6;padding:10px;margin-top:8px}.register-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:6px}.register-item{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px;align-items:center;padding:7px 0;border-top:1px solid #e4dac7}.register-item:first-of-type{border-top:0}.restore{border:1px solid #b9c9b4;border-radius:999px;background:#f3f8f1;color:#294b22;padding:5px 9px;font-size:11px;font-weight:850;cursor:pointer}.complete{border:0;border-radius:999px;background:var(--green);color:white;padding:6px 10px;font-size:11px;font-weight:850;cursor:pointer}.register-total{font-weight:850}.register-group-actions{display:flex;justify-content:flex-end;margin-top:9px;padding-top:8px;border-top:1px solid #e4dac7}.completed-box{margin-top:14px;padding-top:12px;border-top:1px dashed #cfc4ae}.completed-title{display:flex;justify-content:space-between;align-items:center;gap:10px;font:18px Georgia,serif;cursor:pointer;user-select:none}.completed-groups{margin-top:8px}.completed-group{border:1px solid #ddd6c9;border-radius:11px;background:#f8f7f3;padding:9px;margin-top:7px;opacity:.8}.completed-head{display:flex;justify-content:space-between;gap:10px;font-weight:800}.completed-meta{font-size:11px;color:var(--muted);margin-top:4px}.completed-item{display:flex;justify-content:space-between;gap:10px;font-size:12px;padding-top:5px}@media(max-width:800px){.tables{grid-template-columns:repeat(3,minmax(0,1fr))}.order-layout{grid-template-columns:1fr}.items{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:430px){.wrap{padding:12px}.tables{grid-template-columns:repeat(2,minmax(0,1fr))}.items{grid-template-columns:repeat(2,minmax(0,1fr))}.actions,.bill-options{grid-template-columns:1fr}.customer{font-size:22px}}
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#111827"><link rel="manifest" href="/manifest.webmanifest"><link rel="icon" type="image/png" href="/orderbuddy-logo.PNG"><link rel="apple-touch-icon" href="/orderbuddy-logo.PNG"><title>OrderBuddy</title><style>
+:root{--bg:#f3f5f7;--card:#ffffff;--text:#111827;--muted:#667085;--line:#d8dde5;--green:#111827;--gold:#ff6500;--red:#a33831}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif}button,input,select{font:inherit}.wrap{max-width:1200px;margin:auto;padding:18px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.brand{display:flex;align-items:center;gap:12px}.brand img{width:58px;height:58px;border-radius:12px;object-fit:contain;background:white;border:1px solid var(--line)}.product{font-size:11px;letter-spacing:.12em;color:var(--muted);font-weight:800}.customer{font:27px Georgia,serif;color:#111827}.badge{padding:8px 12px;border-radius:999px;background:#eef1f4;font-weight:700;font-size:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}.hidden{display:none!important}.login{max-width:460px;margin:60px auto}.login h1{font:28px Georgia,serif;margin:0 0 8px}.login p{color:var(--muted);line-height:1.5}.input{width:100%;min-height:48px;border:1px solid #cfd5dd;border-radius:12px;padding:10px 12px;background:white}.primary{min-height:48px;border:0;border-radius:12px;background:var(--green);color:white;font-weight:800;padding:10px 15px}.secondary{min-height:44px;border:1px solid #cfd5dd;border-radius:11px;background:transparent;font-weight:750;padding:8px 12px}.msg{margin-top:10px;font-size:13px;color:var(--muted)}.tabs{display:flex;gap:8px;margin-bottom:14px}.tab{min-height:44px;border:1px solid #cfd5dd;border-radius:12px;background:white;padding:9px 14px;font-weight:800}.tab.on{background:var(--green);color:white;border-color:transparent}.section-title{font:24px Georgia,serif;margin:4px 0 12px}.tables{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.table{min-height:105px;border:1px solid var(--line);border-radius:16px;background:white;padding:12px;text-align:left}.table b{font:25px Georgia,serif;display:block}.table small{color:var(--muted)}.order-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr);gap:14px}.cats{display:flex;gap:7px;overflow:auto;padding-bottom:8px}.cat{white-space:nowrap;border:1px solid #cfd5dd;border-radius:10px;background:white;padding:9px 11px;font-weight:750}.cat.on{background:var(--green);color:white}.items{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.item{min-height:82px;border:1px solid var(--line);border-radius:12px;background:#f8fafc;padding:10px;text-align:left}.item.unavailable{opacity:.55;background:#eef1f4;cursor:not-allowed}.unavailable-label{display:inline-block;margin-top:6px;padding:3px 6px;border-radius:999px;background:#e5e7eb;color:#4b5563;font-size:9px;font-weight:900;letter-spacing:.04em}.item small{display:block;font-size:9px;font-weight:900;color:#ff6500}.item strong{display:block}.item span{display:block;margin-top:6px;font:16px Georgia,serif;color:#374151}.order-list{display:flex;flex-direction:column;gap:7px}.line{border:1px solid #e2e6eb;border-radius:12px;padding:9px}.line-top{display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:6px;align-items:center}.line-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.status,.cancel{border:1px solid #cfd5dd;border-radius:999px;background:transparent;padding:5px 8px;font-size:11px;font-weight:800}.status.on{background:#eef1f4}.cancel{border-color:#deb8b4;background:#fff7f6;color:var(--red)}.new{font-size:9px;font-weight:900;color:#ff6500;margin-left:5px}.total{display:flex;justify-content:space-between;border-top:2px solid #cfd5dd;margin-top:12px;padding-top:12px}.total strong{font:24px Georgia,serif}.actions{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-top:12px}.actions button{min-height:50px;border-radius:11px;border:1px solid #cfd5dd;background:transparent;font-weight:850}.actions .gold{background:var(--gold);color:#17140d;border-color:transparent}.back{margin-bottom:10px}.sync{font-size:12px;color:var(--muted)}.modal-bg{position:fixed;inset:0;background:#0008;display:flex;align-items:center;justify-content:center;padding:16px;z-index:10}.modal{width:min(680px,100%);max-height:88vh;overflow:auto;background:var(--card);border-radius:18px;border:1px solid var(--line);padding:18px}.modal h2{font:26px Georgia,serif;margin:0 0 6px}.bill-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.bill-options button{min-height:70px;border-radius:12px;border:1px solid var(--line);background:white;font-weight:850}.select-line{display:grid;grid-template-columns:28px 1fr auto;gap:8px;align-items:center;border-bottom:1px solid #e2e6eb;padding:10px 2px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}.register-box{margin-top:16px;padding-top:14px;border-top:2px solid #e2e6eb}.register-title{display:flex;justify-content:space-between;align-items:center;gap:10px;font:20px Georgia,serif;margin-bottom:8px;cursor:pointer;user-select:none}.register-title-left{display:flex;align-items:center;gap:8px}.register-chevron{font-family:system-ui,-apple-system,Segoe UI,sans-serif;font-size:15px;color:var(--muted);transition:transform .18s ease}.register-box.open .register-chevron{transform:rotate(180deg)}.register-group{border:1px solid #e2e6eb;border-radius:12px;background:#f7f8fa;padding:10px;margin-top:8px}.register-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:6px}.register-item{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px;align-items:center;padding:7px 0;border-top:1px solid #e2e6eb}.register-item:first-of-type{border-top:0}.restore{border:1px solid #cfd5dd;border-radius:999px;background:#f8fafc;color:#111827;padding:5px 9px;font-size:11px;font-weight:850;cursor:pointer}.complete{border:0;border-radius:999px;background:var(--green);color:white;padding:6px 10px;font-size:11px;font-weight:850;cursor:pointer}.register-total{font-weight:850}.register-group-actions{display:flex;justify-content:flex-end;margin-top:9px;padding-top:8px;border-top:1px solid #e2e6eb}.completed-box{margin-top:14px;padding-top:12px;border-top:1px dashed #cfd5dd}.completed-title{display:flex;justify-content:space-between;align-items:center;gap:10px;font:18px Georgia,serif;cursor:pointer;user-select:none}.completed-groups{margin-top:8px}.completed-group{border:1px solid #d8dde5;border-radius:11px;background:#f7f8fa;padding:9px;margin-top:7px;opacity:.8}.completed-head{display:flex;justify-content:space-between;gap:10px;font-weight:800}.completed-meta{font-size:11px;color:var(--muted);margin-top:4px}.completed-item{display:flex;justify-content:space-between;gap:10px;font-size:12px;padding-top:5px}@media(max-width:800px){.tables{grid-template-columns:repeat(3,minmax(0,1fr))}.order-layout{grid-template-columns:1fr}.items{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:430px){.wrap{padding:12px}.tables{grid-template-columns:repeat(2,minmax(0,1fr))}.items{grid-template-columns:repeat(2,minmax(0,1fr))}.actions,.bill-options{grid-template-columns:1fr}.customer{font-size:22px}}
 
 .top-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-.top-mini{min-height:36px;border:1px solid #cfc4ae;border-radius:10px;background:white;padding:6px 10px;font-size:12px;font-weight:800;cursor:pointer}
-.close-table{width:100%;margin-top:10px;border-color:#9caf94!important;color:#24471e;background:#f2f6ef!important}
-.admin-panel{max-width:980px;margin:0 auto}.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.admin-stat{border:1px solid var(--line);border-radius:14px;background:white;padding:14px}.admin-stat b{display:block;font:26px Georgia,serif;margin-top:4px}.admin-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}.admin-actions button{min-height:48px;border-radius:11px;border:1px solid #cdbd96;background:white;font-weight:850;cursor:pointer}.admin-actions .danger-admin{border-color:#d9aaa5;color:#a33831;background:#fff7f6}.admin-actions .danger-admin:disabled{opacity:.4;cursor:not-allowed}.export-status{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.export-pill{border:1px solid var(--line);border-radius:12px;padding:10px;background:#faf8f3;font-size:12px}.export-pill.ok{background:#edf4e9;border-color:#b8c7b1}.admin-list{margin-top:14px}.admin-row{border:1px solid var(--line);border-radius:12px;background:white;padding:10px;margin-top:8px}.admin-row-head{display:flex;justify-content:space-between;gap:10px;font-weight:850}.admin-note{font-size:12px;color:var(--muted);line-height:1.4;margin-top:8px}
+.top-mini{min-height:36px;border:1px solid #cfd5dd;border-radius:10px;background:white;padding:6px 10px;font-size:12px;font-weight:800;cursor:pointer}
+.close-table{width:100%;margin-top:10px;border-color:#cfd5dd!important;color:#111827;background:#f8fafc!important}
+.admin-panel{max-width:980px;margin:0 auto}.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.admin-stat{border:1px solid var(--line);border-radius:14px;background:white;padding:14px}.admin-stat b{display:block;font:26px Georgia,serif;margin-top:4px}.admin-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}.admin-actions button{min-height:48px;border-radius:11px;border:1px solid #cfd5dd;background:white;font-weight:850;cursor:pointer}.admin-actions .danger-admin{border-color:#d9aaa5;color:#a33831;background:#fff7f6}.admin-actions .danger-admin:disabled{opacity:.4;cursor:not-allowed}.export-status{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.export-pill{border:1px solid var(--line);border-radius:12px;padding:10px;background:#faf8f3;font-size:12px}.export-pill.ok{background:#edf4e9;border-color:#b8c7b1}.admin-list{margin-top:14px}.admin-row{border:1px solid var(--line);border-radius:12px;background:white;padding:10px;margin-top:8px}.admin-row-head{display:flex;justify-content:space-between;gap:10px;font-weight:850}.admin-note{font-size:12px;color:var(--muted);line-height:1.4;margin-top:8px}
 @media(max-width:700px){.admin-grid,.admin-actions,.export-status{grid-template-columns:1fr}}
 .delete-confirm-box{margin-top:12px;padding:12px;border:1px solid #d9aaa5;border-radius:12px;background:#fff7f6}
 .delete-confirm-box p{margin:0 0 10px;font-size:13px;line-height:1.45}
@@ -13,24 +13,24 @@
 .delete-final{border:0;background:#a33831;color:white}
 @media(max-width:500px){.delete-confirm-actions{flex-direction:column}}
 
-.config-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:9px 0;border-bottom:1px solid #e8dfcf}.config-row:last-child{border-bottom:0}.config-price{font-weight:800;white-space:nowrap}.note-input{min-height:74px;resize:vertical}.option-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:8px}.option-chip{display:flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:10px;padding:9px;background:white}.small-title{font:18px Georgia,serif;margin:14px 0 6px}.admin-section{margin-top:20px;padding-top:16px;border-top:2px solid #d8ccb4}.admin-form{display:grid;grid-template-columns:2fr 1fr auto;gap:8px;align-items:end}.admin-form.four{grid-template-columns:1.4fr 1.4fr 1fr auto}.admin-form label{font-size:11px;color:var(--muted);font-weight:800}.admin-form input,.admin-form select{width:100%;min-height:42px;border:1px solid #cfc4ae;border-radius:10px;padding:8px;background:white}.admin-table{width:100%;border-collapse:collapse;margin-top:10px}.admin-table th,.admin-table td{padding:7px 5px;border-bottom:1px solid #e5dccb;text-align:left;font-size:12px}.admin-table input,.admin-table select{width:100%;min-height:36px;border:1px solid #d8cdb9;border-radius:8px;padding:5px}.admin-table button{min-height:34px;border:1px solid #ccbfa7;border-radius:8px;background:white;font-weight:800}.voucher-card{border:1px solid var(--line);border-radius:13px;padding:12px;background:#fff;margin-top:8px}.voucher-num{font-weight:900;letter-spacing:.04em}.voucher-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.voucher-actions button{border:1px solid #cdbd96;border-radius:9px;background:white;padding:7px 9px;font-weight:800}.print-history{max-height:55vh;overflow:auto}.history-row{border:1px solid var(--line);border-radius:11px;padding:10px;margin-top:8px}.history-head{display:flex;justify-content:space-between;gap:8px;font-weight:850}.remark{display:block;margin-top:4px;font-size:11px;color:#7b6331;font-style:italic}.extra-line{display:block;margin-top:3px;font-size:11px;color:#52664b}.voucher-badge{display:inline-block;border:1px solid #d3b975;border-radius:999px;padding:3px 7px;font-size:10px;font-weight:850;color:#74591d}.admin-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.admin-toolbar button{min-height:40px;border:1px solid #cdbd96;border-radius:9px;background:white;padding:7px 10px;font-weight:800}
+.config-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:9px 0;border-bottom:1px solid #e2e6eb}.config-row:last-child{border-bottom:0}.config-price{font-weight:800;white-space:nowrap}.note-input{min-height:74px;resize:vertical}.option-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:8px}.option-chip{display:flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:10px;padding:9px;background:white}.small-title{font:18px Georgia,serif;margin:14px 0 6px}.admin-section{margin-top:20px;padding-top:16px;border-top:2px solid #e2e6eb}.admin-form{display:grid;grid-template-columns:2fr 1fr auto;gap:8px;align-items:end}.admin-form.four{grid-template-columns:1.4fr 1.4fr 1fr auto}.admin-form label{font-size:11px;color:var(--muted);font-weight:800}.admin-form input,.admin-form select{width:100%;min-height:42px;border:1px solid #cfd5dd;border-radius:10px;padding:8px;background:white}.admin-table{width:100%;border-collapse:collapse;margin-top:10px}.admin-table th,.admin-table td{padding:7px 5px;border-bottom:1px solid #e5dccb;text-align:left;font-size:12px}.admin-table input,.admin-table select{width:100%;min-height:36px;border:1px solid #d8cdb9;border-radius:8px;padding:5px}.admin-table button{min-height:34px;border:1px solid #ccbfa7;border-radius:8px;background:white;font-weight:800}.voucher-card{border:1px solid var(--line);border-radius:13px;padding:12px;background:#fff;margin-top:8px}.voucher-num{font-weight:900;letter-spacing:.04em}.voucher-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.voucher-actions button{border:1px solid #cfd5dd;border-radius:9px;background:white;padding:7px 9px;font-weight:800}.print-history{max-height:55vh;overflow:auto}.history-row{border:1px solid var(--line);border-radius:11px;padding:10px;margin-top:8px}.history-head{display:flex;justify-content:space-between;gap:8px;font-weight:850}.remark{display:block;margin-top:4px;font-size:11px;color:#7b6331;font-style:italic}.extra-line{display:block;margin-top:3px;font-size:11px;color:#52664b}.voucher-badge{display:inline-block;border:1px solid #d3b975;border-radius:999px;padding:3px 7px;font-size:10px;font-weight:850;color:#74591d}.admin-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.admin-toolbar button{min-height:40px;border:1px solid #cfd5dd;border-radius:9px;background:white;padding:7px 10px;font-weight:800}
 @media(max-width:700px){.admin-form,.admin-form.four{grid-template-columns:1fr}.option-list{grid-template-columns:1fr}.admin-table{display:block;overflow:auto;white-space:nowrap}}
 
-.analytics-controls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:10px}.analytics-controls label{font-size:11px;color:var(--muted);font-weight:800}.analytics-controls input,.analytics-controls select{width:100%;min-height:42px;border:1px solid #cfc4ae;border-radius:10px;padding:8px;background:white}.analytics-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px}.kpi{border:1px solid var(--line);border-radius:14px;background:white;padding:13px}.kpi span{display:block;font-size:11px;color:var(--muted);font-weight:800}.kpi b{display:block;font:24px Georgia,serif;margin-top:4px}.kpi small{display:block;margin-top:4px;color:var(--muted);font-size:10px}.analytics-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}.analytics-card{border:1px solid var(--line);border-radius:14px;background:white;padding:13px}.analytics-card h3{font:19px Georgia,serif;margin:0 0 8px}.bar-row{display:grid;grid-template-columns:minmax(110px,1fr) 2fr auto;gap:8px;align-items:center;margin:8px 0;font-size:12px}.bar-track{height:10px;border-radius:999px;background:#ece7dc;overflow:hidden}.bar-fill{height:100%;background:#294b22;border-radius:999px}.analytics-table{width:100%;border-collapse:collapse}.analytics-table th,.analytics-table td{font-size:11px;padding:6px 4px;border-bottom:1px solid #eee7da;text-align:left}.analytics-table th:nth-child(n+2),.analytics-table td:nth-child(n+2){text-align:right}.tax-highlight{background:#f5efe2;border:1px solid #d8c9a7;border-radius:12px;padding:10px;margin-top:10px}.tax-highlight b{font-size:18px}.analytics-note{font-size:11px;color:var(--muted);line-height:1.45;margin-top:8px}
+.analytics-controls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:10px}.analytics-controls label{font-size:11px;color:var(--muted);font-weight:800}.analytics-controls input,.analytics-controls select{width:100%;min-height:42px;border:1px solid #cfd5dd;border-radius:10px;padding:8px;background:white}.analytics-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px}.kpi{border:1px solid var(--line);border-radius:14px;background:white;padding:13px}.kpi span{display:block;font-size:11px;color:var(--muted);font-weight:800}.kpi b{display:block;font:24px Georgia,serif;margin-top:4px}.kpi small{display:block;margin-top:4px;color:var(--muted);font-size:10px}.analytics-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}.analytics-card{border:1px solid var(--line);border-radius:14px;background:white;padding:13px}.analytics-card h3{font:19px Georgia,serif;margin:0 0 8px}.bar-row{display:grid;grid-template-columns:minmax(110px,1fr) 2fr auto;gap:8px;align-items:center;margin:8px 0;font-size:12px}.bar-track{height:10px;border-radius:999px;background:#e7eaee;overflow:hidden}.bar-fill{height:100%;background:#111827;border-radius:999px}.analytics-table{width:100%;border-collapse:collapse}.analytics-table th,.analytics-table td{font-size:11px;padding:6px 4px;border-bottom:1px solid #e2e6eb;text-align:left}.analytics-table th:nth-child(n+2),.analytics-table td:nth-child(n+2){text-align:right}.tax-highlight{background:#ffffff;border:1px solid #d8dde5;border-radius:12px;padding:10px;margin-top:10px}.tax-highlight b{font-size:18px}.analytics-note{font-size:11px;color:var(--muted);line-height:1.45;margin-top:8px}
 @media(max-width:800px){.analytics-controls,.analytics-kpis,.analytics-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.analytics-controls,.analytics-kpis,.analytics-grid{grid-template-columns:1fr}}
 
 .ice-selector{display:grid;gap:9px;margin:8px 0 14px}
 .ice-row{display:grid;grid-template-columns:1fr auto;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff}
 .ice-stepper{display:flex;align-items:center;gap:8px}
-.ice-stepper button{width:38px;height:38px;border:1px solid #cfc4ae;border-radius:10px;background:white;font-size:22px;font-weight:900}
+.ice-stepper button{width:38px;height:38px;border:1px solid #cfd5dd;border-radius:10px;background:white;font-size:22px;font-weight:900}
 .ice-count{min-width:28px;text-align:center;font-weight:900;font-size:18px}
-.ice-total{display:flex;justify-content:space-between;padding:11px;border-radius:12px;background:#f5efe2;font-weight:900}
+.ice-total{display:flex;justify-content:space-between;padding:11px;border-radius:12px;background:#ffffff;font-weight:900}
 
 .order-meta{border:1px solid #d8cdb9;border-radius:12px;background:#faf7f0;padding:10px;margin:0 0 10px}.order-meta b{display:block;margin-bottom:4px}.order-meta span{display:block;font-size:12px;color:#5f625a;line-height:1.45}
 
 .special-order-actions{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
-.special-order-actions button{min-height:40px;border:1px solid #cdbd96;border-radius:9px;background:white;padding:7px 10px;font-weight:800}
+.special-order-actions button{min-height:40px;border:1px solid #cfd5dd;border-radius:9px;background:white;padding:7px 10px;font-weight:800}
 .delivery-fee-line{display:flex;justify-content:space-between;font-weight:850;margin-top:5px}
 .zone-admin-row{display:grid;grid-template-columns:1fr 130px auto;gap:8px;align-items:end;padding:8px 0;border-bottom:1px solid #e5dccb}
 
@@ -59,13 +59,13 @@
 .qr-scan-status{padding:10px 0 2px;font-weight:750;min-height:34px}
 
 .voucher-redeem-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.voucher-redeem-actions button{min-height:42px;border:1px solid #cdbd96;border-radius:10px;background:#fff;padding:8px 12px;font-weight:850}
+.voucher-redeem-actions button{min-height:42px;border:1px solid #cfd5dd;border-radius:10px;background:#fff;padding:8px 12px;font-weight:850}
 .voucher-history{margin-top:12px;border-top:1px solid #d8cdb9;padding-top:10px}
 .voucher-history h4{margin:0 0 7px;font-size:14px}
-.voucher-history-row{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid #eee7da;font-size:12px}
+.voucher-history-row{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid #e2e6eb;font-size:12px}
 
 .admin-nav{position:sticky;top:0;z-index:30;display:flex;gap:8px;overflow-x:auto;padding:8px 0 10px;background:#f7f3ea;border-bottom:1px solid var(--line)}
-.admin-nav button{white-space:nowrap;min-height:40px;border:1px solid #cdbd96;border-radius:10px;background:#fff;padding:8px 12px;font-weight:850}
+.admin-nav button{white-space:nowrap;min-height:40px;border:1px solid #cfd5dd;border-radius:10px;background:#fff;padding:8px 12px;font-weight:850}
 .admin-nav button.on{background:#2d5525;color:#fff;border-color:#2d5525}
 .admin-group-hidden{display:none!important}
 
@@ -74,7 +74,7 @@
 .service-row{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:10px;align-items:center}
 .service-row>*{min-width:0}
 .address-suggestions{position:relative}
-.address-suggestions-list{position:absolute;z-index:50;left:0;right:0;top:100%;background:white;border:1px solid #cdbd96;border-radius:10px;max-height:220px;overflow:auto;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.address-suggestions-list{position:absolute;z-index:50;left:0;right:0;top:100%;background:white;border:1px solid #cfd5dd;border-radius:10px;max-height:220px;overflow:auto;box-shadow:0 8px 24px rgba(0,0,0,.12)}
 .address-suggestions-list button{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid #eee5d5;background:white;padding:10px;font-size:14px}
 
 .category-groups{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
@@ -83,9 +83,9 @@
 .cats .cat,.cats button{width:100%!important;min-width:0!important;white-space:normal!important;text-align:center!important;justify-content:center!important}
 @media(max-width:620px){.cats{gap:6px!important}.cats .cat,.cats button{font-size:13px!important;padding:9px 5px!important}}
 
-.v140-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.v140-card{border:1px solid var(--line);border-radius:14px;background:white;padding:12px;min-width:0}.v140-card h3{font:19px Georgia,serif;margin:0 0 9px}.v140-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.v140-form .wide{grid-column:1/-1}.v140-form input,.v140-form select,.v140-form textarea{width:100%;min-height:40px;border:1px solid #cfc4ae;border-radius:9px;padding:8px;background:#fff}.v140-list{display:grid;gap:8px;margin-top:10px}.v140-row{border:1px solid #e2d8c5;border-radius:11px;padding:9px;background:#fff}.v140-row-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.v140-row small{color:var(--muted);line-height:1.45}.v140-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.v140-actions button{min-height:36px;border:1px solid #cdbd96;border-radius:8px;background:#fff;padding:6px 9px;font-weight:800}.stock-low{border-color:#c78376;background:#fff5f2}.stock-ok{border-color:#b9cfb2}.audit-details{font-size:11px;color:var(--muted);overflow-wrap:anywhere}@media(max-width:760px){.v140-grid,.v140-form{grid-template-columns:1fr}}
+.v140-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.v140-card{border:1px solid var(--line);border-radius:14px;background:white;padding:12px;min-width:0}.v140-card h3{font:19px Georgia,serif;margin:0 0 9px}.v140-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.v140-form .wide{grid-column:1/-1}.v140-form input,.v140-form select,.v140-form textarea{width:100%;min-height:40px;border:1px solid #cfd5dd;border-radius:9px;padding:8px;background:#fff}.v140-list{display:grid;gap:8px;margin-top:10px}.v140-row{border:1px solid #e2d8c5;border-radius:11px;padding:9px;background:#fff}.v140-row-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.v140-row small{color:var(--muted);line-height:1.45}.v140-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.v140-actions button{min-height:36px;border:1px solid #cfd5dd;border-radius:8px;background:#fff;padding:6px 9px;font-weight:800}.stock-low{border-color:#c78376;background:#fff5f2}.stock-ok{border-color:#b9cfb2}.audit-details{font-size:11px;color:var(--muted);overflow-wrap:anywhere}@media(max-width:760px){.v140-grid,.v140-form{grid-template-columns:1fr}}
 
-/* ===== V1.41 Responsive Layout ===== */
+/* ===== OrderBuddy Responsive Layout ===== */
 :root{
   --app-max: 1600px;
 }
@@ -251,7 +251,16 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
 .unavailable-label{background:#e5e7eb!important;color:#4b5563!important;border:1px solid #d1d5db!important}
 .voucher-badge{background:#111827!important;border-color:#111827!important;color:#ffffff!important}
 
-</style></head><body><div class="wrap"><div class="top"><div class="brand"><img src="/orderbuddy-logo.PNG" alt="OrderBuddy"><div><div class="product">ORDERBUDDY</div><div class="customer">Restaurant Ordering</div></div></div><div class="top-actions"><button id="adminBtn" class="top-mini hidden">Chefbereich</button><button id="logoutBtn" class="top-mini hidden">Abmelden</button><div class="badge" id="deviceBadge">Servicegerät</div></div></div>
+
+/* ===== OrderBuddy Final Polish ===== */
+.tax-highlight{background:#ffffff!important;border-color:#d8dde5!important}
+#serviceSales .bar-row{grid-template-columns:minmax(150px,1.25fr) minmax(80px,1.5fr) auto}
+#serviceSales .bar-row>span{min-width:0;overflow-wrap:anywhere;word-break:break-word}
+.service-voucher-search{display:grid;grid-template-columns:1fr auto auto;gap:8px;margin-top:12px}
+.month-actions{grid-template-columns:repeat(2,minmax(0,1fr))!important}.month-actions label{grid-column:1/-1}.manual-bookings-box{margin-top:16px;border-top:1px solid #e2e6eb;padding-top:14px}.manual-bookings-box h3{margin:0 0 4px}.zone-admin-row{display:grid;grid-template-columns:minmax(130px,1fr) 120px 90px auto;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid #e2e6eb}.zone-admin-row input,.zone-admin-row select{min-height:40px;border:1px solid #cfd5dd;border-radius:9px;padding:7px;background:#fff}.zone-admin-row button{min-height:40px;border:1px solid #cfd5dd;border-radius:9px;background:#111827;color:#fff;font-weight:800;padding:7px 10px}
+.report-actions-note{font-size:11px;color:#667085;margin-top:8px}
+@media(max-width:700px){.service-voucher-search{grid-template-columns:1fr}.month-actions{grid-template-columns:1fr!important}.zone-admin-row{grid-template-columns:1fr 1fr}.zone-admin-row button{grid-column:1/-1}#serviceSales .bar-row{grid-template-columns:minmax(0,1fr) auto}#serviceSales .bar-track{grid-column:1/-1}}
+</style></head><body><div class="wrap"><div class="top"><div class="brand"><img src="/orderbuddy-logo.PNG" alt="OrderBuddy"><div><div class="product">OrderBuddy</div><div class="customer">Restaurant Ordering</div></div></div><div class="top-actions"><button id="adminBtn" class="top-mini hidden">Chefbereich</button><button id="logoutBtn" class="top-mini hidden">Abmelden</button><div class="badge" id="deviceBadge">Servicegerät</div></div></div>
 <section id="loginView" class="card login"><h1>Service-Anmeldung</h1><p>Mit dem jeweiligen Passwort anmelden. Danach bleibt dieses Gerät angemeldet, bis du dich abmeldest.</p><select id="deviceSelect" class="input" style="margin-bottom:10px"><option>Service 1</option><option>Service 2</option><option>Service 3</option><option>Service 4</option><option>Chef / Admin</option></select><input id="email" class="input hidden" type="email" readonly><input id="password" class="input" type="password" placeholder="Service-Passwort" style="margin-top:10px"><button id="loginBtn" class="primary" style="width:100%;margin-top:10px">Anmelden</button><div id="loginMsg" class="msg">Das Passwort wird nicht gespeichert, nur die Sitzung.</div></section>
 <main id="appView" class="hidden"><div class="tabs"><button class="tab on" data-area="Terrasse">☀️ Terrasse</button><button class="tab" data-area="Innenraum">🏠 Innenraum</button><button class="tab" data-area="Lieferung">🚗 Lieferung</button><button class="tab" data-area="Abholung">🥡 Abholung</button></div><section id="tablesView" class="card"><div class="section-title" id="areaTitle">Terrasse</div><div class="tables" id="tables"></div><div class="sync" id="syncMsg" style="margin-top:12px">Synchronisiert</div></section><section id="orderView" class="hidden"><button id="backBtn" class="secondary back">← Tischübersicht</button><div class="order-layout"><div class="card"><div class="section-title" id="tableTitle">Tisch</div><div id="orderMeta" class="order-meta hidden"></div><div id="specialOrderActions" class="special-order-actions hidden"><button id="editOrderDetailsBtn">Kundendaten</button></div><div class="category-groups">
   <div>
@@ -262,7 +271,7 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
     <div class="category-group-title">Getränke</div>
     <div class="cats" id="drinkCats"></div>
   </div>
-</div><div class="items" id="items"></div></div><aside class="card"><div class="section-title">Aktuelle Bestellung</div><div class="order-list" id="order"></div><div class="total"><span>Offene Bestellsumme</span><strong id="total">0,00 €</strong></div><div id="registerBox" class="register-box hidden"><div id="registerToggle" class="register-title" role="button" tabindex="0" aria-expanded="false"><span class="register-title-left"><span class="register-chevron">▼</span><span>An Kasse übergeben</span></span><strong id="registerTotal">0,00 €</strong></div><div id="registerGroups" class="hidden"></div></div><div id="completedBox" class="completed-box hidden"><div id="completedToggle" class="completed-title" role="button" tabindex="0" aria-expanded="false"><span>✓ Abgeschlossen</span><strong id="completedTotal">0,00 €</strong></div><div id="completedGroups" class="completed-groups hidden"></div></div><div class="actions"><button id="kitchenBtn">🍳 Küche<br><small>neue Speisen</small></button><button id="barBtn">🍹 Bar<br><small>neue Getränke</small></button><button id="fullBtn">🧾 Gesamt<br><small>am Bardrucker</small></button><button id="billingBtn" class="gold">💶 Abrechnung<br><small>gesamt / getrennt</small></button><button id="voucherBtn">🎟 Gutschein verkaufen<br><small>Verkauf erfassen</small></button><button id="printHistoryBtn">🖨 Druckverlauf<br><small>Bon nachdrucken</small></button></div><button id="closeTableBtn" class="secondary close-table">✓ Tisch abschließen</button><div id="actionMsg" class="msg">Keine Zahlungsabwicklung in OrderBuddy.</div></aside></div></section>
+</div><div class="items" id="items"></div></div><aside class="card"><div class="section-title">Aktuelle Bestellung</div><div class="order-list" id="order"></div><div class="total"><span>Offene Bestellsumme</span><strong id="total">0,00 €</strong></div><div id="registerBox" class="register-box hidden"><div id="registerToggle" class="register-title" role="button" tabindex="0" aria-expanded="false"><span class="register-title-left"><span class="register-chevron">▼</span><span>An Kasse übergeben</span></span><strong id="registerTotal">0,00 €</strong></div><div id="registerGroups" class="hidden"></div></div><div id="completedBox" class="completed-box hidden"><div id="completedToggle" class="completed-title" role="button" tabindex="0" aria-expanded="false"><span>✓ Abgeschlossen</span><strong id="completedTotal">0,00 €</strong></div><div id="completedGroups" class="completed-groups hidden"></div></div><div class="actions"><button id="kitchenBtn">🍳 Küche<br><small>neue Speisen</small></button><button id="barBtn">🍹 Bar<br><small>neue Getränke</small></button><button id="fullBtn">🧾 Gesamt<br><small>am Bardrucker</small></button><button id="billingBtn" class="gold">💶 Abrechnung<br><small>gesamt / getrennt</small></button><button id="voucherBtn">🎟 Gutschein verkaufen<br><small>Verkauf erfassen</small></button><button id="serviceVoucherBtn">🔎 Gutschein prüfen<br><small>Restwert / Einlösung</small></button><button id="printHistoryBtn">🖨 Druckverlauf<br><small>Bon nachdrucken</small></button></div><button id="closeTableBtn" class="secondary close-table">✓ Tisch abschließen</button><div id="actionMsg" class="msg">Keine Zahlungsabwicklung in OrderBuddy.</div></aside></div></section>
 <section id="adminView" class="card admin-panel hidden">
   <button id="adminBackBtn" class="secondary back">← Zurück zur Tischübersicht</button><div class="admin-nav" id="adminNav">
 <button class="on" data-admin-group="overview">Übersicht</button>
@@ -273,7 +282,7 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
 <button data-admin-group="reservations">Reservierungen</button><button data-admin-group="staff">Personal</button><button data-admin-group="inventory">Warenbestand</button><button data-admin-group="system">System & Archiv</button><button data-admin-group="settings">Einstellungen</button>
 </div>
   <div class="section-title">Chefbereich · Tagesabschluss</div>
-  <div class="admin-note">Nur für Owner/Admin. PDF und CSV enthalten OrderBuddy-Bestell-/Abrechnungsdaten und ersetzen keinen steuerlichen Kassenbeleg. Der CSV-Export ist eine DATEV-Vorbereitung, kein fertiger DATEV-Buchungsstapel.</div>
+  <div class="admin-note">Nur für Owner/Admin. PDF und CSV enthalten OrderBuddy-Bestell-/Abrechnungsdaten und ersetzen keinen steuerlichen Kassenbeleg. Die monatlichen DATEV-Exporte werden als EXTF-Buchungsstapel erzeugt. Bitte Berater-/Mandantendaten in den Einstellungen hinterlegen und den Import mit der Steuerkanzlei abstimmen.</div>
   <label class="msg" style="display:block;margin:14px 0 6px">Tag auswählen</label>
   <input id="adminDate" class="input" type="date">
   <div class="admin-grid" style="margin-top:12px">
@@ -287,8 +296,10 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
     <div id="csvStatus" class="export-pill">CSV: noch nicht exportiert</div>
   </div>
   <div class="admin-actions">
-    <button id="pdfExportBtn">📄 PDF-Tagesübersicht</button>
-    <button id="csvExportBtn">📊 CSV · DATEV-Vorbereitung</button>
+    <button id="dayReceiptBtn">🧾 Tagesabschluss-Bon</button>
+    <button id="daySummaryPdfBtn">📄 Tagesabschluss PDF</button>
+    <button id="pdfExportBtn">📑 Detail-PDF · Tische</button>
+    <button id="csvExportBtn">📊 Tages-CSV · Kontrollliste</button>
     <button id="deleteDayBtn" class="danger-admin" disabled>🗑 Tag endgültig löschen</button>
   </div>
   <div id="adminMsg" class="msg"></div>
@@ -310,8 +321,8 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
 <div class="admin-section" data-v140-group="inventory"><div class="section-title" style="font-size:21px">Warenbestand</div><div class="admin-note">Interne Bestandsverwaltung. Sie dokumentiert Warenbewegungen, aber keine Zahlungsvorgänge.</div><div class="v140-grid" style="margin-top:10px"><div class="v140-card"><h3>Artikel anlegen</h3><div class="v140-form"><label>Name<input id="invName" placeholder="z. B. Mozzarella"></label><label>Einheit<input id="invUnit" placeholder="Stk, kg, Flasche"></label><label>Bestand<input id="invStock" type="number" step="0.01" value="0"></label><label>Mindestbestand<input id="invMin" type="number" step="0.01" value="0"></label><button id="invCreate" class="primary wide">Artikel anlegen</button></div><div id="invMsg" class="msg"></div></div><div class="v140-card"><h3>Bestände</h3><div id="inventoryList" class="v140-list"></div></div></div></div>
 <div class="admin-section" data-v140-group="system"><div class="section-title" style="font-size:21px">System & Archiv</div><div class="admin-note">Änderungsprotokoll und Datenübersicht. OrderBuddy bleibt bewusst ohne elektronische Zahlungs- oder Kassenfunktion.</div><div class="v140-card" style="margin-top:10px"><div class="v140-form"><label>Protokoll ab<input id="auditFrom" type="date"></label><label>Max. Einträge<select id="auditLimit"><option>50</option><option>100</option><option>200</option></select></label><button id="auditReload" class="wide">Protokoll laden</button></div><div id="auditList" class="v140-list"></div></div></div>
 <div class="admin-section">
-    <div class="section-title" style="font-size:21px">Lieferkosten</div>
-    <div class="admin-note">Lieferorte und Preise zentral pflegen. Beim Lieferauftrag wird der Preis automatisch zur Gesamtsumme addiert.</div>
+    <div class="section-title" style="font-size:21px">Lieferzonen</div>
+    <div class="admin-note">Lieferzone 1–5 frei benennen und Lieferpreis pflegen. Beim Lieferauftrag wird der hinterlegte Preis automatisch zur Gesamtsumme addiert.</div>
     <div id="deliveryZoneAdminList"></div>
   </div>
 
@@ -358,6 +369,19 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
   </div>
 
 
+
+  <div class="admin-section">
+    <div class="section-title" style="font-size:21px">DATEV-Einstellungen</div>
+    <div class="admin-note">Diese Angaben werden in den EXTF-Header geschrieben. Sie werden nur auf diesem Gerät gespeichert.</div>
+    <div class="admin-form four" style="margin-top:10px">
+      <label>Beraternummer<input id="datevAdvisor" inputmode="numeric" placeholder="1001–9999999"></label>
+      <label>Mandantennummer<input id="datevClient" inputmode="numeric" placeholder="1–99999"></label>
+      <label>Wirtschaftsjahr beginnt<input id="datevFiscalStart" type="date"></label>
+      <label>Sachkontenlänge<select id="datevAccountLength"><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label>
+      <button id="datevSettingsSave" class="primary wide">DATEV-Einstellungen speichern</button>
+    </div>
+    <div class="admin-note" style="margin-top:10px">Kontierung: Kasse 1000 · Speisen 8300 · Getränke 8400 · Gutscheine 1796 · Geldtransit 1360 · Privatentnahme 1800 · Privateinlage 1890.</div>
+  </div>
 
   <div class="admin-section">
     <div class="section-title" style="font-size:21px">Tagesbericht / Kassenzählung</div>
@@ -413,9 +437,31 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
   </div>
 
   <div class="admin-section" id="adminMonthSection">
-<div class="section-title" style="font-size:21px">Monatsauswertung</div>
-<div class="admin-note">Monatliche CSV-Exporte und Auswertungen.</div>
-<div class="admin-form" style="margin-top:10px"><label>Monat<input id="adminMonthTab" type="month"></label><button id="monthlyCsvTabBtn" class="primary">Monats-CSV exportieren</button></div>
+<div class="section-title" style="font-size:21px">Monatsauswertung & DATEV</div>
+<div class="admin-note">Monatsabschluss, DATEV-EXTF-Exporte und zusätzliche manuelle Buchungen für Vorgänge, die außerhalb von OrderBuddy stattfinden.</div>
+<div class="admin-form month-actions" style="margin-top:10px">
+  <label>Monat<input id="adminMonthTab" type="month"></label>
+  <button id="monthlyExtfItemsBtn" class="primary">DATEV EXTF · Einzelpositionen</button>
+  <button id="monthlyExtfDaysBtn">DATEV EXTF · Tagessummen</button>
+  <button id="monthReceiptBtn">🧾 Monatsabschluss-Bon</button>
+  <button id="monthSummaryPdfBtn">📄 Monatsabschluss PDF</button>
+</div>
+<div class="manual-bookings-box">
+  <h3>Manuelle Buchungen</h3>
+  <div class="admin-note">Für Geldtransit, Privatentnahme, Privateinlage und Kosten, die nicht über OrderBuddy erfasst werden.</div>
+  <div class="admin-form four" style="margin-top:10px">
+    <label>Datum<input id="manualBookingDate" type="date"></label>
+    <label>Kategorie<select id="manualBookingCategory"><option value="geldtransit">Geldtransit · 1360</option><option value="privatentnahme">Privatentnahme · 1800</option><option value="privateinlage">Privateinlage · 1890</option><option value="kosten">Kosten / Ausgabe</option></select></label>
+    <label id="manualDirectionWrap">Richtung<select id="manualBookingDirection"><option value="cash_out">Kasse → Geldtransit</option><option value="cash_in">Geldtransit → Kasse</option></select></label>
+    <label>Betrag<input id="manualBookingAmount" type="number" min="0.01" step="0.01" placeholder="0,00"></label>
+    <label id="manualCostAccountWrap" class="hidden">Kostenkonto<input id="manualCostAccount" inputmode="numeric" placeholder="z. B. 3400"></label>
+    <label id="manualBuKeyWrap" class="hidden">BU-Schlüssel (optional)<input id="manualBuKey" inputmode="numeric" placeholder="z. B. 9"></label>
+    <label class="wide">Buchungstext<input id="manualBookingText" placeholder="z. B. Wareneinkauf bar"></label>
+    <button id="manualBookingSave" class="primary wide">Buchung speichern</button>
+  </div>
+  <div id="manualBookingMsg" class="msg"></div>
+  <div id="manualBookingList" class="v140-list"></div>
+</div>
 </div>
 <div class="admin-section">
     <div class="section-title" style="font-size:21px">Gutscheine</div>
@@ -423,7 +469,6 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
     <div class="admin-form" style="margin-top:10px">
       <label>Gutschein suchen<input id="voucherSearch" placeholder="Nr. oder Sicherheitscode"></label>
       <label>Monat<input id="adminMonth" type="month"></label>
-      <button id="monthlyCsvBtn" class="primary">Monats-CSV exportieren</button>
     </div>
     <div class="admin-toolbar"><button id="voucherSearchBtn">Gutschein suchen</button><button id="voucherTodayBtn">Tagesansicht</button><button id="voucherVerifyBtn">QR-Code scannen</button></div>
     <div id="voucherVerifyResult"></div>
@@ -462,6 +507,14 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
   <div class="modal-actions"><button id="orderDetailsClear" class="secondary">Alle Kundendaten löschen</button><button id="orderDetailsCancel" class="secondary">Abbrechen</button><button id="orderDetailsSave" class="primary">Speichern</button></div>
 </div></div>
 
+
+<div id="serviceVoucherModal" class="modal-bg hidden"><div class="modal">
+  <h2>Gutschein prüfen / einlösen</h2>
+  <div class="msg">Gültigkeit und Restwert prüfen oder einen Gutscheinbetrag als Einlösung dokumentieren. OrderBuddy erfasst dabei keine Zahlungsart und keinen Kassenbestand.</div>
+  <div class="service-voucher-search"><input id="serviceVoucherSearch" class="input" placeholder="Gutscheinnummer oder Sicherheitscode"><button id="serviceVoucherSearchBtn" class="primary">Prüfen</button><button id="serviceVoucherScanBtn" class="secondary">QR scannen</button></div>
+  <div id="serviceVoucherResult"></div>
+  <div class="modal-actions"><button id="serviceVoucherClose" class="secondary">Schließen</button></div>
+</div></div>
 
 <div id="voucherScannerModal" class="modal-bg hidden qr-scanner-modal"><div class="modal">
   <h2>Gutschein scannen</h2>
@@ -524,10 +577,10 @@ const euro=n=>Number(n||0).toLocaleString('de-DE',{style:'currency',currency:'EU
 const dec=n=>Number(n||0).toFixed(2).replace('.',',');
 const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 
-let deviceName=localStorage.getItem('nova_device')||'Service 1';
+let deviceName=localStorage.getItem('orderbuddy_device')||'Service 1';
 let currentArea='Terrasse',currentTable=null,currentSession=null,pendingSpecialTable=null;
 let categories=[],menu=[],orders=[],transferredOrders=[],billGroups=[],restaurant=null,menuExtras=[],optionGroups=[],sessionVouchers=[],pendingMenuItem=null,editingOrderItem=null,iceQuantities={},deliveryZones=[];
-let registerOpen=false,completedOpen=false,currentRole='service',adminSessions=[],adminExport=null,voucherScannerStream=null,voucherScannerRunning=false,voucherScannerTimer=null,verifiedVoucher=null;
+let registerOpen=false,completedOpen=false,currentRole='service',adminSessions=[],adminExport=null,voucherScannerStream=null,voucherScannerRunning=false,voucherScannerTimer=null,verifiedVoucher=null,voucherResultTarget='#voucherVerifyResult';
 
 function selectedLoginEmail(){
   return $('#deviceSelect').value==='Chef / Admin'?ADMIN_EMAIL:DEVICE_EMAILS[$('#deviceSelect').value];
@@ -550,7 +603,7 @@ updateLoginMode();
 $('#deviceSelect').onchange=()=>{deviceName=$('#deviceSelect').value;updateLoginMode()};
 
 async function getRole(){
-  const{data,error}=await supabase.rpc('current_nova_role');
+  const{data,error}=await supabase.rpc('current_orderbuddy_role');
   if(error)return 'service';
   return data||'service';
 }
@@ -567,9 +620,9 @@ async function init(){
   const email=session.user?.email?.toLowerCase();
   const matched=Object.entries(DEVICE_EMAILS).find(([,v])=>v===email)?.[0];
   if(matched){
-    deviceName=matched;localStorage.setItem('nova_device',matched);$('#deviceBadge').textContent=matched;
+    deviceName=matched;localStorage.setItem('orderbuddy_device',matched);$('#deviceBadge').textContent=matched;
   }else if(['owner','admin'].includes(currentRole)){
-    deviceName='Chef / Admin';localStorage.setItem('nova_device','Chef / Admin');$('#deviceBadge').textContent='Chef / Admin';
+    deviceName='Chef / Admin';localStorage.setItem('orderbuddy_device','Chef / Admin');$('#deviceBadge').textContent='Chef / Admin';
   }
   showApp();await loadBase();applyRoleUI();subscribe();
 }
@@ -610,7 +663,7 @@ $('#loginBtn').onclick=async()=>{
   }
 
   deviceName=choice;
-  localStorage.setItem('nova_device',deviceName);
+  localStorage.setItem('orderbuddy_device',deviceName);
   $('#deviceBadge').textContent=deviceName;
   $('#password').value='';
   showApp();
@@ -621,13 +674,13 @@ $('#loginBtn').onclick=async()=>{
 };
 $('#logoutBtn').onclick=async()=>{
   await supabase.auth.signOut();
-  localStorage.removeItem('nova_device');
+  localStorage.removeItem('orderbuddy_device');
   location.reload()
 };
 
 function showApp(){$('#loginView').classList.add('hidden');$('#appView').classList.remove('hidden')}
 async function loadBase(){
-  const{data:r,error:re}=await supabase.from('restaurants').select('id,display_name,receipt_name,show_receipt_number,timezone').eq('slug','nova').single();
+  const{data:r,error:re}=await supabase.from('restaurants').select('id,display_name,receipt_name,show_receipt_number,timezone').limit(1).single();
   if(re){$('#syncMsg').textContent='Datenfehler: '+re.message;return}
   restaurant=r;
   const[{data:a,error:ea},{data:c,error:ec},{data:m,error:em},{data:x,error:ex},{data:og,error:eog},{data:dz,error:edz}]=await Promise.all([
@@ -636,7 +689,7 @@ async function loadBase(){
     supabase.from('menu_items').select('id,article_number,name,variant,price,sort_order,category_id,active').order('sort_order'),
     supabase.from('menu_extras').select('id,name,price,active,sort_order').order('sort_order'),
     supabase.from('menu_option_groups').select('id,name,min_select,max_select,active,menu_options(id,name,price_delta,active,sort_order),menu_item_option_groups(menu_item_id)').eq('active',true).order('sort_order'),
-    supabase.from('delivery_zones').select('id,name,fee,active,sort_order').eq('active',true).order('sort_order')
+    supabase.from('delivery_zones').select('id,name,fee,active,sort_order').order('sort_order')
   ]);
   const err=ea||ec||em||ex||eog;
   if(err){if(/JWT issued at future/i.test(err.message||'')){await new Promise(r=>setTimeout(r,2200));await supabase.auth.refreshSession();return loadBase()}$('#syncMsg').textContent='Datenfehler: '+err.message;return}
@@ -721,7 +774,7 @@ function fillOrderDetailsModal(){
   $('#orderRequestedTime').value=currentSession?.requested_time||'';
   $('#orderCustomerNote').value=currentSession?.customer_note||'';
   const sel=$('#orderDeliveryZone');sel.innerHTML='<option value="">Lieferort auswählen</option>';
-  deliveryZones.forEach(z=>{const o=document.createElement('option');o.value=z.id;o.textContent=(z.name==='Himmersen'?'Hummersen':z.name)+' · '+euro(z.fee);if(String(currentSession?.delivery_zone_id||'')===String(z.id))o.selected=true;sel.appendChild(o)});
+  deliveryZones.filter(z=>z.active!==false).forEach(z=>{const o=document.createElement('option');o.value=z.id;o.textContent=z.name+' · '+euro(z.fee);if(String(currentSession?.delivery_zone_id||'')===String(z.id))o.selected=true;sel.appendChild(o)});
   $('#orderDetailsMsg').textContent='';$('#orderDetailsModal').classList.remove('hidden')
 }
 $('#editOrderDetailsBtn').onclick=fillOrderDetailsModal;
@@ -1294,7 +1347,7 @@ function taxSummary(groups){
   const foodNet=foodGross/1.07,drinkNet=drinkGross/1.19;
   return {foodGross,drinkGross,foodNet,drinkNet,foodVat:foodGross-foodNet,drinkVat:drinkGross-drinkNet,gross:foodGross+drinkGross,net:foodNet+drinkNet,vat:(foodGross-foodNet)+(drinkGross-drinkNet)}
 }
-function novaLogoUrl(){return new URL('/orderbuddy-logo.PNG',location.href).href}
+function orderBuddyLogoUrl(){return new URL('/orderbuddy-logo.PNG',location.href).href}
 async function removeOrVoidVoucher(v){
   if(!v?.id)return;
   const isCurrentOpen=!!currentSession;
@@ -1303,7 +1356,7 @@ async function removeOrVoidVoucher(v){
     :'Gutschein '+v.voucher_number+' wirklich nachträglich stornieren?\n\nDie Gutscheinnummer bleibt dabei dauerhaft erhalten.';
   if(!confirm(question))return;
 
-  const{data,error}=await supabase.rpc('remove_or_void_nova_voucher',{p_voucher_id:v.id});
+  const{data,error}=await supabase.rpc('remove_or_void_orderbuddy_voucher',{p_voucher_id:v.id});
   if(error){
     $('#actionMsg').textContent='Gutschein konnte nicht geändert werden: '+error.message;
     return
@@ -1349,13 +1402,13 @@ function fullReceiptHtml(){
   return `<!doctype html><html><head><meta charset="utf-8"><title>OrderBuddy · Tisch ${esc(currentTable?.code||'')}</title><style>
 @page{size:80mm ${pageMm}mm;margin:4mm}html,body{width:72mm;min-width:72mm}*{box-sizing:border-box}body{margin:0;color:#171713;font-family:Arial,sans-serif;font-size:10.5px}.receipt{width:72mm;max-width:72mm;margin:0 auto}.logo{display:block;max-width:55mm;max-height:26mm;object-fit:contain;margin:0 auto 3mm}h1{font:700 17px Georgia,serif;text-align:center;margin:1mm 0}.subtitle{text-align:center;font-size:10px;letter-spacing:.12em}.meta{text-align:center;font-size:9.5px;margin:2mm 0 3mm}.rule{border-top:1.5px solid #222}.part{margin:3mm 0 4mm}.part-title{display:inline-block;background:#eee7d9;border-radius:4px;padding:1.2mm 2.5mm;font-weight:800}table{width:100%;border-collapse:collapse;table-layout:fixed;margin-top:1mm}th{font-size:8.5px;border-bottom:1px solid #999;text-align:left}td{padding:1.2mm 0;border-bottom:1px dotted #ccc;vertical-align:top}.qty{width:11mm}.num{text-align:right;width:17mm;white-space:nowrap}.part-total{text-align:right;font-weight:700;margin-top:1.8mm;padding-bottom:2mm;border-bottom:1px dashed #777}.gap{height:4mm}.grand{display:flex;justify-content:space-between;font-size:15px;font-weight:900;border-top:2px solid #222;border-bottom:2px solid #222;padding:2mm 0}.tax{margin-top:2mm}.tax th,.tax td{font-size:9px}.tax th:nth-child(n+2),.tax td:nth-child(n+2){text-align:right}.note{text-align:center;font-size:9px;margin:3mm 0 2mm}.powered{text-align:center;border-top:1px dotted #aaa;padding-top:2.5mm;font-weight:800}.dot{color:#e86d2d}
 
-</style></head><body><div class="receipt"><img class="logo" src="${novaLogoUrl()}"><h1>TISCH ${esc(currentTable?.code||'')}</h1><div class="subtitle">GESAMTBESTELLZETTEL</div><div class="meta">Datum: ${dt.date} · Uhrzeit: ${dt.time}</div>${specialOrderPrintMeta()}<div class="rule"></div>${parts}${deliveryFeeGross()>0?`<section class="part"><div class="part-title">LIEFERKOSTEN</div><div style="display:flex;justify-content:space-between;padding:1.5mm 0"><span>Lieferkosten</span><b>${euro(deliveryFeeGross())}</b></div></section>`:''}${sessionVouchers.length?`<section class="part"><div class="part-title">GUTSCHEIN</div>${sessionVouchers.map(v=>`<div style="display:flex;justify-content:space-between;padding:1.5mm 0;border-bottom:1px dotted #ccc"><span>Gutschein<br><small>${esc(v.voucher_number)}${v.note?' · Für: '+esc(v.note):''}</small></span><b>${euro(v.original_value)}</b></div>`).join('')}</section>`:''}<div class="receipt-summary-block"><div class="gap"></div><div class="grand"><span>GESAMT</span><span>${euro(tot.gross+sessionVouchers.reduce((a,v)=>a+Number(v.original_value),0)+deliveryFeeGross())}</span></div><table class="tax"><thead><tr><th>Steuersatz</th><th>Netto</th><th>MwSt.</th><th>Brutto</th></tr></thead><tbody><tr><td>7 % Speisen</td><td>${euro(tot.foodNet)}</td><td>${euro(tot.foodVat)}</td><td>${euro(tot.foodGross)}</td></tr><tr><td>19 % Getränke</td><td>${euro(tot.drinkNet)}</td><td>${euro(tot.drinkVat)}</td><td>${euro(tot.drinkGross)}</td></tr>${sessionVouchers.length?`<tr><td>Gutschein</td><td>${euro(sessionVouchers.reduce((a,v)=>a+Number(v.original_value),0))}</td><td>${euro(0)}</td><td>${euro(sessionVouchers.reduce((a,v)=>a+Number(v.original_value),0))}</td></tr>`:''}<tr><th>Gesamt</th><th>${euro(tot.net+sessionVouchers.reduce((a,v)=>a+Number(v.original_value),0)+deliveryFeeGross())}</th><th>${euro(tot.vat)}</th><th>${euro(tot.gross+sessionVouchers.reduce((a,v)=>a+Number(v.original_value),0)+deliveryFeeGross())}</th></tr></tbody></table><div class="note">Abrechnung erfolgt an der Kasse.</div><div class="powered">OrderBuddy<span class="dot">.</span></div></div></body></html>`
+</style></head><body><div class="receipt"><img class="logo" src="${orderBuddyLogoUrl()}"><h1>TISCH ${esc(currentTable?.code||'')}</h1><div class="subtitle">GESAMTBESTELLZETTEL</div><div class="meta">Datum: ${dt.date} · Uhrzeit: ${dt.time}</div>${specialOrderPrintMeta()}<div class="rule"></div>${parts}${deliveryFeeGross()>0?`<section class="part"><div class="part-title">LIEFERKOSTEN</div><div style="display:flex;justify-content:space-between;padding:1.5mm 0"><span>Lieferkosten</span><b>${euro(deliveryFeeGross())}</b></div></section>`:''}${sessionVouchers.length?`<section class="part"><div class="part-title">GUTSCHEIN</div>${sessionVouchers.map(v=>`<div style="display:flex;justify-content:space-between;padding:1.5mm 0;border-bottom:1px dotted #ccc"><span>Gutschein<br><small>${esc(v.voucher_number)}${v.note?' · Für: '+esc(v.note):''}</small></span><b>${euro(v.original_value)}</b></div>`).join('')}</section>`:''}<div class="receipt-summary-block"><div class="gap"></div><div class="grand"><span>GESAMT</span><span>${euro(tot.gross+sessionVouchers.reduce((a,v)=>a+Number(v.original_value),0)+deliveryFeeGross())}</span></div><table class="tax"><thead><tr><th>Steuersatz</th><th>Netto</th><th>MwSt.</th><th>Brutto</th></tr></thead><tbody><tr><td>7 % Speisen</td><td>${euro(tot.foodNet)}</td><td>${euro(tot.foodVat)}</td><td>${euro(tot.foodGross)}</td></tr><tr><td>19 % Getränke</td><td>${euro(tot.drinkNet)}</td><td>${euro(tot.drinkVat)}</td><td>${euro(tot.drinkGross)}</td></tr>${sessionVouchers.length?`<tr><td>Gutschein</td><td>${euro(sessionVouchers.reduce((a,v)=>a+Number(v.original_value),0))}</td><td>${euro(0)}</td><td>${euro(sessionVouchers.reduce((a,v)=>a+Number(v.original_value),0))}</td></tr>`:''}<tr><th>Gesamt</th><th>${euro(tot.net+sessionVouchers.reduce((a,v)=>a+Number(v.original_value),0)+deliveryFeeGross())}</th><th>${euro(tot.vat)}</th><th>${euro(tot.gross+sessionVouchers.reduce((a,v)=>a+Number(v.original_value),0)+deliveryFeeGross())}</th></tr></tbody></table><div class="note">Abrechnung erfolgt an der Kasse.</div><div class="powered">OrderBuddy<span class="dot">.</span></div></div></body></html>`
 }
 function stationReceiptHtml(kind,selected){
   const dt=receiptDateTime(),title=kind==='kitchen'?'KÜCHE':'BAR',lines=groupReceiptLines(selected.map(order=>({order,qty:order.quantity})));
   const pageMm=Math.max(90,48+lines.length*16);
   return `<!doctype html><html><head><meta charset="utf-8"><title>${title} · Tisch ${esc(currentTable?.code||'')}</title><style>@page{size:80mm ${pageMm}mm;margin:4mm}html,body{width:72mm;min-width:72mm}body{font-family:Arial,sans-serif;color:#111;margin:0}.r{width:72mm;max-width:72mm;margin:0 auto}.logo{display:block;max-width:46mm;max-height:20mm;object-fit:contain;margin:0 auto 3mm}h1{text-align:center;font-size:26px;margin:1mm 0}.meta{text-align:center;font-size:12px;margin:2mm 0 4mm;border-bottom:2px solid #000;padding-bottom:3mm}.line{display:grid;grid-template-columns:12mm 1fr;gap:3mm;padding:2.5mm 0;border-bottom:1px dashed #777}.q{font-size:22px;font-weight:900}.n{font-size:18px;font-weight:800}.v{font-size:12px;margin-top:1mm}.footer{text-align:center;font-size:9px;margin-top:4mm}
-</style></head><body><div class="r"><img class="logo" src="${novaLogoUrl()}"><h1>${title} · TISCH ${esc(currentTable?.code||'')}</h1><div class="meta">${dt.date} · ${dt.time} · ${esc(deviceName)}</div>${specialOrderPrintMeta()}${lines.map(l=>`<div class="line"><div class="q">${l.qty}×</div><div><div class="n">${esc(l.name)}</div>${l.variant?`<div class="v">${esc(l.variant)}</div>`:''}${l.detail?`<div class="v">${esc(l.detail)}</div>`:''}${l.note?`<div class="v"><b>Bemerkung:</b> ${esc(l.note)}</div>`:''}</div></div>`).join('')}<div class="footer">Powered by OrderBuddy<span style="color:#e86d2d">.</span></div></div></body></html>`
+</style></head><body><div class="r"><img class="logo" src="${orderBuddyLogoUrl()}"><h1>${title} · TISCH ${esc(currentTable?.code||'')}</h1><div class="meta">${dt.date} · ${dt.time} · ${esc(deviceName)}</div>${specialOrderPrintMeta()}${lines.map(l=>`<div class="line"><div class="q">${l.qty}×</div><div><div class="n">${esc(l.name)}</div>${l.variant?`<div class="v">${esc(l.variant)}</div>`:''}${l.detail?`<div class="v">${esc(l.detail)}</div>`:''}${l.note?`<div class="v"><b>Bemerkung:</b> ${esc(l.note)}</div>`:''}</div></div>`).join('')}<div class="footer">Powered by OrderBuddy<span style="color:#e86d2d">.</span></div></div></body></html>`
 }
 function openPrintWindow(html){
   const w=window.open('','_blank');
@@ -1442,7 +1495,7 @@ function voucherSecurityCode(v){
   return raw ? raw.slice(0,4)+'-'+raw.slice(4,8)+'-'+raw.slice(8,12) : '';
 }
 function voucherQrUrl(v){
-  const payload='NOVA-GUTSCHEIN|'+String(v?.id||'');
+  const payload='ORDERBUDDY-GUTSCHEIN|'+String(v?.id||'');
   return 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=0&data='+encodeURIComponent(payload)
 }
 function voucherPrintHtml(v){
@@ -1468,7 +1521,7 @@ function voucherPrintHtml(v){
     @media print{html,body,.voucher{width:80mm!important;height:140mm!important}}
   
 </style></head><body><div class="voucher">
-    <img class="logo" src="${novaLogoUrl()}">
+    <img class="logo" src="${orderBuddyLogoUrl()}">
     <h2>GUTSCHEIN</h2>
     <div class="value">${euro(v.original_value)}</div>
     <div class="for">${recipient?'Für: '+esc(recipient):'&nbsp;'}</div>
@@ -1492,7 +1545,7 @@ function printExistingVoucher(v){
   w.document.close();
   setTimeout(()=>{try{w.focus();w.print()}catch{}},450)
 }
-$('#voucherCreate').onclick=async()=>{const value=Number($('#voucherValue').value);if(!(value>0)){ $('#voucherResult').textContent='Bitte einen Gutscheinwert eingeben.';return}if(currentTable&&!currentSession){currentSession=await createSession(currentTable);if(!currentSession)return}const{data,error}=await supabase.rpc('create_nova_voucher',{p_value:value,p_note:$('#voucherNote').value.trim()||null,p_session_id:currentSession?.id||null});if(error){$('#voucherResult').textContent='Fehler: '+error.message;return}$('#voucherResult').textContent='Verkauft: '+data.voucher_number+' · '+euro(data.original_value)+' · auf Gesamtbon übernommen.';$('#voucherModal').classList.add('hidden');openPrintWindow(voucherPrintHtml(data));$('#actionMsg').textContent='Gutschein '+data.voucher_number+' verkauft · '+euro(data.original_value)+' · Zahlung an offener Ladenkasse.';if(currentSession){await loadOrders();await refreshSessionVouchers();renderOrder()}};
+$('#voucherCreate').onclick=async()=>{const value=Number($('#voucherValue').value);if(!(value>0)){ $('#voucherResult').textContent='Bitte einen Gutscheinwert eingeben.';return}if(currentTable&&!currentSession){currentSession=await createSession(currentTable);if(!currentSession)return}const{data,error}=await supabase.rpc('create_orderbuddy_voucher',{p_value:value,p_note:$('#voucherNote').value.trim()||null,p_session_id:currentSession?.id||null});if(error){$('#voucherResult').textContent='Fehler: '+error.message;return}$('#voucherResult').textContent='Verkauft: '+data.voucher_number+' · '+euro(data.original_value)+' · auf Gesamtbon übernommen.';$('#voucherModal').classList.add('hidden');openPrintWindow(voucherPrintHtml(data));$('#actionMsg').textContent='Gutschein '+data.voucher_number+' verkauft · '+euro(data.original_value)+' · Zahlung an offener Ladenkasse.';if(currentSession){await loadOrders();await refreshSessionVouchers();renderOrder()}};
 $('#billingBtn').onclick=()=>{$('#billingModal').classList.remove('hidden');$('#splitArea').classList.add('hidden');$('#billResult').textContent='';renderSplitItems()};
 $('#closeBilling').onclick=()=>$('#billingModal').classList.add('hidden');
 $('#billSplit').onclick=()=>{$('#splitArea').classList.remove('hidden');renderSplitItems()};
@@ -1540,15 +1593,17 @@ async function reprintJob(j){const html=j.snapshot?.html;if(!html){$('#actionMsg
 
 function renderDeliveryZoneAdmin(){
   const box=$('#deliveryZoneAdminList');if(!box)return;box.innerHTML='';
-  if(!deliveryZones.length){box.innerHTML='<div class="admin-note" style="margin-top:10px">Lieferzonen noch nicht eingerichtet. Bitte einmal die beigefügte Supabase-SQL-Datei ausführen.</div>';return}
-  deliveryZones.forEach(z=>{
+  if(!deliveryZones.length){box.innerHTML='<div class="admin-note" style="margin-top:10px">Lieferzonen noch nicht eingerichtet. Bitte die beigefügte OrderBuddy-Supabase-Upgrade-Datei ausführen.</div>';return}
+  deliveryZones.forEach((z,idx)=>{
     const row=document.createElement('div');row.className='zone-admin-row';
-    row.innerHTML='<label>'+esc(z.name==='Himmersen'?'Hummersen':z.name)+'</label><input type="number" min="0" step="0.50" value="'+Number(z.fee||0).toFixed(2)+'"><button>Speichern</button>';
+    row.innerHTML='<input class="zone-name" value="'+esc(z.name||('Lieferzone '+(idx+1)))+'" aria-label="Name"><input class="zone-fee" type="number" min="0" step="0.50" value="'+Number(z.fee||0).toFixed(2)+'" aria-label="Lieferpreis"><select class="zone-active" aria-label="Aktiv"><option value="true" '+(z.active!==false?'selected':'')+'>Aktiv</option><option value="false" '+(z.active===false?'selected':'')+'>Inaktiv</option></select><button>Speichern</button>';
     row.querySelector('button').onclick=async()=>{
-      const fee=Number(row.querySelector('input').value||0);
-      const{error}=await supabase.from('delivery_zones').update({fee}).eq('id',z.id);
-      $('#adminMsg').textContent=error?'Lieferkosten: '+error.message:'Lieferkosten für '+z.name+' gespeichert.';
-      if(!error){z.fee=fee;renderDeliveryZoneAdmin()}
+      const name=row.querySelector('.zone-name').value.trim()||('Lieferzone '+(idx+1));
+      const fee=Number(row.querySelector('.zone-fee').value||0);
+      const active=row.querySelector('.zone-active').value==='true';
+      const{error}=await supabase.from('delivery_zones').update({name,fee,active}).eq('id',z.id);
+      $('#adminMsg').textContent=error?'Lieferzone: '+error.message:'Lieferzone '+name+' gespeichert.';
+      if(!error){z.name=name;z.fee=fee;z.active=active;await loadBase();renderDeliveryZoneAdmin()}
     };box.appendChild(row)
   })
 }
@@ -1645,12 +1700,12 @@ async function showVoucherVerification(v,box,fromScan=false){
     '<div id="voucherHistory" class="voucher-history"></div>'+
   '</div>';
 
-  $('#voucherReprintBtn').onclick=()=>printExistingVoucher(v);
+  box.querySelector('#voucherReprintBtn').onclick=()=>printExistingVoucher(v);
   if(valid){
-    $('#voucherPartialRedeemBtn').onclick=()=>openVoucherRedeemModal(false);
-    $('#voucherFullRedeemBtn').onclick=()=>openVoucherRedeemModal(true)
+    box.querySelector('#voucherPartialRedeemBtn').onclick=()=>openVoucherRedeemModal(false);
+    box.querySelector('#voucherFullRedeemBtn').onclick=()=>openVoucherRedeemModal(true)
   }
-  await renderVoucherHistory(v.id);
+  await renderVoucherHistory(v.id,box.querySelector('#voucherHistory'));
 
   if(fromScan){
     const input=$('#voucherSearch');if(input)input.value='';
@@ -1658,8 +1713,8 @@ async function showVoucherVerification(v,box,fromScan=false){
     setTimeout(()=>window.scrollTo({top:y,behavior:'smooth'}),100)
   }
 }
-async function renderVoucherHistory(voucherId){
-  const box=$('#voucherHistory');if(!box)return;
+async function renderVoucherHistory(voucherId,box=null){
+  box=box||$('#voucherHistory');if(!box)return;
   const{data,error}=await supabase.from('voucher_events')
     .select('event_type,amount,created_at,created_by_email,note')
     .eq('voucher_id',voucherId)
@@ -1688,7 +1743,7 @@ function voucherRedemptionReceiptHtml(v,amount,newRemaining,note,createdAt){
  const d=new Date(createdAt||Date.now());
  return `<!doctype html><html><head><meta charset="utf-8"><style>@page{size:80mm auto;margin:4mm}body{font-family:Arial,sans-serif;width:72mm;margin:0 auto;font-size:11px}.logo{display:block;max-width:48mm;max-height:20mm;margin:0 auto 3mm}.row{display:flex;justify-content:space-between;gap:8px;padding:1.5mm 0;border-bottom:1px dotted #aaa}h2{text-align:center;font-size:17px}.big{font-size:18px;font-weight:900}.foot{text-align:center;margin-top:4mm;border-top:1px dotted #aaa;padding-top:3mm;font-size:9px}
 </style></head><body>
- <img class="logo" src="${novaLogoUrl()}"><h2>GUTSCHEIN-EINLÖSUNG</h2>
+ <img class="logo" src="${orderBuddyLogoUrl()}"><h2>GUTSCHEIN-EINLÖSUNG</h2>
  <div class="row"><span>Gutschein</span><b>${esc(v.voucher_number)}</b></div>
  ${v.note?`<div class="row"><span>Für</span><b>${esc(v.note)}</b></div>`:''}
  <div class="row"><span>Datum</span><b>${d.toLocaleDateString('de-DE')}</b></div>
@@ -1710,7 +1765,7 @@ $('#voucherRedeemSave').onclick=async()=>{
   if(!(amount>0)){ $('#voucherRedeemMsg').textContent='Bitte einen Betrag größer als 0 eingeben.'; return }
   if(amount>remaining+0.0001){ $('#voucherRedeemMsg').textContent='Der Betrag darf den Restwert nicht überschreiten.'; return }
   $('#voucherRedeemMsg').textContent='Einlösung wird gespeichert …';
-  const{data,error}=await supabase.rpc('redeem_nova_voucher',{
+  const{data,error}=await supabase.rpc('redeem_orderbuddy_voucher',{
     p_voucher_id:v.id,
     p_amount:amount,
     p_note:redeemNote
@@ -1720,14 +1775,16 @@ $('#voucherRedeemSave').onclick=async()=>{
   const{data:fresh,error:ferr}=await supabase.from('vouchers')
     .select('id,voucher_number,original_value,remaining_value,status,issued_at,note')
     .eq('id',v.id).single();
-  if(ferr){$('#voucherVerifyResult').innerHTML='<div class="voucher-verify-result voucher-invalid">Aktualisierung fehlgeschlagen: '+esc(ferr.message)+'</div>';return}
+  if(ferr){$(voucherResultTarget).innerHTML='<div class="voucher-verify-result voucher-invalid">Aktualisierung fehlgeschlagen: '+esc(ferr.message)+'</div>';return}
   printVoucherRedemptionReceipt(v,amount,Number(fresh.remaining_value||0),redeemNote,new Date());
-  await showVoucherVerification(fresh,$('#voucherVerifyResult'),false);
-  await renderAdminVouchers($('#voucherSearch').value||'');
+  await showVoucherVerification(fresh,$(voucherResultTarget),false);
+  if(voucherResultTarget==='#voucherVerifyResult')await renderAdminVouchers($('#voucherSearch').value||'');
 }
-async function verifyVoucher(termOverride,fromScan=false){
-  const term=String(termOverride||$('#voucherSearch').value||'').trim();
-  const box=$('#voucherVerifyResult');box.innerHTML='';
+async function verifyVoucher(termOverride,fromScan=false,targetSelector=voucherResultTarget){
+  voucherResultTarget=targetSelector||'#voucherVerifyResult';
+  const fallbackInput=voucherResultTarget==='#serviceVoucherResult'?'#serviceVoucherSearch':'#voucherSearch';
+  const term=String(termOverride||$(fallbackInput)?.value||'').trim();
+  const box=$(voucherResultTarget);box.innerHTML='';
   if(!term){
     box.innerHTML='<div class="voucher-verify-result">Bitte Gutscheinnummer oder Sicherheitscode eingeben.</div>';
     return
@@ -1740,7 +1797,7 @@ async function verifyVoucher(termOverride,fromScan=false){
     return
   }
 
-  const parsedQr=parseNovaVoucherQr(term);
+  const parsedQr=parseOrderBuddyVoucherQr(term);
   const lookupTerm=parsedQr||term;
   const normalized=lookupTerm.replace(/[^a-z0-9]/gi,'').toUpperCase();
   const v=(data||[]).find(x=>{
@@ -1763,10 +1820,12 @@ function stopVoucherScanner(){
   const video=$('#voucherScannerVideo');
   if(video)video.srcObject=null
 }
-function parseNovaVoucherQr(raw){
+function parseOrderBuddyVoucherQr(raw){
   const text=String(raw||'').trim();
-  const prefix='NOVA-GUTSCHEIN|';
-  if(!text.toUpperCase().startsWith(prefix))return null;
+  const prefixes=['ORDERBUDDY-GUTSCHEIN|'];
+  const upper=text.toUpperCase();
+  const prefix=prefixes.find(p=>upper.startsWith(p));
+  if(!prefix)return null;
   const id=text.slice(prefix.length).trim();
   return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id)?id:null
 }
@@ -1811,12 +1870,12 @@ function scanVoucherFrame(){
     const img=ctx.getImageData(0,0,canvas.width,canvas.height);
     const qr=window.jsQR(img.data,img.width,img.height,{inversionAttempts:'dontInvert'});
     if(qr?.data){
-      const id=parseNovaVoucherQr(qr.data);
+      const id=parseOrderBuddyVoucherQr(qr.data);
       if(id){
         status.textContent='Gutschein erkannt.';
         stopVoucherScanner();
         $('#voucherScannerModal').classList.add('hidden');
-        verifyVoucher(id,true);
+        verifyVoucher(id,true,voucherResultTarget);
         return
       }else{
         status.textContent='Das ist kein OrderBuddy-Gutschein. Bitte den richtigen QR-Code scannen.'
@@ -1827,52 +1886,98 @@ function scanVoucherFrame(){
 }
 $('#voucherScannerCancel').onclick=()=>{stopVoucherScanner();$('#voucherScannerModal').classList.add('hidden')};
 
+$('#serviceVoucherBtn').onclick=()=>{voucherResultTarget='#serviceVoucherResult';$('#serviceVoucherSearch').value='';$('#serviceVoucherResult').innerHTML='';$('#serviceVoucherModal').classList.remove('hidden')};
+$('#serviceVoucherClose').onclick=()=>{$('#serviceVoucherModal').classList.add('hidden');$('#serviceVoucherResult').innerHTML=''};
+$('#serviceVoucherSearchBtn').onclick=()=>{voucherResultTarget='#serviceVoucherResult';verifyVoucher($('#serviceVoucherSearch').value,false,'#serviceVoucherResult')};
+$('#serviceVoucherSearch').onkeydown=e=>{if(e.key==='Enter'){$('#serviceVoucherSearchBtn').click()}};
+$('#serviceVoucherScanBtn').onclick=()=>{voucherResultTarget='#serviceVoucherResult';startVoucherScanner()};
+
 $('#voucherVerifyBtn').onclick=startVoucherScanner;
 
 function monthRange(value){
   const [y,m]=value.split('-').map(Number);
-  const start=new Date(y,m-1,1);
-  const end=new Date(y,m,1);
+  const start=new Date(y,m-1,1),end=new Date(y,m,1);
   const local=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-  return {start:local(start),end:local(end)}
+  return {start:local(start),end:local(end),last:local(new Date(y,m,0))}
 }
-async function monthlyCsvExport(){
-  const month=$('#adminMonth').value;
-  if(!month){$('#adminMsg').textContent='Bitte einen Monat auswählen.';return}
-  const [year,mon]=month.split('-').map(Number);
-  const first=new Date(year,mon-1,1),last=new Date(year,mon,0);
-  const rows=[['Datum','Buchungstext','Sollkonto','Habenkonto','Netto','USt','Brutto','Steuersatz']];
-  let bookingLines=0;
-
-  for(let d=new Date(first);d<=last;d.setDate(d.getDate()+1)){
-    const date=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-    const b=await aggregateDayTaxSummary(date);
-
-    if(b.food.gross>0.0001){
-      rows.push([date,'Tagesumsatz Speisen 7%','1000','8300',dec(b.food.net),dec(b.food.vat),dec(b.food.gross),'7%']);
-      bookingLines++
-    }
-    if(b.drinks.gross>0.0001){
-      rows.push([date,'Tagesumsatz Getränke 19%','1000','8400',dec(b.drinks.net),dec(b.drinks.vat),dec(b.drinks.gross),'19%']);
-      bookingLines++
-    }
-    if(b.vouchers.gross>0.0001){
-      rows.push([date,'Tagesumsatz Gutscheine','1000','1796',dec(b.vouchers.net),'0,00',dec(b.vouchers.gross),'0% / nicht steuerbar']);
-      bookingLines++
-    }
-  }
-
-  if(!bookingLines){$('#adminMsg').textContent='Für diesen Monat gibt es keine exportierbaren Daten.';return}
-  const csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(';')).join('\r\n');
-  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
-  a.href=url;a.download='OrderBuddy_SKR03_Tageszusammenfassung_'+month+'.csv';
-  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
-  $('#adminMsg').textContent='Monats-CSV '+month+' erstellt · maximal 3 Buchungen pro Tag · '+bookingLines+' Buchungszeilen.'
+function datevSettings(){
+  const defaults={advisor:'',client:'',fiscalStart:(businessDateNow().slice(0,4)+'-01-01'),accountLength:'4'};
+  try{return {...defaults,...JSON.parse(localStorage.getItem('orderbuddy_datev_settings')||'{}')}}catch{return defaults}
 }
-$('#monthlyCsvBtn').onclick=monthlyCsvExport;
-$('#adminMonthTab').onchange=()=>{$('#adminMonth').value=$('#adminMonthTab').value};
-$('#monthlyCsvTabBtn').onclick=()=>{if(!$('#adminMonthTab').value)$('#adminMonthTab').value=businessDateNow().slice(0,7);$('#adminMonth').value=$('#adminMonthTab').value;monthlyCsvExport()};
-
+function loadDatevSettingsUI(){
+  const d=datevSettings();$('#datevAdvisor').value=d.advisor||'';$('#datevClient').value=d.client||'';$('#datevFiscalStart').value=d.fiscalStart||'';$('#datevAccountLength').value=String(d.accountLength||'4')
+}
+$('#datevSettingsSave').onclick=()=>{
+  const d={advisor:$('#datevAdvisor').value.trim(),client:$('#datevClient').value.trim(),fiscalStart:$('#datevFiscalStart').value,accountLength:$('#datevAccountLength').value};
+  localStorage.setItem('orderbuddy_datev_settings',JSON.stringify(d));$('#adminMsg').textContent='DATEV-Einstellungen auf diesem Gerät gespeichert.'
+};
+function validateDatevSettings(){
+  const d=datevSettings();
+  if(!/^\d{4,7}$/.test(d.advisor||'')){return {error:'Bitte in Einstellungen eine gültige DATEV-Beraternummer hinterlegen.'}}
+  if(!/^\d{1,5}$/.test(d.client||'')){return {error:'Bitte in Einstellungen eine gültige DATEV-Mandantennummer hinterlegen.'}}
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(d.fiscalStart||'')){return {error:'Bitte den Beginn des Wirtschaftsjahres hinterlegen.'}}
+  return {settings:d}
+}
+function datevTimestamp(){const d=new Date(),p=n=>String(n).padStart(2,'0');return d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+p(d.getHours())+p(d.getMinutes())+p(d.getSeconds())+String(d.getMilliseconds()).padStart(3,'0')}
+function datevYmd(s){return String(s||'').replaceAll('-','')}
+function datevBelegdatum(s){const x=String(s||'');return x.slice(8,10)+x.slice(5,7)}
+function csvCell(v){return '"'+String(v??'').replaceAll('"','""')+'"'}
+function datevHeader(month,label){
+  const v=validateDatevSettings();if(v.error)throw new Error(v.error);const d=v.settings,r=monthRange(month);
+  return ['EXTF',700,21,'Buchungsstapel',13,datevTimestamp(),'','OB','OrderBuddy','',d.advisor,d.client,datevYmd(d.fiscalStart),Number(d.accountLength||4),datevYmd(r.start),datevYmd(r.last),label,'OB',1,0,0,'EUR','','','','','03','','','','']
+}
+const DATEV_COLUMNS=['Umsatz (ohne Soll/Haben-Kz)','Soll/Haben-Kennzeichen','WKZ Umsatz','Kurs','Basis-Umsatz','WKZ Basis-Umsatz','Konto','Gegenkonto (ohne BU-Schlüssel)','BU-Schlüssel','Belegdatum','Belegfeld 1','Belegfeld 2','Skonto','Buchungstext'];
+function datevBooking(amount,konto,gegenkonto,date,text,beleg='',bu=''){return [dec(Math.abs(amount)),'S','EUR','','','',konto,gegenkonto,bu,datevBelegdatum(date),beleg,'','',String(text||'').slice(0,60)]}
+function datevHeaderLine(h){const q=csvCell;return [q(h[0]),h[1],h[2],q(h[3]),h[4],h[5],'',q(h[7]),q(h[8]),q(h[9]),h[10],h[11],h[12],h[13],h[14],h[15],q(h[16]),q(h[17]),h[18],h[19],h[20],q(h[21]),'',q(''),'','',q(h[26]),'','',q(''),q('')].join(';')}
+function datevBookingLine(r){const q=csvCell;return [r[0],q(r[1]),q(r[2]),'','','',r[6],r[7],r[8]||'',r[9],q(r[10]),q(r[11]),r[12]||'',q(r[13])].join(';')}
+function downloadDatev(month,label,filename,bookings){
+  if(!bookings.length){$('#adminMsg').textContent='Für diesen Monat gibt es keine exportierbaren Buchungen.';return}
+  let header;try{header=datevHeader(month,label)}catch(e){$('#adminMsg').textContent=e.message;return}
+  const lines=[datevHeaderLine(header),DATEV_COLUMNS.map(csvCell).join(';'),...bookings.map(datevBookingLine)];
+  const csv='\ufeff'+lines.join('\r\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);$('#adminMsg').textContent=filename+' erstellt · '+bookings.length+' Buchungen.'
+}
+async function fetchMonthSales(month){
+  const r=monthRange(month);
+  const[{data:sessions,error:se},{data:vouchers,error:ve}]=await Promise.all([
+    supabase.from('table_sessions').select(`id,business_date,restaurant_tables(code),bill_groups(id,label,status,bill_group_items(quantity,order_items(id,unit_price,quantity,menu_items(name,variant,menu_categories(name,destination)))))`).gte('business_date',r.start).lt('business_date',r.end).eq('status','closed'),
+    supabase.from('vouchers').select('voucher_number,original_value,issued_at,status').gte('issued_at',r.start+'T00:00:00').lt('issued_at',r.end+'T00:00:00').neq('status','void')
+  ]);if(se||ve)throw(se||ve);
+  return {sessions:sessions||[],vouchers:vouchers||[]}
+}
+async function fetchManualBookings(month){
+  const r=monthRange(month);const{data,error}=await supabase.from('manual_bookings').select('id,booking_date,category,direction,description,amount,account,counter_account,bu_key,created_at').gte('booking_date',r.start).lt('booking_date',r.end).order('booking_date').order('created_at');
+  if(error&&/manual_bookings|does not exist|schema cache/i.test(error.message||''))return {rows:[],missing:true};if(error)throw error;return {rows:data||[],missing:false}
+}
+function manualToDatev(m){return datevBooking(Number(m.amount),m.account,m.counter_account,m.booking_date,m.description||'Manuelle Buchung','MAN-'+String(m.id||'').slice(0,8),m.bu_key||'')}
+async function monthlyExtfItemsExport(){
+  const month=$('#adminMonthTab').value;if(!month){$('#adminMsg').textContent='Bitte einen Monat auswählen.';return}
+  try{const [{sessions,vouchers},manual]=await Promise.all([fetchMonthSales(month),fetchManualBookings(month)]),bookings=[];
+    sessions.forEach(ses=>(ses.bill_groups||[]).filter(g=>g.status==='completed').forEach((g,gi)=>(g.bill_group_items||[]).forEach(link=>{const oi=link.order_items;if(!oi)return;const qty=Number(link.quantity||oi.quantity||1),gross=Number(oi.unit_price||0)*qty,dest=oi.menu_items?.menu_categories?.destination,konto=dest==='bar'?'8400':'8300',label=(dest==='bar'?'Getränk':'Speise')+' · '+(oi.menu_items?.name||'')+(oi.menu_items?.variant?' '+oi.menu_items.variant:'');bookings.push(datevBooking(gross,'1000',konto,ses.business_date,label,'OB-'+ses.business_date.replaceAll('-','')+'-'+String(gi+1)))})));
+    vouchers.forEach(v=>bookings.push(datevBooking(Number(v.original_value),'1000','1796',String(v.issued_at).slice(0,10),'Gutscheinverkauf '+v.voucher_number,v.voucher_number)));
+    manual.rows.forEach(m=>bookings.push(manualToDatev(m)));
+    downloadDatev(month,'OrderBuddy Einzelpositionen '+month,'EXTF_OrderBuddy_Einzelpositionen_'+month+'.csv',bookings);if(manual.missing)$('#adminMsg').textContent+=' Hinweis: Tabelle manual_bookings fehlt – Upgrade-SQL ausführen.'
+  }catch(e){$('#adminMsg').textContent='DATEV-Export: '+e.message}
+}
+async function monthlyExtfDayTotalsExport(){
+  const month=$('#adminMonthTab').value;if(!month){$('#adminMsg').textContent='Bitte einen Monat auswählen.';return}
+  try{const [manual]=await Promise.all([fetchManualBookings(month)]),r=monthRange(month),bookings=[];for(let d=new Date(r.start+'T12:00:00');localDateISO(d)<r.end;d.setDate(d.getDate()+1)){const date=localDateISO(d),b=await aggregateDayTaxSummary(date);if(b.food.gross>0.0001)bookings.push(datevBooking(b.food.gross,'1000','8300',date,'Tagesumsatz Speisen 7%','TAG-'+date.replaceAll('-','')));if(b.drinks.gross>0.0001)bookings.push(datevBooking(b.drinks.gross,'1000','8400',date,'Tagesumsatz Getränke 19%','TAG-'+date.replaceAll('-','')));if(b.vouchers.gross>0.0001)bookings.push(datevBooking(b.vouchers.gross,'1000','1796',date,'Tagesumsatz Gutscheine','TAG-'+date.replaceAll('-','')))}manual.rows.forEach(m=>bookings.push(manualToDatev(m)));downloadDatev(month,'OrderBuddy Tagessummen '+month,'EXTF_OrderBuddy_Tagessummen_'+month+'.csv',bookings);if(manual.missing)$('#adminMsg').textContent+=' Hinweis: Tabelle manual_bookings fehlt – Upgrade-SQL ausführen.'
+  }catch(e){$('#adminMsg').textContent='DATEV-Export: '+e.message}
+}
+$('#monthlyExtfItemsBtn').onclick=monthlyExtfItemsExport;$('#monthlyExtfDaysBtn').onclick=monthlyExtfDayTotalsExport;
+$('#adminMonthTab').onchange=()=>{$('#adminMonth').value=$('#adminMonthTab').value;loadManualBookings()};
+function manualBookingDefaults(){
+  const cat=$('#manualBookingCategory').value,dir=$('#manualBookingDirection').value;let account='1360',counter='1000',text='Geldtransit';
+  if(cat==='geldtransit'){if(dir==='cash_in'){account='1000';counter='1360'}else{account='1360';counter='1000'}text='Geldtransit'}
+  if(cat==='privatentnahme'){account='1800';counter='1000';text='Privatentnahme'}
+  if(cat==='privateinlage'){account='1000';counter='1890';text='Privateinlage'}
+  if(cat==='kosten'){account=$('#manualCostAccount').value.trim();counter='1000';text='Kosten / Barausgabe'}
+  return {account,counter,text}
+}
+function updateManualBookingForm(){const cost=$('#manualBookingCategory').value==='kosten',transit=$('#manualBookingCategory').value==='geldtransit';$('#manualCostAccountWrap').classList.toggle('hidden',!cost);$('#manualBuKeyWrap').classList.toggle('hidden',!cost);$('#manualDirectionWrap').classList.toggle('hidden',!transit);const d=manualBookingDefaults();if(!$('#manualBookingText').value.trim())$('#manualBookingText').placeholder=d.text}
+$('#manualBookingCategory').onchange=updateManualBookingForm;$('#manualBookingDirection').onchange=updateManualBookingForm;
+$('#manualBookingSave').onclick=async()=>{const amount=Number($('#manualBookingAmount').value),date=$('#manualBookingDate').value||businessDateNow(),d=manualBookingDefaults(),description=$('#manualBookingText').value.trim()||d.text;if(!(amount>0)){$('#manualBookingMsg').textContent='Bitte einen Betrag größer als 0 eingeben.';return}if(!/^\d{4,8}$/.test(d.account)||!/^\d{4,8}$/.test(d.counter)){$('#manualBookingMsg').textContent='Bitte ein gültiges Kostenkonto angeben.';return}const{data:{user}}=await supabase.auth.getUser();const payload={restaurant_id:restaurant.id,booking_date:date,category:$('#manualBookingCategory').value,direction:$('#manualBookingDirection').value,description,amount,account:d.account,counter_account:d.counter,bu_key:$('#manualBuKey').value.trim()||null,created_by_email:user?.email||null};const{error}=await supabase.from('manual_bookings').insert(payload);$('#manualBookingMsg').textContent=error?'Speichern nicht möglich: '+error.message:'Manuelle Buchung gespeichert.';if(!error){$('#manualBookingAmount').value='';$('#manualBookingText').value='';await loadManualBookings()}}
+async function loadManualBookings(){const month=$('#adminMonthTab').value||businessDateNow().slice(0,7),box=$('#manualBookingList');if(!box)return;box.innerHTML='Lädt …';try{const r=await fetchManualBookings(month);if(r.missing){box.innerHTML='<div class="admin-note">Manuelle Buchungen sind noch nicht eingerichtet. Bitte SUPABASE_ORDERBUDDY_UPGRADE.sql einmal in Supabase ausführen.</div>';return}box.innerHTML='';if(!r.rows.length){box.innerHTML='<div class="admin-note">Noch keine manuellen Buchungen in diesem Monat.</div>';return}r.rows.forEach(m=>{const d=document.createElement('div');d.className='v140-row';d.innerHTML='<div class="v140-row-head"><b>'+esc(m.booking_date)+' · '+esc(m.description)+'</b><b>'+euro(m.amount)+'</b></div><small>Konto '+esc(m.account)+' an '+esc(m.counter_account)+(m.bu_key?' · BU '+esc(m.bu_key):'')+'</small><div class="v140-actions"><button>Löschen</button></div>';d.querySelector('button').onclick=async()=>{if(!confirm('Diese manuelle Buchung löschen?'))return;const{error}=await supabase.from('manual_bookings').delete().eq('id',m.id);if(error)$('#manualBookingMsg').textContent=error.message;else loadManualBookings()};box.appendChild(d)})}catch(e){box.innerHTML='<div class="msg">'+esc(e.message)+'</div>'}}
 function localDateISO(d){
   return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')
 }
@@ -1891,8 +1996,11 @@ function setAnalyticsPreset(){
 }
 $('#analyticsPreset').onchange=()=>{if($('#analyticsPreset').value!=='custom')setAnalyticsPreset()};
 function serviceLabel(email){
-  const found=Object.entries(DEVICE_EMAILS).find(([,v])=>String(v).toLowerCase()===String(email||'').toLowerCase());
-  return found?.[0]||email||'Unbekannt'
+  const raw=String(email||'').toLowerCase();
+  const found=Object.entries(DEVICE_EMAILS).find(([,v])=>String(v).toLowerCase()===raw);
+  if(found)return found[0];
+  if(raw===String(ADMIN_EMAIL).toLowerCase())return 'Chef / Admin';
+  return email||'Unbekannt'
 }
 function renderBars(target,rows,valueKey,labelKey,format='money'){
   const box=$(target);box.innerHTML='';
@@ -2009,7 +2117,7 @@ function setAdminGroup(name){
     if(el.id==='adminBackBtn'||el.id==='adminNav'||el.classList?.contains('admin-section'))return;
     el.classList.toggle('admin-group-hidden',name!=='day');
   });
-  if(name==='month')$('#adminMonthTab').value=$('#adminMonth').value||businessDateNow().slice(0,7);
+  if(name==='month'){ $('#adminMonthTab').value=$('#adminMonth').value||businessDateNow().slice(0,7);$('#manualBookingDate').value=businessDateNow();updateManualBookingForm();loadManualBookings() } if(name==='settings')loadDatevSettingsUI();
   window.scrollTo({top:0,behavior:'smooth'});
 }
 document.querySelectorAll('#adminNav button').forEach(b=>b.onclick=async()=>{const g=b.dataset.adminGroup;setAdminGroup(g);if(g==='reservations'){initV140Admin();await loadReservations()}if(g==='staff')await loadStaff();if(g==='inventory')await loadInventory();if(g==='system')await loadAudit()});
@@ -2032,7 +2140,7 @@ $('#adminBtn').onclick=async()=>{
   $('#tablesView').classList.add('hidden');$('#orderView').classList.add('hidden');$('#adminView').classList.remove('hidden');
   if(!$('#adminDate').value)$('#adminDate').value=businessDateNow();
   if(!$('#analyticsFrom').value){$('#analyticsPreset').value='month';setAnalyticsPreset()}
-  $('#adminMonth').value=businessDateNow().slice(0,7);
+  $('#adminMonth').value=businessDateNow().slice(0,7);$('#adminMonthTab').value=businessDateNow().slice(0,7);$('#manualBookingDate').value=businessDateNow();loadDatevSettingsUI();
   await loadAdminDay();await loadAdminMasterData();await renderDayCashSummary();await loadAnalytics();setAdminGroup('overview');initV140Admin()
 };
 $('#adminBackBtn').onclick=()=>{$('#adminView').classList.add('hidden');$('#tablesView').classList.remove('hidden')};
@@ -2196,7 +2304,7 @@ function pdfReceiptHtml(){
     const foodVat=foodGross-foodNet,drinkVat=drinkGross-drinkNet;
     pages+=`<section class="page"><img src="${location.origin}/orderbuddy-logo.PNG"><h1>Tisch ${esc(ses.restaurant_tables?.code||'?')}</h1><h2>Gesamtbestellzettel</h2><div class="date">Datum: ${esc(date)} · Abschluss: ${ses.closed_at?new Date(ses.closed_at).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}):''}</div>${groupHtml}<div class="grand">GESAMT <span>${euro(allGross)}</span></div><table class="tax"><thead><tr><th>Steuersatz</th><th>Netto</th><th>MwSt.</th><th>Brutto</th></tr></thead><tbody><tr><td>7 % MwSt. (Speisen)</td><td>${euro(foodNet)}</td><td>${euro(foodVat)}</td><td>${euro(foodGross)}</td></tr><tr><td>19 % MwSt. (Getränke)</td><td>${euro(drinkNet)}</td><td>${euro(drinkVat)}</td><td>${euro(drinkGross)}</td></tr><tr><th>Gesamt</th><th>${euro(foodNet+drinkNet)}</th><th>${euro(foodVat+drinkVat)}</th><th>${euro(allGross)}</th></tr></tbody></table><p class="foot">Abrechnung erfolgt an der Kasse.</p><p class="powered">● Powered by OrderBuddy.</p></section>`
   });
-  return`<!doctype html><html><head><meta charset="utf-8"><title>OrderBuddy Tagesübersicht ${esc(date)}</title><style>@page{size:A4;margin:12mm}body{font-family:Arial,sans-serif;color:#111;margin:0}.page{page-break-after:always}.page:last-child{page-break-after:auto}img{display:block;max-width:270px;max-height:110px;object-fit:contain;margin:0 auto 12px}h1,h2{text-align:center;margin:4px}h3{margin:18px 0 5px;background:#f3eee5;padding:6px;border-radius:6px}.date{text-align:center;margin:8px 0 16px}table{width:100%;border-collapse:collapse}th,td{padding:5px;border-bottom:1px solid #ddd;text-align:left}th:nth-child(n+3),td:nth-child(n+3){text-align:right}.subtotal{text-align:right;font-weight:bold;padding:8px 0 14px}.grand{font-size:22px;font-weight:900;border-top:2px solid #000;border-bottom:2px solid #000;padding:8px 0;margin-top:12px;display:flex;justify-content:space-between}.tax{margin-top:10px}.foot{text-align:center;margin-top:14px}.powered{text-align:center;font-size:11px;color:#555}
+  return`<!doctype html><html><head><meta charset="utf-8"><title>OrderBuddy Tagesübersicht ${esc(date)}</title><style>@page{size:A4;margin:12mm}body{font-family:Arial,sans-serif;color:#111;margin:0}.page{page-break-after:always}.page:last-child{page-break-after:auto}img{display:block;max-width:270px;max-height:110px;object-fit:contain;margin:0 auto 12px}h1,h2{text-align:center;margin:4px}h3{margin:18px 0 5px;background:#f3f4f6;padding:6px;border-radius:6px}.date{text-align:center;margin:8px 0 16px}table{width:100%;border-collapse:collapse}th,td{padding:5px;border-bottom:1px solid #ddd;text-align:left}th:nth-child(n+3),td:nth-child(n+3){text-align:right}.subtotal{text-align:right;font-weight:bold;padding:8px 0 14px}.grand{font-size:22px;font-weight:900;border-top:2px solid #000;border-bottom:2px solid #000;padding:8px 0;margin-top:12px;display:flex;justify-content:space-between}.tax{margin-top:10px}.foot{text-align:center;margin-top:14px}.powered{text-align:center;font-size:11px;color:#555}
 </style></head><body>${pages||'<p>Keine abgeschlossenen Tische.</p>'}</body></html>`
 }
 $('#pdfExportBtn').onclick=async()=>{
@@ -2235,7 +2343,7 @@ $('#deleteFinalBtn').onclick=async()=>{
   }
   $('#deleteFinalBtn').disabled=true;
   $('#adminMsg').textContent='Tag wird gelöscht …';
-  const{data,error}=await supabase.rpc('admin_delete_nova_day',{p_business_date:date});
+  const{data,error}=await supabase.rpc('admin_delete_orderbuddy_day',{p_business_date:date});
   $('#deleteFinalBtn').disabled=false;
   if(error){
     $('#adminMsg').textContent='Löschen nicht möglich: '+error.message;
@@ -2245,6 +2353,15 @@ $('#deleteFinalBtn').onclick=async()=>{
   $('#adminMsg').textContent=(data||0)+' abgeschlossene Tischvorgänge wurden endgültig gelöscht.';
   await loadAdminDay()
 };
+
+async function getDaySummary(date){const b=await aggregateDayTaxSummary(date);const{data:sessions}=await supabase.from('table_sessions').select('id').eq('business_date',date).eq('status','closed');const gross=b.food.gross+b.drinks.gross+b.vouchers.gross,net=b.food.net+b.drinks.net+b.vouchers.net,vat=b.food.vat+b.drinks.vat;return {date,tables:(sessions||[]).length,b,gross,net,vat}}
+function summaryReportHtml(title,subtitle,x,compact=false){const b=x.b;return `<!doctype html><html><head><meta charset="utf-8"><title>${esc(title)}</title><style>@page{size:${compact?'80mm auto':'A4'};margin:${compact?'4mm':'16mm'}}body{font-family:Arial,sans-serif;color:#111;max-width:${compact?'72mm':'760px'};margin:auto;font-size:${compact?'11px':'14px'}}.logo{display:block;width:${compact?'25mm':'70px'};margin:0 auto 8px;border-radius:12px}h1{text-align:center;font-size:${compact?'18px':'28px'};margin:5px 0}.sub{text-align:center;color:#555;margin-bottom:12px}.row{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px dotted #bbb}.total{font-size:${compact?'17px':'22px'};font-weight:900;border-top:2px solid #000;border-bottom:2px solid #000;margin-top:8px}.foot{text-align:center;font-size:9px;color:#666;margin-top:12px}</style></head><body><img class="logo" src="${orderBuddyLogoUrl()}"><h1>${esc(title)}</h1><div class="sub">${esc(subtitle)}</div><div class="row"><span>Abgeschlossene Tische</span><b>${x.tables}</b></div><div class="row"><span>Speisen 7 % brutto</span><b>${euro(b.food.gross)}</b></div><div class="row"><span>Getränke 19 % brutto</span><b>${euro(b.drinks.gross)}</b></div><div class="row"><span>Gutscheinverkäufe</span><b>${euro(b.vouchers.gross)}</b></div><div class="row"><span>Netto</span><b>${euro(x.net)}</b></div><div class="row"><span>Enthaltene MwSt.</span><b>${euro(x.vat)}</b></div><div class="row total"><span>OrderBuddy-Summe</span><b>${euro(x.gross)}</b></div><div class="foot">Kontrollauswertung der in OrderBuddy erfassten Vorgänge. Kein Kassenbeleg.</div></body></html>`}
+function openReport(html,autoPrint=true){const w=window.open('','_blank');if(!w){$('#adminMsg').textContent='Popup wurde blockiert.';return}w.document.open();w.document.write(html);w.document.close();if(autoPrint)w.onload=()=>{w.focus();setTimeout(()=>w.print(),120)}}
+$('#dayReceiptBtn').onclick=async()=>{const date=$('#adminDate').value||businessDateNow(),x=await getDaySummary(date);openReport(summaryReportHtml('Tagesabschluss',new Date(date+'T12:00:00').toLocaleDateString('de-DE'),x,true))};
+$('#daySummaryPdfBtn').onclick=async()=>{const date=$('#adminDate').value||businessDateNow(),x=await getDaySummary(date);openReport(summaryReportHtml('Tagesabschluss',new Date(date+'T12:00:00').toLocaleDateString('de-DE'),x,false))};
+async function getMonthSummary(month){const r=monthRange(month),sum={tables:0,gross:0,net:0,vat:0,b:{food:{gross:0,net:0,vat:0},drinks:{gross:0,net:0,vat:0},vouchers:{gross:0,net:0,vat:0}}};for(let d=new Date(r.start+'T12:00:00');localDateISO(d)<r.end;d.setDate(d.getDate()+1)){const x=await getDaySummary(localDateISO(d));sum.tables+=x.tables;sum.gross+=x.gross;sum.net+=x.net;sum.vat+=x.vat;['food','drinks','vouchers'].forEach(k=>['gross','net','vat'].forEach(f=>sum.b[k][f]+=x.b[k][f]))}return sum}
+$('#monthReceiptBtn').onclick=async()=>{const month=$('#adminMonthTab').value||businessDateNow().slice(0,7);$('#adminMsg').textContent='Monatsabschluss wird berechnet …';const x=await getMonthSummary(month);openReport(summaryReportHtml('Monatsabschluss',month,x,true));$('#adminMsg').textContent='Monatsabschluss '+month+' erstellt.'};
+$('#monthSummaryPdfBtn').onclick=async()=>{const month=$('#adminMonthTab').value||businessDateNow().slice(0,7);$('#adminMsg').textContent='Monatsabschluss wird berechnet …';const x=await getMonthSummary(month);openReport(summaryReportHtml('Monatsabschluss',month,x,false));$('#adminMsg').textContent='Monatsabschluss '+month+' erstellt.'};
 
 function subscribe(){
   const refresh=async()=>{if(currentSession)await loadOrders();$('#syncMsg').textContent='Live aktualisiert · '+new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})};
