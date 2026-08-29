@@ -865,6 +865,7 @@ function fillOrderDetailsModal(){
   $('#orderCustomerNote').value=currentSession?.customer_note||'';
   const sel=$('#orderDeliveryZone');sel.innerHTML='<option value="">Lieferort auswählen</option>';
   deliveryZones.filter(z=>z.active!==false).forEach(z=>{const o=document.createElement('option');o.value=z.id;const place=[z.postal_code,z.name].filter(Boolean).join(' ');o.textContent=place+' · '+euro(z.fee);if(String(currentSession?.delivery_zone_id||'')===String(z.id))o.selected=true;sel.appendChild(o)});
+  updateDeliveryAddressAvailability();
   $('#orderDetailsMsg').textContent='';$('#orderDetailsModal').classList.remove('hidden')
 }
 $('#editOrderDetailsBtn').onclick=fillOrderDetailsModal;
@@ -918,6 +919,16 @@ function renderBuiltinStreetSuggestions(){
 function selectedDeliveryZone(){
   return deliveryZones.find(z=>String(z.id)===String($('#orderDeliveryZone').value))||null
 }
+function updateDeliveryAddressAvailability(){
+  const delivery=currentTable?.areas?.name==='Lieferung';
+  const hasZone=!!selectedDeliveryZone();
+  const street=$('#orderCustomerAddress'),house=$('#orderCustomerHouse');
+  if(!delivery){street.disabled=false;house.disabled=false;return}
+  street.disabled=!hasZone;house.disabled=!hasZone;
+  street.placeholder=hasZone?'Straße':'Zuerst Lieferort auswählen';
+  house.placeholder=hasZone?'Hausnr.':'Hausnr.';
+  if(!hasZone){$('#addressSuggestions').classList.add('hidden');$('#addressSuggestions').innerHTML=''}
+}
 function normalizedDeliveryPlace(){
   const zone=selectedDeliveryZone();
   return [zone?.postal_code,zone?.name].filter(Boolean).join(' ').trim()
@@ -966,7 +977,8 @@ $('#orderCustomerAddress').addEventListener('focus',()=>{renderBuiltinStreetSugg
 $('#orderCustomerAddress').addEventListener('click',()=>{renderBuiltinStreetSuggestions()});
 $('#orderDeliveryZone').addEventListener('change',()=>{
   $('#addressSuggestions').classList.add('hidden');$('#addressSuggestions').innerHTML='';$('#orderCustomerAddress').value='';$('#orderCustomerHouse').value='';
-  setTimeout(()=>{if(builtinStreetsForZone(selectedDeliveryZone()))renderBuiltinStreetSuggestions()},0)
+  updateDeliveryAddressAvailability();
+  setTimeout(()=>{if(builtinStreetsForZone(selectedDeliveryZone())){renderBuiltinStreetSuggestions();$('#orderCustomerAddress').focus()}},0)
 });
 $('#orderDetailsClear').onclick=async()=>{
   if(!currentSession)return;
