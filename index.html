@@ -208,36 +208,46 @@ img,video,canvas{max-width:100%}
 
 /* ===== OrderBuddy Brand Theme ===== */
 :root{
-  --bg:#f5f6f8;
+  --bg:#f3f5f7;
   --card:#ffffff;
   --text:#111827;
-  --muted:#6b7280;
-  --line:#dfe3e8;
+  --muted:#667085;
+  --line:#d8dde5;
   --green:#111827;
-  --gold:#ff6a00;
+  --gold:#ff6500;
   --red:#b42318;
 }
-body{background:linear-gradient(180deg,#f7f8fa 0%,#f2f4f7 100%);color:var(--text)}
+body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text)}
 .brand img{background:#111827;border-color:#262d3a;box-shadow:0 6px 18px rgba(17,24,39,.12)}
-.product{color:#ff6a00;font-weight:900;letter-spacing:.16em}
+.product{color:#ff6500;font-weight:900;letter-spacing:.16em}
 .customer{font-family:system-ui,-apple-system,Segoe UI,sans-serif;font-weight:800;color:#111827;letter-spacing:-.02em}
-.badge{background:#eef0f4;color:#374151;border:1px solid #dfe3e8}
-.card{box-shadow:0 8px 26px rgba(17,24,39,.045)}
+.badge{background:#eef1f4;color:#374151;border:1px solid #d8dde5}
+.card,.admin-stat,.analytics-card,.kpi,.v140-card,.voucher-card,.admin-row,.completed-group{background:#fff!important;border-color:#d8dde5!important;box-shadow:0 8px 26px rgba(17,24,39,.045)}
+.input,.tab,.cat,.item,.table,.top-mini,.secondary,.actions button,.bill-options button,.option-chip,.admin-form input,.admin-form select,.admin-table input,.admin-table select,.admin-table button,.voucher-actions button,.admin-toolbar button,.analytics-controls input,.analytics-controls select,.v140-form input,.v140-form select,.v140-form textarea,.v140-actions button,.ice-stepper button,.special-order-actions button,.voucher-redeem-actions button{border-color:#cfd5dd!important;background:#fff!important;color:#111827!important}
+.item{background:#f8fafc!important}
+.item.unavailable{background:#eef1f4!important}
 .primary,.tab.on,.cat.on,.complete,.admin-nav button.on{background:#111827!important;color:#fff!important;border-color:#111827!important}
-.actions .gold{background:#ff6a00!important;color:#fff!important;border-color:#ff6a00!important}
-.item small,.new{color:#ff6a00!important}
-.item span{color:#374151}
+.actions .gold{background:#ff6500!important;color:#fff!important;border-color:#ff6500!important}
+.item small,.new{color:#ff6500!important}
+.item span{color:#374151!important}
+.total{border-top-color:#cfd5dd!important}
+.line,.select-line,.register-box,.register-item,.register-group-actions,.completed-box,.admin-section,.admin-table th,.admin-table td,.analytics-table th,.analytics-table td,.voucher-history-row{border-color:#e2e6eb!important}
+.register-group,.order-meta,.tax-highlight,.voucher-security,.ice-total{background:#f7f8fa!important;border-color:#d8dde5!important}
 .close-table{border-color:#cfd5dd!important;color:#111827!important;background:#f8fafc!important}
-.restore{border-color:#cfd5dd;background:#f8fafc;color:#111827}
-.bar-fill{background:#ff6a00}
-.tax-highlight{background:#fff7ed;border-color:#fed7aa}
-.voucher-security{background:#fffaf5;border-color:#fed7aa}
-.voucher-valid,.scan-voucher-result{border-color:#9ca3af;background:#f9fafb}
+.restore{border-color:#cfd5dd!important;background:#f8fafc!important;color:#111827!important}
+.status.on{background:#eef1f4!important;border-color:#cfd5dd!important}
+.bar-track{background:#e7eaee!important}.bar-fill{background:#ff6500!important}
+.tax-highlight{background:#fff7ed!important;border-color:#fed7aa!important}
+.voucher-security{background:#fffaf5!important;border-color:#fed7aa!important}
+.voucher-valid,.scan-voucher-result{border-color:#9ca3af!important;background:#f9fafb!important}
+.register-group{background:#f7f8fa!important}.completed-group{background:#f7f8fa!important}
+.admin-nav{background:#f3f5f7!important;border-bottom-color:#d8dde5!important}
+.admin-nav button{background:#fff!important;border-color:#cfd5dd!important;color:#111827!important}
 .section-title,.login h1,.total strong,.register-title,.completed-title,.kpi b,.analytics-card h3,.v140-card h3{font-family:system-ui,-apple-system,Segoe UI,sans-serif}
-.top-mini:hover,.secondary:hover,.tab:hover,.cat:hover{border-color:#9ca3af}
-
+.top-mini:hover,.secondary:hover,.tab:hover,.cat:hover{border-color:#9ca3af!important}
+.remark,.extra-line{color:#667085!important}.voucher-badge{border-color:#fdba74!important;color:#9a3412!important;background:#fff7ed!important}
 </style></head><body><div class="wrap"><div class="top"><div class="brand"><img src="/orderbuddy-logo.PNG" alt="OrderBuddy"><div><div class="product">ORDERBUDDY</div><div class="customer">Restaurant Ordering</div></div></div><div class="top-actions"><button id="adminBtn" class="top-mini hidden">Chefbereich</button><button id="logoutBtn" class="top-mini hidden">Abmelden</button><div class="badge" id="deviceBadge">Servicegerät</div></div></div>
-<section id="loginView" class="card login"><h1>Service-Anmeldung</h1><p>Mit dem jeweiligen Passwort anmelden. Danach bleibt dieses Gerät angemeldet, bis du dich abmeldest.</p><select id="deviceSelect" class="input" style="margin-bottom:10px"><option>Service 1</option><option>Service 2</option><option>Service 3</option><option>Service 4</option><option>Chef / Admin</option></select><input id="email" class="input" type="email" readonly><input id="password" class="input" type="password" placeholder="Service-Passwort" style="margin-top:10px"><button id="loginBtn" class="primary" style="width:100%;margin-top:10px">Anmelden</button><div id="loginMsg" class="msg">Das Passwort wird nicht gespeichert, nur die Sitzung.</div></section>
+<section id="loginView" class="card login"><h1>Service-Anmeldung</h1><p>Mit dem jeweiligen Passwort anmelden. Danach bleibt dieses Gerät angemeldet, bis du dich abmeldest.</p><select id="deviceSelect" class="input" style="margin-bottom:10px"><option>Service 1</option><option>Service 2</option><option>Service 3</option><option>Service 4</option><option>Chef / Admin</option></select><input id="email" class="input hidden" type="email" readonly><input id="password" class="input" type="password" placeholder="Service-Passwort" style="margin-top:10px"><button id="loginBtn" class="primary" style="width:100%;margin-top:10px">Anmelden</button><div id="loginMsg" class="msg">Das Passwort wird nicht gespeichert, nur die Sitzung.</div></section>
 <main id="appView" class="hidden"><div class="tabs"><button class="tab on" data-area="Terrasse">☀️ Terrasse</button><button class="tab" data-area="Innenraum">🏠 Innenraum</button><button class="tab" data-area="Lieferung">🚗 Lieferung</button><button class="tab" data-area="Abholung">🥡 Abholung</button></div><section id="tablesView" class="card"><div class="section-title" id="areaTitle">Terrasse</div><div class="tables" id="tables"></div><div class="sync" id="syncMsg" style="margin-top:12px">Synchronisiert</div></section><section id="orderView" class="hidden"><button id="backBtn" class="secondary back">← Tischübersicht</button><div class="order-layout"><div class="card"><div class="section-title" id="tableTitle">Tisch</div><div id="orderMeta" class="order-meta hidden"></div><div id="specialOrderActions" class="special-order-actions hidden"><button id="editOrderDetailsBtn">Kundendaten</button></div><div class="category-groups">
   <div>
     <div class="category-group-title">Speisen</div>
