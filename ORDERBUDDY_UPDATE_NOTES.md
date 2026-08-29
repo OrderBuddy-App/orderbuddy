@@ -19,3 +19,10 @@ Neu bzw. korrigiert:
 
 Einmal **SUPABASE_ORDERBUDDY_UPGRADE_V3.sql** im Supabase SQL Editor ausführen.
 Danach die Dateien nach GitHub hochladen und Vercel deployen lassen.
+
+
+## V4 – PWA-Name, App-Icon, Tischfarben
+- PWA-/App-Name auf **OrderBuddy** verkürzt.
+- App-Icon durch quadratische Version ohne transparente Unterkante ersetzt.
+- Tischstatus färbt jetzt die komplette Tischkachel (frei, besetzt, Zubereitung, Service, Abschluss).
+- Service-Worker-Cache auf V4 angehoben, damit Manifest, Icon und Styles nach dem Deployment aktualisiert werden.
