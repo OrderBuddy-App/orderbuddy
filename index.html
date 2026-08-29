@@ -905,6 +905,10 @@ function renderBuiltinStreetSuggestions(){
     if(street)input.value=street+(parts.house?' '+parts.house:'');
     box.classList.add('hidden');
     input.focus();
+    try{input.setSelectionRange(input.value.length,input.value.length)}catch{}
+    // Der Fokus-Handler öffnet die Liste sonst sofort erneut. Nach der Auswahl
+    // bleibt sie deshalb geschlossen, bis der Benutzer wieder tippt oder erneut klickt.
+    setTimeout(()=>{box.classList.add('hidden');box.innerHTML=''},0);
   });
   return true
 }
