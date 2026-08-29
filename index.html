@@ -75,9 +75,9 @@
 .analytics-card,.admin-section{min-width:0;overflow:hidden}
 .service-row{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:10px;align-items:center}
 .service-row>*{min-width:0}
-.address-suggestions{position:relative}
+.address-row{display:grid;grid-template-columns:minmax(0,1fr) 118px;gap:10px;align-items:start}.address-suggestions{position:relative;min-width:0}.address-house{width:100%}
 .address-suggestions-list{position:absolute;z-index:50;left:0;right:0;top:100%;background:white;border:1px solid #cfd5dd;border-radius:10px;max-height:220px;overflow:auto;box-shadow:0 8px 24px rgba(0,0,0,.12)}
-.address-suggestions-list button{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid #eee5d5;background:white;padding:10px;font-size:14px}
+.address-suggestions-list button{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid #eee5d5;background:white;padding:10px;font-size:14px}@media(max-width:520px){.address-row{grid-template-columns:minmax(0,1fr) 92px;gap:7px}}
 
 .category-groups{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
 .category-group-title{font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#74766d;margin:2px 0 4px}
@@ -524,7 +524,10 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
 </div>
 <div id="orderAddressWrap">
     <label class="msg" style="display:block;margin-top:10px">Adresse</label>
-    <div class="address-suggestions"><input id="orderCustomerAddress" class="input" autocomplete="off" placeholder="Straße, Hausnummer"><div id="addressSuggestions" class="address-suggestions-list hidden"></div></div>
+    <div class="address-row">
+      <div class="address-suggestions"><input id="orderCustomerAddress" class="input" autocomplete="off" placeholder="Straße"><div id="addressSuggestions" class="address-suggestions-list hidden"></div></div>
+      <input id="orderCustomerHouse" class="input address-house" autocomplete="off" inputmode="text" placeholder="Hausnr.">
+    </div>
   </div>
   <label id="orderTimeLabel" class="msg" style="display:block;margin-top:10px">Uhrzeit</label>
   <input id="orderRequestedTime" class="input" type="time">
@@ -855,7 +858,9 @@ function fillOrderDetailsModal(){
   $('#orderTimeLabel').textContent=delivery?'Wann soll das Essen da sein?':'Abholzeit';
   $('#orderCustomerName').value=currentSession?.customer_name||'';
   $('#orderCustomerPhone').value=currentSession?.customer_phone||'';
-  $('#orderCustomerAddress').value=currentSession?.customer_address||'';
+  const savedAddress=splitStreetSearchInput(currentSession?.customer_address||'');
+  $('#orderCustomerAddress').value=savedAddress.street||'';
+  $('#orderCustomerHouse').value=savedAddress.house||'';
   $('#orderRequestedTime').value=currentSession?.requested_time||'';
   $('#orderCustomerNote').value=currentSession?.customer_note||'';
   const sel=$('#orderDeliveryZone');sel.innerHTML='<option value="">Lieferort auswählen</option>';
@@ -896,18 +901,16 @@ function splitStreetSearchInput(v){
 function renderBuiltinStreetSuggestions(){
   const box=$('#addressSuggestions'),zone=selectedDeliveryZone(),all=builtinStreetsForZone(zone);
   if(!zone||!all){return false}
-  const input=$('#orderCustomerAddress'),parts=splitStreetSearchInput(input.value),needle=normPlaceText(parts.street);
+  const input=$('#orderCustomerAddress'),needle=normPlaceText(input.value);
   const rows=all.filter(s=>!needle||normPlaceText(s).includes(needle)).slice(0,80);
   box.innerHTML=rows.map((street,i)=>'<button type="button" data-i="'+i+'">'+esc(street)+' <span style="color:#6b7280">· '+esc(zone.postal_code||'')+' '+esc(zone.name||'')+'</span></button>').join('');
   box.classList.toggle('hidden',!rows.length);
   box.querySelectorAll('button').forEach(btn=>btn.onclick=()=>{
     const street=rows[Number(btn.dataset.i)];
-    if(street)input.value=street+(parts.house?' '+parts.house:'');
-    box.classList.add('hidden');
-    input.focus();
-    try{input.setSelectionRange(input.value.length,input.value.length)}catch{}
-    // Der Fokus-Handler öffnet die Liste sonst sofort erneut. Nach der Auswahl
-    // bleibt sie deshalb geschlossen, bis der Benutzer wieder tippt oder erneut klickt.
+    if(street)input.value=street;
+    box.classList.add('hidden');box.innerHTML='';
+    $('#orderCustomerHouse').focus();
+    // Nach der Straßenauswahl geht es direkt mit der Hausnummer weiter.
     setTimeout(()=>{box.classList.add('hidden');box.innerHTML=''},0);
   });
   return true
@@ -945,15 +948,15 @@ async function suggestDeliveryAddress(){
       const j=await r.json();
       const rows=(j.features||[]).filter(f=>f.properties&&photonMatchesSelectedZone(f.properties,zone)).map(f=>{
         const p=f.properties;
-        const street=p.street||p.name||'',house=p.housenumber||'';
-        return {label:[street,house].filter(Boolean).join(' ')+' · '+zone.name,value:[street,house].filter(Boolean).join(' ')}
+        const street=p.street||p.name||'';
+        return {label:street+' · '+zone.name,value:street}
       }).filter(x=>x.value).filter((x,i,a)=>a.findIndex(y=>y.value===x.value)===i).slice(0,8);
       box.innerHTML=rows.map((x,i)=>'<button type="button" data-i="'+i+'">'+esc(x.label)+'</button>').join('');
       box.classList.toggle('hidden',!rows.length);
       box.querySelectorAll('button').forEach(btn=>btn.onclick=()=>{
         const row=rows[Number(btn.dataset.i)];
         if(row)$('#orderCustomerAddress').value=row.value;
-        box.classList.add('hidden')
+        box.classList.add('hidden');box.innerHTML='';$('#orderCustomerHouse').focus()
       })
     }catch{box.classList.add('hidden');box.innerHTML=''}
   },250)
@@ -962,7 +965,7 @@ $('#orderCustomerAddress').addEventListener('input',suggestDeliveryAddress);
 $('#orderCustomerAddress').addEventListener('focus',()=>{renderBuiltinStreetSuggestions()});
 $('#orderCustomerAddress').addEventListener('click',()=>{renderBuiltinStreetSuggestions()});
 $('#orderDeliveryZone').addEventListener('change',()=>{
-  $('#addressSuggestions').classList.add('hidden');$('#addressSuggestions').innerHTML='';$('#orderCustomerAddress').value='';
+  $('#addressSuggestions').classList.add('hidden');$('#addressSuggestions').innerHTML='';$('#orderCustomerAddress').value='';$('#orderCustomerHouse').value='';
   setTimeout(()=>{if(builtinStreetsForZone(selectedDeliveryZone()))renderBuiltinStreetSuggestions()},0)
 });
 $('#orderDetailsClear').onclick=async()=>{
@@ -973,7 +976,7 @@ $('#orderDetailsClear').onclick=async()=>{
     .select('*').single();
   if(error){$('#orderDetailsMsg').textContent='Löschen fehlgeschlagen: '+error.message;return}
   currentSession=data;
-  $('#orderCustomerName').value='';$('#orderCustomerPhone').value='';$('#orderCustomerAddress').value='';$('#orderRequestedTime').value='';$('#orderCustomerNote').value='';$('#orderDeliveryZone').value='';
+  $('#orderCustomerName').value='';$('#orderCustomerPhone').value='';$('#orderCustomerAddress').value='';$('#orderCustomerHouse').value='';$('#orderRequestedTime').value='';$('#orderCustomerNote').value='';$('#orderDeliveryZone').value='';
   $('#orderDetailsModal').classList.add('hidden');renderOrderMeta();renderOrder();$('#actionMsg').textContent='Kundendaten gelöscht.'
 };
 
@@ -981,11 +984,12 @@ $('#orderDetailsCancel').onclick=()=>$('#orderDetailsModal').classList.add('hidd
 $('#orderDetailsSave').onclick=async()=>{
   const delivery=currentTable?.areas?.name==='Lieferung';
   const name=$('#orderCustomerName').value.trim(),phone=$('#orderCustomerPhone').value.trim(),
-        address=$('#orderCustomerAddress').value.trim(),time=$('#orderRequestedTime').value,zoneId=$('#orderDeliveryZone').value;
-  if(!name||!phone||!time||(delivery&&(!address||!zoneId))){
-    $('#orderDetailsMsg').textContent=delivery?'Bitte Name, Telefonnummer, Adresse, Lieferort und Lieferzeit vollständig eingeben.':'Bitte Name, Telefonnummer und Abholzeit vollständig eingeben.';return
+        street=$('#orderCustomerAddress').value.trim(),house=$('#orderCustomerHouse').value.trim(),time=$('#orderRequestedTime').value,zoneId=$('#orderDeliveryZone').value;
+  if(!name||!phone||!time||(delivery&&(!street||!house||!zoneId))){
+    $('#orderDetailsMsg').textContent=delivery?'Bitte Name, Telefonnummer, Straße, Hausnummer, Lieferort und Lieferzeit vollständig eingeben.':'Bitte Name, Telefonnummer und Abholzeit vollständig eingeben.';return
   }
   const zone=deliveryZones.find(z=>String(z.id)===String(zoneId));
+  const address=[street,house].filter(Boolean).join(' ');
   const payload={order_type:currentTable.areas.name,customer_name:name,customer_phone:phone,
     customer_address:delivery?address:null,requested_time:time,customer_note:$('#orderCustomerNote').value.trim()||null,
     delivery_zone_id:delivery?zoneId:null,delivery_fee:delivery?Number(zone?.fee||0):0};
