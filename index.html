@@ -1,0 +1,2185 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#24471e"><link rel="manifest" href="/manifest.webmanifest"><title>OrderBuddy · NOVA · V1.41</title><style>
+:root{--bg:#f5f0e6;--card:#fffdf8;--text:#192416;--muted:#70736a;--line:#ddd2bd;--green:#294b22;--gold:#b98c32;--red:#a33831}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,sans-serif}button,input,select{font:inherit}.wrap{max-width:1200px;margin:auto;padding:18px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.brand{display:flex;align-items:center;gap:12px}.brand img{width:58px;height:58px;border-radius:12px;object-fit:contain;background:white;border:1px solid var(--line)}.product{font-size:11px;letter-spacing:.12em;color:var(--muted);font-weight:800}.customer{font:27px Georgia,serif;color:#24471e}.badge{padding:8px 12px;border-radius:999px;background:#e8eadf;font-weight:700;font-size:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}.hidden{display:none!important}.login{max-width:460px;margin:60px auto}.login h1{font:28px Georgia,serif;margin:0 0 8px}.login p{color:var(--muted);line-height:1.5}.input{width:100%;min-height:48px;border:1px solid #cfc4ae;border-radius:12px;padding:10px 12px;background:white}.primary{min-height:48px;border:0;border-radius:12px;background:var(--green);color:white;font-weight:800;padding:10px 15px}.secondary{min-height:44px;border:1px solid #cfc4ae;border-radius:11px;background:transparent;font-weight:750;padding:8px 12px}.msg{margin-top:10px;font-size:13px;color:var(--muted)}.tabs{display:flex;gap:8px;margin-bottom:14px}.tab{min-height:44px;border:1px solid #cfc4ae;border-radius:12px;background:white;padding:9px 14px;font-weight:800}.tab.on{background:var(--green);color:white;border-color:transparent}.section-title{font:24px Georgia,serif;margin:4px 0 12px}.tables{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.table{min-height:105px;border:1px solid var(--line);border-radius:16px;background:white;padding:12px;text-align:left}.table b{font:25px Georgia,serif;display:block}.table small{color:var(--muted)}.order-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr);gap:14px}.cats{display:flex;gap:7px;overflow:auto;padding-bottom:8px}.cat{white-space:nowrap;border:1px solid #d7cbb6;border-radius:10px;background:white;padding:9px 11px;font-weight:750}.cat.on{background:var(--green);color:white}.items{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.item{min-height:82px;border:1px solid var(--line);border-radius:12px;background:#faf6ed;padding:10px;text-align:left}.item.unavailable{opacity:.55;background:#eeeae2;cursor:not-allowed}.unavailable-label{display:inline-block;margin-top:6px;padding:3px 6px;border-radius:999px;background:#d8d2c8;color:#6f6258;font-size:9px;font-weight:900;letter-spacing:.04em}.item small{display:block;font-size:9px;font-weight:900;color:#a37621}.item strong{display:block}.item span{display:block;margin-top:6px;font:16px Georgia,serif;color:#76591c}.order-list{display:flex;flex-direction:column;gap:7px}.line{border:1px solid #e1d8c7;border-radius:12px;padding:9px}.line-top{display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:6px;align-items:center}.line-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.status,.cancel{border:1px solid #d7ccb9;border-radius:999px;background:transparent;padding:5px 8px;font-size:11px;font-weight:800}.status.on{background:#e6eadf}.cancel{border-color:#deb8b4;background:#fff7f6;color:var(--red)}.new{font-size:9px;font-weight:900;color:#a56f09;margin-left:5px}.total{display:flex;justify-content:space-between;border-top:2px solid #c9b98f;margin-top:12px;padding-top:12px}.total strong{font:24px Georgia,serif}.actions{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-top:12px}.actions button{min-height:50px;border-radius:11px;border:1px solid #cdbd96;background:transparent;font-weight:850}.actions .gold{background:var(--gold);color:#17140d;border-color:transparent}.back{margin-bottom:10px}.sync{font-size:12px;color:var(--muted)}.modal-bg{position:fixed;inset:0;background:#0008;display:flex;align-items:center;justify-content:center;padding:16px;z-index:10}.modal{width:min(680px,100%);max-height:88vh;overflow:auto;background:var(--card);border-radius:18px;border:1px solid var(--line);padding:18px}.modal h2{font:26px Georgia,serif;margin:0 0 6px}.bill-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.bill-options button{min-height:70px;border-radius:12px;border:1px solid var(--line);background:white;font-weight:850}.select-line{display:grid;grid-template-columns:28px 1fr auto;gap:8px;align-items:center;border-bottom:1px solid #e8dfcf;padding:10px 2px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}.register-box{margin-top:16px;padding-top:14px;border-top:2px solid #d8ccb4}.register-title{display:flex;justify-content:space-between;align-items:center;gap:10px;font:20px Georgia,serif;margin-bottom:8px;cursor:pointer;user-select:none}.register-title-left{display:flex;align-items:center;gap:8px}.register-chevron{font-family:system-ui,-apple-system,Segoe UI,sans-serif;font-size:15px;color:var(--muted);transition:transform .18s ease}.register-box.open .register-chevron{transform:rotate(180deg)}.register-group{border:1px solid #d8ccb4;border-radius:12px;background:#f8f2e6;padding:10px;margin-top:8px}.register-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:6px}.register-item{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px;align-items:center;padding:7px 0;border-top:1px solid #e4dac7}.register-item:first-of-type{border-top:0}.restore{border:1px solid #b9c9b4;border-radius:999px;background:#f3f8f1;color:#294b22;padding:5px 9px;font-size:11px;font-weight:850;cursor:pointer}.complete{border:0;border-radius:999px;background:var(--green);color:white;padding:6px 10px;font-size:11px;font-weight:850;cursor:pointer}.register-total{font-weight:850}.register-group-actions{display:flex;justify-content:flex-end;margin-top:9px;padding-top:8px;border-top:1px solid #e4dac7}.completed-box{margin-top:14px;padding-top:12px;border-top:1px dashed #cfc4ae}.completed-title{display:flex;justify-content:space-between;align-items:center;gap:10px;font:18px Georgia,serif;cursor:pointer;user-select:none}.completed-groups{margin-top:8px}.completed-group{border:1px solid #ddd6c9;border-radius:11px;background:#f8f7f3;padding:9px;margin-top:7px;opacity:.8}.completed-head{display:flex;justify-content:space-between;gap:10px;font-weight:800}.completed-meta{font-size:11px;color:var(--muted);margin-top:4px}.completed-item{display:flex;justify-content:space-between;gap:10px;font-size:12px;padding-top:5px}@media(max-width:800px){.tables{grid-template-columns:repeat(3,minmax(0,1fr))}.order-layout{grid-template-columns:1fr}.items{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:430px){.wrap{padding:12px}.tables{grid-template-columns:repeat(2,minmax(0,1fr))}.items{grid-template-columns:repeat(2,minmax(0,1fr))}.actions,.bill-options{grid-template-columns:1fr}.customer{font-size:22px}}
+
+.top-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.top-mini{min-height:36px;border:1px solid #cfc4ae;border-radius:10px;background:white;padding:6px 10px;font-size:12px;font-weight:800;cursor:pointer}
+.close-table{width:100%;margin-top:10px;border-color:#9caf94!important;color:#24471e;background:#f2f6ef!important}
+.admin-panel{max-width:980px;margin:0 auto}.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.admin-stat{border:1px solid var(--line);border-radius:14px;background:white;padding:14px}.admin-stat b{display:block;font:26px Georgia,serif;margin-top:4px}.admin-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}.admin-actions button{min-height:48px;border-radius:11px;border:1px solid #cdbd96;background:white;font-weight:850;cursor:pointer}.admin-actions .danger-admin{border-color:#d9aaa5;color:#a33831;background:#fff7f6}.admin-actions .danger-admin:disabled{opacity:.4;cursor:not-allowed}.export-status{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.export-pill{border:1px solid var(--line);border-radius:12px;padding:10px;background:#faf8f3;font-size:12px}.export-pill.ok{background:#edf4e9;border-color:#b8c7b1}.admin-list{margin-top:14px}.admin-row{border:1px solid var(--line);border-radius:12px;background:white;padding:10px;margin-top:8px}.admin-row-head{display:flex;justify-content:space-between;gap:10px;font-weight:850}.admin-note{font-size:12px;color:var(--muted);line-height:1.4;margin-top:8px}
+@media(max-width:700px){.admin-grid,.admin-actions,.export-status{grid-template-columns:1fr}}
+.delete-confirm-box{margin-top:12px;padding:12px;border:1px solid #d9aaa5;border-radius:12px;background:#fff7f6}
+.delete-confirm-box p{margin:0 0 10px;font-size:13px;line-height:1.45}
+.delete-confirm-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px}
+.delete-confirm-actions button{min-height:42px;border-radius:10px;padding:8px 12px;font-weight:850}
+.delete-final{border:0;background:#a33831;color:white}
+@media(max-width:500px){.delete-confirm-actions{flex-direction:column}}
+
+.config-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:9px 0;border-bottom:1px solid #e8dfcf}.config-row:last-child{border-bottom:0}.config-price{font-weight:800;white-space:nowrap}.note-input{min-height:74px;resize:vertical}.option-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:8px}.option-chip{display:flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:10px;padding:9px;background:white}.small-title{font:18px Georgia,serif;margin:14px 0 6px}.admin-section{margin-top:20px;padding-top:16px;border-top:2px solid #d8ccb4}.admin-form{display:grid;grid-template-columns:2fr 1fr auto;gap:8px;align-items:end}.admin-form.four{grid-template-columns:1.4fr 1.4fr 1fr auto}.admin-form label{font-size:11px;color:var(--muted);font-weight:800}.admin-form input,.admin-form select{width:100%;min-height:42px;border:1px solid #cfc4ae;border-radius:10px;padding:8px;background:white}.admin-table{width:100%;border-collapse:collapse;margin-top:10px}.admin-table th,.admin-table td{padding:7px 5px;border-bottom:1px solid #e5dccb;text-align:left;font-size:12px}.admin-table input,.admin-table select{width:100%;min-height:36px;border:1px solid #d8cdb9;border-radius:8px;padding:5px}.admin-table button{min-height:34px;border:1px solid #ccbfa7;border-radius:8px;background:white;font-weight:800}.voucher-card{border:1px solid var(--line);border-radius:13px;padding:12px;background:#fff;margin-top:8px}.voucher-num{font-weight:900;letter-spacing:.04em}.voucher-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.voucher-actions button{border:1px solid #cdbd96;border-radius:9px;background:white;padding:7px 9px;font-weight:800}.print-history{max-height:55vh;overflow:auto}.history-row{border:1px solid var(--line);border-radius:11px;padding:10px;margin-top:8px}.history-head{display:flex;justify-content:space-between;gap:8px;font-weight:850}.remark{display:block;margin-top:4px;font-size:11px;color:#7b6331;font-style:italic}.extra-line{display:block;margin-top:3px;font-size:11px;color:#52664b}.voucher-badge{display:inline-block;border:1px solid #d3b975;border-radius:999px;padding:3px 7px;font-size:10px;font-weight:850;color:#74591d}.admin-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.admin-toolbar button{min-height:40px;border:1px solid #cdbd96;border-radius:9px;background:white;padding:7px 10px;font-weight:800}
+@media(max-width:700px){.admin-form,.admin-form.four{grid-template-columns:1fr}.option-list{grid-template-columns:1fr}.admin-table{display:block;overflow:auto;white-space:nowrap}}
+
+.analytics-controls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:10px}.analytics-controls label{font-size:11px;color:var(--muted);font-weight:800}.analytics-controls input,.analytics-controls select{width:100%;min-height:42px;border:1px solid #cfc4ae;border-radius:10px;padding:8px;background:white}.analytics-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px}.kpi{border:1px solid var(--line);border-radius:14px;background:white;padding:13px}.kpi span{display:block;font-size:11px;color:var(--muted);font-weight:800}.kpi b{display:block;font:24px Georgia,serif;margin-top:4px}.kpi small{display:block;margin-top:4px;color:var(--muted);font-size:10px}.analytics-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}.analytics-card{border:1px solid var(--line);border-radius:14px;background:white;padding:13px}.analytics-card h3{font:19px Georgia,serif;margin:0 0 8px}.bar-row{display:grid;grid-template-columns:minmax(110px,1fr) 2fr auto;gap:8px;align-items:center;margin:8px 0;font-size:12px}.bar-track{height:10px;border-radius:999px;background:#ece7dc;overflow:hidden}.bar-fill{height:100%;background:#294b22;border-radius:999px}.analytics-table{width:100%;border-collapse:collapse}.analytics-table th,.analytics-table td{font-size:11px;padding:6px 4px;border-bottom:1px solid #eee7da;text-align:left}.analytics-table th:nth-child(n+2),.analytics-table td:nth-child(n+2){text-align:right}.tax-highlight{background:#f5efe2;border:1px solid #d8c9a7;border-radius:12px;padding:10px;margin-top:10px}.tax-highlight b{font-size:18px}.analytics-note{font-size:11px;color:var(--muted);line-height:1.45;margin-top:8px}
+@media(max-width:800px){.analytics-controls,.analytics-kpis,.analytics-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.analytics-controls,.analytics-kpis,.analytics-grid{grid-template-columns:1fr}}
+
+.ice-selector{display:grid;gap:9px;margin:8px 0 14px}
+.ice-row{display:grid;grid-template-columns:1fr auto;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:#fff}
+.ice-stepper{display:flex;align-items:center;gap:8px}
+.ice-stepper button{width:38px;height:38px;border:1px solid #cfc4ae;border-radius:10px;background:white;font-size:22px;font-weight:900}
+.ice-count{min-width:28px;text-align:center;font-weight:900;font-size:18px}
+.ice-total{display:flex;justify-content:space-between;padding:11px;border-radius:12px;background:#f5efe2;font-weight:900}
+
+.order-meta{border:1px solid #d8cdb9;border-radius:12px;background:#faf7f0;padding:10px;margin:0 0 10px}.order-meta b{display:block;margin-bottom:4px}.order-meta span{display:block;font-size:12px;color:#5f625a;line-height:1.45}
+
+.special-order-actions{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}
+.special-order-actions button{min-height:40px;border:1px solid #cdbd96;border-radius:9px;background:white;padding:7px 10px;font-weight:800}
+.delivery-fee-line{display:flex;justify-content:space-between;font-weight:850;margin-top:5px}
+.zone-admin-row{display:grid;grid-template-columns:1fr 130px auto;gap:8px;align-items:end;padding:8px 0;border-bottom:1px solid #e5dccb}
+
+.receipt-summary-block{break-inside:avoid;page-break-inside:avoid}
+@media print{
+  html,body{height:auto!important;min-height:0!important;overflow:visible!important}
+  .receipt,.wrap,.sheet{height:auto!important;min-height:0!important;max-height:none!important}
+  .receipt-summary-block,.grand,.tax,.foot,.footer{break-inside:avoid!important;page-break-inside:avoid!important}
+}
+
+.voucher-security{border:1px solid #d4c7aa;border-radius:12px;padding:10px;margin-top:10px;background:#faf7ef}
+.voucher-security-code{font-weight:900;letter-spacing:.12em;font-size:16px}
+.voucher-verify-result{border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:10px;background:white}
+.voucher-valid{border-color:#7fa278;background:#f1f7ef}.voucher-invalid{border-color:#b87a70;background:#fbefed}
+
+.scan-voucher-result{border:2px solid #7fa278;border-radius:16px;padding:16px;margin:12px 0;background:#f1f7ef}
+.scan-voucher-result.invalid{border-color:#b87a70;background:#fbefed}
+.scan-voucher-result .status{font-size:24px;font-weight:900;margin-bottom:8px}
+.scan-voucher-result .value{font-size:28px;font-weight:900;margin:6px 0}
+.scan-voucher-result .detail{font-size:14px;line-height:1.55}
+
+.qr-scanner-modal .modal{max-width:520px}
+.qr-camera-wrap{position:relative;border-radius:16px;overflow:hidden;background:#111;aspect-ratio:3/4;margin-top:12px}
+#voucherScannerVideo{width:100%;height:100%;object-fit:cover;display:block}
+.qr-frame{position:absolute;left:12%;right:12%;top:22%;bottom:22%;border:3px solid rgba(255,255,255,.9);border-radius:18px;box-shadow:0 0 0 999px rgba(0,0,0,.22);pointer-events:none}
+.qr-scan-status{padding:10px 0 2px;font-weight:750;min-height:34px}
+
+.voucher-redeem-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.voucher-redeem-actions button{min-height:42px;border:1px solid #cdbd96;border-radius:10px;background:#fff;padding:8px 12px;font-weight:850}
+.voucher-history{margin-top:12px;border-top:1px solid #d8cdb9;padding-top:10px}
+.voucher-history h4{margin:0 0 7px;font-size:14px}
+.voucher-history-row{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid #eee7da;font-size:12px}
+
+.admin-nav{position:sticky;top:0;z-index:30;display:flex;gap:8px;overflow-x:auto;padding:8px 0 10px;background:#f7f3ea;border-bottom:1px solid var(--line)}
+.admin-nav button{white-space:nowrap;min-height:40px;border:1px solid #cdbd96;border-radius:10px;background:#fff;padding:8px 12px;font-weight:850}
+.admin-nav button.on{background:#2d5525;color:#fff;border-color:#2d5525}
+.admin-group-hidden{display:none!important}
+
+.analytics-table td,.analytics-table th{overflow-wrap:anywhere;word-break:break-word}
+.analytics-card,.admin-section{min-width:0;overflow:hidden}
+.service-row{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:10px;align-items:center}
+.service-row>*{min-width:0}
+.address-suggestions{position:relative}
+.address-suggestions-list{position:absolute;z-index:50;left:0;right:0;top:100%;background:white;border:1px solid #cdbd96;border-radius:10px;max-height:220px;overflow:auto;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.address-suggestions-list button{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid #eee5d5;background:white;padding:10px;font-size:14px}
+
+.category-groups{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+.category-group-title{font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#74766d;margin:2px 0 4px}
+.cats{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;overflow:visible!important;white-space:normal!important}
+.cats .cat,.cats button{width:100%!important;min-width:0!important;white-space:normal!important;text-align:center!important;justify-content:center!important}
+@media(max-width:620px){.cats{gap:6px!important}.cats .cat,.cats button{font-size:13px!important;padding:9px 5px!important}}
+
+.v140-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.v140-card{border:1px solid var(--line);border-radius:14px;background:white;padding:12px;min-width:0}.v140-card h3{font:19px Georgia,serif;margin:0 0 9px}.v140-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.v140-form .wide{grid-column:1/-1}.v140-form input,.v140-form select,.v140-form textarea{width:100%;min-height:40px;border:1px solid #cfc4ae;border-radius:9px;padding:8px;background:#fff}.v140-list{display:grid;gap:8px;margin-top:10px}.v140-row{border:1px solid #e2d8c5;border-radius:11px;padding:9px;background:#fff}.v140-row-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.v140-row small{color:var(--muted);line-height:1.45}.v140-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.v140-actions button{min-height:36px;border:1px solid #cdbd96;border-radius:8px;background:#fff;padding:6px 9px;font-weight:800}.stock-low{border-color:#c78376;background:#fff5f2}.stock-ok{border-color:#b9cfb2}.audit-details{font-size:11px;color:var(--muted);overflow-wrap:anywhere}@media(max-width:760px){.v140-grid,.v140-form{grid-template-columns:1fr}}
+
+/* ===== V1.41 Responsive Layout ===== */
+:root{
+  --app-max: 1600px;
+}
+body{overflow-x:hidden}
+.app,.shell,.page,.container,main{max-width:var(--app-max);margin-left:auto;margin-right:auto}
+img,video,canvas{max-width:100%}
+
+/* Chefbereich: niemals horizontal scrollen */
+.admin-nav{
+  position:sticky;
+  top:0;
+  z-index:30;
+  display:grid!important;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:8px!important;
+  overflow:visible!important;
+  white-space:normal!important;
+  padding:8px 0 10px!important;
+}
+.admin-nav button{
+  width:100%!important;
+  min-width:0!important;
+  white-space:normal!important;
+  line-height:1.15;
+  min-height:48px;
+  padding:8px 10px!important;
+}
+
+/* große Desktop-Browser */
+@media (min-width: 1200px){
+  .admin-nav{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .order-layout,.main-grid{gap:18px}
+  .items,.menu-grid,#items{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+
+/* Tablet / iPad */
+@media (min-width: 700px) and (max-width: 1199px){
+  .admin-nav{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .admin-nav button{font-size:14px}
+  .items,.menu-grid,#items{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  .v140-grid{grid-template-columns:1fr 1fr!important}
+}
+
+/* iPhone 15 Pro Max und andere Smartphones */
+@media (max-width: 699px){
+  body{font-size:15px}
+  .admin-nav{
+    position:static;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:6px!important;
+  }
+  .admin-nav button{
+    min-height:44px;
+    font-size:13px!important;
+    padding:7px 6px!important;
+  }
+
+  /* obere Bereichswahl */
+  .tabs,.area-tabs,.top-tabs{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:7px!important;
+    overflow:visible!important;
+  }
+  .tabs button,.area-tabs button,.top-tabs button,.tab{
+    width:100%!important;
+    min-width:0!important;
+    white-space:normal!important;
+  }
+
+  /* Kategorien und Produkte */
+  .category-groups{gap:8px}
+  .cats{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  .cats .cat,.cats button{font-size:12px!important;padding:8px 4px!important;min-height:42px}
+  .items,.menu-grid,#items{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:7px!important}
+  .item{min-height:94px!important;padding:9px!important}
+
+  /* Bestellung / Chefbereich auf eine Spalte */
+  .order-layout,.main-grid,.v140-grid,.v140-form{
+    grid-template-columns:1fr!important;
+  }
+  .panel,.card,.admin-section,.v140-card{
+    min-width:0!important;
+  }
+
+  /* Formulare und Tabellen */
+  .admin-form{grid-template-columns:1fr!important}
+  .admin-table{
+    display:block;
+    width:100%;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  /* Modale Fenster auf dem Handy */
+  .modal{
+    width:calc(100vw - 20px)!important;
+    max-width:none!important;
+    max-height:90vh!important;
+    overflow:auto!important;
+    padding:16px!important;
+  }
+  .modal-actions{
+    display:grid!important;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+
+  /* große Buttons mobil angenehmer */
+  button{touch-action:manipulation}
+}
+
+/* sehr schmale Smartphones */
+@media (max-width: 390px){
+  .admin-nav{grid-template-columns:1fr!important}
+  .cats{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .items,.menu-grid,#items{grid-template-columns:1fr!important}
+}
+
+</style></head><body><div class="wrap"><div class="top"><div class="brand"><img src="/nova-logo.jpg" alt="NOVA"><div><div class="product">ORDERBUDDY</div><div class="customer">NOVA Restaurant</div></div></div><div class="top-actions"><button id="adminBtn" class="top-mini hidden">Chefbereich</button><button id="logoutBtn" class="top-mini hidden">Abmelden</button><div class="badge" id="deviceBadge">Servicegerät</div></div></div>
+<section id="loginView" class="card login"><h1>Service-Anmeldung</h1><p>Mit dem jeweiligen Passwort anmelden. Danach bleibt dieses Gerät angemeldet, bis du dich abmeldest.</p><select id="deviceSelect" class="input" style="margin-bottom:10px"><option>Service 1</option><option>Service 2</option><option>Service 3</option><option>Service 4</option><option>Chef / Admin</option></select><input id="email" class="input" type="email" readonly><input id="password" class="input" type="password" placeholder="Service-Passwort" style="margin-top:10px"><button id="loginBtn" class="primary" style="width:100%;margin-top:10px">Anmelden</button><div id="loginMsg" class="msg">Das Passwort wird nicht gespeichert, nur die Sitzung.</div></section>
+<main id="appView" class="hidden"><div class="tabs"><button class="tab on" data-area="Terrasse">☀️ Terrasse</button><button class="tab" data-area="Innenraum">🏠 Innenraum</button><button class="tab" data-area="Lieferung">🚗 Lieferung</button><button class="tab" data-area="Abholung">🥡 Abholung</button></div><section id="tablesView" class="card"><div class="section-title" id="areaTitle">Terrasse</div><div class="tables" id="tables"></div><div class="sync" id="syncMsg" style="margin-top:12px">Synchronisiert</div></section><section id="orderView" class="hidden"><button id="backBtn" class="secondary back">← Tischübersicht</button><div class="order-layout"><div class="card"><div class="section-title" id="tableTitle">Tisch</div><div id="orderMeta" class="order-meta hidden"></div><div id="specialOrderActions" class="special-order-actions hidden"><button id="editOrderDetailsBtn">Kundendaten</button></div><div class="category-groups">
+  <div>
+    <div class="category-group-title">Speisen</div>
+    <div class="cats" id="foodCats"></div>
+  </div>
+  <div>
+    <div class="category-group-title">Getränke</div>
+    <div class="cats" id="drinkCats"></div>
+  </div>
+</div><div class="items" id="items"></div></div><aside class="card"><div class="section-title">Aktuelle Bestellung</div><div class="order-list" id="order"></div><div class="total"><span>Offene Bestellsumme</span><strong id="total">0,00 €</strong></div><div id="registerBox" class="register-box hidden"><div id="registerToggle" class="register-title" role="button" tabindex="0" aria-expanded="false"><span class="register-title-left"><span class="register-chevron">▼</span><span>An Kasse übergeben</span></span><strong id="registerTotal">0,00 €</strong></div><div id="registerGroups" class="hidden"></div></div><div id="completedBox" class="completed-box hidden"><div id="completedToggle" class="completed-title" role="button" tabindex="0" aria-expanded="false"><span>✓ Abgeschlossen</span><strong id="completedTotal">0,00 €</strong></div><div id="completedGroups" class="completed-groups hidden"></div></div><div class="actions"><button id="kitchenBtn">🍳 Küche<br><small>neue Speisen</small></button><button id="barBtn">🍹 Bar<br><small>neue Getränke</small></button><button id="fullBtn">🧾 Gesamt<br><small>am Bardrucker</small></button><button id="billingBtn" class="gold">💶 Abrechnung<br><small>gesamt / getrennt</small></button><button id="voucherBtn">🎟 Gutschein verkaufen<br><small>Verkauf erfassen</small></button><button id="printHistoryBtn">🖨 Druckverlauf<br><small>Bon nachdrucken</small></button></div><button id="closeTableBtn" class="secondary close-table">✓ Tisch abschließen</button><div id="actionMsg" class="msg">Keine Zahlungsabwicklung in OrderBuddy.</div></aside></div></section>
+<section id="adminView" class="card admin-panel hidden">
+  <button id="adminBackBtn" class="secondary back">← Zurück zur Tischübersicht</button><div class="admin-nav" id="adminNav">
+<button class="on" data-admin-group="overview">Übersicht</button>
+<button data-admin-group="day">Tagesabschluss</button>
+<button data-admin-group="month">Monat</button>
+<button data-admin-group="vouchers">Gutscheine</button>
+<button data-admin-group="tables">Tische & Bereiche</button>
+<button data-admin-group="reservations">Reservierungen</button><button data-admin-group="staff">Personal</button><button data-admin-group="inventory">Warenbestand</button><button data-admin-group="system">System & Archiv</button><button data-admin-group="settings">Einstellungen</button>
+</div>
+  <div class="section-title">Chefbereich · Tagesabschluss</div>
+  <div class="admin-note">Nur für Owner/Admin. PDF und CSV enthalten OrderBuddy-Bestell-/Abrechnungsdaten und ersetzen keinen steuerlichen Kassenbeleg. Der CSV-Export ist eine DATEV-Vorbereitung, kein fertiger DATEV-Buchungsstapel.</div>
+  <label class="msg" style="display:block;margin:14px 0 6px">Tag auswählen</label>
+  <input id="adminDate" class="input" type="date">
+  <div class="admin-grid" style="margin-top:12px">
+    <div class="admin-stat"><span>Abgeschlossene Tische</span><b id="adminSessionsCount">0</b></div>
+    <div class="admin-stat"><span>Bruttosumme abgeschlossen</span><b id="adminGross">0,00 €</b></div>
+    <div class="admin-stat"><span>Speisen 7 % brutto</span><b id="adminFoodGross">0,00 €</b></div>
+    <div class="admin-stat"><span>Getränke 19 % brutto</span><b id="adminDrinkGross">0,00 €</b></div>
+  </div>
+  <div class="export-status">
+    <div id="pdfStatus" class="export-pill">PDF: noch nicht exportiert</div>
+    <div id="csvStatus" class="export-pill">CSV: noch nicht exportiert</div>
+  </div>
+  <div class="admin-actions">
+    <button id="pdfExportBtn">📄 PDF-Tagesübersicht</button>
+    <button id="csvExportBtn">📊 CSV · DATEV-Vorbereitung</button>
+    <button id="deleteDayBtn" class="danger-admin" disabled>🗑 Tag endgültig löschen</button>
+  </div>
+  <div id="adminMsg" class="msg"></div>
+<div id="deleteConfirmBox" class="delete-confirm-box hidden">
+  <p><b>Tag endgültig löschen?</b><br>Alle bereits exportierten OrderBuddy-Daten dieses Tages werden aus der App entfernt. Dieser Schritt kann nicht rückgängig gemacht werden.</p>
+  <label class="msg" style="display:block;margin:0 0 5px">Zum Bestätigen <b>LÖSCHEN</b> eingeben:</label>
+  <input id="deleteConfirmInput" class="input" type="text" autocomplete="off" placeholder="LÖSCHEN">
+  <div class="delete-confirm-actions">
+    <button id="deleteCancelBtn" class="secondary">Abbrechen</button>
+    <button id="deleteFinalBtn" class="delete-final">Jetzt endgültig löschen</button>
+  </div>
+</div>
+  <div id="adminDayList" class="admin-list"></div>
+
+
+  
+<div class="admin-section" data-v140-group="reservations"><div class="section-title" style="font-size:21px">Reservierungen</div><div class="admin-note">Reservierungen verwalten, Tisch zuweisen und Status festhalten. Keine Zahlungs- oder Kassenfunktion.</div><div class="v140-grid" style="margin-top:10px"><div class="v140-card"><h3>Neue Reservierung</h3><div class="v140-form"><label>Datum<input id="resDate" type="date"></label><label>Uhrzeit<input id="resTime" type="time"></label><label>Name<input id="resName" placeholder="Gastname"></label><label>Personen<input id="resParty" type="number" min="1" value="2"></label><label>Telefon<input id="resPhone" type="tel"></label><label>E-Mail<input id="resEmail" type="email"></label><label>Tisch<select id="resTable"><option value="">Noch nicht zuweisen</option></select></label><label>Status<select id="resStatus"><option value="reserved">Reserviert</option><option value="arrived">Angekommen</option><option value="seated">Platziert</option><option value="cancelled">Storniert</option><option value="no_show">Nicht erschienen</option></select></label><label class="wide">Bemerkung<textarea id="resNote" rows="2"></textarea></label><button id="resSave" class="primary wide">Reservierung speichern</button></div><div id="resMsg" class="msg"></div></div><div class="v140-card"><h3>Reservierungen anzeigen</h3><div class="v140-form"><label>Datum<input id="resFilterDate" type="date"></label><button id="resReload">Aktualisieren</button></div><div id="reservationList" class="v140-list"></div></div></div></div>
+<div class="admin-section" data-v140-group="staff"><div class="section-title" style="font-size:21px">Personal & Rechte</div><div class="admin-note">Rollen steuern den Zugriff innerhalb von OrderBuddy. Benutzerkonten selbst werden weiterhin über Supabase Auth geführt.</div><div class="v140-grid" style="margin-top:10px"><div class="v140-card"><h3>Mitarbeiter-Zuordnung</h3><div class="v140-form"><label class="wide">E-Mail<input id="staffEmail" type="email" placeholder="mitarbeiter@..."></label><label>Rolle<select id="staffRole"><option value="service">Service</option><option value="admin">Admin</option><option value="owner">Owner</option></select></label><label>Aktiv<select id="staffActive"><option value="true">Ja</option><option value="false">Nein</option></select></label><button id="staffSave" class="primary wide">Zuordnung speichern</button></div><div id="staffMsg" class="msg"></div></div><div class="v140-card"><h3>Aktuelle Benutzer</h3><div id="staffList" class="v140-list"></div></div></div></div>
+<div class="admin-section" data-v140-group="inventory"><div class="section-title" style="font-size:21px">Warenbestand</div><div class="admin-note">Interne Bestandsverwaltung. Sie dokumentiert Warenbewegungen, aber keine Zahlungsvorgänge.</div><div class="v140-grid" style="margin-top:10px"><div class="v140-card"><h3>Artikel anlegen</h3><div class="v140-form"><label>Name<input id="invName" placeholder="z. B. Mozzarella"></label><label>Einheit<input id="invUnit" placeholder="Stk, kg, Flasche"></label><label>Bestand<input id="invStock" type="number" step="0.01" value="0"></label><label>Mindestbestand<input id="invMin" type="number" step="0.01" value="0"></label><button id="invCreate" class="primary wide">Artikel anlegen</button></div><div id="invMsg" class="msg"></div></div><div class="v140-card"><h3>Bestände</h3><div id="inventoryList" class="v140-list"></div></div></div></div>
+<div class="admin-section" data-v140-group="system"><div class="section-title" style="font-size:21px">System & Archiv</div><div class="admin-note">Änderungsprotokoll und Datenübersicht. OrderBuddy bleibt bewusst ohne elektronische Zahlungs- oder Kassenfunktion.</div><div class="v140-card" style="margin-top:10px"><div class="v140-form"><label>Protokoll ab<input id="auditFrom" type="date"></label><label>Max. Einträge<select id="auditLimit"><option>50</option><option>100</option><option>200</option></select></label><button id="auditReload" class="wide">Protokoll laden</button></div><div id="auditList" class="v140-list"></div></div></div>
+<div class="admin-section">
+    <div class="section-title" style="font-size:21px">Lieferkosten</div>
+    <div class="admin-note">Lieferorte und Preise zentral pflegen. Beim Lieferauftrag wird der Preis automatisch zur Gesamtsumme addiert.</div>
+    <div id="deliveryZoneAdminList"></div>
+  </div>
+
+  <div class="admin-section">
+    <div class="section-title" style="font-size:21px">Tische & Aufträge</div>
+    <div class="admin-note">Sichtbare Namen können frei vergeben werden. Der interne Code bleibt erhalten, damit bestehende Bestellungen und Auswertungen eindeutig bleiben.</div>
+    <div class="admin-form" style="margin-top:10px">
+      <label>Bereich
+        <select id="tableAdminArea">
+          <option>Terrasse</option>
+          <option>Innenraum</option>
+          <option>Lieferung</option>
+          <option>Abholung</option>
+        </select>
+      </label>
+      <label>Namensfilter<input id="tableAdminFilter" placeholder="z. B. T-3 oder Müller"></label>
+      <button id="tableAdminReload" class="primary">Anzeigen</button>
+    </div>
+    <div id="tableAdminList"></div>
+  </div>
+
+  <div class="admin-section">
+    <div class="section-title" style="font-size:21px">Speisekarte bearbeiten</div>
+    <div class="admin-note">Artikel, Varianten, Preise und Aktivstatus können hier direkt gepflegt werden.</div>
+    <div class="admin-form four" style="margin-top:10px">
+      <label>Kategorie<select id="menuAdminCategory"></select></label>
+      <label>Artikel<input id="menuAdminName" placeholder="z. B. Margherita"></label>
+      <label>Preis<input id="menuAdminPrice" type="number" min="0" step="0.10" placeholder="0,00"></label>
+      <button id="menuAdminAdd" class="primary">Artikel anlegen</button>
+    </div>
+    <div class="admin-toolbar"><button id="menuAdminReload">Aktualisieren</button></div>
+    <div id="menuAdminList"></div>
+  </div>
+
+  <div class="admin-section">
+    <div class="section-title" style="font-size:21px">Extras & Aufpreise</div>
+    <div class="admin-note">Diese Extras werden bei Speisen angeboten und erhöhen automatisch den Positionspreis.</div>
+    <div class="admin-form" style="margin-top:10px">
+      <label>Extra<input id="extraAdminName" placeholder="z. B. Extra Schinken"></label>
+      <label>Preis<input id="extraAdminPrice" type="number" min="0" step="0.10" placeholder="0,00"></label>
+      <button id="extraAdminAdd" class="primary">Extra anlegen</button>
+    </div>
+    <div id="extraAdminList"></div>
+  </div>
+
+
+
+  <div class="admin-section">
+    <div class="section-title" style="font-size:21px">Tagesbericht / Kassenzählung</div>
+    <div class="admin-note">Zusammenfassung des ausgewählten Tages nach Steuersätzen. Gutscheinverkäufe werden separat als 0 % / nicht steuerbar ausgewiesen.</div>
+    <table class="analytics-table" style="margin-top:10px">
+      <thead><tr><th>Bereich</th><th>Netto</th><th>USt.</th><th>Brutto</th></tr></thead>
+      <tbody id="dayCashSummaryBody"></tbody>
+      <tfoot><tr><th>Kassensumme</th><th id="dayCashNet">0,00 €</th><th id="dayCashVat">0,00 €</th><th id="dayCashGross">0,00 €</th></tr></tfoot>
+    </table>
+    <div class="admin-note" style="margin-top:8px">Die Kassensumme entspricht den in OrderBuddy erfassten Bruttoumsätzen plus Gutscheinverkäufen des Tages.</div>
+  </div>
+
+  <div class="admin-section">
+    <div class="section-title" style="font-size:21px">Auswertungen</div>
+    <div class="admin-note">Auswertung abgeschlossener OrderBuddy-Vorgänge. Die ausgewiesene Umsatzsteuer ist die in den erfassten Umsätzen enthaltene Umsatzsteuer und nicht automatisch die tatsächliche Zahllast ans Finanzamt.</div>
+    <div class="analytics-controls">
+      <label>Zeitraum
+        <select id="analyticsPreset">
+          <option value="today">Heute</option>
+          <option value="week">Diese Woche</option>
+          <option value="month" selected>Dieser Monat</option>
+          <option value="custom">Eigener Zeitraum</option>
+        </select>
+      </label>
+      <label>Von<input id="analyticsFrom" type="date"></label>
+      <label>Bis<input id="analyticsTo" type="date"></label>
+      <label>&nbsp;<button id="analyticsLoad" class="primary" style="width:100%;min-height:42px">Auswertung laden</button></label>
+    </div>
+
+    <div class="analytics-kpis">
+      <div class="kpi"><span>Bruttoumsatz</span><b id="kpiGross">0,00 €</b><small>Speisen + Getränke</small></div>
+      <div class="kpi"><span>Netto-Umsatz</span><b id="kpiNet">0,00 €</b><small>ohne enthaltene MwSt.</small></div>
+      <div class="kpi"><span>Enthaltene Umsatzsteuer</span><b id="kpiVat">0,00 €</b><small>7 % + 19 %</small></div>
+      <div class="kpi"><span>Gutscheinverkäufe</span><b id="kpiVouchers">0,00 €</b><small>separat / Konto 1796</small></div>
+      <div class="kpi"><span>Abgeschlossene Tische</span><b id="kpiTables">0</b><small>im Zeitraum</small></div>
+      <div class="kpi"><span>Ø Umsatz je Tisch</span><b id="kpiAvg">0,00 €</b><small>nur Speisen/Getränke</small></div>
+      <div class="kpi"><span>Speisen 7 % brutto</span><b id="kpiFood">0,00 €</b><small id="kpiFoodVat">MwSt. 0,00 €</small></div>
+      <div class="kpi"><span>Getränke 19 % brutto</span><b id="kpiDrinks">0,00 €</b><small id="kpiDrinkVat">MwSt. 0,00 €</small></div>
+    </div>
+
+    <div class="tax-highlight">
+      <span>Enthaltene Umsatzsteuer laut OrderBuddy:</span>
+      <b id="analyticsTaxTotal">0,00 €</b>
+      <div class="analytics-note">Für die tatsächliche Umsatzsteuer-Zahllast müssen insbesondere Vorsteuer und weitere Buchungen berücksichtigt werden.</div>
+    </div>
+
+    <div class="analytics-grid">
+      <div class="analytics-card"><h3>Top-Produkte</h3><div id="topProducts"></div></div>
+      <div class="analytics-card"><h3>Umsatz nach Kategorien</h3><div id="categorySales"></div></div>
+      <div class="analytics-card"><h3>Service-Auswertung</h3><div id="serviceSales"></div><div class="analytics-note">Zuordnung nach der Service-E-Mail der Tischsitzung. Bei Übergaben zwischen Servicekräften ist das nur eine Näherung.</div></div>
+      <div class="analytics-card"><h3>Steuerübersicht</h3><table class="analytics-table"><thead><tr><th>Bereich</th><th>Netto</th><th>MwSt.</th><th>Brutto</th></tr></thead><tbody id="taxAnalyticsBody"></tbody></table></div>
+    </div>
+  </div>
+
+  <div class="admin-section" id="adminMonthSection">
+<div class="section-title" style="font-size:21px">Monatsauswertung</div>
+<div class="admin-note">Monatliche CSV-Exporte und Auswertungen.</div>
+<div class="admin-form" style="margin-top:10px"><label>Monat<input id="adminMonthTab" type="month"></label><button id="monthlyCsvTabBtn" class="primary">Monats-CSV exportieren</button></div>
+</div>
+<div class="admin-section">
+    <div class="section-title" style="font-size:21px">Gutscheine</div>
+    <div class="admin-note">Verkaufte Gutscheine werden fortlaufend nummeriert. Am offenen Tisch kann der zuletzt vergebene Gutschein wieder entfernt und seine Nummer freigegeben werden. Nach Tischabschluss ist nur noch eine dokumentierte Stornierung möglich.</div>
+    <div class="admin-form" style="margin-top:10px">
+      <label>Gutschein suchen<input id="voucherSearch" placeholder="Nr. oder Sicherheitscode"></label>
+      <label>Monat<input id="adminMonth" type="month"></label>
+      <button id="monthlyCsvBtn" class="primary">Monats-CSV exportieren</button>
+    </div>
+    <div class="admin-toolbar"><button id="voucherSearchBtn">Gutschein suchen</button><button id="voucherTodayBtn">Tagesansicht</button><button id="voucherVerifyBtn">QR-Code scannen</button></div>
+    <div id="voucherVerifyResult"></div>
+    <div id="adminVoucherList"></div>
+  </div>
+</section>
+</main></div>
+<div id="billingModal" class="modal-bg hidden"><div class="modal"><h2>Abrechnung vorbereiten</h2><div class="msg">OrderBuddy teilt nur Positionen auf. Bezahlt wird an der Kasse.</div><div class="bill-options"><button id="billAll">Gesamt an Kasse</button><button id="billSplit">Getrennt auswählen</button></div><div id="splitArea" class="hidden"><div class="section-title" style="font-size:20px">Positionen auswählen</div><div id="splitItems"></div><div class="total"><span>Auswahl</span><strong id="splitTotal">0,00 €</strong></div><button id="prepareSplit" class="primary" style="width:100%;margin-top:12px">Auswahl für Kasse vorbereiten</button></div><div id="billResult" class="msg"></div><div class="modal-actions"><button id="closeBilling" class="secondary">Schließen</button></div></div></div>
+
+
+<div id="itemConfigModal" class="modal-bg hidden"><div class="modal"><h2 id="configTitle">Position</h2><div id="configOptions"></div><div id="configNoteLabel" class="small-title">Bemerkung</div><textarea id="configNote" class="input note-input" placeholder="z. B. ohne Zwiebeln, gut durch, Allergiehinweis …"></textarea><div class="modal-actions"><button id="configCancel" class="secondary">Abbrechen</button><button id="configAdd" class="primary">Zur Bestellung hinzufügen</button></div></div></div>
+<div id="voucherModal" class="modal-bg hidden"><div class="modal"><h2>Gutschein verkaufen</h2><div class="msg">OrderBuddy erfasst den Gutscheinverkauf und vergibt automatisch die nächste Gutscheinnummer. Der Gutschein erscheint zusammen mit Speisen und Getränken auf dem Gesamtbon. Die Zahlung selbst wird nicht in OrderBuddy erfasst, sondern weiterhin an der offenen Ladenkasse abgewickelt.</div><label class="msg" style="display:block;margin-top:12px">Gutscheinwert</label><input id="voucherValue" class="input" type="number" min="1" step="1" placeholder="z. B. 50,00"><label class="msg" style="display:block;margin-top:10px">Für (optional)</label><input id="voucherNote" class="input" placeholder="z. B. Anna Müller"><div id="voucherResult" class="msg"></div><div class="modal-actions"><button id="voucherCancel" class="secondary">Abbrechen</button><button id="voucherCreate" class="primary">Verkauf bestätigen</button></div></div></div>
+<div id="printHistoryModal" class="modal-bg hidden"><div class="modal"><h2>Druckverlauf</h2><div class="msg">Nachdruck erzeugt keine neue Bestellung und keinen neuen Umsatz.</div><div id="printHistoryList" class="print-history"></div><div class="modal-actions"><button id="printHistoryClose" class="secondary">Schließen</button></div></div></div>
+
+
+<div id="orderDetailsModal" class="modal-bg hidden"><div class="modal">
+  <h2 id="orderDetailsTitle">Auftragsdaten</h2>
+  <div id="orderDetailsHint" class="msg"></div>
+  <label class="msg" style="display:block;margin-top:12px">Name</label>
+  <input id="orderCustomerName" class="input" placeholder="Name">
+  <label class="msg" style="display:block;margin-top:10px">Telefonnummer</label>
+  <input id="orderCustomerPhone" class="input" type="tel" placeholder="Telefonnummer">
+  <div id="deliveryZoneWrap">
+<label class="msg" style="display:block;margin-top:10px">Lieferort</label>
+<select id="orderDeliveryZone" class="input"></select>
+</div>
+<div id="orderAddressWrap">
+    <label class="msg" style="display:block;margin-top:10px">Adresse</label>
+    <div class="address-suggestions"><input id="orderCustomerAddress" class="input" autocomplete="off" placeholder="Straße, Hausnummer, Ort"><div id="addressSuggestions" class="address-suggestions-list hidden"></div></div>
+  </div>
+  <label id="orderTimeLabel" class="msg" style="display:block;margin-top:10px">Uhrzeit</label>
+  <input id="orderRequestedTime" class="input" type="time">
+  <label class="msg" style="display:block;margin-top:10px">Bemerkung (optional)</label>
+  <input id="orderCustomerNote" class="input" placeholder="z. B. Klingel links">
+  <div id="orderDetailsMsg" class="msg"></div>
+  <div class="modal-actions"><button id="orderDetailsClear" class="secondary">Alle Kundendaten löschen</button><button id="orderDetailsCancel" class="secondary">Abbrechen</button><button id="orderDetailsSave" class="primary">Speichern</button></div>
+</div></div>
+
+
+<div id="voucherScannerModal" class="modal-bg hidden qr-scanner-modal"><div class="modal">
+  <h2>Gutschein scannen</h2>
+  <div class="msg">Halte den QR-Code des NOVA-Gutscheins in den Rahmen.</div>
+  <div class="qr-camera-wrap">
+    <video id="voucherScannerVideo" playsinline muted autoplay></video>
+    <div class="qr-frame"></div>
+  </div>
+  <canvas id="voucherScannerCanvas" class="hidden"></canvas>
+  <div id="voucherScannerStatus" class="qr-scan-status">Kamera wird gestartet …</div>
+  <div class="modal-actions"><button id="voucherScannerCancel" class="secondary">Abbrechen</button></div>
+</div></div>
+
+
+<div id="voucherRedeemModal" class="modal-bg hidden"><div class="modal">
+  <h2>Gutschein einlösen</h2>
+  <div id="voucherRedeemInfo" class="msg"></div>
+  <label class="msg" style="display:block;margin-top:12px">Einzulösender Betrag</label>
+  <input id="voucherRedeemAmount" class="input" type="number" min="0.01" step="0.01">
+  <label class="msg" style="display:block;margin-top:10px">Bemerkung (optional)</label>
+  <input id="voucherRedeemNote" class="input" placeholder="z. B. Rechnung / Tisch">
+  <div id="voucherRedeemMsg" class="msg"></div>
+  <div class="modal-actions">
+    <button id="voucherRedeemCancel" class="secondary">Abbrechen</button>
+    <button id="voucherRedeemSave" class="primary">Einlösung speichern</button>
+  </div>
+</div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+<script type="module">
+
+function tableLabel(code){
+  const c=String(code||'').trim();
+  if(/^T-?\d+$/i.test(c))return 'T-'+c.replace(/\D/g,'');
+  if(/^I-?\d+$/i.test(c))return 'I-'+c.replace(/\D/g,'');
+  if(/^L-?\d+$/i.test(c))return 'L-'+c.replace(/\D/g,'');
+  if(/^A-?\d+$/i.test(c))return 'A-'+c.replace(/\D/g,'');
+  return c;
+}
+function tableDisplay(t){
+  const name=String(t?.display_name||'').trim();
+  return name||tableLabel(t?.code)
+}
+
+import{createClient}from'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+const SUPABASE_URL='https://awchxesalzhuckdwcazi.supabase.co';
+const SUPABASE_KEY='sb_publishable__JIii_LBe2nju4v0U3-1TA_fUZv90vh';
+const supabase=createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+
+const DEVICE_EMAILS={
+  'Service 1':'service1@nova.local',
+  'Service 2':'service2@nova.local',
+  'Service 3':'service3@nova.local',
+  'Service 4':'service4@nova.local'
+};
+const ADMIN_EMAIL='nova.restaurant.am.golfplatz@gmail.com';
+const $=q=>document.querySelector(q);
+const euro=n=>Number(n||0).toLocaleString('de-DE',{style:'currency',currency:'EUR'});
+const dec=n=>Number(n||0).toFixed(2).replace('.',',');
+const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+let deviceName=localStorage.getItem('nova_device')||'Service 1';
+let currentArea='Terrasse',currentTable=null,currentSession=null,pendingSpecialTable=null;
+let categories=[],menu=[],orders=[],transferredOrders=[],billGroups=[],restaurant=null,menuExtras=[],optionGroups=[],sessionVouchers=[],pendingMenuItem=null,editingOrderItem=null,iceQuantities={},deliveryZones=[];
+let registerOpen=false,completedOpen=false,currentRole='service',adminSessions=[],adminExport=null,voucherScannerStream=null,voucherScannerRunning=false,voucherScannerTimer=null,verifiedVoucher=null;
+
+function selectedLoginEmail(){
+  return $('#deviceSelect').value==='Chef / Admin'?ADMIN_EMAIL:DEVICE_EMAILS[$('#deviceSelect').value];
+}
+function updateLoginMode(){
+  const admin=$('#deviceSelect').value==='Chef / Admin';
+  $('#email').value=selectedLoginEmail()||'';
+  $('#password').classList.remove('hidden');
+  $('#password').placeholder=admin?'Admin-Passwort':'Service-Passwort';
+  $('#loginBtn').textContent='Anmelden';
+  $('#loginMsg').textContent=admin
+    ?'Chef / Admin meldet sich mit dem persönlichen Admin-Passwort an.'
+    :'Das Passwort wird nicht gespeichert. Die Anmeldung bleibt bis zur Abmeldung auf diesem Gerät aktiv.';
+  $('#deviceBadge').textContent=admin?'Chef / Admin':$('#deviceSelect').value;
+}
+$('#deviceSelect').value=deviceName;
+if(![...$('#deviceSelect').options].some(o=>o.value===deviceName))$('#deviceSelect').value='Service 1';
+updateLoginMode();
+
+$('#deviceSelect').onchange=()=>{deviceName=$('#deviceSelect').value;updateLoginMode()};
+
+async function getRole(){
+  const{data,error}=await supabase.rpc('current_nova_role');
+  if(error)return 'service';
+  return data||'service';
+}
+function applyRoleUI(){
+  const admin=['owner','admin'].includes(currentRole);
+  $('#adminBtn').classList.toggle('hidden',!admin);
+  $('#logoutBtn').classList.remove('hidden');
+}
+async function init(){
+  const{data:{session}}=await supabase.auth.getSession();
+  if(!session)return;
+  currentRole=await getRole();
+  if(!currentRole)return;
+  const email=session.user?.email?.toLowerCase();
+  const matched=Object.entries(DEVICE_EMAILS).find(([,v])=>v===email)?.[0];
+  if(matched){
+    deviceName=matched;localStorage.setItem('nova_device',matched);$('#deviceBadge').textContent=matched;
+  }else if(['owner','admin'].includes(currentRole)){
+    deviceName='Chef / Admin';localStorage.setItem('nova_device','Chef / Admin');$('#deviceBadge').textContent='Chef / Admin';
+  }
+  showApp();await loadBase();applyRoleUI();subscribe();
+}
+$('#loginBtn').onclick=async()=>{
+  const choice=$('#deviceSelect').value;
+  const email=selectedLoginEmail();
+  const password=$('#password').value;
+  if(!password){
+    $('#loginMsg').textContent=choice==='Chef / Admin'?'Bitte das Admin-Passwort eingeben.':'Bitte das Service-Passwort eingeben.';
+    return
+  }
+
+  $('#loginMsg').textContent='Anmeldung läuft …';
+
+  const{data:{session:oldSession}}=await supabase.auth.getSession();
+  if(oldSession)await supabase.auth.signOut();
+
+  const{error}=await supabase.auth.signInWithPassword({email,password});
+  if(error){$('#loginMsg').textContent='Fehler: '+error.message;return}
+
+  currentRole=await getRole();
+  if(!currentRole){
+    await supabase.auth.signOut();
+    $('#loginMsg').textContent='Dieser Benutzer ist für NOVA nicht freigegeben.';
+    return
+  }
+
+  if(choice==='Chef / Admin'&&!['owner','admin'].includes(currentRole)){
+    await supabase.auth.signOut();
+    $('#loginMsg').textContent='Dieser Zugang hat keine Chef-/Adminrechte.';
+    return
+  }
+
+  if(choice!=='Chef / Admin'&&currentRole!=='service'){
+    await supabase.auth.signOut();
+    $('#loginMsg').textContent='Bitte den passenden Anmeldetyp wählen.';
+    return
+  }
+
+  deviceName=choice;
+  localStorage.setItem('nova_device',deviceName);
+  $('#deviceBadge').textContent=deviceName;
+  $('#password').value='';
+  showApp();
+  await new Promise(r=>setTimeout(r,500));
+  await loadBase();
+  applyRoleUI();
+  subscribe();
+};
+$('#logoutBtn').onclick=async()=>{
+  await supabase.auth.signOut();
+  localStorage.removeItem('nova_device');
+  location.reload()
+};
+
+function showApp(){$('#loginView').classList.add('hidden');$('#appView').classList.remove('hidden')}
+async function loadBase(){
+  const{data:r,error:re}=await supabase.from('restaurants').select('id,display_name,receipt_name,show_receipt_number,timezone').eq('slug','nova').single();
+  if(re){$('#syncMsg').textContent='Datenfehler: '+re.message;return}
+  restaurant=r;
+  const[{data:a,error:ea},{data:c,error:ec},{data:m,error:em},{data:x,error:ex},{data:og,error:eog},{data:dz,error:edz}]=await Promise.all([
+    supabase.from('restaurant_tables').select('id,code,display_name,sort_order,active,area_id,areas(id,name)').eq('active',true),
+    supabase.from('menu_categories').select('id,name,sort_order,destination').order('sort_order'),
+    supabase.from('menu_items').select('id,article_number,name,variant,price,sort_order,category_id,active').order('sort_order'),
+    supabase.from('menu_extras').select('id,name,price,active,sort_order').order('sort_order'),
+    supabase.from('menu_option_groups').select('id,name,min_select,max_select,active,menu_options(id,name,price_delta,active,sort_order),menu_item_option_groups(menu_item_id)').eq('active',true).order('sort_order'),
+    supabase.from('delivery_zones').select('id,name,fee,active,sort_order').eq('active',true).order('sort_order')
+  ]);
+  const err=ea||ec||em||ex||eog;
+  if(err){if(/JWT issued at future/i.test(err.message||'')){await new Promise(r=>setTimeout(r,2200));await supabase.auth.refreshSession();return loadBase()}$('#syncMsg').textContent='Datenfehler: '+err.message;return}
+  window.tablesData=a||[];categories=c||[];menu=m||[];menuExtras=x||[];optionGroups=og||[];deliveryZones=edz?[]:(dz||[]);renderTables();
+}
+function businessDateNow(){
+  const tz=restaurant?.timezone||'Europe/Berlin';
+  return new Intl.DateTimeFormat('en-CA',{timeZone:tz,year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+}
+function renderTables(){
+  const box=$('#tables');box.innerHTML='';$('#areaTitle').textContent=currentArea;
+  (window.tablesData||[]).filter(t=>t.areas?.name===currentArea).sort((a,b)=>a.sort_order-b.sort_order).forEach(t=>{
+    const b=document.createElement('button');b.className='table';
+    const custom=String(t.display_name||'').trim();
+    b.innerHTML='<b>'+esc(tableDisplay(t))+'</b><small>'+(custom?esc(tableLabel(t.code))+' · ':'')+'Antippen zum Öffnen</small>';
+    b.onclick=()=>openTable(t);box.appendChild(b)
+  })
+}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+  currentArea=b.dataset.area;
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x===b));
+  currentTable=null;currentSession=null;orders=[];transferredOrders=[];billGroups=[];
+  $('#orderView').classList.add('hidden');$('#adminView').classList.add('hidden');$('#tablesView').classList.remove('hidden');
+  renderTables();
+});
+
+async function getOpenSession(t){
+  const{data,error}=await supabase.from('table_sessions').select('id,restaurant_id,table_id,business_date,status,opened_at,order_type,customer_name,customer_phone,customer_address,requested_time,customer_note,delivery_zone_id,delivery_fee').eq('table_id',t.id).eq('status','open').maybeSingle();
+  if(error){$('#actionMsg').textContent='Sitzungsfehler: '+error.message;return null}
+  return data||null
+}
+async function createSession(t){
+  const existing=await getOpenSession(t);if(existing)return existing;
+  const{data:{user}}=await supabase.auth.getUser();
+  const special=t.areas?.name==='Lieferung'||t.areas?.name==='Abholung';
+  const ins=await supabase.from('table_sessions').insert({
+    restaurant_id:restaurant.id,table_id:t.id,business_date:businessDateNow(),
+    opened_by_email:user?.email||null,status:'open',order_type:special?t.areas.name:null
+  }).select('id,restaurant_id,table_id,business_date,status,opened_at,order_type,customer_name,customer_phone,customer_address,requested_time,customer_note,delivery_zone_id,delivery_fee').single();
+  if(ins.error){const retry=await getOpenSession(t);if(retry)return retry;$('#actionMsg').textContent='Sitzungsfehler: '+ins.error.message;return null}
+  return ins.data
+}
+async function openTable(t){
+  currentTable=t;
+  currentSession=await getOpenSession(t);
+  if(!currentSession&&(t.areas?.name==='Lieferung'||t.areas?.name==='Abholung')){
+    currentSession=await createSession(t);if(!currentSession)return
+  }
+  showOpenedTable(t)
+}
+function showOpenedTable(t){
+  $('#tablesView').classList.add('hidden');$('#adminView').classList.add('hidden');$('#orderView').classList.remove('hidden');
+  const area=t.areas?.name||'',visible=typeof tableDisplay==='function'?tableDisplay(t):t.code;
+  $('#tableTitle').textContent=(area==='Lieferung'?'Lieferung ':area==='Abholung'?'Abholung ':'Tisch ')+visible;
+  renderOrderMeta();renderCategories();
+  if(currentSession){loadOrders()}else{orders=[];transferredOrders=[];billGroups=[];renderOrder();renderRegisterGroups();renderCompletedGroups()}
+}
+function renderOrderMeta(){
+  const box=$('#orderMeta'),actions=$('#specialOrderActions');
+  const special=currentSession&&['Lieferung','Abholung'].includes(currentSession.order_type);
+  actions.classList.toggle('hidden',!special);
+  if(!special){box.classList.add('hidden');box.innerHTML='';return}
+  const delivery=currentSession.order_type==='Lieferung';
+  const zone=deliveryZones.find(z=>String(z.id)===String(currentSession.delivery_zone_id));
+  box.classList.remove('hidden');
+  box.innerHTML='<b>'+esc(currentSession.order_type)+(currentSession.customer_name?' · '+esc(currentSession.customer_name):' · Kundendaten noch offen')+'</b>'+
+    (currentSession.customer_phone?'<span>Telefon: '+esc(currentSession.customer_phone)+'</span>':'')+
+    (delivery&&currentSession.customer_address?'<span>Adresse: '+esc(currentSession.customer_address)+'</span>':'')+
+    (delivery&&zone?'<span>Lieferort: '+esc(zone.name)+'</span>':'')+
+    (currentSession.requested_time?'<span>'+(delivery?'Lieferzeit: ':'Abholzeit: ')+esc(currentSession.requested_time)+'</span>':'')+
+    (delivery&&Number(currentSession.delivery_fee||0)>0?'<div class="delivery-fee-line"><span>Lieferkosten</span><span>'+euro(currentSession.delivery_fee)+'</span></div>':'')
+}
+function fillOrderDetailsModal(){
+  const delivery=currentTable?.areas?.name==='Lieferung';
+  $('#orderDetailsTitle').textContent=delivery?'Lieferdaten':'Abholdaten';
+  $('#deliveryZoneWrap').classList.toggle('hidden',!delivery);
+  $('#orderAddressWrap').classList.toggle('hidden',!delivery);
+  $('#orderTimeLabel').textContent=delivery?'Wann soll das Essen da sein?':'Abholzeit';
+  $('#orderCustomerName').value=currentSession?.customer_name||'';
+  $('#orderCustomerPhone').value=currentSession?.customer_phone||'';
+  $('#orderCustomerAddress').value=currentSession?.customer_address||'';
+  $('#orderRequestedTime').value=currentSession?.requested_time||'';
+  $('#orderCustomerNote').value=currentSession?.customer_note||'';
+  const sel=$('#orderDeliveryZone');sel.innerHTML='<option value="">Lieferort auswählen</option>';
+  deliveryZones.forEach(z=>{const o=document.createElement('option');o.value=z.id;o.textContent=(z.name==='Himmersen'?'Hummersen':z.name)+' · '+euro(z.fee);if(String(currentSession?.delivery_zone_id||'')===String(z.id))o.selected=true;sel.appendChild(o)});
+  $('#orderDetailsMsg').textContent='';$('#orderDetailsModal').classList.remove('hidden')
+}
+$('#editOrderDetailsBtn').onclick=fillOrderDetailsModal;
+
+let addressSuggestTimer=null;
+function normalizedDeliveryPlace(){
+  const zone=deliveryZones.find(z=>String(z.id)===String($('#orderDeliveryZone').value));
+  return zone?.name||''
+}
+async function suggestDeliveryAddress(){
+  const box=$('#addressSuggestions'),q=$('#orderCustomerAddress').value.trim(),place=normalizedDeliveryPlace();
+  if(!place||q.length<2){box.classList.add('hidden');box.innerHTML='';return}
+  clearTimeout(addressSuggestTimer);
+  addressSuggestTimer=setTimeout(async()=>{
+    try{
+      const query=encodeURIComponent(q+', '+place+', Deutschland');
+      const r=await fetch('https://photon.komoot.io/api/?limit=8&lang=de&q='+query);
+      const j=await r.json();
+      const rows=(j.features||[]).filter(f=>f.properties).map(f=>{
+        const p=f.properties;
+        const street=p.street||p.name||'',house=p.housenumber||'',city=p.city||p.town||p.village||place;
+        return [street,house].filter(Boolean).join(' ')+(city?' · '+city:'')
+      }).filter((v,i,a)=>v&&a.indexOf(v)===i).slice(0,8);
+      box.innerHTML=rows.map(v=>'<button type="button">'+esc(v)+'</button>').join('');
+      box.classList.toggle('hidden',!rows.length);
+      box.querySelectorAll('button').forEach(btn=>btn.onclick=()=>{
+        $('#orderCustomerAddress').value=btn.textContent.replace(' · ',' , ');
+        box.classList.add('hidden')
+      })
+    }catch{box.classList.add('hidden')}
+  },250)
+}
+$('#orderCustomerAddress').addEventListener('input',suggestDeliveryAddress);
+$('#orderDeliveryZone').addEventListener('change',()=>{$('#addressSuggestions').classList.add('hidden')});
+$('#orderDetailsClear').onclick=async()=>{
+  if(!currentSession)return;
+  if(!confirm('Alle Kundendaten dieses Auftrags wirklich löschen?'))return;
+  const payload={customer_name:null,customer_phone:null,customer_address:null,requested_time:null,customer_note:null,delivery_zone_id:null,delivery_fee:0};
+  const{data,error}=await supabase.from('table_sessions').update(payload).eq('id',currentSession.id)
+    .select('id,restaurant_id,table_id,business_date,status,opened_at,order_type,customer_name,customer_phone,customer_address,requested_time,customer_note,delivery_zone_id,delivery_fee').single();
+  if(error){$('#orderDetailsMsg').textContent='Löschen fehlgeschlagen: '+error.message;return}
+  currentSession=data;
+  $('#orderCustomerName').value='';$('#orderCustomerPhone').value='';$('#orderCustomerAddress').value='';$('#orderRequestedTime').value='';$('#orderCustomerNote').value='';$('#orderDeliveryZone').value='';
+  $('#orderDetailsModal').classList.add('hidden');renderOrderMeta();renderOrder();$('#actionMsg').textContent='Kundendaten gelöscht.'
+};
+
+$('#orderDetailsCancel').onclick=()=>$('#orderDetailsModal').classList.add('hidden');
+$('#orderDetailsSave').onclick=async()=>{
+  const delivery=currentTable?.areas?.name==='Lieferung';
+  const name=$('#orderCustomerName').value.trim(),phone=$('#orderCustomerPhone').value.trim(),
+        address=$('#orderCustomerAddress').value.trim(),time=$('#orderRequestedTime').value,zoneId=$('#orderDeliveryZone').value;
+  if(!name||!phone||!time||(delivery&&(!address||!zoneId))){
+    $('#orderDetailsMsg').textContent=delivery?'Bitte Name, Telefonnummer, Adresse, Lieferort und Lieferzeit vollständig eingeben.':'Bitte Name, Telefonnummer und Abholzeit vollständig eingeben.';return
+  }
+  const zone=deliveryZones.find(z=>String(z.id)===String(zoneId));
+  const payload={order_type:currentTable.areas.name,customer_name:name,customer_phone:phone,
+    customer_address:delivery?address:null,requested_time:time,customer_note:$('#orderCustomerNote').value.trim()||null,
+    delivery_zone_id:delivery?zoneId:null,delivery_fee:delivery?Number(zone?.fee||0):0};
+  const{data,error}=await supabase.from('table_sessions').update(payload).eq('id',currentSession.id)
+    .select('id,restaurant_id,table_id,business_date,status,opened_at,order_type,customer_name,customer_phone,customer_address,requested_time,customer_note,delivery_zone_id,delivery_fee').single();
+  if(error){$('#orderDetailsMsg').textContent='Speichern fehlgeschlagen: '+error.message;return}
+  currentSession=data;$('#orderDetailsModal').classList.add('hidden');renderOrderMeta();renderOrder();$('#actionMsg').textContent='Kundendaten gespeichert.'
+};
+
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{
+  currentArea=b.dataset.area;
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x.dataset.area===currentArea));
+  currentTable=null;currentSession=null;orders=[];transferredOrders=[];billGroups=[];
+  $('#orderView').classList.add('hidden');$('#adminView').classList.add('hidden');$('#tablesView').classList.remove('hidden');
+  renderTables()
+}));
+
+$('#backBtn').onclick=()=>{$('#orderView').classList.add('hidden');$('#tablesView').classList.remove('hidden');currentTable=null;currentSession=null};
+
+function renderCategories(){
+  const foodBox=$('#foodCats'),drinkBox=$('#drinkCats');
+  foodBox.innerHTML='';drinkBox.innerHTML='';
+
+  const foodOrder=['Pizza','Pasta','Panini','Vorspeisen','Desserts'];
+  const byName=new Map(categories.map(c=>[String(c.name||'').trim().toLowerCase(),c]));
+  const foodEntries=[];
+
+  foodOrder.forEach(name=>{
+    const c=byName.get(name.toLowerCase());
+    if(c)foodEntries.push({label:name,ids:[c.id]})
+  });
+
+  const iceCakeCats=categories.filter(c=>/^(eis|kuchen|eis\s*\/\s*kuchen)$/i.test(String(c.name||'').trim()));
+  if(iceCakeCats.length)foodEntries.push({label:'Eis/Kuchen',ids:iceCakeCats.map(c=>c.id)});
+
+  const usedIds=new Set(foodEntries.flatMap(x=>x.ids));
+  const drinks=categories.filter(c=>{
+    if(usedIds.has(c.id))return false;
+    const n=String(c.name||'');
+    return c.destination==='bar'||/softdrinks|säfte|saft|wein|bier|getränke|kaffee|tee|spirituosen/i.test(n)
+  });
+
+  let activeIds=[];
+
+  function addCat(box,label,ids){
+    const b=document.createElement('button');
+    b.className='cat';
+    b.textContent=label;
+    b.onclick=()=>{
+      document.querySelectorAll('.cat').forEach(x=>x.classList.remove('on'));
+      b.classList.add('on');
+      activeIds=ids;
+      renderItems(ids)
+    };
+    box.appendChild(b)
+  }
+
+  foodEntries.forEach(x=>addCat(foodBox,x.label,x.ids));
+  drinks.forEach(c=>addCat(drinkBox,c.name,[c.id]));
+
+  const first=foodBox.querySelector('.cat')||drinkBox.querySelector('.cat');
+  if(first){first.classList.add('on');first.click()}
+}
+function renderItems(catIds){
+  const ids=Array.isArray(catIds)?catIds:[catIds];
+  const box=$('#items');box.innerHTML='';
+  menu.filter(m=>ids.includes(m.category_id)).forEach(m=>{
+    const b=document.createElement('button');
+    const unavailable=m.active===false;
+    b.className='item'+(unavailable?' unavailable':'');
+    b.disabled=unavailable;
+    b.innerHTML='<small>'+(m.article_number?'NR. '+esc(m.article_number):'')+'</small><strong>'+esc(m.name)+(m.variant?' · '+esc(m.variant):'')+'</strong><span>'+euro(m.price)+'</span>'+(unavailable?'<em class="unavailable-label">NICHT VERFÜGBAR</em>':'');
+    if(!unavailable)b.onclick=()=>quickAddOrConfigure(m);
+    box.appendChild(b)
+  })
+}
+
+function requiresImmediateChoice(m){
+  const groups=itemOptionGroups(m);
+  return groups.some(g=>Number(g.min_select||0)>0) || /eis|kugel|kuchen|tiramisu/i.test(m.name);
+}
+async function quickAddOrConfigure(m){
+  if(requiresImmediateChoice(m)){openItemConfig(m,'choice');return}
+  if(!currentTable)return;
+  if(!currentSession){currentSession=await createSession(currentTable);if(!currentSession)return}
+  const{error}=await supabase.from('order_items').insert({
+    table_id:currentTable.id,restaurant_id:restaurant.id,session_id:currentSession.id,
+    menu_item_id:m.id,quantity:1,unit_price:Number(m.price),status:'new',
+    note:null,options:{selections:[]}
+  });
+  if(error){$('#actionMsg').textContent='Fehler: '+error.message;return}
+  $('#actionMsg').textContent=m.name+' hinzugefügt.';await loadOrders()
+}
+function itemOptionGroups(m){
+  return optionGroups.filter(g=>(g.menu_item_option_groups||[]).some(x=>x.menu_item_id===m.id) || (/eis|kugel/i.test(m.name)&&g.name==='Eissorte') || (/kuchen|tiramisu/i.test(m.name)&&g.name==='Kuchensorte'))
+}
+
+function isIceItem(m){
+  return /eis|kugel/i.test(String(m?.name||''))
+}
+function renderIceSelector(m,groups){
+  const box=$('#configOptions');
+  box.innerHTML='';
+  iceQuantities={};
+  const options=groups.flatMap(g=>g.menu_options||[]).filter(o=>o.active!==false);
+
+  const wrap=document.createElement('div');
+  wrap.className='ice-selector';
+
+  options.forEach(o=>{
+    iceQuantities[o.id]=0;
+    const row=document.createElement('div');
+    row.className='ice-row';
+    row.innerHTML=
+      '<b>'+esc(o.name)+'</b>'+
+      '<span class="ice-stepper">'+
+        '<button type="button" data-ice-minus="'+o.id+'">−</button>'+
+        '<span class="ice-count" id="ice-count-'+o.id+'">0</span>'+
+        '<button type="button" data-ice-plus="'+o.id+'">+</button>'+
+      '</span>';
+    wrap.appendChild(row)
+  });
+
+  box.appendChild(wrap);
+
+  const total=document.createElement('div');
+  total.className='ice-total';
+  total.innerHTML='<span id="ice-ball-text">0 Kugeln</span><span id="ice-price-text">'+euro(0)+'</span>';
+  box.appendChild(total);
+
+  box.querySelectorAll('[data-ice-minus]').forEach(btn=>{
+    btn.onclick=()=>changeIceQuantity(btn.dataset.iceMinus,-1,m)
+  });
+  box.querySelectorAll('[data-ice-plus]').forEach(btn=>{
+    btn.onclick=()=>changeIceQuantity(btn.dataset.icePlus,1,m)
+  })
+}
+function changeIceQuantity(id,delta,m){
+  iceQuantities[id]=Math.max(0,Number(iceQuantities[id]||0)+delta);
+  const count=$('#ice-count-'+id);
+  if(count)count.textContent=iceQuantities[id];
+
+  const balls=Object.values(iceQuantities).reduce((sum,n)=>sum+Number(n||0),0);
+  const ballText=$('#ice-ball-text');
+  const priceText=$('#ice-price-text');
+  if(ballText)ballText.textContent=balls+' '+(balls===1?'Kugel':'Kugeln');
+  if(priceText)priceText.textContent=euro(balls*Number(m.price||0))
+}
+
+function openItemConfig(m,mode='choice',orderItem=null){
+  pendingMenuItem=m;editingOrderItem=orderItem;
+  $('#configTitle').textContent=(mode==='edit'?'Extras / Bemerkung · ':'')+m.name+(m.variant?' · '+m.variant:'');
+  $('#configNote').value=orderItem?.note||'';
+  const box=$('#configOptions');box.innerHTML='';
+  const cat=categories.find(c=>c.id===m.category_id),isFood=cat?.destination==='kitchen';
+  const groups=itemOptionGroups(m);
+
+  if(mode==='choice'){
+    if(isIceItem(m)){
+      renderIceSelector(m,groups);
+    }else{
+      groups.forEach(g=>{
+      const title=document.createElement('div');title.className='small-title';title.textContent=g.name;box.appendChild(title);
+      const list=document.createElement('div');list.className='option-list';
+      const inputType=Number(g.max_select||0)===1?'radio':'checkbox';
+      (g.menu_options||[]).filter(o=>o.active!==false).sort((a,b)=>a.sort_order-b.sort_order).forEach(o=>{
+        const lab=document.createElement('label');lab.className='option-chip';
+        lab.innerHTML='<input class="config-option" type="'+inputType+'" name="option-'+g.id+'" data-group="'+g.id+'" value="'+o.id+'"><span>'+esc(o.name)+(Number(o.price_delta)?' · +'+euro(o.price_delta):'')+'</span>';
+        list.appendChild(lab)
+      });box.appendChild(list)
+      });
+    }
+    $('#configNoteLabel').style.display='none';
+    $('#configNote').style.display='none';
+    $('#configAdd').textContent='Auswahl übernehmen';
+  }else{
+    $('#configNoteLabel').style.display='';
+    $('#configNote').style.display='';
+    $('#configAdd').textContent='Änderungen speichern';
+    if(isFood&&menuExtras.some(x=>x.active!==false)){
+      const title=document.createElement('div');title.className='small-title';title.textContent='Extras';box.appendChild(title);
+      const existing=new Set((orderItem?.order_item_extras||[]).map(x=>x.extra_id||x.id));
+      menuExtras.filter(x=>x.active!==false).forEach(x=>{
+        const row=document.createElement('label');row.className='config-row';
+        row.innerHTML='<span><input class="config-extra" type="checkbox" value="'+x.id+'" '+(existing.has(x.id)?'checked':'')+'> '+esc(x.name)+'</span><span class="config-price">+'+euro(x.price)+'</span>';
+        box.appendChild(row)
+      })
+    }
+  }
+  $('#itemConfigModal').classList.remove('hidden')
+}
+$('#configCancel').onclick=()=>{$('#itemConfigModal').classList.add('hidden');pendingMenuItem=null;editingOrderItem=null};
+$('#configAdd').onclick=()=>editingOrderItem?saveOrderItemEdits():addConfiguredItem();
+async function addConfiguredItem(){
+  const m=pendingMenuItem;
+  if(!m||!currentTable)return;
+
+  const groups=itemOptionGroups(m);
+
+  if(isIceItem(m)){
+    const balls=Object.values(iceQuantities).reduce((sum,n)=>sum+Number(n||0),0);
+    if(balls<1){
+      alert('Bitte mindestens eine Kugel auswählen.');
+      return
+    }
+
+    if(!currentSession){
+      currentSession=await createSession(currentTable);
+      if(!currentSession)return
+    }
+
+    const allOptions=groups.flatMap(g=>g.menu_options||[]);
+    const selections=Object.entries(iceQuantities)
+      .filter(([,qty])=>Number(qty)>0)
+      .map(([id,qty])=>{
+        const o=allOptions.find(x=>String(x.id)===String(id));
+        return {
+          group:'Eissorte',
+          name:o?.name||'',
+          quantity:Number(qty),
+          price_delta:0
+        }
+      });
+
+    const unitPrice=Number(m.price||0)*balls;
+
+    const{error}=await supabase.from('order_items').insert({
+      table_id:currentTable.id,
+      restaurant_id:restaurant.id,
+      session_id:currentSession.id,
+      menu_item_id:m.id,
+      quantity:1,
+      unit_price:unitPrice,
+      status:'new',
+      note:null,
+      options:{
+        selections,
+        ice_balls:balls,
+        price_per_ball:Number(m.price||0)
+      }
+    });
+
+    if(error){
+      $('#actionMsg').textContent='Fehler: '+error.message;
+      return
+    }
+
+    $('#itemConfigModal').classList.add('hidden');
+    pendingMenuItem=null;
+    editingOrderItem=null;
+    iceQuantities={};
+    $('#actionMsg').textContent='Eis ('+balls+' '+(balls===1?'Kugel':'Kugeln')+') hinzugefügt.';
+    await loadOrders();
+    return
+  }
+
+  const selectedOptions=[...document.querySelectorAll('.config-option:checked')].map(el=>el.value);
+
+  for(const g of groups){
+    const count=[...document.querySelectorAll('.config-option:checked')]
+      .filter(el=>el.dataset.group===g.id).length;
+    if(count<Number(g.min_select||0)){
+      alert('Bitte bei „'+g.name+'“ mindestens '+g.min_select+' Auswahl treffen.');
+      return
+    }
+    if(count>Number(g.max_select||99)){
+      alert('Bei „'+g.name+'“ sind maximal '+g.max_select+' Auswahlen möglich.');
+      return
+    }
+  }
+
+  if(!currentSession){
+    currentSession=await createSession(currentTable);
+    if(!currentSession)return
+  }
+
+  const extras=[];
+  const optObjects=[];
+  for(const g of groups){
+    for(const o of (g.menu_options||[])){
+      if(selectedOptions.includes(o.id)){
+        optObjects.push({
+          group:g.name,
+          name:o.name,
+          price_delta:Number(o.price_delta||0)
+        })
+      }
+    }
+  }
+
+  const unit=Number(m.price)+optObjects.reduce((a,x)=>a+x.price_delta,0);
+
+  const{error}=await supabase.from('order_items').insert({
+    table_id:currentTable.id,
+    restaurant_id:restaurant.id,
+    session_id:currentSession.id,
+    menu_item_id:m.id,
+    quantity:1,
+    unit_price:unit,
+    status:'new',
+    note:null,
+    options:{selections:optObjects}
+  });
+
+  if(error){
+    $('#actionMsg').textContent='Fehler: '+error.message;
+    return
+  }
+
+  $('#itemConfigModal').classList.add('hidden');
+  pendingMenuItem=null;
+  editingOrderItem=null;
+  $('#actionMsg').textContent=m.name+' hinzugefügt.';
+  await loadOrders()
+}
+async function saveOrderItemEdits(){
+  const o=editingOrderItem,m=pendingMenuItem;if(!o||!m)return;
+  const extraIds=[...document.querySelectorAll('.config-extra:checked')].map(el=>el.value);
+  const extras=menuExtras.filter(x=>extraIds.includes(x.id));
+  const optionTotal=(o.options?.selections||[]).reduce((a,x)=>a+Number(x.price_delta||0),0);
+  const unit=Number(m.price||0)+optionTotal+extras.reduce((a,x)=>a+Number(x.price||0),0);
+  const note=$('#configNote').value.trim()||null;
+  const{error:uerr}=await supabase.from('order_items').update({unit_price:unit,note}).eq('id',o.id);
+  if(uerr){$('#actionMsg').textContent='Änderung fehlgeschlagen: '+uerr.message;return}
+  const{error:derr}=await supabase.from('order_item_extras').delete().eq('order_item_id',o.id);
+  if(derr){$('#actionMsg').textContent='Extras konnten nicht aktualisiert werden: '+derr.message;return}
+  if(extras.length){
+    const{error:ierr}=await supabase.from('order_item_extras').insert(extras.map(x=>({order_item_id:o.id,extra_id:x.id,name:x.name,unit_price:x.price,quantity:1})));
+    if(ierr){$('#actionMsg').textContent='Extras konnten nicht gespeichert werden: '+ierr.message;return}
+  }
+  $('#itemConfigModal').classList.add('hidden');pendingMenuItem=null;editingOrderItem=null;
+  $('#actionMsg').textContent='Extras / Bemerkung gespeichert.';await loadOrders()
+}
+async function loadOrders(){
+  if(!currentSession){orders=[];transferredOrders=[];billGroups=[];sessionVouchers=[];renderOrder();renderRegisterGroups();renderCompletedGroups();return}
+  const[{data:all,error:oe},{data:groups,error:ge},{data:v,error:ve}]=await Promise.all([
+    supabase.from('order_items').select('id,quantity,unit_price,status,ordered_at,cancelled,kitchen_printed_at,bar_printed_at,note,options,menu_items(id,name,variant,price,category_id,menu_categories(destination)),order_item_extras(id,extra_id,name,unit_price,quantity)').eq('session_id',currentSession.id).eq('cancelled',false).order('ordered_at'),
+    supabase.from('bill_groups').select('id,label,status,prepared_at,completed_at,completed_by_email,bill_group_items(id,order_item_id,quantity)').eq('session_id',currentSession.id).in('status',['prepared','handed_to_register','completed']).order('prepared_at'),
+    supabase.from('vouchers').select('id,voucher_number,original_value,remaining_value,status,issued_at,note').eq('session_id',currentSession.id).neq('status','void').order('issued_at')
+  ]);
+  const error=oe||ge||ve;if(error){$('#actionMsg').textContent='Fehler: '+error.message;return}
+  billGroups=groups||[];sessionVouchers=v||[];const assignedIds=new Set();billGroups.forEach(g=>(g.bill_group_items||[]).forEach(i=>assignedIds.add(i.order_item_id)));transferredOrders=(all||[]).filter(o=>assignedIds.has(o.id));orders=(all||[]).filter(o=>!assignedIds.has(o.id));renderOrder();renderRegisterGroups();renderCompletedGroups()
+}
+function renderOrder(){
+  const box=$('#order');box.innerHTML='';let total=0;
+  if(!orders.length)box.innerHTML='<div class="msg">Noch keine offene Bestellung.</div>';
+  orders.forEach(o=>{
+    total+=Number(o.unit_price)*o.quantity;
+    const d=document.createElement('div');d.className='line';
+    const dest=o.menu_items?.menu_categories?.destination;
+    const isNew=dest==='kitchen'?!o.kitchen_printed_at:!o.bar_printed_at;
+    const details=(o.options?.selections||[]).map(x=>(Number(x.quantity||1)>1?Number(x.quantity)+'× ':'')+x.name).join(', ');const extras=(o.order_item_extras||[]).map(x=>x.name+' +'+euro(x.unit_price)).join(', ');d.innerHTML='<div class="line-top"><b>'+o.quantity+'×</b><span><b>'+esc(isIceItem(o.menu_items)&&o.options?.ice_balls ? 'Eis ('+o.options.ice_balls+' '+(Number(o.options.ice_balls)===1?'Kugel':'Kugeln')+')' : o.menu_items?.name)+'</b>'+(o.menu_items?.variant?' · '+esc(o.menu_items.variant):'')+(isNew?'<span class="new">NEU</span>':'')+(details?'<span class="extra-line">'+esc(details)+'</span>':'')+(extras?'<span class="extra-line">'+esc(extras)+'</span>':'')+(o.note?'<span class="remark">Bemerkung: '+esc(o.note)+'</span>':'')+'</span><b>'+euro(Number(o.unit_price)*o.quantity)+'</b></div><div class="line-actions"></div>';
+    const a=d.querySelector('.line-actions');
+    if(isNew){
+      const edit=document.createElement('button');edit.className='secondary';edit.textContent='Extras / Bemerkung';
+      edit.onclick=()=>{
+        const m=menu.find(x=>x.id===o.menu_items?.id)||{id:o.menu_items?.id,name:o.menu_items?.name,variant:o.menu_items?.variant,price:o.menu_items?.price,category_id:o.menu_items?.category_id};
+        openItemConfig(m,'edit',o)
+      };a.appendChild(edit)
+    }
+    ['new','preparing','done'].forEach(st=>{
+      const b=document.createElement('button');b.className='status'+(o.status===st?' on':'');b.textContent=st==='new'?'Neu':st==='preparing'?'Zubereitung':'Erledigt';b.onclick=()=>setStatus(o.id,st);a.appendChild(b)
+    });
+    const cancel=document.createElement('button');cancel.className='cancel';cancel.textContent='Stornieren';cancel.onclick=()=>cancelItem(o);a.appendChild(cancel);box.appendChild(d)
+  });
+  if(sessionVouchers.length){
+    sessionVouchers.forEach(v=>{
+      total+=Number(v.original_value||0);
+      const d=document.createElement('div');d.className='line';
+      d.innerHTML='<div class="line-top"><b>1×</b><span><b>Gutschein</b><span class="voucher-badge">'+esc(v.voucher_number)+'</span>'+(v.note?'<span class="extra-line">Für: '+esc(v.note)+'</span>':'')+'</span><b>'+euro(v.original_value)+'</b></div><div class="line-actions"></div>';
+      const a=d.querySelector('.line-actions');
+      const cancel=document.createElement('button');cancel.className='cancel';cancel.textContent='Gutschein entfernen';cancel.onclick=()=>removeOrVoidVoucher(v);a.appendChild(cancel);
+      box.appendChild(d)
+    })
+  }
+  if(currentSession?.order_type==='Lieferung')total+=Number(currentSession.delivery_fee||0);
+  $('#total').textContent=euro(total)
+}
+function renderRegisterGroups(){
+  const box=$('#registerBox'),groupsBox=$('#registerGroups');groupsBox.innerHTML='';let grand=0;
+  const byId=new Map(transferredOrders.map(o=>[o.id,o]));
+  const activeGroups=billGroups.filter(g=>g.status!=='completed'&&(g.bill_group_items||[]).some(i=>byId.has(i.order_item_id)));
+  if(!activeGroups.length){box.classList.add('hidden');groupsBox.classList.add('hidden');registerOpen=false;$('#registerTotal').textContent=euro(0);return}
+  box.classList.remove('hidden');
+  activeGroups.forEach((g,idx)=>{
+    const items=(g.bill_group_items||[]).map(i=>({link:i,order:byId.get(i.order_item_id)})).filter(x=>x.order);
+    const sum=items.reduce((t,x)=>t+Number(x.order.unit_price)*x.link.quantity,0);grand+=sum;
+    const card=document.createElement('div');card.className='register-group';
+    card.innerHTML='<div class="register-head"><b>'+esc(g.label||('Teilung '+(idx+1)))+'</b><span class="register-total">'+euro(sum)+'</span></div>';
+    items.forEach(({link,order})=>{
+      const row=document.createElement('div');row.className='register-item';
+      row.innerHTML='<span>'+link.quantity+'× '+esc(order.menu_items?.name)+(order.menu_items?.variant?' · '+esc(order.menu_items.variant):'')+'</span><b>'+euro(Number(order.unit_price)*link.quantity)+'</b>';
+      const btn=document.createElement('button');btn.className='restore';btn.textContent='Zurückholen';btn.onclick=e=>{e.stopPropagation();restoreFromRegister(g.id,link.id,order.menu_items?.name||'Position')};row.appendChild(btn);card.appendChild(row)
+    });
+    const actions=document.createElement('div');actions.className='register-group-actions';
+    const done=document.createElement('button');done.className='complete';done.textContent='✓ Kassiert / abgeschlossen';done.onclick=()=>completeBillGroup(g.id,sum);actions.appendChild(done);card.appendChild(actions);groupsBox.appendChild(card)
+  });
+  $('#registerTotal').textContent=euro(grand);groupsBox.classList.toggle('hidden',!registerOpen)
+}
+function renderCompletedGroups(){
+  const box=$('#completedBox'),list=$('#completedGroups');list.innerHTML='';let grand=0;
+  const byId=new Map(transferredOrders.map(o=>[o.id,o]));
+  const completed=billGroups.filter(g=>g.status==='completed'&&(g.bill_group_items||[]).some(i=>byId.has(i.order_item_id)));
+  if(!completed.length){box.classList.add('hidden');list.classList.add('hidden');completedOpen=false;$('#completedTotal').textContent=euro(0);return}
+  box.classList.remove('hidden');
+  completed.forEach((g,idx)=>{
+    const items=(g.bill_group_items||[]).map(i=>({link:i,order:byId.get(i.order_item_id)})).filter(x=>x.order);
+    const sum=items.reduce((t,x)=>t+Number(x.order.unit_price)*x.link.quantity,0);grand+=sum;
+    const card=document.createElement('div');card.className='completed-group';
+    const when=g.completed_at?new Date(g.completed_at).toLocaleString('de-DE',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'';
+    card.innerHTML='<div class="completed-head"><span>✓ '+esc(g.label||('Teilung '+(idx+1)))+'</span><span>'+euro(sum)+'</span></div>'+(when?'<div class="completed-meta">Abgeschlossen '+esc(when)+' Uhr</div>':'');
+    items.forEach(({link,order})=>{const row=document.createElement('div');row.className='completed-item';row.innerHTML='<span>'+link.quantity+'× '+esc(order.menu_items?.name)+(order.menu_items?.variant?' · '+esc(order.menu_items.variant):'')+'</span><span>'+euro(Number(order.unit_price)*link.quantity)+'</span>';card.appendChild(row)});
+    list.appendChild(card)
+  });
+  $('#completedTotal').textContent=euro(grand);list.classList.toggle('hidden',!completedOpen)
+}
+const toggleRegister=()=>{registerOpen=!registerOpen;$('#registerGroups').classList.toggle('hidden',!registerOpen)};
+$('#registerToggle').onclick=toggleRegister;
+const toggleCompleted=()=>{completedOpen=!completedOpen;$('#completedGroups').classList.toggle('hidden',!completedOpen)};
+$('#completedToggle').onclick=toggleCompleted;
+
+async function setStatus(id,status){const{error}=await supabase.from('order_items').update({status}).eq('id',id);if(!error)await loadOrders()}
+async function cancelItem(o){
+  const name=o.menu_items?.name||'Position';if(!confirm(name+' wirklich stornieren?'))return;
+  const{error}=await supabase.from('order_items').update({cancelled:true,cancelled_at:new Date().toISOString()}).eq('id',o.id);
+  $('#actionMsg').textContent=error?'Storno fehlgeschlagen: '+error.message:name+' storniert.';if(!error)await loadOrders()
+}
+async function restoreFromRegister(groupId,linkId,name){
+  const{error}=await supabase.from('bill_group_items').delete().eq('id',linkId);if(error){$('#actionMsg').textContent='Zurückholen fehlgeschlagen: '+error.message;return}
+  const{data:left}=await supabase.from('bill_group_items').select('id').eq('bill_group_id',groupId).limit(1);
+  if(!left?.length)await supabase.from('bill_groups').update({status:'cancelled'}).eq('id',groupId);
+  $('#actionMsg').textContent=name+' wieder zur offenen Bestellung zurückgeholt.';await loadOrders()
+}
+async function completeBillGroup(groupId,sum){
+  if(!confirm('Wurde diese Teilung an der Kasse wirklich bezahlt? Danach wird sie als abgeschlossen markiert.'))return;
+  const{data:{user}}=await supabase.auth.getUser();
+  const{error}=await supabase.from('bill_groups').update({status:'completed',completed_at:new Date().toISOString(),completed_by_email:user?.email||null}).eq('id',groupId);
+  if(error){$('#actionMsg').textContent='Abschließen fehlgeschlagen: '+error.message;return}
+  $('#actionMsg').textContent='Teilung '+euro(sum)+' abgeschlossen. Der Tisch bleibt für weitere Bestellungen geöffnet.';await loadOrders()
+}
+$('#closeTableBtn').onclick=async()=>{
+  if(!currentSession){
+    $('#orderView').classList.add('hidden');$('#tablesView').classList.remove('hidden');currentTable=null;
+    $('#syncMsg').textContent='Tisch war leer · keine Sitzung angelegt.';return
+  }
+  await loadOrders();
+  const active=billGroups.filter(g=>g.status!=='completed');
+  if(orders.length){alert('Der Tisch kann noch nicht abgeschlossen werden: Es gibt noch offene Positionen.');return}
+  if(active.length){alert('Der Tisch kann noch nicht abgeschlossen werden: Es gibt noch Positionen, die an die Kasse übergeben, aber noch nicht als kassiert bestätigt wurden.');return}
+  if(!confirm('Tisch '+tableDisplay(currentTable)+' wirklich abschließen? Danach ist der Tisch für die nächsten Gäste wieder leer.'))return;
+  const{data:{user}}=await supabase.auth.getUser();
+  const{error}=await supabase.from('table_sessions').update({status:'closed',closed_at:new Date().toISOString(),closed_by_email:user?.email||null}).eq('id',currentSession.id);
+  if(error){$('#actionMsg').textContent='Tischabschluss fehlgeschlagen: '+error.message;return}
+  $('#orderView').classList.add('hidden');$('#tablesView').classList.remove('hidden');currentTable=null;currentSession=null;orders=[];billGroups=[];
+  $('#syncMsg').textContent='Tisch abgeschlossen · bereit für neue Gäste.'
+};
+
+
+
+function specialOrderPrintMeta(){
+  if(!currentSession||!['Lieferung','Abholung'].includes(currentSession.order_type))return '';
+  const delivery=currentSession.order_type==='Lieferung';
+  return `<div style="border:1px solid #222;padding:2mm;margin:2mm 0;font-size:10px;line-height:1.45">
+    <b>${esc(currentSession.order_type)} · ${esc(currentSession.customer_name||'')}</b><br>
+    Telefon: ${esc(currentSession.customer_phone||'')}<br>
+    ${delivery?'Adresse: '+esc(currentSession.customer_address||'')+'<br>':''}
+    ${delivery?'Lieferzeit':'Abholzeit'}: <b>${esc(currentSession.requested_time||'')}</b>
+    ${currentSession.customer_note?'<br>Hinweis: '+esc(currentSession.customer_note):''}
+  </div>`
+}
+function receiptDateTime(){
+  const d=new Date();
+  return {date:d.toLocaleDateString('de-DE'),time:d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})}
+}
+function taxRateForOrder(o){return o.menu_items?.menu_categories?.destination==='bar'?19:7}
+function groupReceiptLines(items){
+  const map=new Map();
+  items.forEach(({order,qty})=>{
+    if(!order)return;
+    const name=isIceItem(order.menu_items)&&order.options?.ice_balls ? 'Eis ('+order.options.ice_balls+' '+(Number(order.options.ice_balls)===1?'Kugel':'Kugeln')+')' : (order.menu_items?.name||'Position'),variant=order.menu_items?.variant||'',unit=Number(order.unit_price||0),rate=taxRateForOrder(order);
+    const key=[name,variant,unit,rate].join('|');
+    const detail=[...((order.options?.selections||[]).map(x=>(Number(x.quantity||1)>1?Number(x.quantity)+'× ':'')+x.name)),...((order.order_item_extras||[]).map(x=>x.name+(Number(x.unit_price)?' +'+euro(x.unit_price):'')))].join(', ');const note=order.note||'';const detailKey=detail+'|'+note;const fullKey=key+'|'+detailKey;if(!map.has(fullKey))map.set(fullKey,{name,variant,unit,rate,qty:0,detail,note});
+    map.get(fullKey).qty+=Number(qty||order.quantity||1)
+  });
+  return [...map.values()].map(x=>({...x,gross:x.unit*x.qty}))
+}
+function currentReceiptGroups(){
+  const all=new Map([...orders,...transferredOrders].map(o=>[o.id,o])),used=new Set(),groups=[];
+  billGroups.filter(g=>g.status!=='cancelled').forEach(g=>{
+    const links=(g.bill_group_items||[]).map(link=>{const order=all.get(link.order_item_id);if(order)used.add(order.id);return{order,qty:link.quantity}}).filter(x=>x.order);
+    if(links.length)groups.push({label:g.label||'',lines:groupReceiptLines(links)})
+  });
+  const remaining=[...all.values()].filter(o=>!used.has(o.id));
+  if(remaining.length)groups.push({label:groups.length?'Restliche Positionen':'Gesamt',lines:groupReceiptLines(remaining.map(order=>({order,qty:order.quantity})))});
+  return groups
+}
+function taxSummary(groups){
+  let foodGross=0,drinkGross=0;
+  groups.forEach(g=>g.lines.forEach(l=>l.rate===19?drinkGross+=l.gross:foodGross+=l.gross));
+  const foodNet=foodGross/1.07,drinkNet=drinkGross/1.19;
+  return {foodGross,drinkGross,foodNet,drinkNet,foodVat:foodGross-foodNet,drinkVat:drinkGross-drinkNet,gross:foodGross+drinkGross,net:foodNet+drinkNet,vat:(foodGross-foodNet)+(drinkGross-drinkNet)}
+}
+function novaLogoUrl(){return new URL('/nova-logo.jpg',location.href).href}
+async function removeOrVoidVoucher(v){
+  if(!v?.id)return;
+  const isCurrentOpen=!!currentSession;
+  const question=isCurrentOpen
+    ?'Gutschein '+v.voucher_number+' über '+euro(v.original_value)+' aus dem laufenden Tisch entfernen?\n\nIst dies die aktuell höchste Gutscheinnummer, wird sie wieder freigegeben.'
+    :'Gutschein '+v.voucher_number+' wirklich nachträglich stornieren?\n\nDie Gutscheinnummer bleibt dabei dauerhaft erhalten.';
+  if(!confirm(question))return;
+
+  const{data,error}=await supabase.rpc('remove_or_void_nova_voucher',{p_voucher_id:v.id});
+  if(error){
+    $('#actionMsg').textContent='Gutschein konnte nicht geändert werden: '+error.message;
+    return
+  }
+
+  if(data?.released_number){
+    $('#actionMsg').textContent='Gutschein '+data.voucher_number+' entfernt. Die Nummer wurde wieder freigegeben.';
+  }else if(data?.session_status==='open'){
+    $('#actionMsg').textContent='Gutschein '+data.voucher_number+' entfernt. Die Nummer bleibt erhalten, weil bereits eine neuere Gutscheinnummer vergeben wurde.';
+  }else{
+    $('#actionMsg').textContent='Gutschein '+data.voucher_number+' wurde nachträglich storniert. Die Nummer bleibt erhalten.';
+  }
+
+  if(currentSession){
+    await loadOrders();
+    await refreshSessionVouchers();
+    renderOrder()
+  }
+}
+async function refreshSessionVouchers(){
+  if(!currentSession){sessionVouchers=[];return []}
+  const{data,error}=await supabase.from('vouchers')
+    .select('id,voucher_number,original_value,remaining_value,status,issued_at,note')
+    .eq('session_id',currentSession.id)
+    .neq('status','void')
+    .order('issued_at');
+  if(error){
+    $('#actionMsg').textContent='Gutscheine konnten nicht geladen werden: '+error.message;
+    return sessionVouchers||[]
+  }
+  sessionVouchers=data||[];
+  return sessionVouchers
+}
+function deliveryFeeGross(){return currentSession?.order_type==='Lieferung'?Number(currentSession.delivery_fee||0):0}
+function fullReceiptHtml(){
+  const groups=currentReceiptGroups(),tot=taxSummary(groups),dt=receiptDateTime();
+  let parts='';
+  groups.forEach((g,idx)=>{
+    const subtotal=g.lines.reduce((a,l)=>a+l.gross,0),title=groups.length===1?'BESTELLUNG':'TEILUNG '+(idx+1);
+    parts+=`<section class="part"><div class="part-title">${title}</div><table><thead><tr><th class="qty">Anzahl</th><th>Artikel</th><th class="num">Einzelpreis</th><th class="num">Gesamt</th></tr></thead><tbody>${g.lines.map(l=>`<tr><td class="qty">${l.qty}×</td><td>${esc(l.name)}${l.variant?' · '+esc(l.variant):''}${l.detail?'<div style="font-size:8.5px;margin-top:2px">'+esc(l.detail)+'</div>':''}${l.note?'<div style="font-size:8.5px;font-style:italic;margin-top:2px">Bemerkung: '+esc(l.note)+'</div>':''}</td><td class="num">${euro(l.unit)}</td><td class="num">${euro(l.gross)}</td></tr>`).join('')}</tbody></table><div class="part-total">Gesamt ${title==='BESTELLUNG'?'Bestellung':'Teilung '+(idx+1)} <b>${euro(subtotal)}</b></div></section>`
+  });
+  const pageMm=Math.max(120,58+groups.reduce((n,g)=>n+g.lines.length,0)*9+groups.length*16);
+  return `<!doctype html><html><head><meta charset="utf-8"><title>NOVA · Tisch ${esc(currentTable?.code||'')}</title><style>
+@page{size:80mm ${pageMm}mm;margin:4mm}html,body{width:72mm;min-width:72mm}*{box-sizing:border-box}body{margin:0;color:#171713;font-family:Arial,sans-serif;font-size:10.5px}.receipt{width:72mm;max-width:72mm;margin:0 auto}.logo{display:block;max-width:55mm;max-height:26mm;object-fit:contain;margin:0 auto 3mm}h1{font:700 17px Georgia,serif;text-align:center;margin:1mm 0}.subtitle{text-align:center;font-size:10px;letter-spacing:.12em}.meta{text-align:center;font-size:9.5px;margin:2mm 0 3mm}.rule{border-top:1.5px solid #222}.part{margin:3mm 0 4mm}.part-title{display:inline-block;background:#eee7d9;border-radius:4px;padding:1.2mm 2.5mm;font-weight:800}table{width:100%;border-collapse:collapse;table-layout:fixed;margin-top:1mm}th{font-size:8.5px;border-bottom:1px solid #999;text-align:left}td{padding:1.2mm 0;border-bottom:1px dotted #ccc;vertical-align:top}.qty{width:11mm}.num{text-align:right;width:17mm;white-space:nowrap}.part-total{text-align:right;font-weight:700;margin-top:1.8mm;padding-bottom:2mm;border-bottom:1px dashed #777}.gap{height:4mm}.grand{display:flex;justify-content:space-between;font-size:15px;font-weight:900;border-top:2px solid #222;border-bottom:2px solid #222;padding:2mm 0}.tax{margin-top:2mm}.tax th,.tax td{font-size:9px}.tax th:nth-child(n+2),.tax td:nth-child(n+2){text-align:right}.note{text-align:center;font-size:9px;margin:3mm 0 2mm}.powered{text-align:center;border-top:1px dotted #aaa;padding-top:2.5mm;font-weight:800}.dot{color:#e86d2d}
+</style></head><body><div class="receipt"><img class="logo" src="${novaLogoUrl()}"><h1>TISCH ${esc(currentTable?.code||'')}</h1><div class="subtitle">GESAMTBESTELLZETTEL</div><div class="meta">Datum: ${dt.date} · Uhrzeit: ${dt.time}</div>${specialOrderPrintMeta()}<div class="rule"></div>${parts}${deliveryFeeGross()>0?`<section class="part"><div class="part-title">LIEFERKOSTEN</div><div style="display:flex;justify-content:space-between;padding:1.5mm 0"><span>Lieferkosten</span><b>${euro(deliveryFeeGross())}</b></div></section>`:''}${sessionVouchers.length?`<section class="part"><div class="part-title">GUTSCHEIN</div>${sessionVouchers.map(v=>`<div style="display:flex;justify-content:space-between;padding:1.5mm 0;border-bottom:1px dotted #ccc"><span>Gutschein<br><small>${esc(v.voucher_number)}${v.note?' · Für: '+esc(v.note):''}</small></span><b>${euro(v.original_value)}</b></div>`).join('')}</section>`:''}<div class="receipt-summary-block"><div class="gap"></div><div class="grand"><span>GESAMT</span><span>${euro(tot.gross+sessionVouchers.reduce((a,v)=>a+Number(v.original_value),0)+deliveryFeeGross())}</span></div><table class="tax"><thead><tr><th>Steuersatz</th><th>Netto</th><th>MwSt.</th><th>Brutto</th></tr></thead><tbody><tr><td>7 % Speisen</td><td>${euro(tot.foodNet)}</td><td>${euro(tot.foodVat)}</td><td>${euro(tot.foodGross)}</td></tr><tr><td>19 % Getränke</td><td>${euro(tot.drinkNet)}</td><td>${euro(tot.drinkVat)}</td><td>${euro(tot.drinkGross)}</td></tr>${sessionVouchers.length?`<tr><td>Gutschein</td><td>${euro(sessionVouchers.reduce((a,v)=>a+Number(v.original_value),0))}</td><td>${euro(0)}</td><td>${euro(sessionVouchers.reduce((a,v)=>a+Number(v.original_value),0))}</td></tr>`:''}<tr><th>Gesamt</th><th>${euro(tot.net+sessionVouchers.reduce((a,v)=>a+Number(v.original_value),0)+deliveryFeeGross())}</th><th>${euro(tot.vat)}</th><th>${euro(tot.gross+sessionVouchers.reduce((a,v)=>a+Number(v.original_value),0)+deliveryFeeGross())}</th></tr></tbody></table><div class="note">Abrechnung erfolgt an der Kasse.</div><div class="powered">OrderBuddy<span class="dot">.</span></div></div></body></html>`
+}
+function stationReceiptHtml(kind,selected){
+  const dt=receiptDateTime(),title=kind==='kitchen'?'KÜCHE':'BAR',lines=groupReceiptLines(selected.map(order=>({order,qty:order.quantity})));
+  const pageMm=Math.max(90,48+lines.length*16);
+  return `<!doctype html><html><head><meta charset="utf-8"><title>${title} · Tisch ${esc(currentTable?.code||'')}</title><style>@page{size:80mm ${pageMm}mm;margin:4mm}html,body{width:72mm;min-width:72mm}body{font-family:Arial,sans-serif;color:#111;margin:0}.r{width:72mm;max-width:72mm;margin:0 auto}.logo{display:block;max-width:46mm;max-height:20mm;object-fit:contain;margin:0 auto 3mm}h1{text-align:center;font-size:26px;margin:1mm 0}.meta{text-align:center;font-size:12px;margin:2mm 0 4mm;border-bottom:2px solid #000;padding-bottom:3mm}.line{display:grid;grid-template-columns:12mm 1fr;gap:3mm;padding:2.5mm 0;border-bottom:1px dashed #777}.q{font-size:22px;font-weight:900}.n{font-size:18px;font-weight:800}.v{font-size:12px;margin-top:1mm}.footer{text-align:center;font-size:9px;margin-top:4mm}</style></head><body><div class="r"><img class="logo" src="${novaLogoUrl()}"><h1>${title} · TISCH ${esc(currentTable?.code||'')}</h1><div class="meta">${dt.date} · ${dt.time} · ${esc(deviceName)}</div>${specialOrderPrintMeta()}${lines.map(l=>`<div class="line"><div class="q">${l.qty}×</div><div><div class="n">${esc(l.name)}</div>${l.variant?`<div class="v">${esc(l.variant)}</div>`:''}${l.detail?`<div class="v">${esc(l.detail)}</div>`:''}${l.note?`<div class="v"><b>Bemerkung:</b> ${esc(l.note)}</div>`:''}</div></div>`).join('')}<div class="footer">Powered by OrderBuddy<span style="color:#e86d2d">.</span></div></div></body></html>`
+}
+function openPrintWindow(html){
+  const w=window.open('','_blank');
+  if(!w){$('#actionMsg').textContent='Druckfenster blockiert. Pop-ups für OrderBuddy erlauben.';return false}
+  w.document.open();w.document.write(html);w.document.close();w.onload=()=>{w.focus();setTimeout(()=>w.print(),150)};return true
+}
+async function createPrintJob(documentType,destination,itemIds,payload){
+  if(!restaurant||!currentTable||!currentSession)return null;
+  const{data:{user}}=await supabase.auth.getUser();
+  const{data:job,error}=await supabase.from('print_jobs').insert({restaurant_id:restaurant.id,table_id:currentTable.id,session_id:currentSession.id,destination,document_type:documentType,status:'reserved',requested_by_email:user?.email||null,payload:payload||{},snapshot:payload?.snapshot||null}).select('id').single();
+  if(error){$('#actionMsg').textContent='Druckauftrag fehlgeschlagen: '+error.message;return null}
+  if(itemIds?.length){
+    const{error:e2}=await supabase.from('print_job_items').insert(itemIds.map(id=>({print_job_id:job.id,order_item_id:id})));
+    if(e2){$('#actionMsg').textContent='Druckpositionen konnten nicht reserviert werden: '+e2.message;return null}
+  }
+  return job
+}
+async function printStation(kind){
+  if(!currentSession){$('#actionMsg').textContent='Keine Bestellung zum Drucken.';return}
+  await loadOrders();
+  const all=[...orders,...transferredOrders],selected=all.filter(o=>kind==='kitchen'?(o.menu_items?.menu_categories?.destination==='kitchen'&&!o.kitchen_printed_at):(o.menu_items?.menu_categories?.destination==='bar'&&!o.bar_printed_at));
+  if(!selected.length){$('#actionMsg').textContent=kind==='kitchen'?'Keine neuen Speisen für die Küche.':'Keine neuen Getränke für die Bar.';return}
+  const html=stationReceiptHtml(kind,selected);const job=await createPrintJob(kind,kind,selected.map(o=>o.id),{table:tableDisplay(currentTable),count:selected.length,snapshot:{html,title:(kind==='kitchen'?'Küche':'Bar')+' · Tisch '+currentTable.code}});if(!job)return;
+  if(!openPrintWindow(html))return;
+  const field=kind==='kitchen'?'kitchen_printed_at':'bar_printed_at',now=new Date().toISOString();
+  const{error}=await supabase.from('order_items').update({[field]:now}).in('id',selected.map(o=>o.id));
+  await supabase.from('print_jobs').update({status:error?'reserved':'printed',printed_at:error?null:now}).eq('id',job.id);
+  $('#actionMsg').textContent=kind==='kitchen'?'Küchenbon geöffnet.':'Barbon geöffnet.';await loadOrders()
+}
+async function printFullReceipt(){
+  if(!currentSession){$('#actionMsg').textContent='Keine Bestellung oder Gutschein für einen Gesamtbestellzettel.';return}
+  await loadOrders();
+  await refreshSessionVouchers();
+
+  const all=[...orders,...transferredOrders];
+  if(!all.length&&!sessionVouchers.length){
+    $('#actionMsg').textContent='Keine Positionen oder Gutscheine für einen Gesamtbestellzettel.';
+    return
+  }
+
+  const groups=currentReceiptGroups();
+  const tot=taxSummary(groups);
+  const voucherGross=sessionVouchers.reduce((a,v)=>a+Number(v.original_value||0),0);
+  const html=fullReceiptHtml();
+
+  const job=await createPrintJob(
+    'full_order',
+    'bar',
+    all.map(o=>o.id),
+    {
+      table:tableDisplay(currentTable),
+      gross:tot.gross+voucherGross,
+      groups:groups.length,
+      vouchers:sessionVouchers.map(v=>({number:v.voucher_number,value:Number(v.original_value)})),
+      snapshot:{html,title:'Gesamt · Tisch '+currentTable.code}
+    }
+  );
+  if(!job)return;
+  if(!openPrintWindow(html))return;
+
+  const now=new Date().toISOString();
+  await supabase.from('print_jobs').update({status:'printed',printed_at:now}).eq('id',job.id);
+  $('#actionMsg').textContent='Gesamtbestellzettel geöffnet · inklusive '+sessionVouchers.length+' Gutschein(en).'
+}
+$('#kitchenBtn').onclick=()=>printStation('kitchen');
+$('#barBtn').onclick=()=>printStation('bar');
+$('#fullBtn').onclick=()=>printFullReceipt();
+
+
+$('#voucherBtn').onclick=()=>{
+  if(!currentTable){
+    $('#actionMsg').textContent='Bitte zuerst den Tisch öffnen, damit der Gutscheinverkauf auf dem Gesamtbon erscheint.';
+    return
+  }
+  $('#voucherValue').value='';
+  $('#voucherNote').value='';
+  $('#voucherResult').textContent='';
+  $('#voucherModal').classList.remove('hidden')
+};
+$('#voucherCancel').onclick=()=>$('#voucherModal').classList.add('hidden');
+
+function voucherSecurityCode(v){
+  const raw=String(v?.id||'').replace(/-/g,'').toUpperCase();
+  return raw ? raw.slice(0,4)+'-'+raw.slice(4,8)+'-'+raw.slice(8,12) : '';
+}
+function voucherQrUrl(v){
+  const payload='NOVA-GUTSCHEIN|'+String(v?.id||'');
+  return 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=0&data='+encodeURIComponent(payload)
+}
+function voucherPrintHtml(v){
+  const d=new Date(v.issued_at||Date.now());
+  const recipient=String(v.note||'').trim();
+  const code=voucherSecurityCode(v);
+  return `<!doctype html><html><head><meta charset="utf-8"><style>
+    @page{size:80mm 140mm;margin:0}
+    html,body{width:80mm;height:140mm;margin:0;padding:0;overflow:hidden}
+    *{box-sizing:border-box}
+    body{font-family:Arial,sans-serif;text-align:center}
+    .voucher{width:80mm;height:140mm;padding:7mm 6mm 5mm;display:flex;flex-direction:column;align-items:center}
+    .logo{width:auto;max-width:54mm;height:19mm;object-fit:contain}
+    h2{font-size:19px;margin:3mm 0 1mm}
+    .value{font-size:29px;font-weight:900;margin:2mm 0}
+    .for{font-size:16px;font-weight:800;min-height:7mm;margin:1mm 0}
+    .num{font-size:13px;font-weight:850;letter-spacing:.04em;margin-top:1mm}
+    .code{font-size:12px;font-weight:900;letter-spacing:.12em;margin-top:1.5mm}
+    .qr{width:31mm;height:31mm;margin:3mm auto 1.5mm;display:block}
+    .date{font-size:11px}
+    .wish{font-size:11px;font-weight:700;line-height:1.3;margin-top:2mm}
+    .powered{font-size:8px;border-top:1px dotted #aaa;width:100%;margin-top:auto;padding-top:2.5mm}
+    @media print{html,body,.voucher{width:80mm!important;height:140mm!important}}
+  </style></head><body><div class="voucher">
+    <img class="logo" src="${novaLogoUrl()}">
+    <h2>GUTSCHEIN</h2>
+    <div class="value">${euro(v.original_value)}</div>
+    <div class="for">${recipient?'Für: '+esc(recipient):'&nbsp;'}</div>
+    <div class="num">Nr. ${esc(v.voucher_number)}</div>
+    <div class="code">${esc(code)}</div>
+    <img class="qr" src="${voucherQrUrl(v)}" alt="Gutschein QR-Code">
+    <div class="date">${d.toLocaleDateString('de-DE')}</div>
+    <div class="wish">Wir wünschen viel Freude beim Genießen!</div>
+    <div class="powered">OrderBuddy<span style="color:#e86d2d">.</span></div>
+  </div></body></html>`
+}
+
+function printExistingVoucher(v){
+  const w=window.open('about:blank','_blank');
+  if(!w){
+    alert('Druckfenster konnte nicht geöffnet werden. Bitte Pop-ups für OrderBuddy erlauben.');
+    return
+  }
+  w.document.open();
+  w.document.write(voucherPrintHtml(v));
+  w.document.close();
+  setTimeout(()=>{try{w.focus();w.print()}catch{}},450)
+}
+$('#voucherCreate').onclick=async()=>{const value=Number($('#voucherValue').value);if(!(value>0)){ $('#voucherResult').textContent='Bitte einen Gutscheinwert eingeben.';return}if(currentTable&&!currentSession){currentSession=await createSession(currentTable);if(!currentSession)return}const{data,error}=await supabase.rpc('create_nova_voucher',{p_value:value,p_note:$('#voucherNote').value.trim()||null,p_session_id:currentSession?.id||null});if(error){$('#voucherResult').textContent='Fehler: '+error.message;return}$('#voucherResult').textContent='Verkauft: '+data.voucher_number+' · '+euro(data.original_value)+' · auf Gesamtbon übernommen.';$('#voucherModal').classList.add('hidden');openPrintWindow(voucherPrintHtml(data));$('#actionMsg').textContent='Gutschein '+data.voucher_number+' verkauft · '+euro(data.original_value)+' · Zahlung an offener Ladenkasse.';if(currentSession){await loadOrders();await refreshSessionVouchers();renderOrder()}};
+$('#billingBtn').onclick=()=>{$('#billingModal').classList.remove('hidden');$('#splitArea').classList.add('hidden');$('#billResult').textContent='';renderSplitItems()};
+$('#closeBilling').onclick=()=>$('#billingModal').classList.add('hidden');
+$('#billSplit').onclick=()=>{$('#splitArea').classList.remove('hidden');renderSplitItems()};
+$('#billAll').onclick=()=>{
+  const prior=billGroups.length>0;
+  prepareBillGroup(orders.map(o=>o.id),prior?'Restliche Positionen':'Gesamt')
+};
+$('#prepareSplit').onclick=()=>{
+  const ids=[...document.querySelectorAll('.split-check:checked')].map(x=>x.value);
+  if(!ids.length){$('#billResult').textContent='Bitte mindestens eine Position auswählen.';return}
+  prepareBillGroup(ids,'Getrennt')
+};
+function renderSplitItems(){
+  const box=$('#splitItems');box.innerHTML='';
+  orders.forEach(o=>{const l=document.createElement('label');l.className='select-line';l.innerHTML='<input class="split-check" type="checkbox" value="'+o.id+'"><span>'+o.quantity+'× '+esc(o.menu_items?.name)+(o.menu_items?.variant?' · '+esc(o.menu_items.variant):'')+'</span><b>'+euro(Number(o.unit_price)*o.quantity)+'</b>';box.appendChild(l)});
+  document.querySelectorAll('.split-check').forEach(x=>x.onchange=updateSplitTotal);updateSplitTotal()
+}
+function updateSplitTotal(){
+  const ids=new Set([...document.querySelectorAll('.split-check:checked')].map(x=>x.value));
+  const total=orders.filter(o=>ids.has(o.id)).reduce((t,o)=>t+Number(o.unit_price)*o.quantity,0);$('#splitTotal').textContent=euro(total)
+}
+async function prepareBillGroup(ids,label){
+  if(!restaurant||!currentTable||!currentSession||!ids.length)return;
+  const selected=orders.filter(o=>ids.includes(o.id));if(!selected.length)return;
+  const{data:{user}}=await supabase.auth.getUser();
+  const{data:bg,error:e1}=await supabase.from('bill_groups').insert({
+    restaurant_id:restaurant.id,table_id:currentTable.id,session_id:currentSession.id,label,status:'handed_to_register',prepared_by_email:user?.email||null
+  }).select('id').single();
+  if(e1){$('#billResult').textContent='Fehler: '+e1.message;return}
+  const rows=selected.map(o=>({bill_group_id:bg.id,order_item_id:o.id,quantity:o.quantity}));
+  const{error:e2}=await supabase.from('bill_group_items').insert(rows);
+  if(e2){await supabase.from('bill_groups').update({status:'cancelled'}).eq('id',bg.id);$('#billResult').textContent='Fehler: '+e2.message;return}
+  const sum=selected.reduce((t,o)=>t+Number(o.unit_price)*o.quantity,0);
+  $('#billResult').textContent=label+' an Kasse übergeben: '+euro(sum)+'.';await loadOrders();renderSplitItems()
+}
+
+
+$('#printHistoryBtn').onclick=async()=>{if(!currentSession){$('#actionMsg').textContent='Für diesen Tisch gibt es noch keinen Druckverlauf.';return}const{data,error}=await supabase.from('print_jobs').select('id,document_type,destination,created_at,printed_at,snapshot,is_reprint').eq('session_id',currentSession.id).order('created_at',{ascending:false});if(error){$('#actionMsg').textContent='Druckverlauf: '+error.message;return}const box=$('#printHistoryList');box.innerHTML='';if(!data?.length)box.innerHTML='<div class="msg">Noch keine Bons gedruckt.</div>';(data||[]).forEach(j=>{const row=document.createElement('div');row.className='history-row';const type=j.document_type==='kitchen'?'Küche':j.document_type==='bar'?'Bar':'Gesamt';row.innerHTML='<div class="history-head"><span>'+type+(j.is_reprint?' · NACHDRUCK':'')+'</span><span>'+new Date(j.created_at).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+'</span></div>';const b=document.createElement('button');b.className='secondary';b.style.marginTop='8px';b.textContent='Erneut drucken';b.onclick=()=>reprintJob(j);row.appendChild(b);box.appendChild(row)});$('#printHistoryModal').classList.remove('hidden')};
+$('#printHistoryClose').onclick=()=>$('#printHistoryModal').classList.add('hidden');
+async function reprintJob(j){const html=j.snapshot?.html;if(!html){$('#actionMsg').textContent='Für diesen älteren Bon ist kein Nachdruck-Snapshot vorhanden.';return}const marked=html.replace('<body>','<body><div style="font-family:Arial;text-align:center;font-weight:900;border:2px solid #000;padding:4px;margin-bottom:6px">NACHDRUCK</div>');openPrintWindow(marked);const{data:{user}}=await supabase.auth.getUser();await supabase.from('print_jobs').insert({restaurant_id:restaurant.id,table_id:currentTable.id,session_id:currentSession.id,destination:j.destination,document_type:j.document_type,status:'printed',printed_at:new Date().toISOString(),requested_by_email:user?.email||null,is_reprint:true,reprint_of:j.id,snapshot:j.snapshot,payload:{reprint:true}})}
+
+/* ---------- Chefbereich ---------- */
+
+
+
+function renderDeliveryZoneAdmin(){
+  const box=$('#deliveryZoneAdminList');if(!box)return;box.innerHTML='';
+  if(!deliveryZones.length){box.innerHTML='<div class="admin-note" style="margin-top:10px">Lieferzonen noch nicht eingerichtet. Bitte einmal die beigefügte Supabase-SQL-Datei ausführen.</div>';return}
+  deliveryZones.forEach(z=>{
+    const row=document.createElement('div');row.className='zone-admin-row';
+    row.innerHTML='<label>'+esc(z.name==='Himmersen'?'Hummersen':z.name)+'</label><input type="number" min="0" step="0.50" value="'+Number(z.fee||0).toFixed(2)+'"><button>Speichern</button>';
+    row.querySelector('button').onclick=async()=>{
+      const fee=Number(row.querySelector('input').value||0);
+      const{error}=await supabase.from('delivery_zones').update({fee}).eq('id',z.id);
+      $('#adminMsg').textContent=error?'Lieferkosten: '+error.message:'Lieferkosten für '+z.name+' gespeichert.';
+      if(!error){z.fee=fee;renderDeliveryZoneAdmin()}
+    };box.appendChild(row)
+  })
+}
+function renderAdminTables(){
+  const area=$('#tableAdminArea')?.value||'Terrasse';
+  const filter=String($('#tableAdminFilter')?.value||'').trim().toLowerCase();
+  const box=$('#tableAdminList');if(!box)return;box.innerHTML='';
+  const rows=(window.tablesData||[])
+    .filter(t=>t.areas?.name===area)
+    .filter(t=>!filter||tableLabel(t.code).toLowerCase().includes(filter)||String(t.display_name||'').toLowerCase().includes(filter))
+    .sort((a,b)=>a.sort_order-b.sort_order);
+  if(!rows.length){box.innerHTML='<div class="admin-note" style="margin-top:10px">Keine Einträge gefunden.</div>';return}
+  rows.forEach(t=>{
+    const row=document.createElement('div');row.className='admin-row';
+    row.innerHTML='<div class="admin-form"><label>Interner Code<input value="'+esc(tableLabel(t.code))+'" disabled></label><label>Sichtbarer Name<input value="'+esc(t.display_name||'')+'" placeholder="'+esc(tableLabel(t.code))+'"></label><button>Speichern</button></div>';
+    row.querySelector('button').onclick=async()=>{
+      const value=row.querySelectorAll('input')[1].value.trim();
+      const{error}=await supabase.from('restaurant_tables').update({display_name:value||null}).eq('id',t.id);
+      $('#adminMsg').textContent=error?'Tischname: '+error.message:'Name gespeichert.';
+      if(!error){await loadBase();renderAdminTables()}
+    };
+    box.appendChild(row)
+  })
+}
+$('#tableAdminReload').onclick=renderAdminTables;
+$('#tableAdminArea').onchange=renderAdminTables;
+$('#tableAdminFilter').oninput=renderAdminTables;
+
+async function loadAdminMasterData(){await loadBase();renderDeliveryZoneAdmin();renderAdminTables();renderAdminMenu();renderAdminExtras();await renderAdminVouchers()}
+function renderAdminMenu(){const cat=$('#menuAdminCategory');cat.innerHTML='';categories.forEach(c=>{const o=document.createElement('option');o.value=c.id;o.textContent=c.name;cat.appendChild(o)});const box=$('#menuAdminList');box.innerHTML='';const t=document.createElement('table');t.className='admin-table';t.innerHTML='<thead><tr><th>Artikel</th><th>Variante</th><th>Preis</th><th>Aktiv</th><th></th></tr></thead><tbody></tbody>';const tb=t.querySelector('tbody');menu.slice().sort((a,b)=>(categories.find(x=>x.id===a.category_id)?.sort_order||0)-(categories.find(x=>x.id===b.category_id)?.sort_order||0)||a.sort_order-b.sort_order).forEach(m=>{const tr=document.createElement('tr');tr.innerHTML='<td><input value="'+esc(m.name)+'"></td><td><input value="'+esc(m.variant||'')+'"></td><td><input type="number" step="0.10" value="'+Number(m.price).toFixed(2)+'"></td><td><input type="checkbox" '+(m.active!==false?'checked':'')+'></td><td><button>Speichern</button></td>';tr.querySelector('button').onclick=async()=>{const ins=tr.querySelectorAll('input');const{error}=await supabase.from('menu_items').update({name:ins[0].value.trim(),variant:ins[1].value.trim()||null,price:Number(ins[2].value),active:ins[3].checked}).eq('id',m.id);$('#adminMsg').textContent=error?'Fehler: '+error.message:'Artikel gespeichert.';if(!error)await loadAdminMasterData()};tb.appendChild(tr)});box.appendChild(t)}
+$('#menuAdminAdd').onclick=async()=>{const name=$('#menuAdminName').value.trim(),price=Number($('#menuAdminPrice').value),category_id=$('#menuAdminCategory').value;if(!name||!(price>=0))return;const max=Math.max(0,...menu.filter(x=>x.category_id===category_id).map(x=>Number(x.sort_order||0)));const{error}=await supabase.from('menu_items').insert({restaurant_id:restaurant.id,category_id,name,price,active:true,sort_order:max+10});$('#adminMsg').textContent=error?'Fehler: '+error.message:'Artikel angelegt.';if(!error){$('#menuAdminName').value='';$('#menuAdminPrice').value='';await loadAdminMasterData()}};
+$('#menuAdminReload').onclick=loadAdminMasterData;
+function renderAdminExtras(){const box=$('#extraAdminList');box.innerHTML='';menuExtras.forEach(x=>{const row=document.createElement('div');row.className='admin-row';row.innerHTML='<div class="admin-form"><label>Name<input value="'+esc(x.name)+'"></label><label>Preis<input type="number" step="0.10" value="'+Number(x.price).toFixed(2)+'"></label><button>Speichern</button></div>';row.querySelector('button').onclick=async()=>{const ins=row.querySelectorAll('input');const{error}=await supabase.from('menu_extras').update({name:ins[0].value.trim(),price:Number(ins[1].value)}).eq('id',x.id);$('#adminMsg').textContent=error?'Fehler: '+error.message:'Extra gespeichert.';if(!error)await loadAdminMasterData()};box.appendChild(row)})}
+$('#extraAdminAdd').onclick=async()=>{const name=$('#extraAdminName').value.trim(),price=Number($('#extraAdminPrice').value);if(!name||!(price>=0))return;const{error}=await supabase.from('menu_extras').insert({restaurant_id:restaurant.id,name,price,active:true,sort_order:menuExtras.length*10+10});$('#adminMsg').textContent=error?'Fehler: '+error.message:'Extra angelegt.';if(!error){$('#extraAdminName').value='';$('#extraAdminPrice').value='';await loadAdminMasterData()}};
+
+async function renderAdminVouchers(searchTerm=''){
+  let q=supabase.from('vouchers').select('id,voucher_number,original_value,remaining_value,status,issued_at,note,table_sessions(status,restaurant_tables(code))').order('issued_at',{ascending:false});
+  if(searchTerm){
+    q=q.ilike('voucher_number','%'+searchTerm.trim()+'%');
+  }else{
+    const day=$('#adminDate').value||businessDateNow();
+    const start=day+'T00:00:00',end=new Date(new Date(day+'T00:00:00').getTime()+86400000).toISOString();
+    q=q.gte('issued_at',start).lt('issued_at',end);
+  }
+  const{data,error}=await q;
+  const box=$('#adminVoucherList');box.innerHTML='';
+  if(error){box.textContent=error.message;return}
+  if(!data?.length){box.innerHTML='<div class="admin-note" style="margin-top:10px">Keine Gutscheine gefunden.</div>';return}
+  data.forEach(v=>{
+    const d=document.createElement('div');d.className='voucher-card';
+    const table=tableLabel(v.table_sessions?.restaurant_tables?.code)||'—';
+    d.innerHTML='<div class="admin-row-head"><span class="voucher-num">'+esc(v.voucher_number)+'</span><span>'+euro(v.original_value)+'</span></div><div class="admin-note">'+(v.note?'Für: '+esc(v.note)+' · ':'')+'Sicherheitscode '+esc(voucherSecurityCode(v))+' · Restwert '+euro(v.remaining_value)+' · '+esc(v.status)+' · Tisch '+esc(table)+' · '+new Date(v.issued_at).toLocaleString('de-DE')+'</div>';
+    const actions=document.createElement('div');actions.className='voucher-actions';
+    const reprint=document.createElement('button');
+    reprint.textContent='Gutschein nachdrucken';
+    reprint.onclick=()=>printExistingVoucher(v);
+    actions.appendChild(reprint);
+
+    if(v.status==='active'){
+      const b=document.createElement('button');
+      const closed=v.table_sessions?.status==='closed';
+      b.textContent=closed?'Nachträglich stornieren':'Entfernen';
+      b.onclick=async()=>{await removeOrVoidVoucher(v);await renderAdminVouchers(searchTerm)};
+      actions.appendChild(b)
+    }
+    d.appendChild(actions);
+    box.appendChild(d)
+  })
+}
+$('#voucherSearchBtn').onclick=()=>renderAdminVouchers($('#voucherSearch').value);
+$('#voucherSearch').onkeydown=e=>{if(e.key==='Enter')verifyVoucher($('#voucherSearch').value)};
+
+async function showVoucherVerification(v,box,fromScan=false){
+  verifiedVoucher=v||null;
+  if(!v){
+    box.innerHTML='<div class="scan-voucher-result invalid"><div class="status">✕ GUTSCHEIN NICHT GEFUNDEN</div><div class="detail">Dieser QR-Code ist keinem registrierten Gutschein zugeordnet.</div></div>';
+    return
+  }
+  const valid=['active','partially_redeemed'].includes(v.status)&&Number(v.remaining_value||0)>0;
+  box.innerHTML='<div class="scan-voucher-result '+(valid?'':'invalid')+'">'+
+    '<div class="status">'+(valid?'✓ GUTSCHEIN GÜLTIG':'✕ GUTSCHEIN NICHT GÜLTIG')+'</div>'+
+    '<div class="value">'+euro(v.remaining_value)+'</div>'+
+    '<div class="detail">'+
+      '<b>Nr. '+esc(v.voucher_number)+'</b><br>'+
+      (v.note?'Für: '+esc(v.note)+'<br>':'')+
+      'Ursprünglicher Wert: '+euro(v.original_value)+'<br>'+
+      'Restwert: <b>'+euro(v.remaining_value)+'</b><br>'+
+      'Sicherheitscode: '+esc(voucherSecurityCode(v))+'<br>'+
+      'Status: '+esc(v.status)+
+    '</div>'+
+    '<div class="voucher-redeem-actions"><button id="voucherReprintBtn">Gutschein nachdrucken</button>'+
+      (valid?'<button id="voucherPartialRedeemBtn">Teilbetrag einlösen</button><button id="voucherFullRedeemBtn">Vollständig einlösen</button>':'')+
+    '</div>'+
+    '<div id="voucherHistory" class="voucher-history"></div>'+
+  '</div>';
+
+  $('#voucherReprintBtn').onclick=()=>printExistingVoucher(v);
+  if(valid){
+    $('#voucherPartialRedeemBtn').onclick=()=>openVoucherRedeemModal(false);
+    $('#voucherFullRedeemBtn').onclick=()=>openVoucherRedeemModal(true)
+  }
+  await renderVoucherHistory(v.id);
+
+  if(fromScan){
+    const input=$('#voucherSearch');if(input)input.value='';
+    const y=box.getBoundingClientRect().top+window.scrollY-20;
+    setTimeout(()=>window.scrollTo({top:y,behavior:'smooth'}),100)
+  }
+}
+async function renderVoucherHistory(voucherId){
+  const box=$('#voucherHistory');if(!box)return;
+  const{data,error}=await supabase.from('voucher_events')
+    .select('event_type,amount,created_at,created_by_email,note')
+    .eq('voucher_id',voucherId)
+    .order('created_at',{ascending:false});
+  if(error){box.innerHTML='<h4>Einlösungshistorie</h4><div class="msg">'+esc(error.message)+'</div>';return}
+  const redemptions=(data||[]).filter(e=>e.event_type==='redeemed');
+  box.innerHTML='<h4>Einlösungshistorie</h4>'+
+    (redemptions.length?redemptions.map(e=>
+      '<div class="voucher-history-row"><span>'+new Date(e.created_at).toLocaleString('de-DE')+(e.note?' · '+esc(e.note):'')+'</span><b>- '+euro(e.amount)+'</b></div>'
+    ).join(''):'<div class="msg">Noch keine Einlösung erfasst.</div>')
+}
+function openVoucherRedeemModal(full){
+  const v=verifiedVoucher;if(!v)return;
+  const remaining=Number(v.remaining_value||0);
+  $('#voucherRedeemInfo').textContent='Gutschein '+v.voucher_number+' · aktueller Restwert '+euro(remaining);
+  $('#voucherRedeemAmount').value=full?remaining.toFixed(2):'';
+  $('#voucherRedeemAmount').max=remaining.toFixed(2);
+  $('#voucherRedeemAmount').disabled=!!full;
+  $('#voucherRedeemNote').value='';
+  $('#voucherRedeemMsg').textContent='';
+  $('#voucherRedeemModal').classList.remove('hidden')
+}
+$('#voucherRedeemCancel').onclick=()=>$('#voucherRedeemModal').classList.add('hidden');
+
+function voucherRedemptionReceiptHtml(v,amount,newRemaining,note,createdAt){
+ const d=new Date(createdAt||Date.now());
+ return `<!doctype html><html><head><meta charset="utf-8"><style>@page{size:80mm auto;margin:4mm}body{font-family:Arial,sans-serif;width:72mm;margin:0 auto;font-size:11px}.logo{display:block;max-width:48mm;max-height:20mm;margin:0 auto 3mm}.row{display:flex;justify-content:space-between;gap:8px;padding:1.5mm 0;border-bottom:1px dotted #aaa}h2{text-align:center;font-size:17px}.big{font-size:18px;font-weight:900}.foot{text-align:center;margin-top:4mm;border-top:1px dotted #aaa;padding-top:3mm;font-size:9px}</style></head><body>
+ <img class="logo" src="${novaLogoUrl()}"><h2>GUTSCHEIN-EINLÖSUNG</h2>
+ <div class="row"><span>Gutschein</span><b>${esc(v.voucher_number)}</b></div>
+ ${v.note?`<div class="row"><span>Für</span><b>${esc(v.note)}</b></div>`:''}
+ <div class="row"><span>Datum</span><b>${d.toLocaleDateString('de-DE')}</b></div>
+ <div class="row"><span>Uhrzeit</span><b>${d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})}</b></div>
+ <div class="row"><span>Eingelöst</span><b class="big">${euro(amount)}</b></div>
+ <div class="row"><span>Restwert</span><b class="big">${euro(newRemaining)}</b></div>
+ ${note?`<div class="row"><span>Bemerkung</span><b>${esc(note)}</b></div>`:''}
+ <div class="foot">Einlösung manuell in OrderBuddy erfasst.<br>OrderBuddy.</div></body></html>`;
+}
+function printVoucherRedemptionReceipt(v,amount,newRemaining,note,createdAt){
+ const w=window.open('about:blank','_blank');if(!w){alert('Druckfenster konnte nicht geöffnet werden.');return}
+ w.document.write(voucherRedemptionReceiptHtml(v,amount,newRemaining,note,createdAt));w.document.close();setTimeout(()=>{try{w.focus();w.print()}catch{}},350);
+}
+
+$('#voucherRedeemSave').onclick=async()=>{
+  const v=verifiedVoucher;if(!v)return;
+  const amount=Number($('#voucherRedeemAmount').value);const redeemNote=$('#voucherRedeemNote').value.trim()||null;
+  const remaining=Number(v.remaining_value||0);
+  if(!(amount>0)){ $('#voucherRedeemMsg').textContent='Bitte einen Betrag größer als 0 eingeben.'; return }
+  if(amount>remaining+0.0001){ $('#voucherRedeemMsg').textContent='Der Betrag darf den Restwert nicht überschreiten.'; return }
+  $('#voucherRedeemMsg').textContent='Einlösung wird gespeichert …';
+  const{data,error}=await supabase.rpc('redeem_nova_voucher',{
+    p_voucher_id:v.id,
+    p_amount:amount,
+    p_note:redeemNote
+  });
+  if(error){$('#voucherRedeemMsg').textContent='Einlösung fehlgeschlagen: '+error.message;return}
+  $('#voucherRedeemModal').classList.add('hidden');
+  const{data:fresh,error:ferr}=await supabase.from('vouchers')
+    .select('id,voucher_number,original_value,remaining_value,status,issued_at,note')
+    .eq('id',v.id).single();
+  if(ferr){$('#voucherVerifyResult').innerHTML='<div class="voucher-verify-result voucher-invalid">Aktualisierung fehlgeschlagen: '+esc(ferr.message)+'</div>';return}
+  printVoucherRedemptionReceipt(v,amount,Number(fresh.remaining_value||0),redeemNote,new Date());
+  await showVoucherVerification(fresh,$('#voucherVerifyResult'),false);
+  await renderAdminVouchers($('#voucherSearch').value||'');
+}
+async function verifyVoucher(termOverride,fromScan=false){
+  const term=String(termOverride||$('#voucherSearch').value||'').trim();
+  const box=$('#voucherVerifyResult');box.innerHTML='';
+  if(!term){
+    box.innerHTML='<div class="voucher-verify-result">Bitte Gutscheinnummer oder Sicherheitscode eingeben.</div>';
+    return
+  }
+  const{data,error}=await supabase.from('vouchers')
+    .select('id,voucher_number,original_value,remaining_value,status,issued_at,note')
+    .order('issued_at',{ascending:false});
+  if(error){
+    box.innerHTML='<div class="scan-voucher-result invalid"><div class="status">Prüfung fehlgeschlagen</div><div class="detail">'+esc(error.message)+'</div></div>';
+    return
+  }
+
+  const parsedQr=parseNovaVoucherQr(term);
+  const lookupTerm=parsedQr||term;
+  const normalized=lookupTerm.replace(/[^a-z0-9]/gi,'').toUpperCase();
+  const v=(data||[]).find(x=>{
+    const idNorm=String(x.id||'').replace(/[^a-z0-9]/gi,'').toUpperCase();
+    const voucherNorm=String(x.voucher_number||'').replace(/[^a-z0-9]/gi,'').toUpperCase();
+    const securityNorm=voucherSecurityCode(x).replace(/[^a-z0-9]/gi,'').toUpperCase();
+    return idNorm===normalized || voucherNorm===normalized || securityNorm===normalized
+  });
+
+  await showVoucherVerification(v,box,fromScan)
+}
+
+function stopVoucherScanner(){
+  voucherScannerRunning=false;
+  if(voucherScannerTimer){cancelAnimationFrame(voucherScannerTimer);voucherScannerTimer=null}
+  if(voucherScannerStream){
+    voucherScannerStream.getTracks().forEach(t=>t.stop());
+    voucherScannerStream=null
+  }
+  const video=$('#voucherScannerVideo');
+  if(video)video.srcObject=null
+}
+function parseNovaVoucherQr(raw){
+  const text=String(raw||'').trim();
+  const prefix='NOVA-GUTSCHEIN|';
+  if(!text.toUpperCase().startsWith(prefix))return null;
+  const id=text.slice(prefix.length).trim();
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id)?id:null
+}
+async function startVoucherScanner(){
+  const modal=$('#voucherScannerModal'),video=$('#voucherScannerVideo'),status=$('#voucherScannerStatus');
+  modal.classList.remove('hidden');
+  status.textContent='Kamera wird gestartet …';
+  stopVoucherScanner();
+
+  if(!navigator.mediaDevices?.getUserMedia){
+    status.textContent='Dieses Gerät unterstützt den Kamerazugriff im Browser nicht.';
+    return
+  }
+  if(typeof window.jsQR!=='function'){
+    status.textContent='QR-Scanner konnte nicht geladen werden. Bitte Internetverbindung prüfen.';
+    return
+  }
+
+  try{
+    voucherScannerStream=await navigator.mediaDevices.getUserMedia({
+      video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:1280}},
+      audio:false
+    });
+    video.srcObject=voucherScannerStream;
+    await video.play();
+    voucherScannerRunning=true;
+    status.textContent='QR-Code in den Rahmen halten.';
+    scanVoucherFrame()
+  }catch(err){
+    status.textContent='Kamera konnte nicht geöffnet werden. Bitte Kamerazugriff für OrderBuddy erlauben.';
+  }
+}
+function scanVoucherFrame(){
+  if(!voucherScannerRunning)return;
+  const video=$('#voucherScannerVideo'),canvas=$('#voucherScannerCanvas'),status=$('#voucherScannerStatus');
+  if(video.readyState>=2 && video.videoWidth>0){
+    const maxW=900,scale=Math.min(1,maxW/video.videoWidth);
+    canvas.width=Math.max(1,Math.round(video.videoWidth*scale));
+    canvas.height=Math.max(1,Math.round(video.videoHeight*scale));
+    const ctx=canvas.getContext('2d',{willReadFrequently:true});
+    ctx.drawImage(video,0,0,canvas.width,canvas.height);
+    const img=ctx.getImageData(0,0,canvas.width,canvas.height);
+    const qr=window.jsQR(img.data,img.width,img.height,{inversionAttempts:'dontInvert'});
+    if(qr?.data){
+      const id=parseNovaVoucherQr(qr.data);
+      if(id){
+        status.textContent='Gutschein erkannt.';
+        stopVoucherScanner();
+        $('#voucherScannerModal').classList.add('hidden');
+        verifyVoucher(id,true);
+        return
+      }else{
+        status.textContent='Das ist kein NOVA-Gutschein. Bitte den richtigen QR-Code scannen.'
+      }
+    }
+  }
+  voucherScannerTimer=requestAnimationFrame(scanVoucherFrame)
+}
+$('#voucherScannerCancel').onclick=()=>{stopVoucherScanner();$('#voucherScannerModal').classList.add('hidden')};
+
+$('#voucherVerifyBtn').onclick=startVoucherScanner;
+
+function monthRange(value){
+  const [y,m]=value.split('-').map(Number);
+  const start=new Date(y,m-1,1);
+  const end=new Date(y,m,1);
+  const local=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+  return {start:local(start),end:local(end)}
+}
+async function monthlyCsvExport(){
+  const month=$('#adminMonth').value;
+  if(!month){$('#adminMsg').textContent='Bitte einen Monat auswählen.';return}
+  const [year,mon]=month.split('-').map(Number);
+  const first=new Date(year,mon-1,1),last=new Date(year,mon,0);
+  const rows=[['Datum','Buchungstext','Sollkonto','Habenkonto','Netto','USt','Brutto','Steuersatz']];
+  let bookingLines=0;
+
+  for(let d=new Date(first);d<=last;d.setDate(d.getDate()+1)){
+    const date=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    const b=await aggregateDayTaxSummary(date);
+
+    if(b.food.gross>0.0001){
+      rows.push([date,'Tagesumsatz Speisen 7%','1000','8300',dec(b.food.net),dec(b.food.vat),dec(b.food.gross),'7%']);
+      bookingLines++
+    }
+    if(b.drinks.gross>0.0001){
+      rows.push([date,'Tagesumsatz Getränke 19%','1000','8400',dec(b.drinks.net),dec(b.drinks.vat),dec(b.drinks.gross),'19%']);
+      bookingLines++
+    }
+    if(b.vouchers.gross>0.0001){
+      rows.push([date,'Tagesumsatz Gutscheine','1000','1796',dec(b.vouchers.net),'0,00',dec(b.vouchers.gross),'0% / nicht steuerbar']);
+      bookingLines++
+    }
+  }
+
+  if(!bookingLines){$('#adminMsg').textContent='Für diesen Monat gibt es keine exportierbaren Daten.';return}
+  const csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(';')).join('\r\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download='OrderBuddy_SKR03_Tageszusammenfassung_'+month+'.csv';
+  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  $('#adminMsg').textContent='Monats-CSV '+month+' erstellt · maximal 3 Buchungen pro Tag · '+bookingLines+' Buchungszeilen.'
+}
+$('#monthlyCsvBtn').onclick=monthlyCsvExport;
+$('#adminMonthTab').onchange=()=>{$('#adminMonth').value=$('#adminMonthTab').value};
+$('#monthlyCsvTabBtn').onclick=()=>{if(!$('#adminMonthTab').value)$('#adminMonthTab').value=businessDateNow().slice(0,7);$('#adminMonth').value=$('#adminMonthTab').value;monthlyCsvExport()};
+
+function localDateISO(d){
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')
+}
+function setAnalyticsPreset(){
+  const preset=$('#analyticsPreset').value,now=new Date();
+  let from=new Date(now),to=new Date(now);
+  if(preset==='week'){
+    const day=(now.getDay()+6)%7;from=new Date(now);from.setDate(now.getDate()-day)
+  }else if(preset==='month'){
+    from=new Date(now.getFullYear(),now.getMonth(),1);
+    to=new Date(now.getFullYear(),now.getMonth()+1,0)
+  }else if(preset==='today'){
+    from=new Date(now);to=new Date(now)
+  }else return;
+  $('#analyticsFrom').value=localDateISO(from);$('#analyticsTo').value=localDateISO(to)
+}
+$('#analyticsPreset').onchange=()=>{if($('#analyticsPreset').value!=='custom')setAnalyticsPreset()};
+function serviceLabel(email){
+  const found=Object.entries(DEVICE_EMAILS).find(([,v])=>String(v).toLowerCase()===String(email||'').toLowerCase());
+  return found?.[0]||email||'Unbekannt'
+}
+function renderBars(target,rows,valueKey,labelKey,format='money'){
+  const box=$(target);box.innerHTML='';
+  if(!rows.length){box.innerHTML='<div class="admin-note">Keine Daten im Zeitraum.</div>';return}
+  const max=Math.max(...rows.map(x=>Number(x[valueKey]||0)),1);
+  rows.slice(0,10).forEach(r=>{
+    const row=document.createElement('div');row.className='bar-row';
+    const value=Number(r[valueKey]||0),pct=Math.max(2,value/max*100);
+    row.innerHTML='<span>'+esc(r[labelKey])+'</span><div class="bar-track"><div class="bar-fill" style="width:'+pct+'%"></div></div><b>'+(format==='count'?value.toLocaleString('de-DE'):euro(value))+'</b>';
+    box.appendChild(row)
+  })
+}
+async function loadAnalytics(){
+  const from=$('#analyticsFrom').value,to=$('#analyticsTo').value;
+  if(!from||!to){$('#adminMsg').textContent='Bitte einen Zeitraum auswählen.';return}
+  const endDate=new Date(to+'T00:00:00');endDate.setDate(endDate.getDate()+1);const end=localDateISO(endDate);
+  $('#adminMsg').textContent='Auswertung wird geladen …';
+
+  const[{data:sessions,error:se},{data:vouchers,error:ve}]=await Promise.all([
+    supabase.from('table_sessions').select(`
+      id,business_date,status,opened_by_email,closed_by_email,restaurant_tables(code),
+      bill_groups(
+        id,label,status,
+        bill_group_items(
+          quantity,
+          order_items(
+            unit_price,quantity,
+            menu_items(name,category_id,menu_categories(name,destination))
+          )
+        )
+      )
+    `).gte('business_date',from).lt('business_date',end).eq('status','closed'),
+    supabase.from('vouchers').select('original_value,status,issued_at').gte('issued_at',from+'T00:00:00').lt('issued_at',end+'T00:00:00').neq('status','void')
+  ]);
+  const error=se||ve;if(error){$('#adminMsg').textContent='Auswertung: '+error.message;return}
+
+  let foodGross=0,drinkGross=0;
+  const products=new Map(),categoriesMap=new Map(),services=new Map();
+
+  (sessions||[]).forEach(ses=>{
+    let sessionGross=0;
+    (ses.bill_groups||[]).filter(g=>g.status==='completed').forEach(g=>{
+      (g.bill_group_items||[]).forEach(link=>{
+        const oi=link.order_items;if(!oi)return;
+        const qty=Number(link.quantity||oi.quantity||1),gross=Number(oi.unit_price||0)*qty;
+        const dest=oi.menu_items?.menu_categories?.destination;
+        if(dest==='bar')drinkGross+=gross;else foodGross+=gross;
+        sessionGross+=gross;
+
+        const pname=oi.menu_items?.name||'Unbekannt';
+        const p=products.get(pname)||{name:pname,qty:0,gross:0};
+        p.qty+=qty;p.gross+=gross;products.set(pname,p);
+
+        const cname=oi.menu_items?.menu_categories?.name||'Sonstiges';
+        const c=categoriesMap.get(cname)||{name:cname,gross:0};
+        c.gross+=gross;categoriesMap.set(cname,c);
+      })
+    });
+    const who=serviceLabel(ses.opened_by_email||ses.closed_by_email);
+    const sv=services.get(who)||{name:who,gross:0,tables:0};
+    sv.gross+=sessionGross;sv.tables+=1;services.set(who,sv)
+  });
+
+  const foodNet=foodGross/1.07,drinkNet=drinkGross/1.19;
+  const foodVat=foodGross-foodNet,drinkVat=drinkGross-drinkNet;
+  const gross=foodGross+drinkGross,net=foodNet+drinkNet,vat=foodVat+drinkVat;
+  const voucherGross=(vouchers||[]).reduce((a,v)=>a+Number(v.original_value||0),0);
+  const tableCount=(sessions||[]).length,avg=tableCount?gross/tableCount:0;
+
+  $('#kpiGross').textContent=euro(gross);$('#kpiNet').textContent=euro(net);$('#kpiVat').textContent=euro(vat);
+  $('#kpiVouchers').textContent=euro(voucherGross);$('#kpiTables').textContent=tableCount;$('#kpiAvg').textContent=euro(avg);
+  $('#kpiFood').textContent=euro(foodGross);$('#kpiFoodVat').textContent='MwSt. '+euro(foodVat);
+  $('#kpiDrinks').textContent=euro(drinkGross);$('#kpiDrinkVat').textContent='MwSt. '+euro(drinkVat);
+  $('#analyticsTaxTotal').textContent=euro(vat);
+
+  const productRows=[...products.values()].sort((a,b)=>b.qty-a.qty||b.gross-a.gross);
+  renderBars('#topProducts',productRows,'qty','name','count');
+
+  const catRows=[...categoriesMap.values()].sort((a,b)=>b.gross-a.gross);
+  renderBars('#categorySales',catRows,'gross','name');
+
+  const serviceRows=[...services.values()].sort((a,b)=>b.gross-a.gross);
+  renderBars('#serviceSales',serviceRows,'gross','name');
+
+  $('#taxAnalyticsBody').innerHTML=
+    '<tr><td>Speisen 7 %</td><td>'+euro(foodNet)+'</td><td>'+euro(foodVat)+'</td><td>'+euro(foodGross)+'</td></tr>'+
+    '<tr><td>Getränke 19 %</td><td>'+euro(drinkNet)+'</td><td>'+euro(drinkVat)+'</td><td>'+euro(drinkGross)+'</td></tr>'+
+    '<tr><th>Gesamt</th><th>'+euro(net)+'</th><th>'+euro(vat)+'</th><th>'+euro(gross)+'</th></tr>';
+
+  $('#adminMsg').textContent='Auswertung '+from+' bis '+to+' geladen.'
+}
+$('#analyticsLoad').onclick=loadAnalytics;
+
+
+function classifyAdminSections(){
+  document.querySelectorAll('#adminView .admin-section').forEach(sec=>{
+    if(sec.dataset.v140Group){sec.dataset.adminGroup=sec.dataset.v140Group;return}
+    const title=(sec.querySelector('.section-title')?.textContent||'').trim();
+    let group='settings';
+    if(/Tagesbericht|Kassenzählung/i.test(title))group='day';
+    else if(/^Auswertungen$/i.test(title))group='overview';
+    else if(/Monatsauswertung/i.test(title))group='month';
+    else if(/Gutscheine/i.test(title))group='vouchers';
+    else if(/Tische|Aufträge/i.test(title))group='tables';
+    else if(/Lieferkosten|Speisekarte|Extras/i.test(title))group='settings';
+    sec.dataset.adminGroup=group;
+  });
+}
+function setAdminGroup(name){
+  classifyAdminSections();
+  document.querySelectorAll('#adminNav button').forEach(b=>b.classList.toggle('on',b.dataset.adminGroup===name));
+  document.querySelectorAll('#adminView .admin-section').forEach(sec=>sec.classList.toggle('admin-group-hidden',sec.dataset.adminGroup!==name));
+  [...$('#adminView').children].forEach(el=>{
+    if(el.id==='adminBackBtn'||el.id==='adminNav'||el.classList?.contains('admin-section'))return;
+    el.classList.toggle('admin-group-hidden',name!=='day');
+  });
+  if(name==='month')$('#adminMonthTab').value=$('#adminMonth').value||businessDateNow().slice(0,7);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('#adminNav button').forEach(b=>b.onclick=async()=>{const g=b.dataset.adminGroup;setAdminGroup(g);if(g==='reservations'){initV140Admin();await loadReservations()}if(g==='staff')await loadStaff();if(g==='inventory')await loadInventory();if(g==='system')await loadAudit()});
+
+
+async function auditAction(action,entityType,entityId=null,details={}){try{const{data:{user}}=await supabase.auth.getUser();await supabase.from('audit_log').insert({restaurant_id:restaurant.id,action,entity_type:entityType,entity_id:entityId,details,created_by_email:user?.email||null})}catch{}}
+function fillReservationTables(){const sel=$('#resTable');if(!sel)return;sel.innerHTML='<option value="">Noch nicht zuweisen</option>';(window.tablesData||[]).filter(t=>['Terrasse','Innenraum'].includes(t.areas?.name)).forEach(t=>{const o=document.createElement('option');o.value=t.id;o.textContent=(t.areas?.name||'')+' · '+tableDisplay(t);sel.appendChild(o)})}
+async function loadReservations(){const date=$('#resFilterDate').value||businessDateNow(),box=$('#reservationList');box.innerHTML='Lädt …';const{data,error}=await supabase.from('reservations').select('id,reservation_date,reservation_time,guest_name,phone,email,party_size,table_id,status,note,restaurant_tables(code,display_name,areas(name))').eq('reservation_date',date).order('reservation_time');if(error){box.innerHTML='<div class="msg">'+esc(error.message)+'</div>';return}box.innerHTML='';if(!(data||[]).length){box.innerHTML='<div class="msg">Keine Reservierungen.</div>';return}(data||[]).forEach(r=>{const d=document.createElement('div');d.className='v140-row';const t=r.restaurant_tables;d.innerHTML='<div class="v140-row-head"><b>'+esc(String(r.reservation_time).slice(0,5))+' · '+esc(r.guest_name)+'</b><b>'+r.party_size+' Pers.</b></div><small>'+esc(r.status)+(t?' · '+esc(t.areas?.name||'')+' '+esc(t.display_name||tableLabel(t.code)):' · Tisch offen')+(r.phone?' · '+esc(r.phone):'')+(r.note?'<br>'+esc(r.note):'')+'</small><div class="v140-actions"></div>';const a=d.querySelector('.v140-actions');[['arrived','Angekommen'],['seated','Platziert'],['cancelled','Stornieren'],['no_show','Nicht erschienen']].forEach(([st,label])=>{const b=document.createElement('button');b.textContent=label;b.onclick=async()=>{const{error}=await supabase.from('reservations').update({status:st,updated_at:new Date().toISOString()}).eq('id',r.id);if(!error){await auditAction('reservation_status','reservation',r.id,{status:st});loadReservations()}};a.appendChild(b)});box.appendChild(d)})}
+$('#resSave').onclick=async()=>{const name=$('#resName').value.trim(),date=$('#resDate').value,time=$('#resTime').value,party=Number($('#resParty').value);if(!name||!date||!time||!(party>0)){$('#resMsg').textContent='Bitte Datum, Uhrzeit, Name und Personenzahl vollständig eingeben.';return}const{data:{user}}=await supabase.auth.getUser();const payload={restaurant_id:restaurant.id,reservation_date:date,reservation_time:time,guest_name:name,phone:$('#resPhone').value.trim()||null,email:$('#resEmail').value.trim()||null,party_size:party,table_id:$('#resTable').value||null,status:$('#resStatus').value,note:$('#resNote').value.trim()||null,created_by_email:user?.email||null};const{data,error}=await supabase.from('reservations').insert(payload).select('id').single();$('#resMsg').textContent=error?'Fehler: '+error.message:'Reservierung gespeichert.';if(!error){await auditAction('reservation_create','reservation',data.id,{date,time,guest:name,party_size:party});$('#resName').value='';$('#resPhone').value='';$('#resEmail').value='';$('#resNote').value='';$('#resFilterDate').value=date;loadReservations()}};$('#resReload').onclick=loadReservations;
+async function loadStaff(){const box=$('#staffList');box.innerHTML='Lädt …';const{data,error}=await supabase.from('restaurant_users').select('id,email,role,active,created_at').eq('restaurant_id',restaurant.id).order('email');if(error){box.innerHTML='<div class="msg">'+esc(error.message)+'</div>';return}box.innerHTML='';(data||[]).forEach(u=>{const d=document.createElement('div');d.className='v140-row';d.innerHTML='<div class="v140-row-head"><b>'+esc(u.email)+'</b><b>'+esc(u.role)+'</b></div><small>'+(u.active?'Aktiv':'Inaktiv')+'</small>';box.appendChild(d)})}
+$('#staffSave').onclick=async()=>{const email=$('#staffEmail').value.trim().toLowerCase();if(!email){$('#staffMsg').textContent='Bitte E-Mail eingeben.';return}const payload={restaurant_id:restaurant.id,email,role:$('#staffRole').value,active:$('#staffActive').value==='true'};const{data,error}=await supabase.from('restaurant_users').upsert(payload,{onConflict:'restaurant_id,email'}).select('id').single();$('#staffMsg').textContent=error?'Fehler: '+error.message:'Zuordnung gespeichert.';if(!error){await auditAction('staff_update','restaurant_user',data.id,{email,role:payload.role,active:payload.active});loadStaff()}};
+async function loadInventory(){const box=$('#inventoryList');box.innerHTML='Lädt …';const{data,error}=await supabase.from('inventory_items').select('id,name,unit,current_stock,minimum_stock,active').eq('restaurant_id',restaurant.id).eq('active',true).order('sort_order').order('name');if(error){box.innerHTML='<div class="msg">'+esc(error.message)+'</div>';return}box.innerHTML='';if(!(data||[]).length){box.innerHTML='<div class="msg">Noch keine Bestandsartikel.</div>';return}(data||[]).forEach(it=>{const low=Number(it.current_stock)<Number(it.minimum_stock),d=document.createElement('div');d.className='v140-row '+(low?'stock-low':'stock-ok');d.innerHTML='<div class="v140-row-head"><b>'+esc(it.name)+'</b><b>'+Number(it.current_stock).toLocaleString('de-DE')+' '+esc(it.unit)+'</b></div><small>Mindestbestand: '+Number(it.minimum_stock).toLocaleString('de-DE')+' '+esc(it.unit)+(low?' · ⚠ Nachbestellen':'')+'</small><div class="v140-actions"><button data-move="delivery">+ Zugang</button><button data-move="usage">− Verbrauch</button><button data-move="waste">− Ausschuss</button><button data-move="correction">Korrektur</button></div>';d.querySelectorAll('[data-move]').forEach(b=>b.onclick=()=>inventoryMovement(it,b.dataset.move));box.appendChild(d)})}
+$('#invCreate').onclick=async()=>{const name=$('#invName').value.trim(),unit=$('#invUnit').value.trim()||'Stk';if(!name){$('#invMsg').textContent='Bitte Namen eingeben.';return}const payload={restaurant_id:restaurant.id,name,unit,current_stock:Number($('#invStock').value||0),minimum_stock:Number($('#invMin').value||0),active:true};const{data,error}=await supabase.from('inventory_items').insert(payload).select('id').single();$('#invMsg').textContent=error?'Fehler: '+error.message:'Bestandsartikel angelegt.';if(!error){await auditAction('inventory_item_create','inventory_item',data.id,payload);$('#invName').value='';loadInventory()}};
+async function inventoryMovement(it,type){const label={delivery:'Zugang',usage:'Verbrauch',waste:'Ausschuss',correction:'Korrektur'}[type],raw=prompt(label+' für '+it.name+' – Menge eingeben:');if(raw===null)return;let qty=Number(String(raw).replace(',','.'));if(!Number.isFinite(qty)||qty===0){alert('Ungültige Menge.');return}if(['usage','waste'].includes(type))qty=-Math.abs(qty);if(type==='delivery')qty=Math.abs(qty);const note=prompt('Bemerkung (optional):')||null,{data:{user}}=await supabase.auth.getUser(),newStock=type==='correction'?qty:Number(it.current_stock)+qty,movementQty=type==='correction'?newStock-Number(it.current_stock):qty;const{error:e1}=await supabase.from('inventory_movements').insert({restaurant_id:restaurant.id,inventory_item_id:it.id,quantity:movementQty,movement_type:type,note,created_by_email:user?.email||null});if(e1){alert(e1.message);return}const{error:e2}=await supabase.from('inventory_items').update({current_stock:newStock,updated_at:new Date().toISOString()}).eq('id',it.id);if(e2){alert(e2.message);return}await auditAction('inventory_movement','inventory_item',it.id,{type,quantity:movementQty,new_stock:newStock,note});loadInventory()}
+async function loadAudit(){const box=$('#auditList');box.innerHTML='Lädt …';let q=supabase.from('audit_log').select('id,action,entity_type,details,created_by_email,created_at').eq('restaurant_id',restaurant.id).order('created_at',{ascending:false}).limit(Number($('#auditLimit').value||50));if($('#auditFrom').value)q=q.gte('created_at',$('#auditFrom').value+'T00:00:00');const{data,error}=await q;if(error){box.innerHTML='<div class="msg">'+esc(error.message)+'</div>';return}box.innerHTML='';if(!(data||[]).length){box.innerHTML='<div class="msg">Noch keine protokollierten Änderungen.</div>';return}(data||[]).forEach(a=>{const d=document.createElement('div');d.className='v140-row';d.innerHTML='<div class="v140-row-head"><b>'+esc(a.action)+'</b><small>'+new Date(a.created_at).toLocaleString('de-DE')+'</small></div><small>'+esc(a.entity_type)+(a.created_by_email?' · '+esc(a.created_by_email):'')+'</small><div class="audit-details">'+esc(JSON.stringify(a.details||{}))+'</div>';box.appendChild(d)})}$('#auditReload').onclick=loadAudit;
+function initV140Admin(){const today=businessDateNow();if(!$('#resDate').value)$('#resDate').value=today;if(!$('#resFilterDate').value)$('#resFilterDate').value=today;if(!$('#resTime').value)$('#resTime').value='18:00';if(!$('#auditFrom').value)$('#auditFrom').value=today.slice(0,8)+'01';fillReservationTables()}
+
+$('#adminBtn').onclick=async()=>{
+  if(!['owner','admin'].includes(currentRole))return;
+  $('#tablesView').classList.add('hidden');$('#orderView').classList.add('hidden');$('#adminView').classList.remove('hidden');
+  if(!$('#adminDate').value)$('#adminDate').value=businessDateNow();
+  if(!$('#analyticsFrom').value){$('#analyticsPreset').value='month';setAnalyticsPreset()}
+  $('#adminMonth').value=businessDateNow().slice(0,7);
+  await loadAdminDay();await loadAdminMasterData();await renderDayCashSummary();await loadAnalytics();setAdminGroup('overview');initV140Admin()
+};
+$('#adminBackBtn').onclick=()=>{$('#adminView').classList.add('hidden');$('#tablesView').classList.remove('hidden')};
+$('#adminDate').onchange=async()=>{await loadAdminDay();await renderAdminVouchers();await renderDayCashSummary()};
+
+async function loadAdminDay(){
+  if(!restaurant)return;
+  const date=$('#adminDate').value||businessDateNow();
+  $('#adminMsg').textContent='Lade Tagesdaten …';
+  const[{data:sessions,error:se},{data:exp,error:ee}]=await Promise.all([
+    supabase.from('table_sessions').select(`
+      id,business_date,status,opened_at,closed_at,
+      restaurant_tables(code),
+      bill_groups(
+        id,label,status,completed_at,
+        bill_group_items(
+          quantity,
+          order_items(
+            id,quantity,unit_price,
+            menu_items(name,variant,menu_categories(destination))
+          )
+        )
+      )
+    `).eq('restaurant_id',restaurant.id).eq('business_date',date).order('opened_at'),
+    supabase.from('day_exports').select('pdf_exported_at,csv_exported_at').eq('restaurant_id',restaurant.id).eq('business_date',date).maybeSingle()
+  ]);
+  const err=se||ee;if(err){$('#adminMsg').textContent='Fehler: '+err.message;return}
+  adminSessions=sessions||[];adminExport=exp||null;renderAdminDay()
+}
+function completedGroupsForSession(ses){return (ses.bill_groups||[]).filter(g=>g.status==='completed')}
+function itemData(link){
+  const oi=link.order_items||{};
+  const gross=Number(oi.unit_price||0)*Number(link.quantity||oi.quantity||1);
+  const dest=oi.menu_items?.menu_categories?.destination;
+  const rate=dest==='bar'?19:7;
+  const net=gross/(1+rate/100);
+  return{oi,qty:Number(link.quantity||oi.quantity||1),gross,rate,net,vat:gross-net,dest}
+}
+function emptyTaxBuckets(){
+  return {
+    food:{label:'7 % Speisen',rate:7,net:0,vat:0,gross:0},
+    drinks:{label:'19 % Getränke',rate:19,net:0,vat:0,gross:0},
+    vouchers:{label:'0 % Gutscheine',rate:0,net:0,vat:0,gross:0}
+  }
+}
+function addGrossToBucket(bucket,gross,rate){
+  gross=Number(gross||0);
+  const net=rate?gross/(1+rate/100):gross;
+  const vat=gross-net;
+  bucket.gross+=gross;bucket.net+=net;bucket.vat+=vat
+}
+async function aggregateDayTaxSummary(date){
+  const next=new Date(date+'T00:00:00');next.setDate(next.getDate()+1);
+  const nextDate=next.getFullYear()+'-'+String(next.getMonth()+1).padStart(2,'0')+'-'+String(next.getDate()).padStart(2,'0');
+  const[{data:sessions,error:se},{data:vouchers,error:ve}]=await Promise.all([
+    supabase.from('table_sessions').select(`
+      id,status,business_date,
+      bill_groups(
+        status,
+        bill_group_items(
+          quantity,
+          order_items(
+            quantity,unit_price,
+            menu_items(menu_categories(destination))
+          )
+        )
+      )
+    `).eq('business_date',date).eq('status','closed'),
+    supabase.from('vouchers').select('original_value,status,issued_at')
+      .gte('issued_at',date+'T00:00:00').lt('issued_at',nextDate+'T00:00:00').neq('status','void')
+  ]);
+  const error=se||ve;if(error)throw error;
+  const b=emptyTaxBuckets();
+  (sessions||[]).forEach(ses=>(ses.bill_groups||[]).filter(g=>g.status==='completed').forEach(g=>(g.bill_group_items||[]).forEach(link=>{
+    const oi=link.order_items;if(!oi)return;
+    const qty=Number(link.quantity||oi.quantity||1),gross=Number(oi.unit_price||0)*qty;
+    const isDrink=oi.menu_items?.menu_categories?.destination==='bar';
+    addGrossToBucket(isDrink?b.drinks:b.food,gross,isDrink?19:7)
+  })));
+  (vouchers||[]).forEach(v=>addGrossToBucket(b.vouchers,Number(v.original_value||0),0));
+  return b
+}
+async function renderDayCashSummary(){
+  const date=$('#adminDate').value||businessDateNow();
+  try{
+    const b=await aggregateDayTaxSummary(date);
+    const rows=[b.food,b.drinks,b.vouchers].filter(x=>x.gross>0.0001);
+    $('#dayCashSummaryBody').innerHTML=rows.length?rows.map(x=>
+      '<tr><td>'+x.label+'</td><td>'+euro(x.net)+'</td><td>'+euro(x.vat)+'</td><td>'+euro(x.gross)+'</td></tr>'
+    ).join(''):'<tr><td colspan="4">Keine abgeschlossenen Umsätze.</td></tr>';
+    const net=rows.reduce((a,x)=>a+x.net,0),vat=rows.reduce((a,x)=>a+x.vat,0),gross=rows.reduce((a,x)=>a+x.gross,0);
+    $('#dayCashNet').textContent=euro(net);$('#dayCashVat').textContent=euro(vat);$('#dayCashGross').textContent=euro(gross)
+  }catch(e){$('#dayCashSummaryBody').innerHTML='<tr><td colspan="4">Fehler: '+esc(e.message||e)+'</td></tr>'}
+}
+
+function adminTotals(){
+  let gross=0,food=0,drink=0;
+  adminSessions.filter(s=>s.status==='closed').forEach(ses=>completedGroupsForSession(ses).forEach(g=>(g.bill_group_items||[]).forEach(link=>{
+    const x=itemData(link);gross+=x.gross;if(x.rate===19)drink+=x.gross;else food+=x.gross
+  })));
+  return{gross,food,drink}
+}
+function renderAdminDay(){
+  const closed=adminSessions.filter(s=>s.status==='closed'),open=adminSessions.filter(s=>s.status==='open');
+  const t=adminTotals();
+  $('#adminSessionsCount').textContent=closed.length;$('#adminGross').textContent=euro(t.gross);$('#adminFoodGross').textContent=euro(t.food);$('#adminDrinkGross').textContent=euro(t.drink);
+  const pdf=adminExport?.pdf_exported_at,csv=adminExport?.csv_exported_at;
+  $('#pdfStatus').className='export-pill'+(pdf?' ok':'');$('#pdfStatus').textContent=pdf?'✓ PDF exportiert · '+new Date(pdf).toLocaleString('de-DE'):'PDF: noch nicht exportiert';
+  $('#csvStatus').className='export-pill'+(csv?' ok':'');$('#csvStatus').textContent=csv?'✓ CSV exportiert · '+new Date(csv).toLocaleString('de-DE'):'CSV: noch nicht exportiert';
+  $('#deleteDayBtn').disabled=!(pdf&&csv&&open.length===0&&closed.length>0);
+  const list=$('#adminDayList');list.innerHTML='';
+  if(open.length){
+    const w=document.createElement('div');w.className='admin-row';
+    w.innerHTML='<b>⚠ '+open.length+' Tisch(e) an diesem Tag noch offen.</b><div class="admin-note">Solange ein Tisch offen ist, kann der Tag nicht gelöscht werden.</div>';
+    open.forEach(ses=>{
+      const unfinished=(ses.bill_groups||[]).filter(g=>g.status!=='completed'&&g.status!=='cancelled').length;
+      const row=document.createElement('div');row.className='admin-note';row.style.marginTop='6px';
+      row.textContent='• Tisch '+(ses.restaurant_tables?.code||'?')+(unfinished?' – '+unfinished+' Kassenübergabe(n) noch nicht abgeschlossen':' – aktive Tischsitzung');
+      w.appendChild(row)
+    });
+    list.appendChild(w)
+  }
+  closed.forEach(ses=>{
+    let sum=0;completedGroupsForSession(ses).forEach(g=>(g.bill_group_items||[]).forEach(link=>sum+=itemData(link).gross));
+    const d=document.createElement('div');d.className='admin-row';
+    d.innerHTML='<div class="admin-row-head"><span>Tisch '+esc(ses.restaurant_tables?.code||'?')+'</span><span>'+euro(sum)+'</span></div><div class="admin-note">Geöffnet '+new Date(ses.opened_at).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+' · abgeschlossen '+(ses.closed_at?new Date(ses.closed_at).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}):'–')+'</div>';
+    list.appendChild(d)
+  });
+  $('#adminMsg').textContent=closed.length?'Tagesdaten geladen.':'Für diesen Tag gibt es noch keine abgeschlossenen Tische.'
+}
+async function markDayExport(kind){
+  const date=$('#adminDate').value;
+  const{data:{user}}=await supabase.auth.getUser();
+  const payload={restaurant_id:restaurant.id,business_date:date,exported_by_email:user?.email||null};
+  payload[kind==='pdf'?'pdf_exported_at':'csv_exported_at']=new Date().toISOString();
+  const{error}=await supabase.from('day_exports').upsert(payload,{onConflict:'restaurant_id,business_date'});
+  if(error){$('#adminMsg').textContent='Export konnte nicht markiert werden: '+error.message;return false}
+  await loadAdminDay();return true
+}
+function pdfReceiptHtml(){
+  const date=$('#adminDate').value;let pages='';
+  adminSessions.filter(s=>s.status==='closed').forEach(ses=>{
+    const groups=completedGroupsForSession(ses);let allGross=0,foodGross=0,drinkGross=0;let groupHtml='';
+    groups.forEach((g,idx)=>{
+      const rows=[];let gsum=0;
+      (g.bill_group_items||[]).forEach(link=>{
+        const x=itemData(link);gsum+=x.gross;allGross+=x.gross;if(x.rate===19)drinkGross+=x.gross;else foodGross+=x.gross;
+        rows.push(`<tr><td>${x.qty}×</td><td>${esc(x.oi.menu_items?.name||'')}${x.oi.menu_items?.variant?' · '+esc(x.oi.menu_items.variant):''}</td><td>${euro(x.oi.unit_price)}</td><td>${euro(x.gross)}</td></tr>`)
+      });
+      groupHtml+=`<h3>Teilung ${idx+1}</h3><table><thead><tr><th>Anzahl</th><th>Artikel</th><th>Einzelpreis</th><th>Gesamt</th></tr></thead><tbody>${rows.join('')}</tbody></table><div class="subtotal">Gesamt Teilung ${idx+1}: ${euro(gsum)}</div>`
+    });
+    const foodNet=foodGross/1.07,drinkNet=drinkGross/1.19;
+    const foodVat=foodGross-foodNet,drinkVat=drinkGross-drinkNet;
+    pages+=`<section class="page"><img src="${location.origin}/nova-logo.jpg"><h1>Tisch ${esc(ses.restaurant_tables?.code||'?')}</h1><h2>Gesamtbestellzettel</h2><div class="date">Datum: ${esc(date)} · Abschluss: ${ses.closed_at?new Date(ses.closed_at).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}):''}</div>${groupHtml}<div class="grand">GESAMT <span>${euro(allGross)}</span></div><table class="tax"><thead><tr><th>Steuersatz</th><th>Netto</th><th>MwSt.</th><th>Brutto</th></tr></thead><tbody><tr><td>7 % MwSt. (Speisen)</td><td>${euro(foodNet)}</td><td>${euro(foodVat)}</td><td>${euro(foodGross)}</td></tr><tr><td>19 % MwSt. (Getränke)</td><td>${euro(drinkNet)}</td><td>${euro(drinkVat)}</td><td>${euro(drinkGross)}</td></tr><tr><th>Gesamt</th><th>${euro(foodNet+drinkNet)}</th><th>${euro(foodVat+drinkVat)}</th><th>${euro(allGross)}</th></tr></tbody></table><p class="foot">Abrechnung erfolgt an der Kasse.</p><p class="powered">● Powered by OrderBuddy.</p></section>`
+  });
+  return`<!doctype html><html><head><meta charset="utf-8"><title>OrderBuddy Tagesübersicht ${esc(date)}</title><style>@page{size:A4;margin:12mm}body{font-family:Arial,sans-serif;color:#111;margin:0}.page{page-break-after:always}.page:last-child{page-break-after:auto}img{display:block;max-width:270px;max-height:110px;object-fit:contain;margin:0 auto 12px}h1,h2{text-align:center;margin:4px}h3{margin:18px 0 5px;background:#f3eee5;padding:6px;border-radius:6px}.date{text-align:center;margin:8px 0 16px}table{width:100%;border-collapse:collapse}th,td{padding:5px;border-bottom:1px solid #ddd;text-align:left}th:nth-child(n+3),td:nth-child(n+3){text-align:right}.subtotal{text-align:right;font-weight:bold;padding:8px 0 14px}.grand{font-size:22px;font-weight:900;border-top:2px solid #000;border-bottom:2px solid #000;padding:8px 0;margin-top:12px;display:flex;justify-content:space-between}.tax{margin-top:10px}.foot{text-align:center;margin-top:14px}.powered{text-align:center;font-size:11px;color:#555}</style></head><body>${pages||'<p>Keine abgeschlossenen Tische.</p>'}</body></html>`
+}
+$('#pdfExportBtn').onclick=async()=>{
+  const closed=adminSessions.filter(s=>s.status==='closed');if(!closed.length){$('#adminMsg').textContent='Keine abgeschlossenen Tische zum Exportieren.';return}
+  const w=window.open('','_blank');if(!w){$('#adminMsg').textContent='Popup wurde blockiert.';return}
+  w.document.open();w.document.write(pdfReceiptHtml());w.document.close();w.onload=()=>{w.focus();w.print()};
+  await markDayExport('pdf')
+}
+$('#csvExportBtn').onclick=async()=>{
+  const date=$('#adminDate').value;
+  const dayBuckets=await aggregateDayTaxSummary(date);
+  const rows=[['Datum','Buchungstext','Beleg/Gutschein','Sollkonto','Habenkonto','Betrag_Brutto','Steuersatz','Netto','MwSt','Tisch','Teilung']];
+  adminSessions.filter(s=>s.status==='closed').forEach(ses=>completedGroupsForSession(ses).forEach((g,gi)=>(g.bill_group_items||[]).forEach(link=>{const x=itemData(link),konto=x.rate===19?'8400':'8300';rows.push([date,(x.rate===19?'Erlöse Getränke 19%':'Erlöse Speisen 7%')+' · '+(x.oi.menu_items?.name||''),'','1000',konto,dec(x.gross),x.rate+'%',dec(x.net),dec(x.vat),tableLabel(ses.restaurant_tables?.code)||'',gi+1])})));
+  const startIso=date+'T00:00:00',endIso=new Date(new Date(date+'T00:00:00').getTime()+86400000).toISOString();const{data:vouchers,error:ve}=await supabase.from('vouchers').select('voucher_number,original_value,issued_at,status').gte('issued_at',startIso).lt('issued_at',endIso).neq('status','void');if(ve){$('#adminMsg').textContent='Gutscheinexport: '+ve.message;return}(vouchers||[]).forEach(v=>rows.push([date,'Gutscheinverkauf',v.voucher_number,'1000','1796',dec(v.original_value),'0% / nicht steuerbar',dec(v.original_value),'0,00','','']));
+  if(rows.length===1){$('#adminMsg').textContent='Keine abgeschlossenen Daten zum Exportieren.';return}
+  const csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(';')).join('\r\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='OrderBuddy_SKR03_DATEV-Vorbereitung_'+date+'.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);await markDayExport('csv')
+}
+$('#deleteDayBtn').onclick=()=>{
+  if($('#deleteDayBtn').disabled){
+    $('#adminMsg').textContent='Löschen ist noch gesperrt. PDF und CSV müssen exportiert sein und es darf kein Tisch mehr offen sein.';
+    return
+  }
+  $('#deleteConfirmInput').value='';
+  $('#deleteConfirmBox').classList.remove('hidden');
+  $('#deleteConfirmInput').focus()
+};
+$('#deleteCancelBtn').onclick=()=>{
+  $('#deleteConfirmBox').classList.add('hidden');
+  $('#deleteConfirmInput').value=''
+};
+$('#deleteFinalBtn').onclick=async()=>{
+  const date=$('#adminDate').value;
+  if($('#deleteConfirmInput').value.trim()!=='LÖSCHEN'){
+    $('#adminMsg').textContent='Bitte exakt LÖSCHEN eingeben.';
+    return
+  }
+  $('#deleteFinalBtn').disabled=true;
+  $('#adminMsg').textContent='Tag wird gelöscht …';
+  const{data,error}=await supabase.rpc('admin_delete_nova_day',{p_business_date:date});
+  $('#deleteFinalBtn').disabled=false;
+  if(error){
+    $('#adminMsg').textContent='Löschen nicht möglich: '+error.message;
+    return
+  }
+  $('#deleteConfirmBox').classList.add('hidden');
+  $('#adminMsg').textContent=(data||0)+' abgeschlossene Tischvorgänge wurden endgültig gelöscht.';
+  await loadAdminDay()
+};
+
+function subscribe(){
+  const refresh=async()=>{if(currentSession)await loadOrders();$('#syncMsg').textContent='Live aktualisiert · '+new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})};
+  supabase.channel('orderbuddy-live-v18')
+    .on('postgres_changes',{event:'*',schema:'public',table:'order_items'},refresh)
+    .on('postgres_changes',{event:'*',schema:'public',table:'bill_groups'},refresh)
+    .on('postgres_changes',{event:'*',schema:'public',table:'bill_group_items'},refresh)
+    .subscribe()
+}
+init();
+</script>
+</body></html>
