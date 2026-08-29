@@ -269,7 +269,7 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
 .month-actions{grid-template-columns:repeat(2,minmax(0,1fr))!important}.month-actions label{grid-column:1/-1}.manual-bookings-box{margin-top:16px;border-top:1px solid #e2e6eb;padding-top:14px}.manual-bookings-box h3{margin:0 0 4px}.zone-admin-row{display:grid;grid-template-columns:minmax(130px,1fr) 120px 90px auto;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid #e2e6eb}.zone-admin-row input,.zone-admin-row select{min-height:40px;border:1px solid #cfd5dd;border-radius:9px;padding:7px;background:#fff}.zone-admin-row button{min-height:40px;border:1px solid #cfd5dd;border-radius:9px;background:#111827;color:#fff;font-weight:800;padding:7px 10px}
 .report-actions-note{font-size:11px;color:#667085;margin-top:8px}
 @media(max-width:700px){.service-voucher-search{grid-template-columns:1fr}.month-actions{grid-template-columns:1fr!important}.zone-admin-row{grid-template-columns:1fr 1fr}.zone-admin-row button{grid-column:1/-1}#serviceSales .bar-row{grid-template-columns:minmax(0,1fr) auto}#serviceSales .bar-track{grid-column:1/-1}}
-</style></head><body><div class="wrap"><div class="top"><div class="brand"><img src="/orderbuddy-logo.PNG" alt="OrderBuddy"><div><div class="product">OrderBuddy</div><div class="customer">Restaurant Ordering</div></div></div><div class="top-actions"><button id="adminBtn" class="top-mini hidden">Chefbereich</button><button id="logoutBtn" class="top-mini hidden">Abmelden</button><div class="badge" id="deviceBadge">Servicegerät</div></div></div>
+.zone-admin-row{display:grid;grid-template-columns:110px minmax(150px,1fr) 130px 120px auto;gap:8px;align-items:center;margin-top:8px}.zone-admin-row input,.zone-admin-row select,.zone-admin-row button{min-height:44px;border:1px solid #cfd5dd;border-radius:10px;background:white;padding:8px}.zone-admin-row button{font-weight:800}@media(max-width:800px){.zone-admin-row{grid-template-columns:1fr 1fr}.zone-admin-row button{grid-column:1/-1}}</style></head><body><div class="wrap"><div class="top"><div class="brand"><img src="/orderbuddy-logo.PNG" alt="OrderBuddy"><div><div class="product">OrderBuddy</div><div class="customer">Restaurant Ordering</div></div></div><div class="top-actions"><button id="adminBtn" class="top-mini hidden">Chefbereich</button><button id="logoutBtn" class="top-mini hidden">Abmelden</button><div class="badge" id="deviceBadge">Servicegerät</div></div></div>
 <section id="loginView" class="card login"><h1>Service-Anmeldung</h1><p>Mit dem jeweiligen Passwort anmelden. Danach bleibt dieses Gerät angemeldet, bis du dich abmeldest.</p><select id="deviceSelect" class="input" style="margin-bottom:10px"><option>Service 1</option><option>Service 2</option><option>Service 3</option><option>Service 4</option><option>Chef / Admin</option></select><input id="email" class="input hidden" type="email" readonly><input id="password" class="input" type="password" placeholder="Service-Passwort" style="margin-top:10px"><button id="loginBtn" class="primary" style="width:100%;margin-top:10px">Anmelden</button><div id="loginMsg" class="msg">Das Passwort wird nicht gespeichert, nur die Sitzung.</div></section>
 <main id="appView" class="hidden"><div class="tabs"><button class="tab on" data-area="Terrasse">☀️ Terrasse</button><button class="tab" data-area="Innenraum">🏠 Innenraum</button><button class="tab" data-area="Lieferung">🚗 Lieferung</button><button class="tab" data-area="Abholung">🥡 Abholung</button></div><section id="tablesView" class="card"><div class="section-title" id="areaTitle">Terrasse</div><div class="tables" id="tables"></div><div class="table-legend"><span><i class="legend-dot legend-free"></i>Frei</span><span><i class="legend-dot legend-occupied"></i>Besetzt / aufgenommen</span><span><i class="legend-dot legend-preparing"></i>In Zubereitung</span><span><i class="legend-dot legend-ready"></i>Fertig / Service</span><span><i class="legend-dot legend-checkout"></i>Bereit zum Abschluss</span></div><div class="sync" id="syncMsg" style="margin-top:12px">Synchronisiert</div></section><section id="orderView" class="hidden"><button id="backBtn" class="secondary back">← Tischübersicht</button><div class="order-layout"><div class="card"><div class="section-title" id="tableTitle">Tisch</div><div id="orderMeta" class="order-meta hidden"></div><div id="specialOrderActions" class="special-order-actions hidden"><button id="editOrderDetailsBtn">Kundendaten</button></div><div class="category-groups">
   <div>
@@ -332,7 +332,7 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
 <div class="admin-section" data-v140-group="system"><div class="section-title" style="font-size:21px">System & Archiv</div><div class="admin-note">Änderungsprotokoll und Datenübersicht. OrderBuddy bleibt bewusst ohne elektronische Zahlungs- oder Kassenfunktion.</div><div class="v140-card" style="margin-top:10px"><div class="v140-form"><label>Protokoll ab<input id="auditFrom" type="date"></label><label>Max. Einträge<select id="auditLimit"><option>50</option><option>100</option><option>200</option></select></label><button id="auditReload" class="wide">Protokoll laden</button></div><div id="auditList" class="v140-list"></div></div></div>
 <div class="admin-section">
     <div class="section-title" style="font-size:21px">Lieferzonen</div>
-    <div class="admin-note">Lieferzone 1–5 frei benennen und Lieferpreis pflegen. Beim Lieferauftrag wird der hinterlegte Preis automatisch zur Gesamtsumme addiert.</div>
+    <div class="admin-note">Lieferzone 1–5 mit PLZ und Ort pflegen. Die PLZ grenzt gleichnamige Orte eindeutig ab und verbessert die Straßenvorschläge. Beim Lieferauftrag wird der hinterlegte Preis automatisch zur Gesamtsumme addiert.</div>
     <div id="deliveryZoneAdminList"></div>
   </div>
 
@@ -524,7 +524,7 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
 </div>
 <div id="orderAddressWrap">
     <label class="msg" style="display:block;margin-top:10px">Adresse</label>
-    <div class="address-suggestions"><input id="orderCustomerAddress" class="input" autocomplete="off" placeholder="Straße, Hausnummer, Ort"><div id="addressSuggestions" class="address-suggestions-list hidden"></div></div>
+    <div class="address-suggestions"><input id="orderCustomerAddress" class="input" autocomplete="off" placeholder="Straße, Hausnummer"><div id="addressSuggestions" class="address-suggestions-list hidden"></div></div>
   </div>
   <label id="orderTimeLabel" class="msg" style="display:block;margin-top:10px">Uhrzeit</label>
   <input id="orderRequestedTime" class="input" type="time">
@@ -716,7 +716,7 @@ async function loadBase(){
     supabase.from('menu_items').select('id,article_number,name,variant,price,sort_order,category_id,active').order('sort_order'),
     supabase.from('menu_extras').select('id,name,price,active,sort_order').order('sort_order'),
     supabase.from('menu_option_groups').select('id,name,min_select,max_select,active,menu_options(id,name,price_delta,active,sort_order),menu_item_option_groups(menu_item_id)').eq('active',true).order('sort_order'),
-    supabase.from('delivery_zones').select('id,name,fee,active,sort_order').order('sort_order')
+    supabase.from('delivery_zones').select('*').order('sort_order')
   ]);
   const err=ea||ec||em||ex||eog;
   if(err){if(/JWT issued at future/i.test(err.message||'')){await new Promise(r=>setTimeout(r,2200));await supabase.auth.refreshSession();return loadBase()}$('#syncMsg').textContent='Datenfehler: '+err.message;return}
@@ -805,7 +805,7 @@ async function openTable(t){
     else{
       renderOrderMeta();renderOrder();
       $('#syncMsg').textContent='Synchronisiert';
-      setTimeout(()=>fillOrderDetailsModal(),60)
+      // Kundendaten bewusst erst nach der Bestellung über „Auftragsdaten“ öffnen.
     }
   }catch(e){
     $('#syncMsg').textContent='Öffnen fehlgeschlagen: '+(e?.message||e);
@@ -838,6 +838,7 @@ function renderOrderMeta(){
 function fillOrderDetailsModal(){
   const delivery=currentTable?.areas?.name==='Lieferung';
   $('#orderDetailsTitle').textContent=delivery?'Lieferdaten':'Abholdaten';
+  $('#orderCustomerNote').placeholder=delivery?'z. B. Klingel links':'z. B. Abholung durch andere Person';
   $('#deliveryZoneWrap').classList.toggle('hidden',!delivery);
   $('#orderAddressWrap').classList.toggle('hidden',!delivery);
   $('#orderTimeLabel').textContent=delivery?'Wann soll das Essen da sein?':'Abholzeit';
@@ -847,7 +848,7 @@ function fillOrderDetailsModal(){
   $('#orderRequestedTime').value=currentSession?.requested_time||'';
   $('#orderCustomerNote').value=currentSession?.customer_note||'';
   const sel=$('#orderDeliveryZone');sel.innerHTML='<option value="">Lieferort auswählen</option>';
-  deliveryZones.filter(z=>z.active!==false).forEach(z=>{const o=document.createElement('option');o.value=z.id;o.textContent=z.name+' · '+euro(z.fee);if(String(currentSession?.delivery_zone_id||'')===String(z.id))o.selected=true;sel.appendChild(o)});
+  deliveryZones.filter(z=>z.active!==false).forEach(z=>{const o=document.createElement('option');o.value=z.id;const place=[z.postal_code,z.name].filter(Boolean).join(' ');o.textContent=place+' · '+euro(z.fee);if(String(currentSession?.delivery_zone_id||'')===String(z.id))o.selected=true;sel.appendChild(o)});
   $('#orderDetailsMsg').textContent='';$('#orderDetailsModal').classList.remove('hidden')
 }
 $('#editOrderDetailsBtn').onclick=fillOrderDetailsModal;
@@ -855,7 +856,7 @@ $('#editOrderDetailsBtn').onclick=fillOrderDetailsModal;
 let addressSuggestTimer=null;
 function normalizedDeliveryPlace(){
   const zone=deliveryZones.find(z=>String(z.id)===String($('#orderDeliveryZone').value));
-  return zone?.name||''
+  return [zone?.postal_code,zone?.name].filter(Boolean).join(' ').trim()
 }
 async function suggestDeliveryAddress(){
   const box=$('#addressSuggestions'),q=$('#orderCustomerAddress').value.trim(),place=normalizedDeliveryPlace();
@@ -1745,14 +1746,16 @@ function renderDeliveryZoneAdmin(){
   if(!deliveryZones.length){box.innerHTML='<div class="admin-note" style="margin-top:10px">Lieferzonen noch nicht eingerichtet. Bitte die beigefügte OrderBuddy-Supabase-Upgrade-Datei ausführen.</div>';return}
   deliveryZones.forEach((z,idx)=>{
     const row=document.createElement('div');row.className='zone-admin-row';
-    row.innerHTML='<input class="zone-name" value="'+esc(z.name||('Lieferzone '+(idx+1)))+'" aria-label="Name"><input class="zone-fee" type="number" min="0" step="0.50" value="'+Number(z.fee||0).toFixed(2)+'" aria-label="Lieferpreis"><select class="zone-active" aria-label="Aktiv"><option value="true" '+(z.active!==false?'selected':'')+'>Aktiv</option><option value="false" '+(z.active===false?'selected':'')+'>Inaktiv</option></select><button>Speichern</button>';
+    row.innerHTML='<input class="zone-postal" inputmode="numeric" maxlength="5" placeholder="PLZ" value="'+esc(z.postal_code||'')+'" aria-label="PLZ"><input class="zone-name" value="'+esc(z.name||('Lieferzone '+(idx+1)))+'" placeholder="Ort" aria-label="Ort"><input class="zone-fee" type="number" min="0" step="0.50" value="'+Number(z.fee||0).toFixed(2)+'" aria-label="Lieferpreis"><select class="zone-active" aria-label="Aktiv"><option value="true" '+(z.active!==false?'selected':'')+'>Aktiv</option><option value="false" '+(z.active===false?'selected':'')+'>Inaktiv</option></select><button>Speichern</button>';
     row.querySelector('button').onclick=async()=>{
+      const postal=row.querySelector('.zone-postal').value.trim();
       const name=row.querySelector('.zone-name').value.trim()||('Lieferzone '+(idx+1));
       const fee=Number(row.querySelector('.zone-fee').value||0);
       const active=row.querySelector('.zone-active').value==='true';
-      const{error}=await supabase.from('delivery_zones').update({name,fee,active}).eq('id',z.id);
-      $('#adminMsg').textContent=error?'Lieferzone: '+error.message:'Lieferzone '+name+' gespeichert.';
-      if(!error){z.name=name;z.fee=fee;z.active=active;await loadBase();renderDeliveryZoneAdmin()}
+      if(postal&&!/^\d{5}$/.test(postal)){ $('#adminMsg').textContent='Lieferzone: Bitte eine fünfstellige deutsche PLZ eingeben.';return }
+      const{error}=await supabase.from('delivery_zones').update({postal_code:postal||null,name,fee,active}).eq('id',z.id);
+      $('#adminMsg').textContent=error?'Lieferzone: '+error.message:'Lieferzone '+([postal,name].filter(Boolean).join(' '))+' gespeichert.';
+      if(!error){z.postal_code=postal||null;z.name=name;z.fee=fee;z.active=active;await loadBase();renderDeliveryZoneAdmin()}
     };box.appendChild(row)
   })
 }
