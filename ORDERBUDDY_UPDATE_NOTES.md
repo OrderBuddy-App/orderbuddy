@@ -1,11 +1,9 @@
-# OrderBuddy V31.7
+# OrderBuddy V31.8 – Veranstaltungsbons
 
-- Veranstaltungen werden im Chefbereich zuerst als Entwurf vorbereitet.
-- Übergabe an V-1 bis V-8 erfolgt bewusst erst später über „An Service übergeben“.
-- Service-Reiter Veranstaltungen zeigt ohne Datumsauswahl/Infotext nur V-1 bis V-8.
-- V-Detail nutzt die normale Bestelllogik/-aufteilung: Speisen/Getränke links, aktuelle Bestellung rechts.
-- Chef-Vorgabe erscheint rechts als gesperrte Position und kann vom Service nicht gelöscht werden.
-- Zusätzliche À-la-carte-Positionen können normal ergänzt und storniert werden.
-- Zahlungsart wird erst bei der Abrechnung gewählt; Mischzahlungen werden unterstützt.
-- Ein aktiver V-Platz ist unabhängig vom Veranstaltungsdatum nur einmal belegbar.
-- SQL: SUPABASE_ORDERBUDDY_CONSOLIDATED_V31_7.sql einmal in Supabase ausführen.
+- Barbon: identische Veranstaltungspositionen werden zusammengefasst.
+- Küchenbon: identische Positionen werden zusammengefasst; Positionen mit abweichenden Optionen, Extras oder Bemerkungen bleiben getrennt.
+- Vorspeisen bei Veranstaltungen: Servierfolge „Vorspeise vorab“ / „Zusammen mit Hauptgang“ ist auswählbar.
+- Küchenbon: Pauschalveranstaltungen zeigen die Chef-Vorgabe als `Personenzahl × Veranstaltungspaket`.
+- Küchenbon: Vorspeisen vorab werden in einem eigenen Abschnitt zuerst gedruckt.
+- Gesamtbon: Veranstaltungspaket sauber dargestellt; 7-%-/19-%-Netto, MwSt. und Brutto werden ausgewiesen.
+- Veranstaltungspositionen speichern Servierfolge, Bemerkung, Optionen und Extras.
