@@ -1,9 +1,11 @@
-# OrderBuddy V31.8 – Veranstaltungsbons
+# OrderBuddy V31.9 – Veranstaltungsablauf & scrollbare Bestellungen
 
-- Barbon: identische Veranstaltungspositionen werden zusammengefasst.
-- Küchenbon: identische Positionen werden zusammengefasst; Positionen mit abweichenden Optionen, Extras oder Bemerkungen bleiben getrennt.
-- Vorspeisen bei Veranstaltungen: Servierfolge „Vorspeise vorab“ / „Zusammen mit Hauptgang“ ist auswählbar.
-- Küchenbon: Pauschalveranstaltungen zeigen die Chef-Vorgabe als `Personenzahl × Veranstaltungspaket`.
-- Küchenbon: Vorspeisen vorab werden in einem eigenen Abschnitt zuerst gedruckt.
-- Gesamtbon: Veranstaltungspaket sauber dargestellt; 7-%-/19-%-Netto, MwSt. und Brutto werden ausgewiesen.
-- Veranstaltungspositionen speichern Servierfolge, Bemerkung, Optionen und Extras.
+- „Aktuelle Bestellung“ ist jetzt in allen Bereichen scrollbar: Terrasse, Innenraum, Lieferung, Abholung und Veranstaltungen.
+- Veranstaltungen verwenden für die feste Pauschale und alle À-la-carte-Positionen die Statusfolge Neu → In Zubereitung → Erledigt.
+- V-1 bis V-8 verwenden die bekannten Statusfarben Gelb → Orange → Blau → manuell Grün.
+- Die feste erste Position lautet z. B. „24× Veranstaltungspaket“ und bleibt nicht löschbar.
+- Artikel werden bei Veranstaltungen wie in den anderen Bereichen direkt hinzugefügt. Das Extras-/Bemerkungsfenster öffnet nicht mehr automatisch.
+- Bei Vorspeisen bzw. zwingenden Auswahlgruppen wird nur die tatsächlich notwendige Auswahl abgefragt.
+- Extras/Bemerkung können anschließend an der Position bearbeitet werden.
+- Gesamtbon zeigt beim Paket keinen Veranstaltungsnamen und keinen Preis-pro-Person-Text.
+- Abrechnung wird erst nach bewusstem „Bereit zum Abschluss“ freigegeben.
