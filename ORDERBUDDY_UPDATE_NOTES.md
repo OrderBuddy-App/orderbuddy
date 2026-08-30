@@ -1,4 +1,4 @@
-# OrderBuddy – konsolidierter Stand V31
+# OrderBuddy – konsolidierter Stand V31.1
 
 Dieser Stand wurde ausschließlich aus der zuletzt hochgeladenen vollständigen Projektversion aufgebaut. Alte ZIPs und alte Einzelpatches wurden nicht als Basis verwendet.
 
@@ -9,7 +9,7 @@ Dieser Stand wurde ausschließlich aus der zuletzt hochgeladenen vollständigen 
 - Nachträgliche Erfassung: Abschlusszeit und Nachbestell-Markierung verwenden das historische Datum/die historische Uhrzeit in der Restaurant-Zeitzone.
 - Service-Ton: nur auf angemeldeten Servicegeräten, nicht im Chef/Admin-Zugang.
 - Straßenverzeichnis: nicht mehr fest in der Kernlogik; die Listen werden je Lieferzone aus Supabase geladen. Polle/Brevörde bleiben über exakte PLZ+Ort-Zuordnung getrennt.
-- PWA/Realtime-Version auf V31 angehoben.
+- PWA/Realtime-Version auf V31.1 angehoben.
 
 ## Weiter enthalten
 - Terrasse / Innenraum / Lieferung / Abholung mit der vereinbarten Statuslogik.
@@ -28,10 +28,10 @@ Dieser Stand wurde ausschließlich aus der zuletzt hochgeladenen vollständigen 
 - Passwort-Auge und eigener Aktualisieren-Button.
 
 ## Supabase
-Vor dem Deployment einmal `SUPABASE_ORDERBUDDY_CONSOLIDATED_V31.sql` im SQL Editor ausführen. Das Skript ist für wiederholtes Ausführen ausgelegt und enthält die für diesen Stand benötigten Ergänzungen in einer Datei.
+Vor dem Deployment einmal `SUPABASE_ORDERBUDDY_CONSOLIDATED_V31.1.sql` im SQL Editor ausführen. Das Skript ist für wiederholtes Ausführen ausgelegt und enthält die für diesen Stand benötigten Ergänzungen in einer Datei.
 
 ## Empfohlene Testreihenfolge
-1. SQL V31 ausführen.
+1. SQL V31.1 ausführen.
 2. GitHub-Inhalt durch diesen vollständigen Stand ersetzen und `main` deployen lassen.
 3. OrderBuddy über „Aktualisieren“ neu laden.
 4. Terrasse/Innenraum: Gelb → Orange → Blau → bewusst Grün → Abschluss.

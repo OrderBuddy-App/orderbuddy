@@ -894,7 +894,12 @@ async function openTable(t){
     }
     if(!special)showOpenedTable(t);
     else{
-      renderOrderMeta();renderOrder();
+      // Bei Lieferung/Abholung wurde die Ansicht bereits vor dem DB-Ladevorgang geöffnet.
+      // Nach dem Ermitteln der Session müssen deshalb die vorhandenen Positionen explizit
+      // neu geladen werden. Sonst blieb der Auftrag in der Übersicht korrekt gelb,
+      // während die Bestellliste beim erneuten Öffnen leer erschien.
+      await loadOrders();
+      renderOrderMeta();
       $('#syncMsg').textContent='Synchronisiert';
       // Kundendaten bewusst erst nach der Bestellung über „Auftragsdaten“ öffnen.
     }
@@ -2817,7 +2822,7 @@ $('#monthSummaryPdfBtn').onclick=async()=>{const month=$('#adminMonthTab').value
 function subscribe(){
   const refresh=async()=>{if(currentSession)await loadOrders();await refreshTableStatuses();if(!$('#tablesView').classList.contains('hidden'))renderTables();$('#syncMsg').textContent='Live aktualisiert · '+new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})};
   const itemRefresh=async payload=>{if(payload?.eventType==='UPDATE'&&payload.new?.status==='done'&&payload.old?.status!=='done'){const m=menu.find(x=>String(x.id)===String(payload.new?.menu_item_id)),c=categories.find(x=>String(x.id)===String(m?.category_id));if(c?.destination==='kitchen')playReadySound()}await refresh()};
-  supabase.channel('orderbuddy-live-v31')
+  supabase.channel('orderbuddy-live-v31.1')
     .on('postgres_changes',{event:'*',schema:'public',table:'order_items'},itemRefresh)
     .on('postgres_changes',{event:'*',schema:'public',table:'bill_groups'},refresh)
     .on('postgres_changes',{event:'*',schema:'public',table:'table_sessions'},refresh)
