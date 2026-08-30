@@ -731,29 +731,52 @@ function businessDateNow(){
 }
 async function refreshTableStatuses(){
   if(!restaurant)return;
-  const{data,error}=await supabase.from('table_sessions').select('id,table_id,order_type,opened_at,requested_time,ready_for_checkout,restore_ready_on_revert,reopened_from_checkout_at,order_items(id,status,cancelled,created_at),bill_groups(status,bill_group_items(order_item_id))').eq('restaurant_id',restaurant.id).eq('status','open');
-  if(error)return;
+  // Statusdaten bewusst getrennt laden. Die verschachtelte Supabase-Abfrage konnte
+  // nach schnellen Änderungen vereinzelt noch einen alten order_items-Stand liefern.
+  const{data:sessions,error:sessionError}=await supabase.from('table_sessions')
+    .select('id,table_id,order_type,opened_at,requested_time,ready_for_checkout,restore_ready_on_revert,reopened_from_checkout_at')
+    .eq('restaurant_id',restaurant.id).eq('status','open');
+  if(sessionError){$('#syncMsg').textContent='Statusfehler: '+sessionError.message;return}
+
   tableStatusMap=new Map();
-  (data||[]).forEach(ses=>{
-    const items=(ses.order_items||[]).filter(o=>o.cancelled!==true),groups=ses.bill_groups||[];
-    const activeGroups=groups.filter(g=>!['completed','cancelled'].includes(g.status)),assigned=new Set();
-    groups.filter(g=>g.status==='completed').forEach(g=>(g.bill_group_items||[]).forEach(i=>assigned.add(String(i.order_item_id))));
-    const unassigned=items.filter(o=>!assigned.has(String(o.id)));
+  const sessionIds=(sessions||[]).map(s=>s.id);
+  let items=[];
+  if(sessionIds.length){
+    const{data:itemRows,error:itemError}=await supabase.from('order_items')
+      .select('id,session_id,status,cancelled,created_at')
+      .in('session_id',sessionIds).eq('cancelled',false);
+    if(itemError){$('#syncMsg').textContent='Statusfehler: '+itemError.message;return}
+    items=itemRows||[];
+  }
+  const itemsBySession=new Map();
+  items.forEach(item=>{
+    const key=String(item.session_id);
+    if(!itemsBySession.has(key))itemsBySession.set(key,[]);
+    itemsBySession.get(key).push(item)
+  });
+
+  (sessions||[]).forEach(ses=>{
+    const sesItems=itemsBySession.get(String(ses.id))||[];
     const isDelivery=ses.order_type==='Lieferung',isPickup=ses.order_type==='Abholung';
     const occupiedLabel=(isDelivery||isPickup)?'Auftrag angenommen':'Besetzt / Bestellung offen';
     const readyLabel=isDelivery?'Essen fertig / wartet auf Fahrer':isPickup?'Essen fertig / wartet auf Abholung':'Fertig / wartet auf Service';
     const checkoutLabel=isDelivery?'Fahrer unterwegs':isPickup?'Kunde da / Übergabe läuft':'Bereit zum Abschluss';
+
+    // Eine normale Tisch-Session ohne verbleibende Positionen gilt wieder als frei.
+    // Lieferung/Abholung bleiben nach dem Öffnen als angenommener Auftrag sichtbar.
+    if(!sesItems.length&&!isDelivery&&!isPickup&&!ses.ready_for_checkout)return;
+
     let key='occupied',label=occupiedLabel;
     const reopenedAt=ses.restore_ready_on_revert&&ses.reopened_from_checkout_at?new Date(ses.reopened_from_checkout_at).getTime():null;
-    const reopenedItems=reopenedAt?items.filter(o=>o.created_at&&new Date(o.created_at).getTime()>=reopenedAt):null;
+    const reopenedItems=reopenedAt?sesItems.filter(o=>o.created_at&&new Date(o.created_at).getTime()>=reopenedAt):null;
     if(ses.ready_for_checkout){key='checkout';label=checkoutLabel}
     else if(reopenedItems){
       if(reopenedItems.length&&reopenedItems.every(o=>o.status==='done')){key='ready';label=readyLabel}
       else if(reopenedItems.some(o=>o.status==='preparing'||o.status==='done')){key='preparing';label='In Zubereitung'}
       else {key='occupied';label=occupiedLabel}
     }
-    else if(items.length&&items.every(o=>o.status==='done')){key='ready';label=readyLabel}
-    else if(items.some(o=>o.status==='preparing'||o.status==='done')){key='preparing';label='In Zubereitung'}
+    else if(sesItems.length&&sesItems.every(o=>o.status==='done')){key='ready';label=readyLabel}
+    else if(sesItems.some(o=>o.status==='preparing'||o.status==='done')){key='preparing';label='In Zubereitung'}
     tableStatusMap.set(String(ses.table_id),{key,label,requested_time:ses.requested_time||''})
   })
 }
@@ -1129,7 +1152,7 @@ async function quickAddOrConfigure(m){
   });
   if(error){$('#actionMsg').textContent='Fehler: '+error.message;return}
   await resetCheckoutForAddedItem(checkoutReopenMarker);
-  $('#actionMsg').textContent=m.name+' hinzugefügt.';await loadOrders()
+  $('#actionMsg').textContent=m.name+' hinzugefügt.';await loadOrders();await refreshTableStatuses()
 }
 function itemOptionGroups(m){
   return optionGroups.filter(g=>(g.menu_item_option_groups||[]).some(x=>x.menu_item_id===m.id) || (/eis|kugel/i.test(m.name)&&g.name==='Eissorte') || (/kuchen|tiramisu/i.test(m.name)&&g.name==='Kuchensorte'))
@@ -1295,7 +1318,7 @@ async function addConfiguredItem(){
     editingOrderItem=null;
     iceQuantities={};
     $('#actionMsg').textContent='Eis ('+balls+' '+(balls===1?'Kugel':'Kugeln')+') hinzugefügt.';
-    await loadOrders();
+    await loadOrders();await refreshTableStatuses();
     return
   }
 
@@ -1359,7 +1382,7 @@ async function addConfiguredItem(){
   pendingMenuItem=null;
   editingOrderItem=null;
   $('#actionMsg').textContent=m.name+' hinzugefügt.';
-  await loadOrders()
+  await loadOrders();await refreshTableStatuses()
 }
 async function saveOrderItemEdits(){
   const o=editingOrderItem,m=pendingMenuItem;if(!o||!m)return;
