@@ -617,7 +617,7 @@ const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&
 
 let deviceName=localStorage.getItem('orderbuddy_device')||'Service 1';
 let currentArea='Terrasse',currentTable=null,currentSession=null,pendingSpecialTable=null;
-let categories=[],menu=[],orders=[],transferredOrders=[],billGroups=[],restaurant=null,menuExtras=[],optionGroups=[],sessionVouchers=[],pendingMenuItem=null,editingOrderItem=null,iceQuantities={},deliveryZones=[];
+let categories=[],menu=[],orders=[],transferredOrders=[],billGroups=[],restaurant=null,menuExtras=[],optionGroups=[],sessionVouchers=[],pendingMenuItem=null,editingOrderItem=null,iceQuantities={},deliveryZones=[],deliveryZoneStreets=[];
 let registerOpen=false,completedOpen=false,currentRole='service',adminSessions=[],adminExport=null,tableStatusMap=new Map(),voucherScannerStream=null,voucherScannerRunning=false,voucherScannerTimer=null,verifiedVoucher=null,voucherResultTarget='#voucherVerifyResult';
 let historicalEntry=null,currentEvent=null,knownDoneItems=new Set(),readyAudioContext=null;
 
@@ -723,27 +723,36 @@ async function loadBase(){
   const{data:r,error:re}=await supabase.from('restaurants').select('id,display_name,receipt_name,show_receipt_number,timezone,cash_start_amount').limit(1).single();
   if(re){$('#syncMsg').textContent='Datenfehler: '+re.message;return}
   restaurant=r;
-  const[{data:a,error:ea},{data:c,error:ec},{data:m,error:em},{data:x,error:ex},{data:og,error:eog},{data:dz,error:edz}]=await Promise.all([
+  const[{data:a,error:ea},{data:c,error:ec},{data:m,error:em},{data:x,error:ex},{data:og,error:eog},{data:dz,error:edz},{data:ds,error:eds}]=await Promise.all([
     supabase.from('restaurant_tables').select('id,code,display_name,sort_order,active,area_id,areas(id,name)').eq('active',true),
     supabase.from('menu_categories').select('id,name,sort_order,destination').order('sort_order'),
     supabase.from('menu_items').select('id,article_number,name,variant,price,sort_order,category_id,active').order('sort_order'),
     supabase.from('menu_extras').select('id,name,price,active,sort_order').order('sort_order'),
     supabase.from('menu_option_groups').select('id,name,min_select,max_select,active,menu_options(id,name,price_delta,active,sort_order),menu_item_option_groups(menu_item_id)').eq('active',true).order('sort_order'),
-    supabase.from('delivery_zones').select('*').order('sort_order')
+    supabase.from('delivery_zones').select('*').order('sort_order'),
+    supabase.from('delivery_zone_streets').select('id,delivery_zone_id,street_name,sort_order,active').eq('active',true).order('sort_order').order('street_name')
   ]);
   const err=ea||ec||em||ex||eog;
   if(err){if(/JWT issued at future/i.test(err.message||'')){await new Promise(r=>setTimeout(r,2200));await supabase.auth.refreshSession();return loadBase()}$('#syncMsg').textContent='Datenfehler: '+err.message;return}
-  window.tablesData=a||[];categories=c||[];menu=m||[];menuExtras=x||[];optionGroups=og||[];deliveryZones=edz?[]:(dz||[]);await refreshTableStatuses();renderTables();
+  window.tablesData=a||[];categories=c||[];menu=m||[];menuExtras=x||[];optionGroups=og||[];deliveryZones=edz?[]:(dz||[]);deliveryZoneStreets=eds?[]:(ds||[]);await refreshTableStatuses();renderTables();
 }
 function businessDateNow(){
   const tz=restaurant?.timezone||'Europe/Berlin';
   return new Intl.DateTimeFormat('en-CA',{timeZone:tz,year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
 }
+function timestampForRestaurantZone(date,time='00:00'){
+  const m=String(date||'').match(/^(\d{4})-(\d{2})-(\d{2})$/),t=String(time||'00:00').match(/^(\d{2}):(\d{2})/);
+  if(!m||!t)return null;
+  const tz=restaurant?.timezone||Intl.DateTimeFormat().resolvedOptions().timeZone||'Europe/Berlin';
+  const desired=Date.UTC(Number(m[1]),Number(m[2])-1,Number(m[3]),Number(t[1]),Number(t[2]),0);
+  const partsAt=ms=>Object.fromEntries(new Intl.DateTimeFormat('en-CA',{timeZone:tz,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(new Date(ms)).filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));
+  let candidate=desired;
+  for(let i=0;i<2;i++){const p=partsAt(candidate),shown=Date.UTC(Number(p.year),Number(p.month)-1,Number(p.day),Number(p.hour),Number(p.minute),Number(p.second));candidate-=shown-desired}
+  return new Date(candidate).toISOString();
+}
 function historicalTimestamp(){
   if(!historicalEntry)return null;
-  const time=(historicalEntry.time||'00:00').trim()||'00:00';
-  const local=new Date(historicalEntry.date+'T'+time+':00');
-  return Number.isNaN(local.getTime())?null:local.toISOString();
+  return timestampForRestaurantZone(historicalEntry.date,(historicalEntry.time||'00:00').trim()||'00:00');
 }
 function orderTimestampPayload(){const x=historicalTimestamp();return x?{ordered_at:x}:{} }
 function sessionTimestampPayload(){const x=historicalTimestamp();return x?{opened_at:x,historical_entry:true}:{} }
@@ -940,28 +949,10 @@ function fillOrderDetailsModal(){
 $('#editOrderDetailsBtn').onclick=fillOrderDetailsModal;
 
 let addressSuggestTimer=null;
-const BUILTIN_STREET_DIRECTORY={
-  '37647|polle':[
-    'Am Bracken','Amtsstraße','Angerweg','Bergstraße','Berliner Straße','Birkenweg','Brinkstraße','Burgblick','Burgstraße','Doktorgasse','Eversteiner Weg','Fährstraße','Försterweg','Gartenstraße','Heidbrink','Heimbergstraße','Heinser Straße','Hintere Straße','Höhenweg','Hohe Brücke','Hohe Feldstraße','Im Tappen','Im Teiche','Johann-Prigge-Weg','Klostergasse','Lindenbreite','Marktstraße','Mittelstraße','Mohrgasse','Mühlenweg','Postgasse','Pyrmonter Straße','Robrexer Bergweg','Robrexer Straße','Schäferhof','Schulstraße','Sonnenberg','Sonnenbergblick','Talweg','Weißenfeld','Wilmeröder Berg','Zimmergasse','Zum Tenterling'
-  ],
-  '32676|hummersen':[
-    'Am Dorn','Am Lakenbach','Auf dem Kampe','Buchholzstraße','Detmolder Straße','Klingelborner Weg','Mühlenberg','Mühlenbergweg','Parkstraße','Tönsweg','Unterm Osterhagen','Vogelsang','Weißenfelder Weg','Weserberglandstraße','Winkelweg'
-  ],
-  '37647|brevörde':[
-    'Bergstraße','Dornberg','Im Döhren','Kirchstraße','Meiborsser Straße','Obere Straße','Papenbreite','Riepenbrink','Untere Straße'
-  ],
-  '37619|pegestorf':[
-    'Am Dreschplatz','Am Kirschenberg','Gartenstraße','Hauptstraße','Im Winkel','Kirchweg','Lichtensruh','Lutterburg','Maschhof','Mittlere Straße','Neues Tor','Steinmühle','Suestraße','Weserstraße','Worthstraße','Zwischen Zäunen'
-  ],
-  '37649|heinsen':[
-    'Auf der Breite','Bergstraße','Birkenweg','Dammstraße','Dangenstraße','Gartenstraße','Hauptstraße','Hopfenberg','In den Äckern','Klingenburg','Mittelstraße','Neue Straße','Oststraße','Rosenweg','Stollenweg','Südstraße','Weserstraße','Wilmeröderberg'
-  ]
-};
-function streetDirectoryKey(zone){
-  return zone?[String(zone.postal_code||'').trim(),normPlaceText(zone.name)].join('|'):''
-}
-function builtinStreetsForZone(zone){
-  return BUILTIN_STREET_DIRECTORY[streetDirectoryKey(zone)]||null
+function streetsForZone(zone){
+  if(!zone)return null;
+  const rows=deliveryZoneStreets.filter(x=>String(x.delivery_zone_id)===String(zone.id)&&x.active!==false).map(x=>x.street_name).filter(Boolean);
+  return rows.length?rows:null
 }
 function splitStreetSearchInput(v){
   const raw=String(v||'').trim();
@@ -969,7 +960,7 @@ function splitStreetSearchInput(v){
   return {street:(m?.[1]||raw).trim(),house:(m?.[2]||'').trim()}
 }
 function renderBuiltinStreetSuggestions(){
-  const box=$('#addressSuggestions'),zone=selectedDeliveryZone(),all=builtinStreetsForZone(zone);
+  const box=$('#addressSuggestions'),zone=selectedDeliveryZone(),all=streetsForZone(zone);
   if(!zone||!all){return false}
   const input=$('#orderCustomerAddress'),needle=normPlaceText(input.value);
   const rows=all.filter(s=>!needle||normPlaceText(s).includes(needle)).slice(0,80);
@@ -1015,10 +1006,9 @@ function photonMatchesSelectedZone(p,zone){
 async function suggestDeliveryAddress(){
   const box=$('#addressSuggestions'),q=$('#orderCustomerAddress').value.trim(),zone=selectedDeliveryZone(),place=normalizedDeliveryPlace();
   if(!zone||!place){box.classList.add('hidden');box.innerHTML='';return}
-  // Für die fünf hinterlegten Lieferorte kommt die Auswahl vollständig lokal aus OrderBuddy.
-  // Dadurch reicht bereits ein Buchstabe – und beim leeren Feld wird die ganze Straßenliste gezeigt.
+  // Konfigurierte Straßenlisten kommen mandantenfähig aus Supabase. Dadurch reicht bereits ein Buchstabe – und beim leeren Feld wird die komplette Liste gezeigt.
   if(renderBuiltinStreetSuggestions())return;
-  // Für frei angelegte andere Lieferzonen bleibt die Online-Suche als Fallback erhalten.
+  // Für Lieferzonen ohne gepflegte Straßenliste bleibt die Online-Suche als Fallback erhalten.
   if(q.length<2){box.classList.add('hidden');box.innerHTML='';return}
   clearTimeout(addressSuggestTimer);
   addressSuggestTimer=setTimeout(async()=>{
@@ -1047,7 +1037,7 @@ $('#orderCustomerAddress').addEventListener('click',()=>{renderBuiltinStreetSugg
 $('#orderDeliveryZone').addEventListener('change',()=>{
   $('#addressSuggestions').classList.add('hidden');$('#addressSuggestions').innerHTML='';$('#orderCustomerAddress').value='';$('#orderCustomerHouse').value='';
   updateDeliveryAddressAvailability();
-  setTimeout(()=>{if(builtinStreetsForZone(selectedDeliveryZone())){renderBuiltinStreetSuggestions();$('#orderCustomerAddress').focus()}},0)
+  setTimeout(()=>{if(streetsForZone(selectedDeliveryZone())){renderBuiltinStreetSuggestions();$('#orderCustomerAddress').focus()}},0)
 });
 $('#orderDetailsClear').onclick=async()=>{
   if(!currentSession)return;
@@ -1195,7 +1185,7 @@ async function quickAddOrConfigure(m){
   if(requiresImmediateChoice(m)){openItemConfig(m,'choice');return}
   if(!currentTable)return;
   if(!currentSession){currentSession=await createSession(currentTable);if(!currentSession)return}
-  const checkoutReopenMarker=new Date().toISOString();
+  const checkoutReopenMarker=historicalTimestamp()||new Date().toISOString();
   const{error}=await supabase.from('order_items').insert({
     table_id:currentTable.id,restaurant_id:restaurant.id,session_id:currentSession.id,
     menu_item_id:m.id,quantity:1,unit_price:Number(m.price),status:'new',course:'main',
@@ -1339,7 +1329,7 @@ async function addConfiguredItem(){
       });
 
     const unitPrice=Number(m.price||0)*balls;
-    const checkoutReopenMarker=new Date().toISOString();
+    const checkoutReopenMarker=historicalTimestamp()||new Date().toISOString();
 
     const{error}=await supabase.from('order_items').insert({
       table_id:currentTable.id,
@@ -1409,7 +1399,7 @@ async function addConfiguredItem(){
   }
 
   const unit=Number(m.price)+optObjects.reduce((a,x)=>a+x.price_delta,0);
-  const checkoutReopenMarker=new Date().toISOString();
+  const checkoutReopenMarker=historicalTimestamp()||new Date().toISOString();
 
   const{error}=await supabase.from('order_items').insert({
     table_id:currentTable.id,
@@ -1627,11 +1617,14 @@ $('#closeTableBtn').onclick=async()=>{
   }
   await loadOrders();
   const active=billGroups.filter(g=>g.status!=='completed');
-  if(orders.length){alert('Der Tisch kann noch nicht abgeschlossen werden: Es gibt noch offene Positionen.');return}
-  if(active.length){alert('Der Tisch kann noch nicht abgeschlossen werden: Es gibt noch Positionen, die an die Kasse übergeben, aber noch nicht als kassiert bestätigt wurden.');return}
+  if(orders.length){alert('Der Vorgang kann noch nicht abgeschlossen werden: Es gibt noch offene Positionen.');return}
+  if(active.length){alert('Der Vorgang kann noch nicht abgeschlossen werden: Es gibt noch Positionen, die an die Kasse übergeben, aber noch nicht als kassiert bestätigt wurden.');return}
+  if(!currentSession.ready_for_checkout){alert('Bitte den Vorgang zuerst bewusst auf Grün setzen.');return}
   const closeLabel=currentSession.order_type==='Lieferung'?'Lieferung wirklich abschließen? Fahrer/Geldrücklauf wurde bestätigt.':currentSession.order_type==='Abholung'?'Abholung wirklich abschließen? Kunde hat den Auftrag übernommen.':'Tisch '+tableDisplay(currentTable)+' wirklich abschließen? Danach ist der Tisch für die nächsten Gäste wieder leer.';if(!confirm(closeLabel))return;
   const{data:{user}}=await supabase.auth.getUser();
-  const{error}=await supabase.from('table_sessions').update({status:'closed',closed_at:new Date().toISOString(),closed_by_email:user?.email||null}).eq('id',currentSession.id);
+  const goodsGross=(billGroups||[]).filter(g=>g.status==='completed').reduce((a,g)=>a+groupGross(g),0);
+  const finalDeliveryFee=currentSession.order_type==='Lieferung'?effectiveDeliveryFee(goodsGross,currentSession):Number(currentSession.delivery_fee||0);
+  const{error}=await supabase.from('table_sessions').update({status:'closed',closed_at:historicalTimestamp()||new Date().toISOString(),closed_by_email:user?.email||null,delivery_fee:finalDeliveryFee}).eq('id',currentSession.id);
   if(error){$('#actionMsg').textContent='Tischabschluss fehlgeschlagen: '+error.message;return}
   $('#orderView').classList.add('hidden');$('#tablesView').classList.remove('hidden');currentTable=null;currentSession=null;orders=[];billGroups=[];
   await refreshTableStatuses();renderTables();$('#syncMsg').textContent='Vorgang abgeschlossen · Platz ist wieder frei.';clearHistoricalEntry()
@@ -2326,9 +2319,41 @@ $('#adminMonthTab').onchange=()=>{$('#adminMonth').value=$('#adminMonthTab').val
 function manualBookingDefaults(){const cat=$('#manualBookingCategory').value,dir=$('#manualBookingDirection').value;let account='1360',counter='1000';if(cat==='wechselgeld'){account='1000';counter='1360'}if(cat==='geldtransit'){if(dir==='cash_in'){account='1000';counter='1360'}else{account='1360';counter='1000'}}if(cat==='privatentnahme'){account='1800';counter='1000'}if(cat==='privateinlage'){account='1000';counter='1890'}if(cat==='kosten'){account=$('#manualCostAccount').value.trim()||'1590';counter='1000'}return {account,counter,text:''}}
 function updateManualBookingForm(){const cat=$('#manualBookingCategory').value,cost=cat==='kosten',transit=cat==='geldtransit';$('#manualCostAccountWrap').classList.toggle('hidden',!cost);$('#manualBuKeyWrap').classList.toggle('hidden',!cost);$('#manualDirectionWrap').classList.toggle('hidden',!transit);$('#manualBookingText').placeholder=''}
 $('#manualBookingCategory').onchange=updateManualBookingForm;$('#manualBookingDirection').onchange=updateManualBookingForm;
-$('#manualBookingSave').onclick=async()=>{const amount=Number($('#manualBookingAmount').value),date=$('#manualBookingDate').value||businessDateNow(),d=manualBookingDefaults(),description=$('#manualBookingText').value.trim()||null;if(!(amount>0)){$('#manualBookingMsg').textContent='Bitte einen Betrag größer als 0 eingeben.';return}if(!/^\d{4,8}$/.test(d.account)||!/^\d{4,8}$/.test(d.counter)){$('#manualBookingMsg').textContent='Bitte ein gültiges Kostenkonto angeben.';return}const candidate={booking_date:date,category:$('#manualBookingCategory').value,direction:$('#manualBookingDirection').value,amount,created_at:date+'T23:59:59'};if(manualCashSign(candidate)<0){const month=date.slice(0,7),[mr,{sessions}]=await Promise.all([fetchManualBookings(month),fetchMonthSales(month)]),moves=[];completedGroups(sessions).forEach(({session:s,group:g})=>(g.bill_group_payments||[]).filter(p=>p.payment_method==='cash').forEach(p=>moves.push({key:s.business_date+(g.completed_at||''),amount:Number(p.amount)})));mr.rows.forEach(m=>moves.push({key:m.booking_date+(m.created_at||''),amount:manualCashSign(m)*Number(m.amount)}));moves.push({key:candidate.booking_date+candidate.created_at,amount:manualCashSign(candidate)*amount});moves.sort((a,b)=>a.key.localeCompare(b.key));let saldo=0,currentDay='';for(const m of moves){const day=String(m.key).slice(0,10);if(day!==currentDay){currentDay=day;saldo=cashStartAmount()}saldo+=m.amount;if(saldo<-0.004){$('#manualBookingMsg').textContent='Buchung nicht möglich: Der Bargeldsaldo würde unter 0,00 € fallen.';return}}}const{data:{user}}=await supabase.auth.getUser(),payload={restaurant_id:restaurant.id,booking_date:date,category:$('#manualBookingCategory').value,direction:$('#manualBookingDirection').value,description,amount,account:d.account,counter_account:d.counter,bu_key:$('#manualBuKey').value.trim()||null,created_by_email:user?.email||null},{error}=await supabase.from('manual_bookings').insert(payload);$('#manualBookingMsg').textContent=error?'Speichern nicht möglich: '+error.message:'Manuelle Buchung gespeichert.';if(!error){$('#manualBookingAmount').value='';$('#manualBookingText').value='';await loadManualBookings()}}
+$('#manualBookingSave').onclick=async()=>{
+  const amount=Number($('#manualBookingAmount').value),date=$('#manualBookingDate').value||businessDateNow(),d=manualBookingDefaults(),description=$('#manualBookingText').value.trim()||null;
+  if(!(amount>0)){$('#manualBookingMsg').textContent='Bitte einen Betrag größer als 0 eingeben.';return}
+  if(!/^\d{4,8}$/.test(d.account)||!/^\d{4,8}$/.test(d.counter)){$('#manualBookingMsg').textContent='Bitte ein gültiges Kostenkonto angeben.';return}
+  const candidate={booking_date:date,category:$('#manualBookingCategory').value,direction:$('#manualBookingDirection').value,amount,created_at:date+'T23:59:59'};
+  if(manualCashSign(candidate)<0){
+    const month=date.slice(0,7),[mr,{sessions,vouchers},events]=await Promise.all([fetchManualBookings(month),fetchMonthSales(month),fetchMonthEvents(month)]),moves=[];
+    completedGroups(sessions).forEach(({session:s,group:g})=>(g.bill_group_payments||[]).filter(p=>p.payment_method==='cash').forEach(p=>moves.push({key:s.business_date+(g.completed_at||''),amount:Number(p.amount)})));
+    (vouchers||[]).forEach(v=>moves.push({key:String(v.issued_at).slice(0,10)+(v.issued_at||''),amount:Number(v.original_value||0)}));
+    (events||[]).filter(e=>(e.payment_method||'cash')==='cash').forEach(e=>moves.push({key:e.event_date+'T'+String(e.event_time||'00:00'),amount:eventTotals(e).gross}));
+    mr.rows.forEach(m=>moves.push({key:m.booking_date+(m.created_at||''),amount:manualCashSign(m)*Number(m.amount)}));
+    moves.push({key:candidate.booking_date+candidate.created_at,amount:manualCashSign(candidate)*amount});
+    moves.sort((a,b)=>a.key.localeCompare(b.key));let saldo=0,currentDay='';
+    for(const m of moves){const day=String(m.key).slice(0,10);if(day!==currentDay){currentDay=day;saldo=cashStartAmount()}saldo+=m.amount;if(saldo<-0.004){$('#manualBookingMsg').textContent='Buchung nicht möglich: Der Bargeldsaldo würde unter 0,00 € fallen.';return}}
+  }
+  const{data:{user}}=await supabase.auth.getUser(),payload={restaurant_id:restaurant.id,booking_date:date,category:$('#manualBookingCategory').value,direction:$('#manualBookingDirection').value,description,amount,account:d.account||'1590',counter_account:d.counter||'1000',bu_key:$('#manualBuKey').value.trim()||null,created_by_email:user?.email||null},{error}=await supabase.from('manual_bookings').insert(payload);
+  $('#manualBookingMsg').textContent=error?'Speichern nicht möglich: '+error.message:'Manuelle Buchung gespeichert.';
+  if(!error){$('#manualBookingAmount').value='';$('#manualBookingText').value='';await loadManualBookings()}
+}
 function manualCashSign(m){if(m.category==='privateinlage'||m.category==='wechselgeld')return 1;if(m.category==='privatentnahme'||m.category==='kosten')return -1;if(m.category==='geldtransit')return m.direction==='cash_in'?1:-1;return 0}
-async function loadCashLedger(month,manualRows){const box=$('#cashLedger');if(!box)return;try{const {sessions}=await fetchMonthSales(month),moves=[];completedGroups(sessions).forEach(({session:s,group:g})=>(g.bill_group_payments||[]).filter(p=>p.payment_method==='cash').forEach(p=>moves.push({date:s.business_date,time:g.completed_at||'',label:'Bar-Umsatz · '+receiptContextLabel(s.restaurant_tables,{order_type:s.order_type}),amount:Number(p.amount)})));manualRows.forEach(m=>moves.push({date:m.booking_date,time:m.created_at||'',label:m.description||({wechselgeld:'Zusätzliches Wechselgeld',geldtransit:'Geldtransit',privatentnahme:'Privatentnahme',privateinlage:'Privateinlage',kosten:'Kosten / Ausgabe'}[m.category]||'Manuelle Buchung'),amount:manualCashSign(m)*Number(m.amount)}));const days=[...new Set(moves.map(m=>m.date))];const start=cashStartAmount();if(start>0)days.forEach(date=>moves.push({date,time:'00:00:00',label:'Standard-Wechselgeld / Kassenstart',amount:start,isStart:true}));moves.sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));let saldo=0,currentDay='';box.innerHTML='<h3 style="margin-top:16px">Bargeldsaldo</h3><div class="admin-note">Je Betriebstag beginnt der Saldo mit dem hinterlegten Standard-Wechselgeld. Danach folgen automatische Bar-Umsätze und manuelle Bargeldbewegungen.</div>';moves.forEach(m=>{if(m.date!==currentDay){currentDay=m.date;saldo=0}saldo+=m.amount;const d=document.createElement('div');d.className='cash-ledger-row';d.innerHTML='<span>'+esc(m.date)+' · '+esc(m.label)+'</span><span class="'+(m.amount>=0?'money-plus':'money-minus')+'">'+(m.amount>=0?'+':'−')+euro(Math.abs(m.amount))+'</span><span class="saldo">'+euro(saldo)+'</span>';box.appendChild(d)});if(!moves.length)box.innerHTML+='<div class="admin-note">Noch keine Bargeldbewegungen.</div>'}catch(e){box.innerHTML='<div class="msg">'+esc(e.message)+'</div>'}}
+async function loadCashLedger(month,manualRows){
+  const box=$('#cashLedger');if(!box)return;
+  try{
+    const [{sessions,vouchers},events]=await Promise.all([fetchMonthSales(month),fetchMonthEvents(month)]),moves=[];
+    completedGroups(sessions).forEach(({session:s,group:g})=>(g.bill_group_payments||[]).filter(p=>p.payment_method==='cash').forEach(p=>moves.push({date:s.business_date,time:g.completed_at||'',label:'Bar-Umsatz · '+receiptContextLabel(s.restaurant_tables,{order_type:s.order_type}),amount:Number(p.amount)})));
+    (vouchers||[]).forEach(v=>moves.push({date:String(v.issued_at).slice(0,10),time:v.issued_at||'',label:'Gutscheinverkauf · '+v.voucher_number,amount:Number(v.original_value||0)}));
+    (events||[]).filter(e=>(e.payment_method||'cash')==='cash').forEach(e=>moves.push({date:e.event_date,time:String(e.event_time||'00:00'),label:'Bar-Umsatz · Veranstaltung · '+e.name,amount:eventTotals(e).gross}));
+    manualRows.forEach(m=>moves.push({date:m.booking_date,time:m.created_at||'',label:m.description||({wechselgeld:'Zusätzliches Wechselgeld',geldtransit:'Geldtransit',privatentnahme:'Privatentnahme',privateinlage:'Privateinlage',kosten:'Kosten / Ausgabe'}[m.category]||'Manuelle Buchung'),amount:manualCashSign(m)*Number(m.amount)}));
+    const days=[...new Set(moves.map(m=>m.date))],start=cashStartAmount();if(start>0)days.forEach(date=>moves.push({date,time:'00:00:00',label:'Standard-Wechselgeld / Kassenstart',amount:start,isStart:true}));
+    moves.sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));let saldo=0,currentDay='';
+    box.innerHTML='<h3 style="margin-top:16px">Bargeldsaldo</h3><div class="admin-note">Je Betriebstag beginnt der Saldo mit dem hinterlegten Standard-Wechselgeld. Danach folgen automatische Bar-Umsätze, als Bar geführte Gutscheinverkäufe/Veranstaltungen und manuelle Bargeldbewegungen.</div>';
+    moves.forEach(m=>{if(m.date!==currentDay){currentDay=m.date;saldo=0}saldo+=m.amount;const d=document.createElement('div');d.className='cash-ledger-row';d.innerHTML='<span>'+esc(m.date)+' · '+esc(m.label)+'</span><span class="'+(m.amount>=0?'money-plus':'money-minus')+'">'+(m.amount>=0?'+':'−')+euro(Math.abs(m.amount))+'</span><span class="saldo">'+euro(saldo)+'</span>';box.appendChild(d)});
+    if(!moves.length)box.innerHTML+='<div class="admin-note">Noch keine Bargeldbewegungen.</div>'
+  }catch(e){box.innerHTML='<div class="msg">'+esc(e.message)+'</div>'}
+}
 async function loadManualBookings(){const month=$('#adminMonthTab').value||businessDateNow().slice(0,7),box=$('#manualBookingList');if(!box)return;box.innerHTML='Lädt …';try{const r=await fetchManualBookings(month);if(r.missing){box.innerHTML='<div class="admin-note">Manuelle Buchungen sind noch nicht eingerichtet. Bitte Upgrade-SQL ausführen.</div>';return}box.innerHTML='';if(!r.rows.length)box.innerHTML='<div class="admin-note">Noch keine manuellen Buchungen in diesem Monat.</div>';r.rows.forEach(m=>{const sign=manualCashSign(m),d=document.createElement('div');d.className='v140-row';d.innerHTML='<div class="v140-row-head"><b>'+esc(m.booking_date)+(m.description?' · '+esc(m.description):'')+'</b><b class="'+(sign>=0?'money-plus':'money-minus')+'">'+(sign>=0?'+':'−')+euro(m.amount)+'</b></div><small>Konto '+esc(m.account)+' an '+esc(m.counter_account)+(m.bu_key?' · BU '+esc(m.bu_key):'')+'</small><div class="v140-actions"><button>Löschen</button></div>';d.querySelector('button').onclick=async()=>{if(!confirm('Diese manuelle Buchung löschen?'))return;const{error}=await supabase.from('manual_bookings').delete().eq('id',m.id);if(error)$('#manualBookingMsg').textContent=error.message;else loadManualBookings()};box.appendChild(d)});await loadCashLedger(month,r.rows)}catch(e){box.innerHTML='<div class="msg">'+esc(e.message)+'</div>'}}
 function localDateISO(d){
   return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')
@@ -2506,7 +2531,7 @@ function syncSoundSetting(){const el=$('#serviceSoundToggle');if(el)el.checked=s
 $('#serviceSoundToggle').onchange=()=>localStorage.setItem('orderbuddy_service_sound',$('#serviceSoundToggle').checked?'true':'false');
 function primeReadySound(){try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;if(!readyAudioContext)readyAudioContext=new AC();if(readyAudioContext.state==='suspended')readyAudioContext.resume()}catch{}}
 document.addEventListener('pointerdown',primeReadySound,{passive:true});
-function playReadySound(){if(!serviceSoundEnabled())return;try{primeReadySound();const c=readyAudioContext;if(!c)return;const o=c.createOscillator(),g=c.createGain();o.frequency.value=880;g.gain.setValueAtTime(.0001,c.currentTime);g.gain.exponentialRampToValueAtTime(.22,c.currentTime+.02);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+.42);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+.45)}catch{}}
+function playReadySound(){if(currentRole!=='service'||!serviceSoundEnabled())return;try{primeReadySound();const c=readyAudioContext;if(!c)return;const o=c.createOscillator(),g=c.createGain();o.frequency.value=880;g.gain.setValueAtTime(.0001,c.currentTime);g.gain.exponentialRampToValueAtTime(.22,c.currentTime+.02);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+.42);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+.45)}catch{}}
 async function forceAppUpdate(){const msg=$('#appUpdateMsg');if(msg)msg.textContent='Suche nach neuer Version …';try{if('caches' in window){const keys=await caches.keys();await Promise.all(keys.filter(k=>k.startsWith('orderbuddy-')).map(k=>caches.delete(k)))}if('serviceWorker' in navigator){const reg=await navigator.serviceWorker.getRegistration();if(reg){await reg.update();if(reg.waiting)reg.waiting.postMessage({type:'SKIP_WAITING'})}}if(msg)msg.textContent='Aktualisiert – OrderBuddy wird neu geladen.';setTimeout(()=>location.reload(),350)}catch(e){if(msg)msg.textContent='Aktualisierung fehlgeschlagen: '+e.message;else alert('Aktualisierung fehlgeschlagen: '+e.message)}}
 $('#appUpdateBtn').onclick=forceAppUpdate;$('#appUpdateTopBtn').onclick=forceAppUpdate;
 
@@ -2591,7 +2616,7 @@ async function loadAdminDay(){
   adminSessions=sessions||[];adminExport=exp||null;renderAdminDay()
 }
 function completedGroupsForSession(ses){return (ses.bill_groups||[]).filter(g=>g.status==='completed')}
-function sessionCompletedGross(ses){const sum=sessionCompletedGross(ses);return sum+Number(ses.delivery_fee||0)}
+function sessionCompletedGross(ses){const goods=completedGroupsForSession(ses).reduce((sum,g)=>sum+(g.bill_group_items||[]).reduce((s,link)=>{const oi=link.order_items;if(!oi)return s;return s+Number(oi.unit_price||0)*Number(link.quantity||oi.quantity||1)},0),0);return goods+Number(ses.delivery_fee||0)}
 function sessionHasRelevantRevenue(ses){return sessionCompletedGross(ses)>0.004||(ses.vouchers||[]).some(v=>v.status!=='void')}
 function relevantClosedSessions(){return adminSessions.filter(s=>s.status==='closed'&&sessionHasRelevantRevenue(s))}
 function itemData(link){
@@ -2792,7 +2817,7 @@ $('#monthSummaryPdfBtn').onclick=async()=>{const month=$('#adminMonthTab').value
 function subscribe(){
   const refresh=async()=>{if(currentSession)await loadOrders();await refreshTableStatuses();if(!$('#tablesView').classList.contains('hidden'))renderTables();$('#syncMsg').textContent='Live aktualisiert · '+new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})};
   const itemRefresh=async payload=>{if(payload?.eventType==='UPDATE'&&payload.new?.status==='done'&&payload.old?.status!=='done'){const m=menu.find(x=>String(x.id)===String(payload.new?.menu_item_id)),c=categories.find(x=>String(x.id)===String(m?.category_id));if(c?.destination==='kitchen')playReadySound()}await refresh()};
-  supabase.channel('orderbuddy-live-v30')
+  supabase.channel('orderbuddy-live-v31')
     .on('postgres_changes',{event:'*',schema:'public',table:'order_items'},itemRefresh)
     .on('postgres_changes',{event:'*',schema:'public',table:'bill_groups'},refresh)
     .on('postgres_changes',{event:'*',schema:'public',table:'table_sessions'},refresh)
