@@ -817,7 +817,7 @@ async function refreshTableStatuses(){
     // Das gilt auch für Lieferung und Abholung: Erst sobald mindestens eine aktive
     // Bestellposition vorhanden ist (oder ein bereits gesetzter Abschlussstatus),
     // wird der Platz farbig. So bleibt ein nur kurz geöffneter L-/A-Platz wirklich frei.
-    if(!sesItems.length&&!ses.ready_for_checkout)return;
+    if(!sesItems.length)return;
 
     let key='occupied',label=occupiedLabel;
     const reopenedAt=ses.restore_ready_on_revert&&ses.reopened_from_checkout_at?new Date(ses.reopened_from_checkout_at).getTime():null;
@@ -1564,10 +1564,31 @@ async function cancelItem(o){
   const{error}=await supabase.from('order_items').update({cancelled:true,cancelled_at:new Date().toISOString()}).eq('id',o.id);
   if(error){$('#actionMsg').textContent='Storno fehlgeschlagen: '+error.message;return}
   await loadOrders();
+
+  const special=['Lieferung','Abholung'].includes(currentTable?.areas?.name||'');
+  const noActiveItems=orders.length===0&&transferredOrders.length===0;
+  if(special&&noActiveItems&&currentSession){
+    // Ein L-/A-Auftrag ohne aktive Position darf nie im grünen Übergabe-/Fahrerstatus bleiben.
+    // Zuerst alle noch nicht abgeschlossenen Kassengruppen verwerfen, danach die Grün-Marker löschen.
+    const openGroupIds=(billGroups||[]).filter(g=>g.status!=='completed'&&g.status!=='cancelled').map(g=>g.id);
+    if(openGroupIds.length)await supabase.from('bill_groups').update({status:'cancelled'}).in('id',openGroupIds);
+    let reset=await supabase.from('table_sessions').update({ready_for_checkout:false,restore_ready_on_revert:false,reopened_from_checkout_at:null}).eq('id',currentSession.id);
+    if(reset.error&&/reopened_from_checkout_at|restore_ready_on_revert|column .* does not exist|schema cache/i.test(reset.error.message||'')){
+      reset=await supabase.from('table_sessions').update({ready_for_checkout:false}).eq('id',currentSession.id);
+    }
+    if(!reset.error){
+      currentSession.ready_for_checkout=false;
+      if('restore_ready_on_revert' in currentSession)currentSession.restore_ready_on_revert=false;
+      if('reopened_from_checkout_at' in currentSession)currentSession.reopened_from_checkout_at=null;
+    }
+    await loadOrders();
+  }
+
   const autoClosed=await closeEmptyTableSessionAfterCancellation();
-  const restoredReady=autoClosed?false:await restoreCheckoutAfterRevertedAddition();
-  const freeLabel=['Lieferung','Abholung'].includes(currentTable?.areas?.name||'')?'Auftrag ist wieder frei.':'Tisch ist wieder frei.';
-  $('#actionMsg').textContent=autoClosed?name+' storniert · '+freeLabel:restoredReady?name+' storniert · Tisch wieder bereit zum Abschluss.':name+' storniert.'
+  const restoredReady=(autoClosed||special&&noActiveItems)?false:await restoreCheckoutAfterRevertedAddition();
+  await refreshTableStatuses();renderTables();
+  const freeLabel=special?'Auftrag ist wieder frei.':'Tisch ist wieder frei.';
+  $('#actionMsg').textContent=autoClosed||(special&&noActiveItems)?name+' storniert · '+freeLabel:restoredReady?name+' storniert · Tisch wieder bereit zum Abschluss.':name+' storniert.'
 }
 
 function updateCheckoutReadyButton(){
@@ -2827,7 +2848,7 @@ $('#monthSummaryPdfBtn').onclick=async()=>{const month=$('#adminMonthTab').value
 function subscribe(){
   const refresh=async()=>{if(currentSession)await loadOrders();await refreshTableStatuses();if(!$('#tablesView').classList.contains('hidden'))renderTables();$('#syncMsg').textContent='Live aktualisiert · '+new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})};
   const itemRefresh=async payload=>{if(payload?.eventType==='UPDATE'&&payload.new?.status==='done'&&payload.old?.status!=='done'){const m=menu.find(x=>String(x.id)===String(payload.new?.menu_item_id)),c=categories.find(x=>String(x.id)===String(m?.category_id));if(c?.destination==='kitchen')playReadySound()}await refresh()};
-  supabase.channel('orderbuddy-live-v31.2')
+  supabase.channel('orderbuddy-live-v31.3')
     .on('postgres_changes',{event:'*',schema:'public',table:'order_items'},itemRefresh)
     .on('postgres_changes',{event:'*',schema:'public',table:'bill_groups'},refresh)
     .on('postgres_changes',{event:'*',schema:'public',table:'table_sessions'},refresh)
