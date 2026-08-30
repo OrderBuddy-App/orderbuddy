@@ -48,3 +48,10 @@ Vor dem Deployment einmal `SUPABASE_ORDERBUDDY_CONSOLIDATED_V31.sql` im SQL Edit
 - Beim Storno der letzten aktiven Position werden Grün-/Restore-Marker sofort gelöscht.
 - Noch offene, nicht abgeschlossene Bill-Gruppen werden bei einem vollständig stornierten L-/A-Auftrag verworfen.
 - Für V31.3 ist keine zusätzliche Supabase-SQL-Änderung erforderlich.
+
+
+## V31.4
+- Veranstaltungen als eigener Hauptpunkt neben Terrasse, Innenraum, Lieferung und Abholung.
+- Servicekräfte können bestehende Veranstaltungen öffnen, À-la-carte-Positionen aufnehmen/entfernen und Küchen-/Barbons drucken.
+- Anlegen, Abrechnungsmodell und administrative Verwaltung bleiben im Chefbereich.
+- Keine Datenbankänderung erforderlich.
