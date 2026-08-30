@@ -777,9 +777,11 @@ async function refreshTableStatuses(){
     const readyLabel=isDelivery?'Essen fertig / wartet auf Fahrer':isPickup?'Essen fertig / wartet auf Abholung':'Fertig / wartet auf Service';
     const checkoutLabel=isDelivery?'Fahrer unterwegs':isPickup?'Kunde da / Übergabe läuft':'Bereit zum Abschluss';
 
-    // Eine normale Tisch-Session ohne verbleibende Positionen gilt wieder als frei.
-    // Lieferung/Abholung bleiben nach dem Öffnen als angenommener Auftrag sichtbar.
-    if(!sesItems.length&&!isDelivery&&!isPickup&&!ses.ready_for_checkout)return;
+    // Eine geöffnete Session allein darf noch keinen belegten/angenommenen Status erzeugen.
+    // Das gilt auch für Lieferung und Abholung: Erst sobald mindestens eine aktive
+    // Bestellposition vorhanden ist (oder ein bereits gesetzter Abschlussstatus),
+    // wird der Platz farbig. So bleibt ein nur kurz geöffneter L-/A-Platz wirklich frei.
+    if(!sesItems.length&&!ses.ready_for_checkout)return;
 
     let key='occupied',label=occupiedLabel;
     const reopenedAt=ses.restore_ready_on_revert&&ses.reopened_from_checkout_at?new Date(ses.reopened_from_checkout_at).getTime():null;
