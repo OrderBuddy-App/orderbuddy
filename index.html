@@ -584,6 +584,11 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
 <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.4/dist/umd/supabase.js" onerror="this.onerror=null;this.src='https://unpkg.com/@supabase/supabase-js@2.112.4/dist/umd/supabase.js'"></script>
+<script>
+// Der Passwort-Schalter funktioniert unabhängig vom Supabase-Start.
+(()=>{const b=document.getElementById('passwordToggle'),p=document.getElementById('password');if(b&&p)b.onclick=()=>{const show=p.type==='password';p.type=show?'text':'password';b.textContent=show?'🙈':'👁';b.setAttribute('aria-label',show?'Passwort ausblenden':'Passwort anzeigen')}})();
+</script>
 <script type="module">
 
 function tableLabel(code){
@@ -599,11 +604,14 @@ function tableDisplay(t){
   return name||tableLabel(t?.code)
 }
 
-import{createClient}from'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-
 const SUPABASE_URL='https://awchxesalzhuckdwcazi.supabase.co';
 const SUPABASE_KEY='sb_publishable__JIii_LBe2nju4v0U3-1TA_fUZv90vh';
-const supabase=createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+if(!window.supabase?.createClient){
+  const lm=document.getElementById('loginMsg');
+  if(lm)lm.textContent='Startfehler: Supabase-Bibliothek konnte nicht geladen werden. Bitte Internetverbindung prüfen und OrderBuddy aktualisieren.';
+  throw new Error('Supabase library unavailable');
+}
+const supabase=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
 
 const DEVICE_EMAILS={
   'Service 1':'service1@orderbuddy.local',
@@ -2534,9 +2542,7 @@ async function loadServiceEventItems(){if(!currentEvent)return;const{data,error}
 $('#serviceEventReload').onclick=loadServiceEvents;$('#serviceEventClose').onclick=()=>{$('#serviceEventDetail').classList.add('hidden');$('#serviceEventSlots').classList.remove('hidden');currentEvent=null};
 function printServiceEventStation(kind){if(!currentEvent)return;const rows=(currentEvent.event_items||[]).filter(i=>kind==='bar'?i.menu_items?.menu_categories?.destination==='bar':i.menu_items?.menu_categories?.destination!=='bar');if(!rows.length){alert(kind==='bar'?'Keine À-la-carte-Getränke vorhanden.':'Keine À-la-carte-Speisen vorhanden.');return}const h=Math.max(110,65+rows.length*16),title=kind==='bar'?'BAR':'KÜCHE',html='<!doctype html><html><head><meta charset="utf-8"><style>@page{size:80mm '+h+'mm;margin:4mm}body{font-family:Arial;width:72mm;margin:0 auto}.logo{display:block;width:35mm;border-radius:6mm;margin:0 auto 3mm}h1{text-align:center}.line{padding:2mm 0;border-bottom:1px dashed #777;font-size:16px}</style></head><body><img class="logo" src="'+orderBuddyLogoUrl()+'"><h1>V-'+currentEvent.slot_number+' · '+title+'</h1><div style="text-align:center;font-weight:800">'+esc(currentEvent.name)+' · '+currentEvent.guest_count+' Pers.</div>'+rows.map(i=>'<div class="line"><b>'+i.quantity+'×</b> '+esc(i.menu_items?.name||'')+(i.menu_items?.variant?' · '+esc(i.menu_items.variant):'')+'</div>').join('')+'</body></html>';openPrintWindow(html)}
 $('#serviceEventKitchenPrint').onclick=()=>printServiceEventStation('kitchen');$('#serviceEventBarPrint').onclick=()=>printServiceEventStation('bar');
-$('#serviceEventCheckout').onclick=async()=>{if(!currentEvent)return;const x=eventTotals(currentEvent);if(!confirm('V-'+currentEvent.slot_number+' wirklich abrechnen und abschließen?
-Gesamt: '+euro(x.gross)+'
-Zahlungsart: '+paymentMethodLabel(currentEvent.payment_method)))return;const{data,error}=await supabase.rpc('close_orderbuddy_event',{p_event_id:currentEvent.id});if(error){$('#serviceEventMsg').textContent='Abschluss fehlgeschlagen: '+error.message;return}$('#serviceEventMsg').textContent='Veranstaltung abgeschlossen.';currentEvent=null;$('#serviceEventDetail').classList.add('hidden');$('#serviceEventSlots').classList.remove('hidden');await loadServiceEvents()};
+$('#serviceEventCheckout').onclick=async()=>{if(!currentEvent)return;const x=eventTotals(currentEvent);const question='V-'+currentEvent.slot_number+' wirklich abrechnen und abschließen?\nGesamt: '+euro(x.gross)+'\nZahlungsart: '+paymentMethodLabel(currentEvent.payment_method);if(!confirm(question))return;const{data,error}=await supabase.rpc('close_orderbuddy_event',{p_event_id:currentEvent.id});if(error){$('#serviceEventMsg').textContent='Abschluss fehlgeschlagen: '+error.message;return}$('#serviceEventMsg').textContent='Veranstaltung abgeschlossen.';currentEvent=null;$('#serviceEventDetail').classList.add('hidden');$('#serviceEventSlots').classList.remove('hidden');await loadServiceEvents()};
 
 function fillHistoricalTables(){
   const area=$('#historicalArea')?.value||'Terrasse',sel=$('#historicalTable');if(!sel)return;sel.innerHTML='';
