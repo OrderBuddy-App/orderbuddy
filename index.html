@@ -1544,13 +1544,17 @@ $('#completedToggle').onclick=toggleCompleted;
 
 async function setStatus(id,status){const{error}=await supabase.from('order_items').update({status}).eq('id',id);if(!error){if(currentSession){await clearCheckoutRestoreState()}await loadOrders();await refreshTableStatuses();renderTables()}}
 async function closeEmptyTableSessionAfterCancellation(){
-  if(!currentSession||!['Terrasse','Innenraum'].includes(currentTable?.areas?.name))return false;
+  if(!currentSession)return false;
+  const areaName=currentTable?.areas?.name||'';
+  if(!['Terrasse','Innenraum','Lieferung','Abholung'].includes(areaName))return false;
   const hasOpenItems=orders.length>0||transferredOrders.length>0;
   const hasVouchers=sessionVouchers.length>0;
   const hasBillGroups=billGroups.some(g=>g.status!=='cancelled');
   if(hasOpenItems||hasVouchers||hasBillGroups)return false;
   const{data:{user}}=await supabase.auth.getUser();
-  const closedGoods=(billGroups||[]).filter(g=>g.status==='completed').reduce((a,g)=>a+groupGross(g),0);const finalDeliveryFee=currentSession.order_type==='Lieferung'?effectiveDeliveryFee(closedGoods,currentSession):Number(currentSession.delivery_fee||0);const{error}=await supabase.from('table_sessions').update({status:'closed',closed_at:historicalTimestamp()||new Date().toISOString(),closed_by_email:user?.email||null,delivery_fee:finalDeliveryFee}).eq('id',currentSession.id);
+  const closedGoods=(billGroups||[]).filter(g=>g.status==='completed').reduce((a,g)=>a+groupGross(g),0);
+  const finalDeliveryFee=currentSession.order_type==='Lieferung'?effectiveDeliveryFee(closedGoods,currentSession):Number(currentSession.delivery_fee||0);
+  const{error}=await supabase.from('table_sessions').update({status:'closed',ready_for_checkout:false,restore_ready_on_revert:false,reopened_from_checkout_at:null,closed_at:historicalTimestamp()||new Date().toISOString(),closed_by_email:user?.email||null,delivery_fee:finalDeliveryFee}).eq('id',currentSession.id);
   if(error)return false;
   currentSession=null;
   return true
@@ -1560,9 +1564,10 @@ async function cancelItem(o){
   const{error}=await supabase.from('order_items').update({cancelled:true,cancelled_at:new Date().toISOString()}).eq('id',o.id);
   if(error){$('#actionMsg').textContent='Storno fehlgeschlagen: '+error.message;return}
   await loadOrders();
-  const restoredReady=await restoreCheckoutAfterRevertedAddition();
   const autoClosed=await closeEmptyTableSessionAfterCancellation();
-  $('#actionMsg').textContent=autoClosed?name+' storniert · Tisch ist wieder frei.':restoredReady?name+' storniert · Tisch wieder bereit zum Abschluss.':name+' storniert.'
+  const restoredReady=autoClosed?false:await restoreCheckoutAfterRevertedAddition();
+  const freeLabel=['Lieferung','Abholung'].includes(currentTable?.areas?.name||'')?'Auftrag ist wieder frei.':'Tisch ist wieder frei.';
+  $('#actionMsg').textContent=autoClosed?name+' storniert · '+freeLabel:restoredReady?name+' storniert · Tisch wieder bereit zum Abschluss.':name+' storniert.'
 }
 
 function updateCheckoutReadyButton(){
@@ -2822,7 +2827,7 @@ $('#monthSummaryPdfBtn').onclick=async()=>{const month=$('#adminMonthTab').value
 function subscribe(){
   const refresh=async()=>{if(currentSession)await loadOrders();await refreshTableStatuses();if(!$('#tablesView').classList.contains('hidden'))renderTables();$('#syncMsg').textContent='Live aktualisiert · '+new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})};
   const itemRefresh=async payload=>{if(payload?.eventType==='UPDATE'&&payload.new?.status==='done'&&payload.old?.status!=='done'){const m=menu.find(x=>String(x.id)===String(payload.new?.menu_item_id)),c=categories.find(x=>String(x.id)===String(m?.category_id));if(c?.destination==='kitchen')playReadySound()}await refresh()};
-  supabase.channel('orderbuddy-live-v31.1')
+  supabase.channel('orderbuddy-live-v31.2')
     .on('postgres_changes',{event:'*',schema:'public',table:'order_items'},itemRefresh)
     .on('postgres_changes',{event:'*',schema:'public',table:'bill_groups'},refresh)
     .on('postgres_changes',{event:'*',schema:'public',table:'table_sessions'},refresh)
