@@ -1130,8 +1130,11 @@ async function resetCheckoutForAddedItem(reopenMarker=null){
   const reopenedAt=currentSession.reopened_from_checkout_at||(wasReady?(reopenMarker||new Date().toISOString()):null);
   const payload={ready_for_checkout:false,restore_ready_on_revert:restorePending};
   if(reopenedAt)payload.reopened_from_checkout_at=reopenedAt;
-  const{error}=await supabase.from('table_sessions').update(payload).eq('id',currentSession.id);
-  if(!error){currentSession.ready_for_checkout=false;currentSession.restore_ready_on_revert=restorePending;currentSession.reopened_from_checkout_at=reopenedAt}
+  let{error}=await supabase.from('table_sessions').update(payload).eq('id',currentSession.id);
+  if(error&&/reopened_from_checkout_at|restore_ready_on_revert|column .* does not exist|schema cache/i.test(error.message||'')){
+    ({error}=await supabase.from('table_sessions').update({ready_for_checkout:false}).eq('id',currentSession.id));
+  }
+  if(!error){currentSession.ready_for_checkout=false;if('restore_ready_on_revert' in currentSession)currentSession.restore_ready_on_revert=restorePending;if('reopened_from_checkout_at' in currentSession)currentSession.reopened_from_checkout_at=reopenedAt}
 }
 async function clearCheckoutRestoreState(){
   if(!currentSession)return;
@@ -1141,14 +1144,16 @@ async function clearCheckoutRestoreState(){
 }
 async function restoreCheckoutAfterRevertedAddition(){
   if(!currentSession)return false;
-  const{data:sessionState}=await supabase.from('table_sessions').select('restore_ready_on_revert,reopened_from_checkout_at').eq('id',currentSession.id).maybeSingle();
+  let{data:sessionState,error:sessionStateError}=await supabase.from('table_sessions').select('restore_ready_on_revert,reopened_from_checkout_at').eq('id',currentSession.id).maybeSingle();
+  if(sessionStateError&&/reopened_from_checkout_at|restore_ready_on_revert|column .* does not exist|schema cache/i.test(sessionStateError.message||''))sessionState=null;
   const restorePending=!!(currentSession.restore_ready_on_revert||sessionState?.restore_ready_on_revert);
   const reopenedAt=currentSession.reopened_from_checkout_at||sessionState?.reopened_from_checkout_at||null;
   if(!restorePending||!reopenedAt)return false;
   const marker=new Date(reopenedAt).getTime();
-  const{data:remaining,error:remainingError}=await supabase.from('order_items').select('id,created_at,cancelled').eq('session_id',currentSession.id).eq('cancelled',false).gte('created_at',reopenedAt);
+  const{data:remaining,error:remainingError}=await supabase.from('order_items').select('id,ordered_at,cancelled').eq('session_id',currentSession.id).eq('cancelled',false).gte('ordered_at',reopenedAt);
   if(remainingError||((remaining||[]).length>0))return false;
-  const{error}=await supabase.from('table_sessions').update({ready_for_checkout:true,restore_ready_on_revert:false,reopened_from_checkout_at:null}).eq('id',currentSession.id);
+  let{error}=await supabase.from('table_sessions').update({ready_for_checkout:true,restore_ready_on_revert:false,reopened_from_checkout_at:null}).eq('id',currentSession.id);
+  if(error&&/reopened_from_checkout_at|restore_ready_on_revert|column .* does not exist|schema cache/i.test(error.message||''))({error}=await supabase.from('table_sessions').update({ready_for_checkout:true}).eq('id',currentSession.id));
   if(error)return false;
   currentSession.ready_for_checkout=true;currentSession.restore_ready_on_revert=false;currentSession.reopened_from_checkout_at=null;
   updateCheckoutReadyButton();
@@ -1552,9 +1557,15 @@ $('#readyCheckoutBtn').onclick=async()=>{
   const all=[...orders,...transferredOrders];
   if(!all.length||!all.every(o=>o.status==='done')){alert('Alle Positionen müssen zuerst auf „Erledigt“ stehen.');return}
   const delivery=currentSession.order_type==='Lieferung',pickup=currentSession.order_type==='Abholung';
-  const{error}=await supabase.from('table_sessions').update({ready_for_checkout:true,restore_ready_on_revert:false,reopened_from_checkout_at:null}).eq('id',currentSession.id);
-  if(error){$('#actionMsg').textContent='Status konnte nicht gesetzt werden: '+error.message;return}
-  currentSession.ready_for_checkout=true;currentSession.restore_ready_on_revert=false;currentSession.reopened_from_checkout_at=null;updateCheckoutReadyButton();
+  let result=await supabase.from('table_sessions').update({ready_for_checkout:true,restore_ready_on_revert:false,reopened_from_checkout_at:null}).eq('id',currentSession.id);
+  if(result.error&&/reopened_from_checkout_at|restore_ready_on_revert|column .* does not exist|schema cache/i.test(result.error.message||'')){
+    result=await supabase.from('table_sessions').update({ready_for_checkout:true}).eq('id',currentSession.id);
+  }
+  if(result.error){$('#actionMsg').textContent='Status konnte nicht gesetzt werden: '+result.error.message;return}
+  currentSession.ready_for_checkout=true;
+  if('restore_ready_on_revert' in currentSession)currentSession.restore_ready_on_revert=false;
+  if('reopened_from_checkout_at' in currentSession)currentSession.reopened_from_checkout_at=null;
+  updateCheckoutReadyButton();
   $('#actionMsg').textContent=delivery?'Fahrer ist unterwegs.':pickup?'Kunde ist da · Übergabe läuft.':'Tisch ist jetzt bereit zum Abschluss.';
   await refreshTableStatuses();renderTables();
 };
