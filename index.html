@@ -632,7 +632,7 @@ let deviceName=localStorage.getItem('orderbuddy_device')||'Service 1';
 let currentArea='Terrasse',currentTable=null,currentSession=null,pendingSpecialTable=null;
 let categories=[],menu=[],orders=[],transferredOrders=[],billGroups=[],restaurant=null,menuExtras=[],optionGroups=[],sessionVouchers=[],pendingMenuItem=null,editingOrderItem=null,iceQuantities={},deliveryZones=[],deliveryZoneStreets=[];
 let registerOpen=false,completedOpen=false,currentRole='service',adminSessions=[],adminExport=null,tableStatusMap=new Map(),voucherScannerStream=null,voucherScannerRunning=false,voucherScannerTimer=null,verifiedVoucher=null,voucherResultTarget='#voucherVerifyResult';
-let historicalEntry=null,currentEvent=null,pendingEventMenuItem=null,knownDoneItems=new Set(),readyAudioContext=null;
+let historicalEntry=null,currentEvent=null,pendingEventMenuItem=null,pendingEventEditingItem=null,knownDoneItems=new Set(),readyAudioContext=null;
 
 function selectedLoginEmail(){
   return $('#deviceSelect').value==='Chef / Admin'?ADMIN_EMAIL:DEVICE_EMAILS[$('#deviceSelect').value];
@@ -2561,6 +2561,44 @@ async function loadServiceEvents(){
   const map=new Map((data||[]).map(e=>[Number(e.slot_number),e]));box.innerHTML='';
   for(let n=1;n<=8;n++){const e=map.get(n),b=document.createElement('button'),state=e?serviceEventOperationalState(e):'free';b.className='event-slot'+(e?' assigned':'')+(state==='preparing'?' status-preparing':state==='ready'?' status-ready':state==='checkout'?' status-checkout':'');b.innerHTML='<b>V-'+n+'</b><small>'+(e?esc(e.name)+' · '+e.guest_count+' Pers.':'Frei')+'</small>';b.onclick=()=>e?openServiceEvent(e):null;box.appendChild(b)}
   $('#serviceEventDetail').classList.add('hidden');$('#serviceEventSlots').classList.remove('hidden')
+}
+async function openServiceEvent(e){
+  currentEvent=e;
+  $('#serviceEventSlots').classList.add('hidden');
+  $('#serviceEventDetail').classList.remove('hidden');
+  $('#serviceEventTitle').textContent='V-'+e.slot_number;
+  $('#serviceEventMsg').textContent='';
+  await loadServiceEventItems();
+  renderServiceEventCategories();
+}
+function openServiceEventItemConfig(m,mode='edit',item=null){
+  if(!currentEvent)return;
+  pendingEventMenuItem=m;
+  pendingEventEditingItem=item;
+  pendingMenuItem=null;
+  editingOrderItem=null;
+  $('#configTitle').textContent=m.name+(m.variant?' · '+m.variant:'');
+  $('#configNote').value=item?.note||'';
+  const box=$('#configOptions');box.innerHTML='';
+  const groups=itemOptionGroups(m);
+  if(mode==='choice'){
+    groups.forEach(g=>{
+      const title=document.createElement('div');title.className='small-title';title.textContent=g.name;box.appendChild(title);
+      const list=document.createElement('div');list.className='option-list';const inputType=Number(g.max_select||0)===1?'radio':'checkbox';
+      (g.menu_options||[]).filter(o=>o.active!==false).sort((a,b)=>a.sort_order-b.sort_order).forEach(o=>{const lab=document.createElement('label');lab.className='option-chip';lab.innerHTML='<input class="config-option" type="'+inputType+'" name="event-option-'+g.id+'" data-group="'+g.id+'" value="'+o.id+'"><span>'+esc(o.name)+(Number(o.price_delta)?' · +'+euro(o.price_delta):'')+'</span>';list.appendChild(lab)});box.appendChild(list)
+    })
+  }
+  if(mode==='edit'){
+    menuExtras.filter(x=>x.active!==false).forEach(x=>{const row=document.createElement('label');row.className='config-row';const checked=(Array.isArray(item?.extras)&&item.extras.some(y=>String(y.id)===String(x.id)))?' checked':'';row.innerHTML='<span><input class="config-extra" type="checkbox" value="'+x.id+'"'+checked+'> '+esc(x.name)+'</span><span class="config-price">+'+euro(x.price)+'</span>';box.appendChild(row)})
+  }
+  const starter=isStarterItem(m);
+  $('#configCourseWrap').classList.toggle('hidden',!starter);
+  if(starter)$('#configCourse').value=item?.course||'starter';
+  const showNote=mode==='edit';
+  $('#configNoteLabel').style.display=showNote?'':'none';
+  $('#configNote').style.display=showNote?'':'none';
+  $('#configAdd').textContent=mode==='edit'?'Änderungen speichern':'Zur Bestellung hinzufügen';
+  $('#itemConfigModal').classList.remove('hidden');
 }
 function eventStatusButtons(status,prefix){
   return '<div class="line-actions"><button class="status '+(status==='new'?'on':'')+'" data-event-status="'+prefix+'|new">Neu</button><button class="status '+(status==='preparing'?'on':'')+'" data-event-status="'+prefix+'|preparing">In Zubereitung</button><button class="status '+(status==='done'?'on':'')+'" data-event-status="'+prefix+'|done">Erledigt</button></div>'
