@@ -733,20 +733,35 @@ async function refreshTableStatuses(){
   if(!restaurant)return;
   // Statusdaten bewusst getrennt laden. Die verschachtelte Supabase-Abfrage konnte
   // nach schnellen Änderungen vereinzelt noch einen alten order_items-Stand liefern.
-  const{data:sessions,error:sessionError}=await supabase.from('table_sessions')
+  // Neuere Statusspalten sind optional. Falls ein älteres Datenbankschema läuft,
+  // darf die komplette Tischübersicht deshalb nicht auf "Frei" zurückfallen.
+  let sessionResult=await supabase.from('table_sessions')
     .select('id,table_id,order_type,opened_at,requested_time,ready_for_checkout,restore_ready_on_revert,reopened_from_checkout_at')
     .eq('restaurant_id',restaurant.id).eq('status','open');
+  if(sessionResult.error&&/column .* does not exist|reopened_from_checkout_at|restore_ready_on_revert/i.test(sessionResult.error.message||'')){
+    sessionResult=await supabase.from('table_sessions')
+      .select('id,table_id,order_type,opened_at,requested_time,ready_for_checkout')
+      .eq('restaurant_id',restaurant.id).eq('status','open');
+  }
+  const sessions=sessionResult.data||[],sessionError=sessionResult.error;
   if(sessionError){$('#syncMsg').textContent='Statusfehler: '+sessionError.message;return}
 
   tableStatusMap=new Map();
-  const sessionIds=(sessions||[]).map(s=>s.id);
+  const sessionIds=sessions.map(s=>s.id);
   let items=[];
   if(sessionIds.length){
-    const{data:itemRows,error:itemError}=await supabase.from('order_items')
-      .select('id,session_id,status,cancelled,created_at')
+    // In OrderBuddy heißt der Zeitstempel der Position "ordered_at".
+    // created_at existiert in älteren/aktuellen Schemas nicht zuverlässig.
+    let itemResult=await supabase.from('order_items')
+      .select('id,session_id,status,cancelled,ordered_at')
       .in('session_id',sessionIds).eq('cancelled',false);
-    if(itemError){$('#syncMsg').textContent='Statusfehler: '+itemError.message;return}
-    items=itemRows||[];
+    if(itemResult.error&&/ordered_at/i.test(itemResult.error.message||'')){
+      itemResult=await supabase.from('order_items')
+        .select('id,session_id,status,cancelled')
+        .in('session_id',sessionIds).eq('cancelled',false);
+    }
+    if(itemResult.error){$('#syncMsg').textContent='Statusfehler: '+itemResult.error.message;return}
+    items=(itemResult.data||[]).map(o=>({...o,created_at:o.ordered_at||null}));
   }
   const itemsBySession=new Map();
   items.forEach(item=>{
