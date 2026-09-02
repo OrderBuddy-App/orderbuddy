@@ -9,3 +9,10 @@ Basis: aktueller V32.1-Stand, der ausschließlich aus der vom Nutzer am 03.09.20
 - Veranstaltungen erhalten einen Druckverlauf mit Nachdruck.
 - Veranstaltungs-Druckjobs werden in `event_print_jobs` gespeichert.
 - PWA-Cache auf V32.2 angehoben.
+
+
+## V32.3
+- Tischabschluss zentral/delegiert gebunden.
+- Nach erfolgreichem Abschluss lokale Sitzung, abgeschlossene Gruppen und Bestellansicht vollständig geleert.
+- Abgebrochene Bill-Groups blockieren den Abschluss nicht mehr.
+- Kein neues Supabase-SQL erforderlich.

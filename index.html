@@ -1653,24 +1653,50 @@ $('#paymentSave').onclick=async()=>{
   $('#paymentModal').classList.add('hidden');$('#actionMsg').textContent='Abrechnung '+euro(pendingPaymentSum)+' abgeschlossen · Zahlungsarten dokumentiert.';await loadOrders();await refreshTableStatuses();renderTables()
 };
 
-$('#closeTableBtn').onclick=async()=>{
-  if(!currentSession){
-    $('#orderView').classList.add('hidden');$('#tablesView').classList.remove('hidden');currentTable=null;
-    $('#syncMsg').textContent='Tisch war leer · keine Sitzung angelegt.';return
+async function closeCurrentTableSession(){
+  const btn=$('#closeTableBtn');
+  if(btn)btn.disabled=true;
+  try{
+    if(!currentSession){
+      currentTable=null;orders=[];transferredOrders=[];billGroups=[];sessionVouchers=[];
+      $('#orderView').classList.add('hidden');$('#tablesView').classList.remove('hidden');
+      await refreshTableStatuses();renderTables();
+      $('#syncMsg').textContent='Platz ist frei.';return
+    }
+    await loadOrders();
+    const active=billGroups.filter(g=>!['completed','cancelled'].includes(g.status));
+    if(orders.length){alert('Der Vorgang kann noch nicht abgeschlossen werden: Es gibt noch offene Positionen.');return}
+    if(active.length){alert('Der Vorgang kann noch nicht abgeschlossen werden: Es gibt noch Positionen, die an die Kasse übergeben, aber noch nicht als kassiert bestätigt wurden.');return}
+    if(!currentSession.ready_for_checkout){alert('Bitte den Vorgang zuerst bewusst auf Grün setzen.');return}
+    const closeLabel=currentSession.order_type==='Lieferung'?'Lieferung wirklich abschließen? Fahrer/Geldrücklauf wurde bestätigt.':currentSession.order_type==='Abholung'?'Abholung wirklich abschließen? Kunde hat den Auftrag übernommen.':'Tisch '+tableDisplay(currentTable)+' wirklich abschließen? Danach ist der Tisch für die nächsten Gäste wieder leer.';
+    if(!confirm(closeLabel))return;
+    $('#actionMsg').textContent='Vorgang wird abgeschlossen …';
+    const goodsGross=(billGroups||[]).filter(g=>g.status==='completed').reduce((a,g)=>a+groupGross(g),0);
+    const finalDeliveryFee=currentSession.order_type==='Lieferung'?effectiveDeliveryFee(goodsGross,currentSession):Number(currentSession.delivery_fee||0);
+    const sessionId=currentSession.id;
+    const{data,error}=await supabase.rpc('close_orderbuddy_table_session',{p_session_id:sessionId,p_delivery_fee:finalDeliveryFee,p_closed_at:historicalTimestamp()||new Date().toISOString()});
+    if(error){$('#actionMsg').textContent='Tischabschluss fehlgeschlagen: '+error.message;return}
+    // Nach erfolgreichem Serverabschluss die komplette lokale Sitzung verwerfen.
+    currentTable=null;currentSession=null;orders=[];transferredOrders=[];billGroups=[];sessionVouchers=[];registerOpen=false;completedOpen=false;
+    $('#order').innerHTML='';$('#registerGroups').innerHTML='';$('#completedGroups').innerHTML='';
+    $('#registerBox').classList.add('hidden');$('#completedBox').classList.add('hidden');
+    $('#orderView').classList.add('hidden');$('#tablesView').classList.remove('hidden');
+    clearHistoricalEntry();
+    await refreshTableStatuses();renderTables();
+    $('#syncMsg').textContent='Vorgang abgeschlossen · Platz ist wieder frei.';
+  }catch(e){
+    $('#actionMsg').textContent='Tischabschluss fehlgeschlagen: '+(e?.message||e);
+  }finally{
+    if(btn)btn.disabled=false;
   }
-  await loadOrders();
-  const active=billGroups.filter(g=>g.status!=='completed');
-  if(orders.length){alert('Der Vorgang kann noch nicht abgeschlossen werden: Es gibt noch offene Positionen.');return}
-  if(active.length){alert('Der Vorgang kann noch nicht abgeschlossen werden: Es gibt noch Positionen, die an die Kasse übergeben, aber noch nicht als kassiert bestätigt wurden.');return}
-  if(!currentSession.ready_for_checkout){alert('Bitte den Vorgang zuerst bewusst auf Grün setzen.');return}
-  const closeLabel=currentSession.order_type==='Lieferung'?'Lieferung wirklich abschließen? Fahrer/Geldrücklauf wurde bestätigt.':currentSession.order_type==='Abholung'?'Abholung wirklich abschließen? Kunde hat den Auftrag übernommen.':'Tisch '+tableDisplay(currentTable)+' wirklich abschließen? Danach ist der Tisch für die nächsten Gäste wieder leer.';if(!confirm(closeLabel))return;
-  const goodsGross=(billGroups||[]).filter(g=>g.status==='completed').reduce((a,g)=>a+groupGross(g),0);
-  const finalDeliveryFee=currentSession.order_type==='Lieferung'?effectiveDeliveryFee(goodsGross,currentSession):Number(currentSession.delivery_fee||0);
-  const{error}=await supabase.rpc('close_orderbuddy_table_session',{p_session_id:currentSession.id,p_delivery_fee:finalDeliveryFee,p_closed_at:historicalTimestamp()||new Date().toISOString()});
-  if(error){$('#actionMsg').textContent='Tischabschluss fehlgeschlagen: '+error.message;return}
-  $('#orderView').classList.add('hidden');$('#tablesView').classList.remove('hidden');currentTable=null;currentSession=null;orders=[];billGroups=[];
-  await refreshTableStatuses();renderTables();$('#syncMsg').textContent='Vorgang abgeschlossen · Platz ist wieder frei.';clearHistoricalEntry()
-};
+}
+// Delegierter Handler: funktioniert auch nach UI-Neurendering zuverlässig.
+document.addEventListener('click',e=>{
+  const b=e.target.closest?.('#closeTableBtn');
+  if(!b)return;
+  e.preventDefault();e.stopPropagation();
+  closeCurrentTableSession();
+});
 
 
 
