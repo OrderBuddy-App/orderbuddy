@@ -1506,6 +1506,7 @@ function renderOrder(){
   if(currentSession?.order_type==='Lieferung')total+=effectiveDeliveryFee(total-sessionVouchers.reduce((a,v)=>a+Number(v.original_value||0),0),currentSession);
   $('#total').textContent=euro(total)
 }
+function groupGross(g){const byId=new Map((transferredOrders||[]).map(o=>[String(o.id),o]));return (g?.bill_group_items||[]).reduce((sum,link)=>{const o=byId.get(String(link.order_item_id));if(!o)return sum;return sum+Number(o.unit_price||0)*Number(link.quantity||o.quantity||1)},0)}
 function currentGoodsGross(){const seen=new Map();[...orders,...transferredOrders].forEach(o=>seen.set(o.id,o));return [...seen.values()].reduce((a,o)=>a+Number(o.unit_price||0)*Number(o.quantity||1),0)}
 function paidDeliveryFeeEstimate(){let paid=0,goods=0;(billGroups||[]).filter(g=>g.status==='completed').forEach(g=>{goods+=groupGross(g);paid+=(g.bill_group_payments||[]).reduce((a,p)=>a+Number(p.amount||0),0)});return Math.max(0,paid-goods)}
 function deliveryFeeDueForRegisterGroup(g){if(currentSession?.order_type!=='Lieferung'||orders.length)return 0;const active=(billGroups||[]).filter(x=>x.status!=='completed'&&x.status!=='cancelled');if(active.length!==1||String(active[0].id)!==String(g.id))return 0;const totalFee=effectiveDeliveryFee(currentGoodsGross(),currentSession);return Math.max(0,totalFee-paidDeliveryFeeEstimate())}

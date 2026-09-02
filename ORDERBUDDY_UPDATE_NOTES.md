@@ -1,3 +1,9 @@
+# OrderBuddy V32.4
+
+- Tischabschluss: fehlende `groupGross()`-Hilfsfunktion ergänzt.
+- Abgeschlossene Kassen-Gruppen werden für den finalen Sitzungsabschluss korrekt summiert.
+- Kein Supabase-SQL erforderlich.
+
 # OrderBuddy V32.2 – Abschluss, Gutscheinnummern und Veranstaltungen
 
 Basis: aktueller V32.1-Stand, der ausschließlich aus der vom Nutzer am 03.09.2026 hochgeladenen `orderbuddy-main(1).zip` aufgebaut wurde.
