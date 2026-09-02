@@ -301,7 +301,7 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
   <label class="msg" style="display:block;margin:14px 0 6px">Tag auswählen</label>
   <input id="adminDate" class="input" type="date">
   <div class="admin-grid" style="margin-top:12px">
-    <div class="admin-stat"><span>Abgeschlossene Tische</span><b id="adminSessionsCount">0</b></div>
+    <div class="admin-stat"><span>Abgeschlossene Vorgänge</span><b id="adminSessionsCount">0</b></div>
     <div class="admin-stat"><span>Bruttosumme abgeschlossen</span><b id="adminGross">0,00 €</b></div>
     <div class="admin-stat"><span>Speisen 7 % brutto</span><b id="adminFoodGross">0,00 €</b></div>
     <div class="admin-stat"><span>Getränke 19 % brutto</span><b id="adminDrinkGross">0,00 €</b></div>
@@ -313,7 +313,7 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
   <div class="admin-actions">
     <button id="dayReceiptBtn">🧾 Tagesabschluss-Bon</button>
     <button id="daySummaryPdfBtn">📄 Tagesabschluss PDF</button>
-    <button id="pdfExportBtn">📑 Detail-PDF · Tische</button>
+    <button id="pdfExportBtn">📑 Detail-PDF · Vorgänge</button>
     <button id="csvExportBtn">📊 Tages-CSV · Kontrollliste</button>
     <button id="deleteDayBtn" class="danger-admin" disabled>🗑 Tag endgültig löschen</button>
   </div>
@@ -448,8 +448,8 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
       <div class="kpi"><span>Netto-Umsatz</span><b id="kpiNet">0,00 €</b><small>ohne enthaltene MwSt.</small></div>
       <div class="kpi"><span>Enthaltene Umsatzsteuer</span><b id="kpiVat">0,00 €</b><small>7 % + 19 %</small></div>
       <div class="kpi"><span>Gutscheinverkäufe</span><b id="kpiVouchers">0,00 €</b><small>separat / Konto 1796</small></div>
-      <div class="kpi"><span>Abgeschlossene Tische</span><b id="kpiTables">0</b><small>im Zeitraum</small></div>
-      <div class="kpi"><span>Ø Umsatz je Tisch</span><b id="kpiAvg">0,00 €</b><small>nur Speisen/Getränke</small></div>
+      <div class="kpi"><span>Abgeschlossene Vorgänge</span><b id="kpiTables">0</b><small>alle 5 Bereiche</small></div>
+      <div class="kpi"><span>Ø Umsatz je Vorgang</span><b id="kpiAvg">0,00 €</b><small>nur Speisen/Getränke</small></div>
       <div class="kpi"><span>Speisen 7 % brutto</span><b id="kpiFood">0,00 €</b><small id="kpiFoodVat">MwSt. 0,00 €</small></div>
       <div class="kpi"><span>Getränke 19 % brutto</span><b id="kpiDrinks">0,00 €</b><small id="kpiDrinkVat">MwSt. 0,00 €</small></div>
     </div>
@@ -463,7 +463,7 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
     <div class="analytics-grid">
       <div class="analytics-card"><h3>Top-Produkte</h3><div id="topProducts"></div></div>
       <div class="analytics-card"><h3>Umsatz nach Kategorien</h3><div id="categorySales"></div></div>
-      <div class="analytics-card"><h3>Service-Auswertung</h3><div id="serviceSales"></div><div class="analytics-note">Zuordnung nach der Service-E-Mail der Tischsitzung. Bei Übergaben zwischen Servicekräften ist das nur eine Näherung.</div></div>
+      <div class="analytics-card"><h3>Vorgänge nach Bereich</h3><div id="areaSales"></div><div class="analytics-note">Terrasse, Innenraum, Lieferung, Abholung und Veranstaltungen.</div></div><div class="analytics-card"><h3>Service-Auswertung</h3><div id="serviceSales"></div><div class="analytics-note">Zuordnung nach der Service-E-Mail des Vorgangs. Bei Übergaben zwischen Servicekräften ist das nur eine Näherung.</div></div>
       <div class="analytics-card"><h3>Steuerübersicht</h3><table class="analytics-table"><thead><tr><th>Bereich</th><th>Netto</th><th>MwSt.</th><th>Brutto</th></tr></thead><tbody id="taxAnalyticsBody"></tbody></table></div>
     </div>
   </div>
@@ -471,7 +471,7 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
   <div class="admin-section" id="adminMonthSection">
 <div class="section-title" style="font-size:21px">Monatsauswertung & DATEV</div>
 <div class="admin-note">Monatsabschluss, DATEV-EXTF-Exporte und zusätzliche manuelle Buchungen für Vorgänge, die außerhalb von OrderBuddy stattfinden.</div>
-<div class="admin-form month-actions" style="margin-top:10px"><label>Monat<input id="adminMonthTab" type="month"></label></div>
+<div class="admin-form month-actions" style="margin-top:10px"><label>Monat<input id="adminMonthTab" type="month"></label></div><div class="analytics-kpis" style="margin-top:10px"><div class="kpi"><span>Abgeschlossene Vorgänge</span><b id="monthOps">0</b><small id="monthAreas">T/I/L/A/V</small></div><div class="kpi"><span>Bruttosumme</span><b id="monthGross">0,00 €</b><small>inkl. Gutscheinverkäufe</small></div><div class="kpi"><span>Speisen 7 % brutto</span><b id="monthFood">0,00 €</b></div><div class="kpi"><span>Getränke 19 % brutto</span><b id="monthDrinks">0,00 €</b></div><div class="kpi"><span>Gutscheinverkäufe</span><b id="monthVouchers">0,00 €</b><small>0 % / nicht steuerbar</small></div></div>
 <div class="month-export-grid">
   <button id="monthlyExtfItemsAutoBtn" class="primary">DATEV · Einzelpositionen automatisch</button>
   <button id="monthlyExtfDaysAutoBtn">DATEV · Tagessummen automatisch</button>
@@ -631,7 +631,7 @@ const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&
 let deviceName=localStorage.getItem('orderbuddy_device')||'Service 1';
 let currentArea='Terrasse',currentTable=null,currentSession=null,pendingSpecialTable=null;
 let categories=[],menu=[],orders=[],transferredOrders=[],billGroups=[],restaurant=null,menuExtras=[],optionGroups=[],sessionVouchers=[],pendingMenuItem=null,editingOrderItem=null,iceQuantities={},deliveryZones=[],deliveryZoneStreets=[];
-let registerOpen=false,completedOpen=false,currentRole='service',adminSessions=[],adminExport=null,tableStatusMap=new Map(),voucherScannerStream=null,voucherScannerRunning=false,voucherScannerTimer=null,verifiedVoucher=null,voucherResultTarget='#voucherVerifyResult';
+let registerOpen=false,completedOpen=false,currentRole='service',adminSessions=[],adminEvents=[],adminOpenSessions=[],adminOpenEvents=[],adminExport=null,tableStatusMap=new Map(),voucherScannerStream=null,voucherScannerRunning=false,voucherScannerTimer=null,verifiedVoucher=null,voucherResultTarget='#voucherVerifyResult';
 let historicalEntry=null,currentEvent=null,pendingEventMenuItem=null,pendingEventEditingItem=null,eventVouchers=[],voucherSaleContext='table',knownDoneItems=new Set(),readyAudioContext=null;
 
 function selectedLoginEmail(){
@@ -2368,18 +2368,20 @@ function downloadDatev(month,label,filename,bookings){
   const blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);$('#adminMsg').textContent=filename+' erstellt · '+bookings.length+' Buchungen.'
 }
 async function fetchFinalizedVoucherSales(startIso,endIso){
-  const{data,error}=await supabase.from('vouchers').select('id,voucher_number,original_value,issued_at,status,session_id,event_id,table_sessions(status,closed_at),events(status,closed_at)').neq('status','void');
+  const{data,error}=await supabase.from('vouchers').select('id,voucher_number,original_value,issued_at,status,session_id,event_id,table_sessions(status,closed_at),events(status,closed_at)').eq('restaurant_id',restaurant.id).neq('status','void');
   if(error)throw error;
   return(data||[]).filter(v=>{const rel=v.table_sessions?.status==='closed'?v.table_sessions:v.events?.status==='closed'?v.events:null;if(!rel?.closed_at)return false;const t=new Date(rel.closed_at).toISOString();return t>=startIso&&t<endIso})
 }
 async function fetchMonthSales(month){
   const r=closedMonthRange(month);const[{data:sessions,error:se},vouchers]=await Promise.all([
-    supabase.from('table_sessions').select(`id,business_date,opened_at,closed_at,opened_by_email,order_type,delivery_fee,delivery_zone_id,restaurant_tables(code,display_name,areas(name)),bill_groups(id,label,status,completed_at,bill_group_payments(payment_method,amount),bill_group_items(quantity,order_items(id,unit_price,quantity,menu_items(name,variant,menu_categories(name,destination)))))`).gte('closed_at',r.startIso).lt('closed_at',r.endIso).eq('status','closed'),
+    supabase.from('table_sessions').select(`id,business_date,opened_at,closed_at,opened_by_email,order_type,delivery_fee,delivery_zone_id,vouchers(id,status),restaurant_tables(code,display_name,areas(name)),bill_groups(id,label,status,completed_at,bill_group_payments(payment_method,amount),bill_group_items(quantity,order_items(id,unit_price,quantity,menu_items(name,variant,menu_categories(name,destination)))))`).eq('restaurant_id',restaurant.id).gte('closed_at',r.startIso).lt('closed_at',r.endIso).eq('status','closed'),
     fetchFinalizedVoucherSales(r.startIso,r.endIso)
   ]);if(se)throw se;return{sessions:sessions||[],vouchers:vouchers||[]}
 }
+function completedGroups(sessions){return (sessions||[]).flatMap(session=>(session.bill_groups||[]).filter(group=>group.status==='completed').map(group=>({session,group})))}
+function storedGroupGross(g){return (g?.bill_group_items||[]).reduce((sum,link)=>{const i=link.order_items;if(!i)return sum;return sum+Number(i.unit_price||0)*Number(link.quantity||i.quantity||1)},0)}
 async function fetchMonthEvents(month){
-  const r=closedMonthRange(month);const{data,error}=await supabase.from('events').select('*,event_items(id,quantity,unit_price,menu_item_id,status,course,note,options,extras,menu_items(name,variant,menu_categories(name,destination))),event_payments(id,payment_method,amount)').eq('restaurant_id',restaurant.id).eq('status','closed').gte('closed_at',r.startIso).lt('closed_at',r.endIso).order('closed_at');if(error)throw error;return data||[]
+  const r=closedMonthRange(month);const{data,error}=await supabase.from('events').select('*,event_items(id,quantity,unit_price,menu_item_id,status,course,note,options,extras,menu_items(name,variant,menu_categories(name,destination))),event_payments(id,payment_method,amount),vouchers(id,voucher_number,original_value,status)').eq('restaurant_id',restaurant.id).eq('status','closed').gte('closed_at',r.startIso).lt('closed_at',r.endIso).order('closed_at');if(error)throw error;return (data||[]).map(e=>({...e,event_vouchers:e.vouchers||[]}))
 }
 async function fetchManualBookings(month){
   const r=monthRange(month);
@@ -2403,21 +2405,21 @@ function buildDatevCsv(month,label,bookings){if(!bookings.length)return '';const
 async function exportDatev(mode,includeManual){const month=$('#adminMonthTab').value;if(!month){$('#adminMsg').textContent='Bitte einen Monat auswählen.';return}try{const [{sessions,vouchers},manual,events]=await Promise.all([fetchMonthSales(month),fetchManualBookings(month),fetchMonthEvents(month)]);let bookings=mode==='items'?automaticItemBookings(sessions):automaticDayBookings(sessions);bookings.push(...(mode==='items'?eventItemBookings(events):eventDayBookings(events)));if(mode==='items')vouchers.forEach(v=>bookings.push(datevBooking(Number(v.original_value),'1000','1796',voucherAccountingDate(v),'Gutscheinverkauf '+v.voucher_number,v.voucher_number)));if(mode==='days'){const byDay={};vouchers.forEach(v=>{const d=voucherAccountingDate(v);byDay[d]=(byDay[d]||0)+Number(v.original_value)});Object.entries(byDay).forEach(([d,a])=>bookings.push(datevBooking(a,'1000','1796',d,'Tagesumsatz Gutscheinverkauf','TAG-'+d.replaceAll('-',''))))}if(includeManual)manual.rows.forEach(m=>bookings.push(manualToDatev(m)));const suffix=(mode==='items'?'Einzelpositionen':'Tagessummen')+(includeManual?'_Komplett':'_Automatisch');downloadDatev(month,'OrderBuddy '+suffix+' '+month,'EXTF_OrderBuddy_'+suffix+'_'+month+'.csv',bookings)}catch(e){$('#adminMsg').textContent='DATEV-Export: '+e.message}}
 $('#monthlyExtfItemsAutoBtn').onclick=()=>exportDatev('items',false);$('#monthlyExtfDaysAutoBtn').onclick=()=>exportDatev('days',false);$('#monthlyExtfItemsCompleteBtn').onclick=()=>exportDatev('items',true);$('#monthlyExtfDaysCompleteBtn').onclick=()=>exportDatev('days',true);
 function simplePdfBlob(title,lines){const api=window.jspdf?.jsPDF;if(!api)throw new Error('PDF-Modul konnte nicht geladen werden.');const doc=new api({unit:'mm',format:'a4'});doc.setFontSize(16);doc.text(String(title||'OrderBuddy'),15,18);doc.setFontSize(10);let y=28;for(const line of lines){const parts=doc.splitTextToSize(String(line??''),180);if(y+parts.length*5>282){doc.addPage();y=18}doc.text(parts,15,y);y+=parts.length*5+1}return doc.output('blob')}
-function sessionPdfLines(s){const lines=['Datum: '+s.business_date,'Vorgang: '+receiptContextLabel(s.restaurant_tables,{order_type:s.order_type})];(s.bill_groups||[]).filter(g=>g.status==='completed').forEach(g=>(g.bill_group_items||[]).forEach(link=>{const i=link.order_items;if(i)lines.push(Number(link.quantity||i.quantity||1)+'x '+(i.menu_items?.name||'Position')+(i.menu_items?.variant?' · '+i.menu_items.variant:'')+' · '+euro(Number(i.unit_price||0)*Number(link.quantity||i.quantity||1)))}));if(Number(s.delivery_fee||0)>0)lines.push('Lieferkosten: '+euro(s.delivery_fee));const pay=(s.bill_groups||[]).flatMap(g=>g.bill_group_payments||[]);pay.forEach(x=>lines.push('Zahlungsart: '+paymentMethodLabel(x.payment_method)+' · '+euro(x.amount)));return lines}
-function eventPdfLines(e){const x=eventTotals(e),lines=['Datum: '+e.event_date+' '+String(e.event_time||'00:00').slice(0,5),'Veranstaltung: '+e.name,'Personen: '+e.guest_count];if(['package','package_and_alacarte'].includes(e.mode)){lines.push('Pauschale je Person: '+euro(e.package_price_per_person));lines.push('Pauschale Speisen 7 %: '+euro(Number(e.food_gross_per_person)*Number(e.guest_count)));lines.push('Pauschale Getränke 19 %: '+euro(Number(e.drink_gross_per_person)*Number(e.guest_count)))};(e.event_items||[]).forEach(i=>lines.push(Number(i.quantity)+'x '+(i.menu_items?.name||'')+' · '+euro(Number(i.unit_price)*Number(i.quantity))));lines.push('Gesamt: '+euro(x.gross));return lines}
+function sessionPdfLines(s){const lines=['Abschlussdatum: '+sessionAccountingDate(s),'Vorgang: '+receiptContextLabel(s.restaurant_tables,{order_type:s.order_type})];(s.bill_groups||[]).filter(g=>g.status==='completed').forEach(g=>(g.bill_group_items||[]).forEach(link=>{const i=link.order_items;if(i)lines.push(Number(link.quantity||i.quantity||1)+'x '+(i.menu_items?.name||'Position')+(i.menu_items?.variant?' · '+i.menu_items.variant:'')+' · '+euro(Number(i.unit_price||0)*Number(link.quantity||i.quantity||1)))}));if(Number(s.delivery_fee||0)>0)lines.push('Lieferkosten: '+euro(s.delivery_fee));const pay=(s.bill_groups||[]).flatMap(g=>g.bill_group_payments||[]);pay.forEach(x=>lines.push('Zahlungsart: '+paymentMethodLabel(x.payment_method)+' · '+euro(x.amount)));return lines}
+function eventPdfLines(e){const x=eventTotals(e),lines=['Abschlussdatum: '+eventAccountingDate(e),'Veranstaltungsdatum: '+e.event_date+' '+String(e.event_time||'00:00').slice(0,5),'Veranstaltung: '+e.name,'Personen: '+e.guest_count];if(['package','package_and_alacarte'].includes(e.mode)){lines.push('Pauschale je Person: '+euro(e.package_price_per_person));lines.push('Pauschale Speisen 7 %: '+euro(Number(e.food_gross_per_person)*Number(e.guest_count)));lines.push('Pauschale Getränke 19 %: '+euro(Number(e.drink_gross_per_person)*Number(e.guest_count)))};(e.event_items||[]).forEach(i=>lines.push(Number(i.quantity)+'x '+(i.menu_items?.name||'')+' · '+euro(Number(i.unit_price)*Number(i.quantity))));lines.push('Gesamt: '+euro(x.gross));return lines}
 async function exportMonthlyBundle(){const month=$('#adminMonthTab').value;if(!month){$('#adminMsg').textContent='Bitte einen Monat auswählen.';return}if(!window.JSZip||!window.jspdf?.jsPDF){$('#adminMsg').textContent='ZIP/PDF-Modul ist noch nicht geladen. Bitte kurz warten und erneut versuchen.';return}$('#adminMsg').textContent='ZIP mit CSV-Dateien und Belegen wird erstellt …';try{const [{sessions,vouchers},manual,events]=await Promise.all([fetchMonthSales(month),fetchManualBookings(month),fetchMonthEvents(month)]),zip=new JSZip(),belege=zip.folder('Belege'),manifest=[['Belegfeld','Datei','Typ','Datum']];const variants=[['Einzelpositionen_Automatisch','items',false],['Tagessummen_Automatisch','days',false],['Einzelpositionen_Komplett','items',true],['Tagessummen_Komplett','days',true]];for(const[name,mode,inc] of variants){let b=mode==='items'?automaticItemBookings(sessions):automaticDayBookings(sessions);b.push(...(mode==='items'?eventItemBookings(events):eventDayBookings(events)));if(mode==='items')vouchers.forEach(v=>b.push(datevBooking(Number(v.original_value),'1000','1796',voucherAccountingDate(v),'Gutscheinverkauf '+v.voucher_number,v.voucher_number)));else{const byDay={};vouchers.forEach(v=>{const d=voucherAccountingDate(v);byDay[d]=(byDay[d]||0)+Number(v.original_value)});Object.entries(byDay).forEach(([d,a])=>b.push(datevBooking(a,'1000','1796',d,'Tagesumsatz Gutscheinverkauf','TAG-'+d.replaceAll('-',''))))}if(inc)manual.rows.forEach(m=>b.push(manualToDatev(m)));const csv=buildDatevCsv(month,'OrderBuddy '+name+' '+month,b);if(csv)zip.file('EXTF_OrderBuddy_'+name+'_'+month+'.csv',csv)}
-const nonCash=[['Datum','Uhrzeit','Tisch/Auftrag','Zahlungsart','Betrag','Service','Belegfeld']];completedGroups(sessions).forEach(({session:s,group:g})=>(g.bill_group_payments||[]).filter(p=>p.payment_method!=='cash').forEach(p=>nonCash.push([s.business_date,g.completed_at?new Date(g.completed_at).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}):'',receiptContextLabel(s.restaurant_tables,{order_type:s.order_type}),paymentMethodLabel(p.payment_method),dec(p.amount),s.opened_by_email||'',sessionReceiptRef(s)])));events.forEach(e=>eventPaymentShares(e).filter(p=>p.method!=='cash').forEach(p=>nonCash.push([e.event_date,String(e.event_time||'00:00').slice(0,5),'Veranstaltung · '+e.name,paymentMethodLabel(p.method),dec(p.amount),e.created_by_email||'','EV-'+String(e.id).replaceAll('-','').slice(0,12).toUpperCase()])));zip.file('OrderBuddy_Nicht-Bar-Zahlungen_'+month+'.csv','\ufeff'+nonCash.map(r=>r.map(csvCell).join(';')).join('\r\n'));
-for(const s of sessions){const ref=sessionReceiptRef(s),file=ref+'.pdf';belege.file(file,simplePdfBlob('OrderBuddy · '+receiptContextLabel(s.restaurant_tables,{order_type:s.order_type}),sessionPdfLines(s)));manifest.push([ref,'Belege/'+file,'Vorgang',s.business_date])}
-for(const e of events){const ref='EV-'+String(e.id).replaceAll('-','').slice(0,12).toUpperCase(),file=ref+'.pdf';belege.file(file,simplePdfBlob('OrderBuddy · Veranstaltung',eventPdfLines(e)));manifest.push([ref,'Belege/'+file,'Veranstaltung',e.event_date])}
+const nonCash=[['Datum','Uhrzeit','Tisch/Auftrag','Zahlungsart','Betrag','Service','Belegfeld']];completedGroups(sessions).forEach(({session:s,group:g})=>(g.bill_group_payments||[]).filter(p=>p.payment_method!=='cash').forEach(p=>nonCash.push([sessionAccountingDate(s),g.completed_at?new Date(g.completed_at).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}):'',receiptContextLabel(s.restaurant_tables,{order_type:s.order_type}),paymentMethodLabel(p.payment_method),dec(p.amount),s.opened_by_email||'',sessionReceiptRef(s)])));events.forEach(e=>eventPaymentShares(e).filter(p=>p.method!=='cash').forEach(p=>nonCash.push([eventAccountingDate(e),e.closed_at?new Date(e.closed_at).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}):String(e.event_time||'00:00').slice(0,5),'Veranstaltung · '+e.name,paymentMethodLabel(p.method),dec(p.amount),e.created_by_email||'','EV-'+String(e.id).replaceAll('-','').slice(0,12).toUpperCase()])));zip.file('OrderBuddy_Nicht-Bar-Zahlungen_'+month+'.csv','\ufeff'+nonCash.map(r=>r.map(csvCell).join(';')).join('\r\n'));
+for(const s of sessions){const ref=sessionReceiptRef(s),file=ref+'.pdf';belege.file(file,simplePdfBlob('OrderBuddy · '+receiptContextLabel(s.restaurant_tables,{order_type:s.order_type}),sessionPdfLines(s)));manifest.push([ref,'Belege/'+file,'Vorgang',sessionAccountingDate(s)])}
+for(const e of events){const ref='EV-'+String(e.id).replaceAll('-','').slice(0,12).toUpperCase(),file=ref+'.pdf';belege.file(file,simplePdfBlob('OrderBuddy · Veranstaltung',eventPdfLines(e)));manifest.push([ref,'Belege/'+file,'Veranstaltung',eventAccountingDate(e)])}
 for(const v of vouchers){const ref=v.voucher_number,file=ref+'.pdf',date=String(v.issued_at).slice(0,10);belege.file(file,simplePdfBlob('OrderBuddy · Gutscheinverkauf',['Datum: '+date,'Gutschein: '+v.voucher_number,'Wert: '+euro(v.original_value)]));manifest.push([ref,'Belege/'+file,'Gutschein',date])}
 for(const m of manual.rows){const ref='MAN-'+String(m.id||'').slice(0,8),file=ref+'.pdf';belege.file(file,simplePdfBlob('OrderBuddy · Manuelle Buchung',['Datum: '+m.booking_date,'Betrag: '+euro(m.amount),'Konto: '+m.account+' an '+m.counter_account,'Text: '+(m.description||'') ]));manifest.push([ref,'Belege/'+file,'Manuelle Buchung',m.booking_date])}
-const days=[...new Set([...sessions.map(sessionAccountingDate),...events.map(eventAccountingDate)])];for(const d of days){const ref='TAG-'+d.replaceAll('-',''),file=ref+'.pdf',sales=sessions.filter(s=>sessionAccountingDate(s)===d),ev=events.filter(e=>eventAccountingDate(e)===d);let gross=0;sales.forEach(s=>{(s.bill_groups||[]).filter(g=>g.status==='completed').forEach(g=>gross+=groupGross(g));gross+=Number(s.delivery_fee||0)});ev.forEach(e=>gross+=eventTotals(e).gross);vouchers.filter(v=>voucherAccountingDate(v)===d).forEach(v=>gross+=Number(v.original_value||0));belege.file(file,simplePdfBlob('OrderBuddy · Tagessumme',['Datum: '+d,'Summe inkl. Gutscheinverkäufe: '+euro(gross)]));manifest.push([ref,'Belege/'+file,'Tagessumme',d])}
+const days=[...new Set([...sessions.map(sessionAccountingDate),...events.map(eventAccountingDate)])];for(const d of days){const ref='TAG-'+d.replaceAll('-',''),file=ref+'.pdf',sales=sessions.filter(s=>sessionAccountingDate(s)===d),ev=events.filter(e=>eventAccountingDate(e)===d);let gross=0;sales.forEach(s=>{(s.bill_groups||[]).filter(g=>g.status==='completed').forEach(g=>gross+=storedGroupGross(g));gross+=Number(s.delivery_fee||0)});ev.forEach(e=>gross+=eventTotals(e).gross);vouchers.filter(v=>voucherAccountingDate(v)===d).forEach(v=>gross+=Number(v.original_value||0));belege.file(file,simplePdfBlob('OrderBuddy · Tagessumme',['Datum: '+d,'Summe inkl. Gutscheinverkäufe: '+euro(gross)]));manifest.push([ref,'Belege/'+file,'Tagessumme',d])}
 zip.file('Belegzuordnung.csv','\ufeff'+manifest.map(r=>r.map(csvCell).join(';')).join('\r\n'));const blob=await zip.generateAsync({type:'blob'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='OrderBuddy_DATEV_und_Belege_'+month+'.zip';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);$('#adminMsg').textContent='ZIP mit CSV-Dateien und '+(manifest.length-1)+' Belegzuordnungen erstellt.'}catch(e){$('#adminMsg').textContent='ZIP-Export: '+e.message}}
 $('#monthlyBundleBtn').onclick=exportMonthlyBundle;
 
 function downloadCsv(filename,rows){const csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(';')).join('\r\n'),blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
 $('#monthlyNonCashBtn').onclick=async()=>{const month=$('#adminMonthTab').value;if(!month){$('#adminMsg').textContent='Bitte einen Monat auswählen.';return}try{const [{sessions},events]=await Promise.all([fetchMonthSales(month),fetchMonthEvents(month)]),rows=[['Datum','Uhrzeit','Tisch/Auftrag','Zahlungsart','Betrag','Service','Belegfeld']];completedGroups(sessions).forEach(({session:s,group:g})=>(g.bill_group_payments||[]).filter(p=>p.payment_method!=='cash').forEach(p=>rows.push([sessionAccountingDate(s),g.completed_at?new Date(g.completed_at).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}):'',receiptContextLabel(s.restaurant_tables,{order_type:s.order_type}),paymentMethodLabel(p.payment_method),dec(p.amount),s.opened_by_email||'',sessionReceiptRef(s)])));events.forEach(e=>eventPaymentShares(e).filter(p=>p.method!=='cash').forEach(p=>rows.push([eventAccountingDate(e),e.closed_at?new Date(e.closed_at).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}):String(e.event_time||'00:00').slice(0,5),'Veranstaltung · '+e.name,paymentMethodLabel(p.method),dec(p.amount),e.created_by_email||'','EV-'+String(e.id).replaceAll('-','').slice(0,12).toUpperCase()])));if(rows.length===1){$('#adminMsg').textContent='Für diesen Monat gibt es keine Nicht-Bar-Zahlungen.';return}downloadCsv('OrderBuddy_Nicht-Bar-Zahlungen_'+month+'.csv',rows);$('#adminMsg').textContent='CSV mit '+(rows.length-1)+' Nicht-Bar-Zahlungen erstellt.'}catch(e){$('#adminMsg').textContent='CSV-Export: '+e.message}};
-$('#adminMonthTab').onchange=()=>{$('#adminMonth').value=$('#adminMonthTab').value;loadManualBookings()};
+$('#adminMonthTab').onchange=()=>{$('#adminMonth').value=$('#adminMonthTab').value;loadMonthOverview();loadManualBookings()};
 function manualBookingDefaults(){const cat=$('#manualBookingCategory').value,dir=$('#manualBookingDirection').value;let account='1360',counter='1000';if(cat==='wechselgeld'){account='1000';counter='1360'}if(cat==='geldtransit'){if(dir==='cash_in'){account='1000';counter='1360'}else{account='1360';counter='1000'}}if(cat==='privatentnahme'){account='1800';counter='1000'}if(cat==='privateinlage'){account='1000';counter='1890'}if(cat==='kosten'){account=$('#manualCostAccount').value.trim()||'1590';counter='1000'}return {account,counter,text:''}}
 function updateManualBookingForm(){const cat=$('#manualBookingCategory').value,cost=cat==='kosten',transit=cat==='geldtransit';$('#manualCostAccountWrap').classList.toggle('hidden',!cost);$('#manualBuKeyWrap').classList.toggle('hidden',!cost);$('#manualDirectionWrap').classList.toggle('hidden',!transit);$('#manualBookingText').placeholder=''}
 $('#manualBookingCategory').onchange=updateManualBookingForm;$('#manualBookingDirection').onchange=updateManualBookingForm;
@@ -2497,79 +2499,34 @@ async function loadAnalytics(){
   if(!from||!to){$('#adminMsg').textContent='Bitte einen Zeitraum auswählen.';return}
   const rangeStart=new Date(from+'T00:00:00').toISOString(),endDate=new Date(to+'T00:00:00');endDate.setDate(endDate.getDate()+1);const rangeEnd=endDate.toISOString();
   $('#adminMsg').textContent='Auswertung wird geladen …';
-
-  const[{data:sessions,error:se},vouchers]=await Promise.all([
-    supabase.from('table_sessions').select(`
-      id,business_date,status,opened_by_email,closed_by_email,restaurant_tables(code),
-      bill_groups(
-        id,label,status,
-        bill_group_items(
-          quantity,
-          order_items(
-            unit_price,quantity,
-            menu_items(name,category_id,menu_categories(name,destination))
-          )
-        )
-      )
-    `).gte('closed_at',rangeStart).lt('closed_at',rangeEnd).eq('status','closed'),
+  const[{data:sessions,error:se},{data:events,error:ee},vouchers]=await Promise.all([
+    supabase.from('table_sessions').select(`id,business_date,status,opened_by_email,closed_by_email,closed_at,order_type,delivery_fee,vouchers(id,status),restaurant_tables(code,areas(name)),bill_groups(id,label,status,bill_group_items(quantity,order_items(unit_price,quantity,menu_items(name,category_id,menu_categories(name,destination)))))`).eq('restaurant_id',restaurant.id).gte('closed_at',rangeStart).lt('closed_at',rangeEnd).eq('status','closed'),
+    supabase.from('events').select('id,name,status,slot_number,closed_at,created_by_email,closed_by_email,mode,guest_count,food_gross_per_person,drink_gross_per_person,event_items(quantity,unit_price,menu_items(name,category_id,menu_categories(name,destination))),vouchers(id,original_value,status)').eq('restaurant_id',restaurant.id).gte('closed_at',rangeStart).lt('closed_at',rangeEnd).eq('status','closed'),
     fetchFinalizedVoucherSales(rangeStart,rangeEnd)
   ]);
-  const error=se;if(error){$('#adminMsg').textContent='Auswertung: '+error.message;return}
-
+  const error=se||ee;if(error){$('#adminMsg').textContent='Auswertung: '+error.message;return}
   let foodGross=0,drinkGross=0;
-  const products=new Map(),categoriesMap=new Map(),services=new Map();
-
+  const products=new Map(),categoriesMap=new Map(),services=new Map(),areasMap=new Map();
+  const addProduct=(name,qty,gross)=>{const p=products.get(name)||{name,qty:0,gross:0};p.qty+=qty;p.gross+=gross;products.set(name,p)};
+  const addCategory=(name,gross)=>{const c=categoriesMap.get(name)||{name,gross:0};c.gross+=gross;categoriesMap.set(name,c)};
+  const addArea=(name,gross)=>{const a=areasMap.get(name)||{name,count:0,gross:0};a.count+=1;a.gross+=gross;areasMap.set(name,a)};
+  const addService=(email,gross)=>{const who=serviceLabel(email),sv=services.get(who)||{name:who,gross:0,tables:0};sv.gross+=gross;sv.tables+=1;services.set(who,sv)};
   (sessions||[]).forEach(ses=>{
-    let sessionGross=0;
-    (ses.bill_groups||[]).filter(g=>g.status==='completed').forEach(g=>{
-      (g.bill_group_items||[]).forEach(link=>{
-        const oi=link.order_items;if(!oi)return;
-        const qty=Number(link.quantity||oi.quantity||1),gross=Number(oi.unit_price||0)*qty;
-        const dest=oi.menu_items?.menu_categories?.destination;
-        if(dest==='bar')drinkGross+=gross;else foodGross+=gross;
-        sessionGross+=gross;
-
-        const pname=oi.menu_items?.name||'Unbekannt';
-        const p=products.get(pname)||{name:pname,qty:0,gross:0};
-        p.qty+=qty;p.gross+=gross;products.set(pname,p);
-
-        const cname=oi.menu_items?.menu_categories?.name||'Sonstiges';
-        const c=categoriesMap.get(cname)||{name:cname,gross:0};
-        c.gross+=gross;categoriesMap.set(cname,c);
-      })
-    });
-    const who=serviceLabel(ses.opened_by_email||ses.closed_by_email);
-    const sv=services.get(who)||{name:who,gross:0,tables:0};
-    sv.gross+=sessionGross;sv.tables+=1;services.set(who,sv)
+    let sessionGross=0,food=0,drink=0;
+    (ses.bill_groups||[]).filter(g=>g.status==='completed').forEach(g=>(g.bill_group_items||[]).forEach(link=>{const oi=link.order_items;if(!oi)return;const qty=Number(link.quantity||oi.quantity||1),lineGross=Number(oi.unit_price||0)*qty,dest=oi.menu_items?.menu_categories?.destination;if(dest==='bar'){drinkGross+=lineGross;drink+=lineGross}else{foodGross+=lineGross;food+=lineGross}sessionGross+=lineGross;addProduct(oi.menu_items?.name||'Unbekannt',qty,lineGross);addCategory(oi.menu_items?.menu_categories?.name||'Sonstiges',lineGross)}));
+    const fee=Number(ses.delivery_fee||0);if(fee>0){const alloc=allocateDeliveryFeeTax({foodNet:food/1.07,drinkNet:drink/1.19},fee);foodGross+=alloc.foodGross;drinkGross+=alloc.drinkGross;sessionGross+=fee;addCategory('Lieferkosten',fee)}
+    const area=ses.order_type==='Lieferung'?'Lieferung':ses.order_type==='Abholung'?'Abholung':(ses.restaurant_tables?.areas?.name||'Sonstiges');addArea(area,sessionGross);addService(ses.opened_by_email||ses.closed_by_email,sessionGross)
   });
-
-  const foodNet=foodGross/1.07,drinkNet=drinkGross/1.19;
-  const foodVat=foodGross-foodNet,drinkVat=drinkGross-drinkNet;
-  const gross=foodGross+drinkGross,net=foodNet+drinkNet,vat=foodVat+drinkVat;
-  const voucherGross=(vouchers||[]).reduce((a,v)=>a+Number(v.original_value||0),0);
-  const tableCount=(sessions||[]).length,avg=tableCount?gross/tableCount:0;
-
-  $('#kpiGross').textContent=euro(gross);$('#kpiNet').textContent=euro(net);$('#kpiVat').textContent=euro(vat);
-  $('#kpiVouchers').textContent=euro(voucherGross);$('#kpiTables').textContent=tableCount;$('#kpiAvg').textContent=euro(avg);
-  $('#kpiFood').textContent=euro(foodGross);$('#kpiFoodVat').textContent='MwSt. '+euro(foodVat);
-  $('#kpiDrinks').textContent=euro(drinkGross);$('#kpiDrinkVat').textContent='MwSt. '+euro(drinkVat);
-  $('#analyticsTaxTotal').textContent=euro(vat);
-
-  const productRows=[...products.values()].sort((a,b)=>b.qty-a.qty||b.gross-a.gross);
-  renderBars('#topProducts',productRows,'qty','name','count');
-
-  const catRows=[...categoriesMap.values()].sort((a,b)=>b.gross-a.gross);
-  renderBars('#categorySales',catRows,'gross','name');
-
-  const serviceRows=[...services.values()].sort((a,b)=>b.gross-a.gross);
-  renderBars('#serviceSales',serviceRows,'gross','name');
-
-  $('#taxAnalyticsBody').innerHTML=
-    '<tr><td>Speisen 7 %</td><td>'+euro(foodNet)+'</td><td>'+euro(foodVat)+'</td><td>'+euro(foodGross)+'</td></tr>'+
-    '<tr><td>Getränke 19 %</td><td>'+euro(drinkNet)+'</td><td>'+euro(drinkVat)+'</td><td>'+euro(drinkGross)+'</td></tr>'+
-    '<tr><th>Gesamt</th><th>'+euro(net)+'</th><th>'+euro(vat)+'</th><th>'+euro(gross)+'</th></tr>';
-
-  $('#adminMsg').textContent='Auswertung '+from+' bis '+to+' geladen.'
+  (events||[]).forEach(raw=>{const e={...raw,event_vouchers:raw.vouchers||[]},x=eventTotals(e);foodGross+=x.foodGross;drinkGross+=x.drinkGross;let eventGross=x.foodGross+x.drinkGross;if(['package','package_and_alacarte'].includes(e.mode)){const pkgGross=Number(e.food_gross_per_person||0)*Number(e.guest_count||0)+Number(e.drink_gross_per_person||0)*Number(e.guest_count||0);if(pkgGross>0)addProduct('Veranstaltungspaket',Number(e.guest_count||0),pkgGross);const pf=Number(e.food_gross_per_person||0)*Number(e.guest_count||0),pd=Number(e.drink_gross_per_person||0)*Number(e.guest_count||0);if(pf)addCategory('Veranstaltungspaket · Speisen',pf);if(pd)addCategory('Veranstaltungspaket · Getränke',pd)}(e.event_items||[]).forEach(i=>{const q=Number(i.quantity||1),g=Number(i.unit_price||0)*q;addProduct(i.menu_items?.name||'Veranstaltungsposition',q,g);addCategory(i.menu_items?.menu_categories?.name||'Sonstiges',g)});addArea('Veranstaltungen',eventGross);addService(e.created_by_email||e.closed_by_email,eventGross)});
+  const foodNet=foodGross/1.07,drinkNet=drinkGross/1.19,foodVat=foodGross-foodNet,drinkVat=drinkGross-drinkNet,gross=foodGross+drinkGross,net=foodNet+drinkNet,vat=foodVat+drinkVat;
+  const voucherGross=(vouchers||[]).reduce((a,v)=>a+Number(v.original_value||0),0),operationCount=(sessions||[]).filter(sessionHasRelevantRevenue).length+(events||[]).filter(e=>eventTotals({...e,event_vouchers:e.vouchers||[]}).gross>0.004).length,avg=operationCount?gross/operationCount:0;
+  $('#kpiGross').textContent=euro(gross);$('#kpiNet').textContent=euro(net);$('#kpiVat').textContent=euro(vat);$('#kpiVouchers').textContent=euro(voucherGross);$('#kpiTables').textContent=operationCount;$('#kpiAvg').textContent=euro(avg);$('#kpiFood').textContent=euro(foodGross);$('#kpiFoodVat').textContent='MwSt. '+euro(foodVat);$('#kpiDrinks').textContent=euro(drinkGross);$('#kpiDrinkVat').textContent='MwSt. '+euro(drinkVat);$('#analyticsTaxTotal').textContent=euro(vat);
+  renderBars('#topProducts',[...products.values()].sort((a,b)=>b.qty-a.qty||b.gross-a.gross),'qty','name','count');
+  renderBars('#categorySales',[...categoriesMap.values()].sort((a,b)=>b.gross-a.gross),'gross','name');
+  renderBars('#areaSales',[...areasMap.values()].sort((a,b)=>b.count-a.count||b.gross-a.gross),'count','name','count');
+  renderBars('#serviceSales',[...services.values()].sort((a,b)=>b.gross-a.gross),'gross','name');
+  $('#taxAnalyticsBody').innerHTML='<tr><td>Speisen 7 %</td><td>'+euro(foodNet)+'</td><td>'+euro(foodVat)+'</td><td>'+euro(foodGross)+'</td></tr><tr><td>Getränke 19 %</td><td>'+euro(drinkNet)+'</td><td>'+euro(drinkVat)+'</td><td>'+euro(drinkGross)+'</td></tr><tr><th>Gesamt</th><th>'+euro(net)+'</th><th>'+euro(vat)+'</th><th>'+euro(gross)+'</th></tr>';
+  $('#adminMsg').textContent='Auswertung '+from+' bis '+to+' geladen · '+operationCount+' abgeschlossene Vorgänge.'
 }
 $('#analyticsLoad').onclick=loadAnalytics;
 
@@ -2797,7 +2754,7 @@ function setAdminGroup(name){
     if(el.id==='adminBackBtn'||el.id==='adminNav'||el.classList?.contains('admin-section'))return;
     el.classList.toggle('admin-group-hidden',name!=='day');
   });
-  if(name==='month'){ $('#adminMonthTab').value=$('#adminMonth').value||businessDateNow().slice(0,7);$('#manualBookingDate').value=businessDateNow();updateManualBookingForm();loadManualBookings() } if(name==='historical'){if(!$('#historicalDate').value)$('#historicalDate').value=businessDateNow();fillHistoricalTables()} if(name==='events'){initEventsUI();loadEvents()} if(name==='archive'){if(!$('#closedReceiptsDate').value)$('#closedReceiptsDate').value=businessDateNow();loadClosedReceipts()} if(name==='settings'){loadDatevSettingsUI();loadCashStartUI();syncSoundSetting()};
+  if(name==='month'){ $('#adminMonthTab').value=$('#adminMonth').value||businessDateNow().slice(0,7);$('#manualBookingDate').value=businessDateNow();updateManualBookingForm();loadMonthOverview();loadManualBookings() } if(name==='historical'){if(!$('#historicalDate').value)$('#historicalDate').value=businessDateNow();fillHistoricalTables()} if(name==='events'){initEventsUI();loadEvents()} if(name==='archive'){if(!$('#closedReceiptsDate').value)$('#closedReceiptsDate').value=businessDateNow();loadClosedReceipts()} if(name==='settings'){loadDatevSettingsUI();loadCashStartUI();syncSoundSetting()};
   window.scrollTo({top:0,behavior:'smooth'});
 }
 document.querySelectorAll('#adminNav button').forEach(b=>b.onclick=async()=>{const g=b.dataset.adminGroup;setAdminGroup(g);if(g==='reservations'){initV140Admin();await loadReservations()}if(g==='staff')await loadStaff();if(g==='inventory')await loadInventory();if(g==='system')await loadAudit()});
@@ -2866,32 +2823,26 @@ async function loadAdminDay(){
   if(!restaurant)return;
   const date=$('#adminDate').value||businessDateNow(),ar=closedDayRange(date);
   $('#adminMsg').textContent='Lade Tagesdaten …';
-  const[{data:sessions,error:se},{data:exp,error:ee}]=await Promise.all([
+  const[{data:sessions,error:se},{data:events,error:ve},{data:openSessions,error:ose},{data:openEvents,error:oe},{data:exp,error:ee}]=await Promise.all([
     supabase.from('table_sessions').select(`
       id,business_date,status,opened_at,closed_at,order_type,delivery_fee,
       restaurant_tables(code,display_name,areas(name)),
-      order_items(id,cancelled),
-      vouchers(id,status),
-      bill_groups(
-        id,label,status,completed_at,
-        bill_group_items(
-          quantity,
-          order_items(
-            id,quantity,unit_price,
-            menu_items(name,variant,menu_categories(destination))
-          )
-        )
-      )
+      order_items(id,cancelled),vouchers(id,status),
+      bill_groups(id,label,status,completed_at,bill_group_items(quantity,order_items(id,quantity,unit_price,menu_items(name,variant,menu_categories(destination)))))
     `).eq('restaurant_id',restaurant.id).eq('status','closed').gte('closed_at',ar.start).lt('closed_at',ar.end).order('closed_at'),
+    supabase.from('events').select('*,event_items(id,quantity,unit_price,menu_item_id,status,course,note,options,extras,menu_items(name,variant,menu_categories(name,destination))),event_payments(id,payment_method,amount),vouchers(id,voucher_number,original_value,status)').eq('restaurant_id',restaurant.id).eq('status','closed').gte('closed_at',ar.start).lt('closed_at',ar.end).order('closed_at'),
+    supabase.from('table_sessions').select('id,status,order_type,opened_at,restaurant_tables(code,display_name,areas(name)),order_items(id,cancelled),vouchers(id,status),bill_groups(id,status)').eq('restaurant_id',restaurant.id).eq('status','open'),
+    supabase.from('events').select('id,name,status,slot_number').eq('restaurant_id',restaurant.id).eq('status','open'),
     supabase.from('day_exports').select('pdf_exported_at,csv_exported_at').eq('restaurant_id',restaurant.id).eq('business_date',date).maybeSingle()
   ]);
-  const err=se||ee;if(err){$('#adminMsg').textContent='Fehler: '+err.message;return}
-  adminSessions=sessions||[];adminExport=exp||null;renderAdminDay()
+  const err=se||ve||ose||oe||ee;if(err){$('#adminMsg').textContent='Fehler: '+err.message;return}
+  adminSessions=sessions||[];adminEvents=(events||[]).map(e=>({...e,event_vouchers:e.vouchers||[]}));adminOpenSessions=(openSessions||[]).filter(sessionHasOpenActivity);adminOpenEvents=openEvents||[];adminExport=exp||null;renderAdminDay()
 }
 function completedGroupsForSession(ses){return (ses.bill_groups||[]).filter(g=>g.status==='completed')}
 function sessionCompletedGross(ses){const goods=completedGroupsForSession(ses).reduce((sum,g)=>sum+(g.bill_group_items||[]).reduce((s,link)=>{const oi=link.order_items;if(!oi)return s;return s+Number(oi.unit_price||0)*Number(link.quantity||oi.quantity||1)},0),0);return goods+Number(ses.delivery_fee||0)}
 function sessionHasRelevantRevenue(ses){return sessionCompletedGross(ses)>0.004||(ses.vouchers||[]).some(v=>v.status!=='void')}
 function relevantClosedSessions(){return adminSessions.filter(s=>s.status==='closed'&&sessionHasRelevantRevenue(s))}
+function relevantClosedEvents(){return adminEvents.filter(e=>e.status==='closed'&&eventTotals(e).gross>0.004)}
 function itemData(link){
   const oi=link.order_items||{};
   const gross=Number(oi.unit_price||0)*Number(link.quantity||oi.quantity||1);
@@ -2914,14 +2865,13 @@ function addGrossToBucket(bucket,gross,rate){
   bucket.gross+=gross;bucket.net+=net;bucket.vat+=vat
 }
 async function aggregateDayTaxSummary(date){
-  const next=new Date(date+'T00:00:00');next.setDate(next.getDate()+1);
-  const nextDate=next.getFullYear()+'-'+String(next.getMonth()+1).padStart(2,'0')+'-'+String(next.getDate()).padStart(2,'0');
+  const cr=closedDayRange(date);
   const[{data:sessions,error:se},vouchers,{data:events,error:ee}]=await Promise.all([
     supabase.from('table_sessions').select(`id,status,business_date,closed_at,order_type,delivery_fee,bill_groups(status,bill_group_items(quantity,order_items(quantity,unit_price,menu_items(menu_categories(destination)))))`).eq('restaurant_id',restaurant.id).eq('status','closed').gte('closed_at',closedDayRange(date).start).lt('closed_at',closedDayRange(date).end),
-    fetchFinalizedVoucherSales(date+'T00:00:00',nextDate+'T00:00:00'),
+    fetchFinalizedVoucherSales(cr.start,cr.end),
     supabase.from('events').select('*,event_items(id,quantity,unit_price,menu_items(menu_categories(destination))),event_payments(id,payment_method,amount)').eq('restaurant_id',restaurant.id).eq('status','closed').gte('closed_at',closedDayRange(date).start).lt('closed_at',closedDayRange(date).end)
   ]);
-  const error=se;if(error)throw error;
+  const error=se||ee;if(error)throw error;
   const b=emptyTaxBuckets();
   (sessions||[]).forEach(ses=>{
     let foodGross=0,drinkGross=0;
@@ -2962,9 +2912,8 @@ function sessionHasOpenActivity(ses){
   return hasOrders||hasVouchers||hasBillGroups
 }
 function renderAdminDay(){
-  const closed=relevantClosedSessions(),open=adminSessions.filter(s=>s.status==='open'&&sessionHasOpenActivity(s));
-  const t=adminTotals();
-  $('#adminSessionsCount').textContent=closed.length;$('#adminGross').textContent=euro(t.gross);$('#adminFoodGross').textContent=euro(t.food);$('#adminDrinkGross').textContent=euro(t.drink);
+  const closed=relevantClosedSessions(),events=relevantClosedEvents(),operations=closed.length+events.length,openCount=adminOpenSessions.length+adminOpenEvents.length;
+  $('#adminSessionsCount').textContent=operations;
   const summaryDate=$('#adminDate').value||businessDateNow();
   aggregateDayTaxSummary(summaryDate).then(b=>{
     $('#adminFoodGross').textContent=euro(b.food.gross);
@@ -2974,26 +2923,15 @@ function renderAdminDay(){
   const pdf=adminExport?.pdf_exported_at,csv=adminExport?.csv_exported_at;
   $('#pdfStatus').className='export-pill'+(pdf?' ok':'');$('#pdfStatus').textContent=pdf?'✓ PDF exportiert · '+new Date(pdf).toLocaleString('de-DE'):'PDF: noch nicht exportiert';
   $('#csvStatus').className='export-pill'+(csv?' ok':'');$('#csvStatus').textContent=csv?'✓ CSV exportiert · '+new Date(csv).toLocaleString('de-DE'):'CSV: noch nicht exportiert';
-  $('#deleteDayBtn').disabled=!(pdf&&csv&&open.length===0&&closed.length>0);
+  $('#deleteDayBtn').disabled=!(pdf&&csv&&operations>0&&openCount===0);
   const list=$('#adminDayList');list.innerHTML='';
-  if(open.length){
-    const w=document.createElement('div');w.className='admin-row';
-    w.innerHTML='<b>⚠ '+open.length+' Tisch(e) an diesem Tag noch offen.</b><div class="admin-note">Solange ein Tisch offen ist, kann der Tag nicht gelöscht werden.</div>';
-    open.forEach(ses=>{
-      const unfinished=(ses.bill_groups||[]).filter(g=>g.status!=='completed'&&g.status!=='cancelled').length;
-      const row=document.createElement('div');row.className='admin-note';row.style.marginTop='6px';
-      row.textContent='• '+receiptContextLabel(ses.restaurant_tables,{order_type:ses.order_type})+(unfinished?' – '+unfinished+' Kassenübergabe(n) noch nicht abgeschlossen':' – aktive Tischsitzung');
-      w.appendChild(row)
-    });
-    list.appendChild(w)
-  }
-  closed.forEach(ses=>{
-    const sum=sessionCompletedGross(ses);
-    const d=document.createElement('div');d.className='admin-row';
-    d.innerHTML='<div class="admin-row-head"><span>'+esc(receiptContextLabel(ses.restaurant_tables,{order_type:ses.order_type}))+'</span><span>'+euro(sum)+'</span></div><div class="admin-note">Geöffnet '+new Date(ses.opened_at).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+' · abgeschlossen '+(ses.closed_at?new Date(ses.closed_at).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}):'–')+'</div>';
-    list.appendChild(d)
-  });
-  $('#adminMsg').textContent=closed.length?'Tagesdaten geladen.':'Für diesen Tag gibt es noch keine abgeschlossenen Tische.'
+  if(openCount){const w=document.createElement('div');w.className='admin-row';w.innerHTML='<b>⚠ '+openCount+' Vorgang/Vorgänge aktuell noch offen.</b><div class="admin-note">Solange ein Vorgang offen ist, bleibt „Tag endgültig löschen“ gesperrt.</div>';list.appendChild(w)}
+  const rows=[];
+  closed.forEach(ses=>rows.push({closed_at:ses.closed_at,label:receiptContextLabel(ses.restaurant_tables,{order_type:ses.order_type}),gross:sessionCompletedGross(ses),detail:'Geöffnet '+new Date(ses.opened_at).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+' · abgeschlossen '+(ses.closed_at?new Date(ses.closed_at).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}):'–')}));
+  events.forEach(e=>rows.push({closed_at:e.closed_at,label:'V-'+String(e.slot_number||'?')+' · Veranstaltung',gross:eventTotals(e).gross,detail:(e.name?esc(e.name)+' · ':'')+'abgeschlossen '+(e.closed_at?new Date(e.closed_at).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}):'–')}));
+  rows.sort((a,b)=>new Date(a.closed_at||0)-new Date(b.closed_at||0));
+  rows.forEach(r=>{const d=document.createElement('div');d.className='admin-row';d.innerHTML='<div class="admin-row-head"><span>'+esc(r.label)+'</span><span>'+euro(r.gross)+'</span></div><div class="admin-note">'+r.detail+'</div>';list.appendChild(d)});
+  $('#adminMsg').textContent=operations?'Tagesdaten geladen · '+operations+' abgeschlossene Vorgänge.':'Für diesen Tag gibt es noch keine abgeschlossenen Vorgänge.'
 }
 async function markDayExport(kind){
   const date=$('#adminDate').value;
@@ -3023,11 +2961,12 @@ function pdfReceiptHtml(){
     if(fee>0)groupHtml+=`<h3>Lieferkosten</h3><table><tbody><tr><td></td><td>Lieferkosten</td><td></td><td>${euro(fee)}</td></tr></tbody></table>`;
     pages+=`<section class="page"><img style="border-radius:16px" src="${location.origin}/orderbuddy-logo.PNG"><h1>${esc(receiptContextLabel(ses.restaurant_tables,{order_type:ses.order_type}))}</h1><h2>Gesamtbestellzettel</h2><div class="date">Datum: ${esc(date)} · Abschluss: ${ses.closed_at?new Date(ses.closed_at).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}):''}</div>${groupHtml}<div class="grand">GESAMT <span>${euro(allGross)}</span></div><table class="tax"><thead><tr><th>Steuersatz</th><th>Netto</th><th>MwSt.</th><th>Brutto</th></tr></thead><tbody><tr><td>7 % MwSt. (Speisen inkl. anteiliger Lieferkosten)</td><td>${euro(foodNet)}</td><td>${euro(foodVat)}</td><td>${euro(finalFoodGross)}</td></tr><tr><td>19 % MwSt. (Getränke inkl. anteiliger Lieferkosten)</td><td>${euro(drinkNet)}</td><td>${euro(drinkVat)}</td><td>${euro(finalDrinkGross)}</td></tr><tr><th>Gesamt</th><th>${euro(foodNet+drinkNet)}</th><th>${euro(foodVat+drinkVat)}</th><th>${euro(allGross)}</th></tr></tbody></table><p class="foot">Abrechnung erfolgt an der Kasse.</p><p class="powered">● Powered by OrderBuddy.</p></section>`
   });
+  relevantClosedEvents().forEach(e=>{const x=eventTotals(e),rows=[];if(['package','package_and_alacarte'].includes(e.mode)){rows.push('<tr><td>'+Number(e.guest_count||0)+'×</td><td>Veranstaltungspaket</td><td>'+euro(Number(e.package_price_per_person||0))+'</td><td>'+euro(Number(e.package_price_per_person||0)*Number(e.guest_count||0))+'</td></tr>')}(e.event_items||[]).forEach(i=>rows.push('<tr><td>'+Number(i.quantity||1)+'×</td><td>'+esc(i.menu_items?.name||'Position')+(i.menu_items?.variant?' · '+esc(i.menu_items.variant):'')+'</td><td>'+euro(i.unit_price)+'</td><td>'+euro(Number(i.unit_price||0)*Number(i.quantity||1))+'</td></tr>'));const fn=x.foodGross/1.07,dn=x.drinkGross/1.19;pages+=`<section class="page"><img style="border-radius:16px" src="${location.origin}/orderbuddy-logo.PNG"><h1>V-${esc(String(e.slot_number||'?'))} · Veranstaltung</h1><h2>Gesamtbestellzettel</h2><div class="date">Datum: ${esc(date)} · Abschluss: ${e.closed_at?new Date(e.closed_at).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}):''}</div><table><thead><tr><th>Anzahl</th><th>Artikel</th><th>Einzelpreis</th><th>Gesamt</th></tr></thead><tbody>${rows.join('')}</tbody></table><div class="grand">GESAMT <span>${euro(x.gross)}</span></div><table class="tax"><thead><tr><th>Steuersatz</th><th>Netto</th><th>MwSt.</th><th>Brutto</th></tr></thead><tbody><tr><td>7 % MwSt. Speisen</td><td>${euro(fn)}</td><td>${euro(x.foodGross-fn)}</td><td>${euro(x.foodGross)}</td></tr><tr><td>19 % MwSt. Getränke</td><td>${euro(dn)}</td><td>${euro(x.drinkGross-dn)}</td><td>${euro(x.drinkGross)}</td></tr>${x.voucherGross?`<tr><td>Gutscheinverkauf 0 %</td><td>${euro(x.voucherGross)}</td><td>0,00 €</td><td>${euro(x.voucherGross)}</td></tr>`:''}<tr><th>Gesamt</th><th>${euro(fn+dn+x.voucherGross)}</th><th>${euro((x.foodGross-fn)+(x.drinkGross-dn))}</th><th>${euro(x.gross)}</th></tr></tbody></table><p class="powered">● Powered by OrderBuddy.</p></section>`});
   return`<!doctype html><html><head><meta charset="utf-8"><title>OrderBuddy Tagesübersicht ${esc(date)}</title><style>@page{size:A4;margin:12mm}body{font-family:Arial,sans-serif;color:#111;margin:0}.page{page-break-after:always}.page:last-child{page-break-after:auto}img{display:block;max-width:270px;max-height:110px;object-fit:contain;margin:0 auto 12px}h1,h2{text-align:center;margin:4px}h3{margin:18px 0 5px;background:#f3f4f6;padding:6px;border-radius:6px}.date{text-align:center;margin:8px 0 16px}table{width:100%;border-collapse:collapse}th,td{padding:5px;border-bottom:1px solid #ddd;text-align:left}th:nth-child(n+3),td:nth-child(n+3){text-align:right}.subtotal{text-align:right;font-weight:bold;padding:8px 0 14px}.grand{font-size:22px;font-weight:900;border-top:2px solid #000;border-bottom:2px solid #000;padding:8px 0;margin-top:12px;display:flex;justify-content:space-between}.tax{margin-top:10px}.foot{text-align:center;margin-top:14px}.powered{text-align:center;font-size:11px;color:#555}
-</style></head><body>${pages||'<p>Keine abgeschlossenen Tische.</p>'}</body></html>`
+</style></head><body>${pages||'<p>Keine abgeschlossenen Vorgänge.</p>'}</body></html>`
 }
 $('#pdfExportBtn').onclick=async()=>{
-  const closed=relevantClosedSessions();if(!closed.length){$('#adminMsg').textContent='Keine abgeschlossenen Tische zum Exportieren.';return}
+  const closed=relevantClosedSessions(),events=relevantClosedEvents();if(!(closed.length+events.length)){$('#adminMsg').textContent='Keine abgeschlossenen Vorgänge zum Exportieren.';return}
   const w=window.open('','_blank');if(!w){$('#adminMsg').textContent='Popup wurde blockiert.';return}
   w.document.open();w.document.write(pdfReceiptHtml());w.document.close();w.onload=()=>{w.focus();w.print()};
   await markDayExport('pdf')
@@ -3048,7 +2987,7 @@ $('#csvExportBtn').onclick=async()=>{
 }
 $('#deleteDayBtn').onclick=()=>{
   if($('#deleteDayBtn').disabled){
-    $('#adminMsg').textContent='Löschen ist noch gesperrt. PDF und CSV müssen exportiert sein und es darf kein Tisch mehr offen sein.';
+    $('#adminMsg').textContent='Löschen ist noch gesperrt. PDF und CSV müssen exportiert sein und es darf kein Vorgang mehr offen sein.';
     return
   }
   $('#deleteConfirmInput').value='';
@@ -3067,30 +3006,31 @@ $('#deleteFinalBtn').onclick=async()=>{
   }
   $('#deleteFinalBtn').disabled=true;
   $('#adminMsg').textContent='Tag wird gelöscht …';
-  const{data,error}=await supabase.rpc('admin_delete_orderbuddy_day',{p_business_date:date});
+  const{data,error}=await supabase.rpc('admin_delete_orderbuddy_day_v2',{p_restaurant_id:restaurant.id,p_business_date:date});
   $('#deleteFinalBtn').disabled=false;
   if(error){
     $('#adminMsg').textContent='Löschen nicht möglich: '+error.message;
     return
   }
   $('#deleteConfirmBox').classList.add('hidden');
-  $('#adminMsg').textContent=(data||0)+' abgeschlossene Tischvorgänge wurden endgültig gelöscht.';
+  $('#adminMsg').textContent=Number(data?.sessions||0)+Number(data?.events||0)+' abgeschlossene Vorgänge wurden endgültig gelöscht (T/I/L/A: '+Number(data?.sessions||0)+' · V: '+Number(data?.events||0)+').';
   await loadAdminDay()
 };
 
-async function getDaySummary(date){const b=await aggregateDayTaxSummary(date),r=closedDayRange(date);const{data:sessions}=await supabase.from('table_sessions').select('id,closed_at,order_type,delivery_fee,vouchers(status),bill_groups(status,bill_group_items(quantity,order_items(quantity,unit_price,menu_items(menu_categories(destination)))))').eq('restaurant_id',restaurant.id).eq('status','closed').gte('closed_at',r.start).lt('closed_at',r.end);const tables=(sessions||[]).filter(sessionHasRelevantRevenue).length,gross=b.food.gross+b.drinks.gross+b.vouchers.gross,net=b.food.net+b.drinks.net+b.vouchers.net,vat=b.food.vat+b.drinks.vat;return {date,tables,b,gross,net,vat}}
-function summaryReportHtml(title,subtitle,x,compact=false){const b=x.b;return `<!doctype html><html><head><meta charset="utf-8"><title>${esc(title)}</title><style>@page{size:${compact?'80mm auto':'A4'};margin:${compact?'4mm':'16mm'}}body{font-family:Arial,sans-serif;color:#111;max-width:${compact?'72mm':'760px'};margin:auto;font-size:${compact?'11px':'14px'}}.logo{display:block;width:${compact?'25mm':'70px'};margin:0 auto 8px;border-radius:${compact?'6mm':'16px'}}h1{text-align:center;font-size:${compact?'18px':'28px'};margin:5px 0}.sub{text-align:center;color:#555;margin-bottom:12px}.row{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px dotted #bbb}.total{font-size:${compact?'17px':'22px'};font-weight:900;border-top:2px solid #000;border-bottom:2px solid #000;margin-top:8px}.foot{text-align:center;font-size:9px;color:#666;margin-top:12px}</style></head><body><img class="logo" src="${orderBuddyLogoUrl()}"><h1>${esc(title)}</h1><div class="sub">${esc(subtitle)}</div><div class="row"><span>Abgeschlossene Tische</span><b>${x.tables}</b></div><div class="row"><span>Speisen 7 % brutto</span><b>${euro(b.food.gross)}</b></div><div class="row"><span>Getränke 19 % brutto</span><b>${euro(b.drinks.gross)}</b></div><div class="row"><span>Gutscheinverkäufe</span><b>${euro(b.vouchers.gross)}</b></div><div class="row"><span>Netto</span><b>${euro(x.net)}</b></div><div class="row"><span>Enthaltene MwSt.</span><b>${euro(x.vat)}</b></div><div class="row total"><span>OrderBuddy-Summe</span><b>${euro(x.gross)}</b></div><div class="foot">Kontrollauswertung der in OrderBuddy erfassten Vorgänge. Kein Kassenbeleg.</div></body></html>`}
+async function getDaySummary(date){const b=await aggregateDayTaxSummary(date),r=closedDayRange(date);const[{data:sessions},{data:events}]=await Promise.all([supabase.from('table_sessions').select('id,closed_at,order_type,delivery_fee,vouchers(status),bill_groups(status,bill_group_items(quantity,order_items(quantity,unit_price,menu_items(menu_categories(destination)))))').eq('restaurant_id',restaurant.id).eq('status','closed').gte('closed_at',r.start).lt('closed_at',r.end),supabase.from('events').select('id,status,closed_at,mode,guest_count,food_gross_per_person,drink_gross_per_person,event_items(quantity,unit_price,menu_items(menu_categories(destination))),vouchers(id,original_value,status)').eq('restaurant_id',restaurant.id).eq('status','closed').gte('closed_at',r.start).lt('closed_at',r.end)]);const relevantEvents=(events||[]).map(e=>({...e,event_vouchers:e.vouchers||[]})).filter(e=>eventTotals(e).gross>0.004);const operations=(sessions||[]).filter(sessionHasRelevantRevenue).length+relevantEvents.length,gross=b.food.gross+b.drinks.gross+b.vouchers.gross,net=b.food.net+b.drinks.net+b.vouchers.net,vat=b.food.vat+b.drinks.vat;return {date,tables:operations,operations,b,gross,net,vat}}
+function summaryReportHtml(title,subtitle,x,compact=false){const b=x.b;return `<!doctype html><html><head><meta charset="utf-8"><title>${esc(title)}</title><style>@page{size:${compact?'80mm auto':'A4'};margin:${compact?'4mm':'16mm'}}body{font-family:Arial,sans-serif;color:#111;max-width:${compact?'72mm':'760px'};margin:auto;font-size:${compact?'11px':'14px'}}.logo{display:block;width:${compact?'25mm':'70px'};margin:0 auto 8px;border-radius:${compact?'6mm':'16px'}}h1{text-align:center;font-size:${compact?'18px':'28px'};margin:5px 0}.sub{text-align:center;color:#555;margin-bottom:12px}.row{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px dotted #bbb}.total{font-size:${compact?'17px':'22px'};font-weight:900;border-top:2px solid #000;border-bottom:2px solid #000;margin-top:8px}.foot{text-align:center;font-size:9px;color:#666;margin-top:12px}</style></head><body><img class="logo" src="${orderBuddyLogoUrl()}"><h1>${esc(title)}</h1><div class="sub">${esc(subtitle)}</div><div class="row"><span>Abgeschlossene Vorgänge</span><b>${x.operations??x.tables}</b></div><div class="row"><span>Speisen 7 % brutto</span><b>${euro(b.food.gross)}</b></div><div class="row"><span>Getränke 19 % brutto</span><b>${euro(b.drinks.gross)}</b></div><div class="row"><span>Gutscheinverkäufe</span><b>${euro(b.vouchers.gross)}</b></div><div class="row"><span>Netto</span><b>${euro(x.net)}</b></div><div class="row"><span>Enthaltene MwSt.</span><b>${euro(x.vat)}</b></div><div class="row total"><span>OrderBuddy-Summe</span><b>${euro(x.gross)}</b></div><div class="foot">Kontrollauswertung der in OrderBuddy erfassten Vorgänge. Kein Kassenbeleg.</div></body></html>`}
 function openReport(html,autoPrint=true){const w=window.open('','_blank');if(!w){$('#adminMsg').textContent='Popup wurde blockiert.';return}w.document.open();w.document.write(html);w.document.close();if(autoPrint)w.onload=()=>{w.focus();setTimeout(()=>w.print(),120)}}
 $('#dayReceiptBtn').onclick=async()=>{const date=$('#adminDate').value||businessDateNow(),x=await getDaySummary(date);openReport(summaryReportHtml('Tagesabschluss',new Date(date+'T12:00:00').toLocaleDateString('de-DE'),x,true))};
 $('#daySummaryPdfBtn').onclick=async()=>{const date=$('#adminDate').value||businessDateNow(),x=await getDaySummary(date);openReport(summaryReportHtml('Tagesabschluss',new Date(date+'T12:00:00').toLocaleDateString('de-DE'),x,false))};
 async function getMonthSummary(month){const r=monthRange(month),sum={tables:0,gross:0,net:0,vat:0,b:{food:{gross:0,net:0,vat:0},drinks:{gross:0,net:0,vat:0},vouchers:{gross:0,net:0,vat:0}}};for(let d=new Date(r.start+'T12:00:00');localDateISO(d)<r.end;d.setDate(d.getDate()+1)){const x=await getDaySummary(localDateISO(d));sum.tables+=x.tables;sum.gross+=x.gross;sum.net+=x.net;sum.vat+=x.vat;['food','drinks','vouchers'].forEach(k=>['gross','net','vat'].forEach(f=>sum.b[k][f]+=x.b[k][f]))}return sum}
+async function loadMonthOverview(){const month=$('#adminMonthTab').value||businessDateNow().slice(0,7);try{const [x,{sessions},events]=await Promise.all([getMonthSummary(month),fetchMonthSales(month),fetchMonthEvents(month)]);const c={Terrasse:0,Innenraum:0,Lieferung:0,Abholung:0,Veranstaltungen:0};(sessions||[]).filter(sessionHasRelevantRevenue).forEach(s=>{const a=s.order_type==='Lieferung'?'Lieferung':s.order_type==='Abholung'?'Abholung':s.restaurant_tables?.areas?.name;if(c[a]!==undefined)c[a]++});(events||[]).filter(e=>eventTotals(e).gross>0.004).forEach(()=>c.Veranstaltungen++);$('#monthOps').textContent=x.operations??x.tables;$('#monthGross').textContent=euro(x.gross);$('#monthFood').textContent=euro(x.b.food.gross);$('#monthDrinks').textContent=euro(x.b.drinks.gross);$('#monthVouchers').textContent=euro(x.b.vouchers.gross);$('#monthAreas').textContent='T '+c.Terrasse+' · I '+c.Innenraum+' · L '+c.Lieferung+' · A '+c.Abholung+' · V '+c.Veranstaltungen}catch(e){$('#adminMsg').textContent='Monatsauswertung: '+e.message}}
 $('#monthReceiptBtn').onclick=async()=>{const month=$('#adminMonthTab').value||businessDateNow().slice(0,7);$('#adminMsg').textContent='Monatsabschluss wird berechnet …';const x=await getMonthSummary(month);openReport(summaryReportHtml('Monatsabschluss',month,x,true));$('#adminMsg').textContent='Monatsabschluss '+month+' erstellt.'};
 $('#monthSummaryPdfBtn').onclick=async()=>{const month=$('#adminMonthTab').value||businessDateNow().slice(0,7);$('#adminMsg').textContent='Monatsabschluss wird berechnet …';const x=await getMonthSummary(month);openReport(summaryReportHtml('Monatsabschluss',month,x,false));$('#adminMsg').textContent='Monatsabschluss '+month+' erstellt.'};
 
 function subscribe(){
   const refresh=async()=>{if(currentSession)await loadOrders();await refreshTableStatuses();if(!$('#tablesView').classList.contains('hidden'))renderTables();$('#syncMsg').textContent='Live aktualisiert · '+new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})};
   const itemRefresh=async payload=>{if(payload?.eventType==='UPDATE'&&payload.new?.status==='done'&&payload.old?.status!=='done'){const m=menu.find(x=>String(x.id)===String(payload.new?.menu_item_id)),c=categories.find(x=>String(x.id)===String(m?.category_id));if(c?.destination==='kitchen')playReadySound()}await refresh()};
-  supabase.channel('orderbuddy-live-v32.6')
+  supabase.channel('orderbuddy-live-v32.7')
     .on('postgres_changes',{event:'*',schema:'public',table:'order_items'},itemRefresh)
     .on('postgres_changes',{event:'*',schema:'public',table:'bill_groups'},refresh)
     .on('postgres_changes',{event:'*',schema:'public',table:'table_sessions'},refresh)
