@@ -1,17 +1,11 @@
-# OrderBuddy V32.0 – konsolidierter Stabilitätsumbau
+# OrderBuddy V32.2 – Abschluss, Gutscheinnummern und Veranstaltungen
 
-Basis ausschließlich: vom Nutzer am 03.09.2026 hochgeladene `orderbuddy-main(1).zip`.
+Basis: aktueller V32.1-Stand, der ausschließlich aus der vom Nutzer am 03.09.2026 hochgeladenen `orderbuddy-main(1).zip` aufgebaut wurde.
 
-- Gutschein-RPCs vollständig ergänzt: Verkauf, Veranstaltung-Verkauf, Einlösung, Entfernen/Storno.
-- Abrechnung für normale Vorgänge auf atomare Supabase-RPCs umgestellt.
-- „Alle Positionen zuerst erledigen“ ist jetzt eine echte Sammelaktion; danach folgt bewusst Grün.
-- Veranstaltungen V-1 bis V-8 verwenden in Übersicht und Detail dieselben Statusfarben/Komponenten wie Terrasse/Innenraum.
-- Farblegende ist auch unter Veranstaltungen sichtbar.
-- Veranstaltungspaket ist die erste normale Positionszeile, aber nicht stornierbar.
-- Gutschein verkaufen / Gutschein prüfen ist auch bei Veranstaltungen verfügbar.
-- Veranstaltungs-Gutscheine werden im Gesamtbetrag und als 0-%-Zeile im Gesamtbon berücksichtigt.
-- Auswertungen/DATEV verwenden Gutscheinverkäufe nur, wenn der zugehörige Tisch/Auftrag bzw. die Veranstaltung abgeschlossen ist.
-- Gelöschte abgeschlossene Tischvorgänge bleiben durch physisches Löschen aus allen späteren Auswertungen entfernt.
-- PWA-Cache auf V32.0 angehoben.
-
-V32.1: SQL-Kompatibilitätsfix für bestehende create_orderbuddy_voucher-Funktion (42P13).
+- Gutscheinnummern jetzt jahresbezogen: `G-2026-001`, `G-2026-002`, ...; Zähler startet pro Restaurant und Jahr neu.
+- Tisch-/Liefer-/Abholabschluss jetzt atomar über `close_orderbuddy_table_session`; Grün-Flags werden serverseitig zurückgesetzt.
+- Veranstaltungen: Abrechnung und endgültiger Abschluss sind getrennt, analog zu normalen Tischen.
+- Nach gespeicherter Abrechnung bleibt V-1 bis V-8 grün, bis bewusst `Veranstaltung abschließen` gewählt wird.
+- Veranstaltungen erhalten einen Druckverlauf mit Nachdruck.
+- Veranstaltungs-Druckjobs werden in `event_print_jobs` gespeichert.
+- PWA-Cache auf V32.2 angehoben.
