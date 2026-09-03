@@ -1,5 +1,9 @@
-# OrderBuddy V32.11
+# OrderBuddy V32.12
 
-- DATEV/CSV/ZIP-Export repariert: fehlende `paymentShares()` und `sessionPaymentShares()` wiederhergestellt.
-- Alle Exportwege verwenden wieder dieselbe Zahlungsarten-Aufteilung für Gesamt- und Mischzahlungen.
-- Kein Datenbank-Update erforderlich.
+Konsolidierter DATEV-/CSV-/ZIP-Exportfix auf Basis von V32.11.
+
+- `paymentAccount()` wiederhergestellt.
+- `sessionGoodsTax()` wiederhergestellt.
+- `sessionReceiptRef()` wiederhergestellt.
+- Export-Helfer gegen den letzten vollständigen Stand abgeglichen.
+- Keine Datenbankänderung erforderlich.
