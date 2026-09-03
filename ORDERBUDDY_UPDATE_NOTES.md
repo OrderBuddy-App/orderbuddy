@@ -1,24 +1,7 @@
-# OrderBuddy V32.8
+# OrderBuddy V32.9
 
-Konsolidierter Auswertungsumbau auf Basis von V32.6.
-
-- Alle Auswertungen berücksichtigen einheitlich Terrasse, Innenraum, Lieferung, Abholung und Veranstaltungen.
-- Übersicht: Veranstaltungen, Lieferkosten und alle fünf Bereiche in Anzahl/Umsatz/Top-Produkten/Kategorien/Service berücksichtigt.
-- Neue Übersicht „Vorgänge nach Bereich“ für T / I / L / A / V.
-- Bezeichnung „Abgeschlossene Vorgänge“ statt „Abgeschlossene Tische“.
-- Tagesabschluss: V-Veranstaltungen werden in Anzahl, Liste, Summen, Detail-PDF und CSV berücksichtigt.
-- Tages-/Monatszuordnung ausschließlich nach tatsächlichem Abschlusszeitpunkt `closed_at`.
-- Monatsbereich zeigt jetzt Anzahl, Brutto, 7 %, 19 %, Gutscheinverkäufe und T/I/L/A/V-Aufteilung direkt an.
-- DATEV-Einzelpositionen, DATEV-Tagessummen, Nicht-Bar-CSV und ZIP/Belege berücksichtigen alle fünf Bereiche.
-- Fehlende `completedGroups()`-Funktion ergänzt.
-- Monats-Belegzuordnung verwendet Abschlussdatum statt ursprünglichem Eröffnungs-/Veranstaltungsdatum.
-- Monats-Tagesbelegberechnung nutzt gespeicherte Gruppenpositionen statt des aktuell geöffneten Tisches.
-- Restaurantfilter bei Monats-/Gutschein-/Übersichtsabfragen vereinheitlicht.
-- „Tag endgültig löschen“ löscht nach SQL-Update abgeschlossene T/I/L/A- und V-Vorgänge des Abschlussdatums gemeinsam.
-- PWA-Cache V32.8.
-
-
-## V32.8
-- Übersicht 'Vorgänge nach Bereich' zählt nur endgültig abgeschlossene, umsatzrelevante Vorgänge.
-- 0-EUR-/vollständig stornierte Vorgänge werden nicht mehr als Innenraum/Lieferung/Abholung etc. gezählt.
-- Bereichs- und Service-Auswertung verwenden damit dieselbe Relevanzlogik wie das Bon-Archiv.
+- Monats-Exportbuttons geben ihre Rückmeldung direkt im Monatsbereich aus.
+- CSV Nicht-Bar zeigt sichtbar an, wenn im Monat keine Nicht-Bar-Zahlungen vorhanden sind.
+- DATEV-Exporte zeigen fehlende Berater-/Mandantennummer direkt im Monatsbereich.
+- ZIP-Export zeigt Lade-, Erfolgs- und Fehlermeldungen direkt im Monatsbereich.
+- Keine Datenbankänderung erforderlich.
