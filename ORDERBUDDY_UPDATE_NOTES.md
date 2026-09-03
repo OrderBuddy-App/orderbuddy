@@ -1,7 +1,5 @@
-# OrderBuddy V32.10
+# OrderBuddy V32.11
 
-- Monatsauswertung zeigt während des Ladens keine falschen 0-Werte mehr.
-- KPI-Felder zeigen zunächst „—“ / „Wird geladen …“.
-- Export- und Monatsabschlussbuttons sind während des Datenladens kurz deaktiviert.
-- Bei Ladefehlern erscheint eine sichtbare Meldung direkt im Monatsbereich.
-- Kein Supabase-SQL erforderlich.
+- DATEV/CSV/ZIP-Export repariert: fehlende `paymentShares()` und `sessionPaymentShares()` wiederhergestellt.
+- Alle Exportwege verwenden wieder dieselbe Zahlungsarten-Aufteilung für Gesamt- und Mischzahlungen.
+- Kein Datenbank-Update erforderlich.
