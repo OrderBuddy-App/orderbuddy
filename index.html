@@ -471,7 +471,7 @@ body{background:linear-gradient(180deg,#f7f8fa 0%,#f1f3f5 100%);color:var(--text
   <div class="admin-section" id="adminMonthSection">
 <div class="section-title" style="font-size:21px">Monatsauswertung & DATEV</div>
 <div class="admin-note">Monatsabschluss, DATEV-EXTF-Exporte und zusätzliche manuelle Buchungen für Vorgänge, die außerhalb von OrderBuddy stattfinden.</div>
-<div class="admin-form month-actions" style="margin-top:10px"><label>Monat<input id="adminMonthTab" type="month"></label></div><div class="analytics-kpis" style="margin-top:10px"><div class="kpi"><span>Abgeschlossene Vorgänge</span><b id="monthOps">0</b><small id="monthAreas">T/I/L/A/V</small></div><div class="kpi"><span>Bruttosumme</span><b id="monthGross">0,00 €</b><small>inkl. Gutscheinverkäufe</small></div><div class="kpi"><span>Speisen 7 % brutto</span><b id="monthFood">0,00 €</b></div><div class="kpi"><span>Getränke 19 % brutto</span><b id="monthDrinks">0,00 €</b></div><div class="kpi"><span>Gutscheinverkäufe</span><b id="monthVouchers">0,00 €</b><small>0 % / nicht steuerbar</small></div></div>
+<div class="admin-form month-actions" style="margin-top:10px"><label>Monat<input id="adminMonthTab" type="month"></label></div><div class="analytics-kpis" style="margin-top:10px"><div class="kpi"><span>Abgeschlossene Vorgänge</span><b id="monthOps">—</b><small id="monthAreas">Wird geladen …</small></div><div class="kpi"><span>Bruttosumme</span><b id="monthGross">—</b><small>inkl. Gutscheinverkäufe</small></div><div class="kpi"><span>Speisen 7 % brutto</span><b id="monthFood">—</b></div><div class="kpi"><span>Getränke 19 % brutto</span><b id="monthDrinks">—</b></div><div class="kpi"><span>Gutscheinverkäufe</span><b id="monthVouchers">—</b><small>0 % / nicht steuerbar</small></div></div>
 <div class="month-export-grid">
   <button id="monthlyExtfItemsAutoBtn" class="primary">DATEV · Einzelpositionen automatisch</button>
   <button id="monthlyExtfDaysAutoBtn">DATEV · Tagessummen automatisch</button>
@@ -3028,7 +3028,46 @@ function openReport(html,autoPrint=true){const w=window.open('','_blank');if(!w)
 $('#dayReceiptBtn').onclick=async()=>{const date=$('#adminDate').value||businessDateNow(),x=await getDaySummary(date);openReport(summaryReportHtml('Tagesabschluss',new Date(date+'T12:00:00').toLocaleDateString('de-DE'),x,true))};
 $('#daySummaryPdfBtn').onclick=async()=>{const date=$('#adminDate').value||businessDateNow(),x=await getDaySummary(date);openReport(summaryReportHtml('Tagesabschluss',new Date(date+'T12:00:00').toLocaleDateString('de-DE'),x,false))};
 async function getMonthSummary(month){const r=monthRange(month),sum={tables:0,gross:0,net:0,vat:0,b:{food:{gross:0,net:0,vat:0},drinks:{gross:0,net:0,vat:0},vouchers:{gross:0,net:0,vat:0}}};for(let d=new Date(r.start+'T12:00:00');localDateISO(d)<r.end;d.setDate(d.getDate()+1)){const x=await getDaySummary(localDateISO(d));sum.tables+=x.tables;sum.gross+=x.gross;sum.net+=x.net;sum.vat+=x.vat;['food','drinks','vouchers'].forEach(k=>['gross','net','vat'].forEach(f=>sum.b[k][f]+=x.b[k][f]))}return sum}
-async function loadMonthOverview(){const month=$('#adminMonthTab').value||businessDateNow().slice(0,7);try{const [x,{sessions},events]=await Promise.all([getMonthSummary(month),fetchMonthSales(month),fetchMonthEvents(month)]);const c={Terrasse:0,Innenraum:0,Lieferung:0,Abholung:0,Veranstaltungen:0};(sessions||[]).filter(sessionHasRelevantRevenue).forEach(s=>{const a=s.order_type==='Lieferung'?'Lieferung':s.order_type==='Abholung'?'Abholung':s.restaurant_tables?.areas?.name;if(c[a]!==undefined)c[a]++});(events||[]).filter(e=>eventTotals(e).gross>0.004).forEach(()=>c.Veranstaltungen++);$('#monthOps').textContent=x.operations??x.tables;$('#monthGross').textContent=euro(x.gross);$('#monthFood').textContent=euro(x.b.food.gross);$('#monthDrinks').textContent=euro(x.b.drinks.gross);$('#monthVouchers').textContent=euro(x.b.vouchers.gross);$('#monthAreas').textContent='T '+c.Terrasse+' · I '+c.Innenraum+' · L '+c.Lieferung+' · A '+c.Abholung+' · V '+c.Veranstaltungen}catch(e){$('#adminMsg').textContent='Monatsauswertung: '+e.message}}
+function setMonthLoadingState(loading){
+  const ids=['#monthlyExtfItemsAutoBtn','#monthlyExtfDaysAutoBtn','#monthlyExtfItemsCompleteBtn','#monthlyExtfDaysCompleteBtn','#monthlyNonCashBtn','#monthlyBundleBtn','#monthReceiptBtn','#monthSummaryPdfBtn'];
+  ids.forEach(id=>{const el=$(id);if(el)el.disabled=!!loading});
+  if(loading){
+    $('#monthOps').textContent='—';
+    $('#monthGross').textContent='—';
+    $('#monthFood').textContent='—';
+    $('#monthDrinks').textContent='—';
+    $('#monthVouchers').textContent='—';
+    $('#monthAreas').textContent='Wird geladen …';
+    monthExportMessage('Monatsdaten werden geladen …');
+  }
+}
+async function loadMonthOverview(){
+  const month=$('#adminMonthTab').value||businessDateNow().slice(0,7);
+  setMonthLoadingState(true);
+  try{
+    const [x,{sessions},events]=await Promise.all([getMonthSummary(month),fetchMonthSales(month),fetchMonthEvents(month)]);
+    const c={Terrasse:0,Innenraum:0,Lieferung:0,Abholung:0,Veranstaltungen:0};
+    (sessions||[]).filter(sessionHasRelevantRevenue).forEach(s=>{const a=s.order_type==='Lieferung'?'Lieferung':s.order_type==='Abholung'?'Abholung':s.restaurant_tables?.areas?.name;if(c[a]!==undefined)c[a]++});
+    (events||[]).filter(e=>eventTotals(e).gross>0.004).forEach(()=>c.Veranstaltungen++);
+    $('#monthOps').textContent=x.operations??x.tables;
+    $('#monthGross').textContent=euro(x.gross);
+    $('#monthFood').textContent=euro(x.b.food.gross);
+    $('#monthDrinks').textContent=euro(x.b.drinks.gross);
+    $('#monthVouchers').textContent=euro(x.b.vouchers.gross);
+    $('#monthAreas').textContent='T '+c.Terrasse+' · I '+c.Innenraum+' · L '+c.Lieferung+' · A '+c.Abholung+' · V '+c.Veranstaltungen;
+    monthExportMessage('');
+  }catch(e){
+    $('#monthOps').textContent='—';
+    $('#monthGross').textContent='—';
+    $('#monthFood').textContent='—';
+    $('#monthDrinks').textContent='—';
+    $('#monthVouchers').textContent='—';
+    $('#monthAreas').textContent='Laden fehlgeschlagen';
+    monthExportMessage('Monatsauswertung konnte nicht geladen werden: '+e.message);
+  }finally{
+    setMonthLoadingState(false);
+  }
+}
 $('#monthReceiptBtn').onclick=async()=>{const month=$('#adminMonthTab').value||businessDateNow().slice(0,7);$('#adminMsg').textContent='Monatsabschluss wird berechnet …';const x=await getMonthSummary(month);openReport(summaryReportHtml('Monatsabschluss',month,x,true));$('#adminMsg').textContent='Monatsabschluss '+month+' erstellt.'};
 $('#monthSummaryPdfBtn').onclick=async()=>{const month=$('#adminMonthTab').value||businessDateNow().slice(0,7);$('#adminMsg').textContent='Monatsabschluss wird berechnet …';const x=await getMonthSummary(month);openReport(summaryReportHtml('Monatsabschluss',month,x,false));$('#adminMsg').textContent='Monatsabschluss '+month+' erstellt.'};
 

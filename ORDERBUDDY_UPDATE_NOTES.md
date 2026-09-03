@@ -1,7 +1,7 @@
-# OrderBuddy V32.9
+# OrderBuddy V32.10
 
-- Monats-Exportbuttons geben ihre Rückmeldung direkt im Monatsbereich aus.
-- CSV Nicht-Bar zeigt sichtbar an, wenn im Monat keine Nicht-Bar-Zahlungen vorhanden sind.
-- DATEV-Exporte zeigen fehlende Berater-/Mandantennummer direkt im Monatsbereich.
-- ZIP-Export zeigt Lade-, Erfolgs- und Fehlermeldungen direkt im Monatsbereich.
-- Keine Datenbankänderung erforderlich.
+- Monatsauswertung zeigt während des Ladens keine falschen 0-Werte mehr.
+- KPI-Felder zeigen zunächst „—“ / „Wird geladen …“.
+- Export- und Monatsabschlussbuttons sind während des Datenladens kurz deaktiviert.
+- Bei Ladefehlern erscheint eine sichtbare Meldung direkt im Monatsbereich.
+- Kein Supabase-SQL erforderlich.
