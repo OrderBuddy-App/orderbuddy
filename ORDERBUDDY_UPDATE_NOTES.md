@@ -1,4 +1,4 @@
-# OrderBuddy V32.7
+# OrderBuddy V32.8
 
 Konsolidierter Auswertungsumbau auf Basis von V32.6.
 
@@ -15,4 +15,10 @@ Konsolidierter Auswertungsumbau auf Basis von V32.6.
 - Monats-Tagesbelegberechnung nutzt gespeicherte Gruppenpositionen statt des aktuell geöffneten Tisches.
 - Restaurantfilter bei Monats-/Gutschein-/Übersichtsabfragen vereinheitlicht.
 - „Tag endgültig löschen“ löscht nach SQL-Update abgeschlossene T/I/L/A- und V-Vorgänge des Abschlussdatums gemeinsam.
-- PWA-Cache V32.7.
+- PWA-Cache V32.8.
+
+
+## V32.8
+- Übersicht 'Vorgänge nach Bereich' zählt nur endgültig abgeschlossene, umsatzrelevante Vorgänge.
+- 0-EUR-/vollständig stornierte Vorgänge werden nicht mehr als Innenraum/Lieferung/Abholung etc. gezählt.
+- Bereichs- und Service-Auswertung verwenden damit dieselbe Relevanzlogik wie das Bon-Archiv.
